@@ -12,19 +12,21 @@
 		</script>
 		<style type="text/css">
 			.mui-content,
-html,
-body {
-	height: 100%;
-}
-.content {
-	padding: 20px 5%;
-	text-align: center;
-}
-.content button {
-	line-height: 40px;
-	padding-bottom: 0px;
-	padding-top: 0px;
-}
+			html,
+			body {
+				height: 100%;
+			}
+			
+			.content {
+				padding: 20px 5%;
+				text-align: center;
+			}
+			
+			.content button {
+				line-height: 40px;
+				padding-bottom: 0px;
+				padding-top: 0px;
+			}
 		</style>
 	</head>
 
@@ -44,8 +46,7 @@ body {
 					</select>
 				</div>
 				<div class="room">
-					
-					
+
 					<select id="jxl">
 						<option value="8" selected>综合楼</option>
 						<option value="5">五教</option>
@@ -110,55 +111,59 @@ body {
 				<button id="search" class="mui-btn mui-btn-block mui-btn-primary">查找</button>
 			</div>
 			<div class="mui-content-padded">
-			<ul class="mui-table-view" id="content">
-			</ul>
-		</div>
+				<ul class="mui-table-view" id="content">
+				</ul>
+			</div>
 		</div>
 
-		
-	
 		<script>
 			mui.ready(function() {
-				var num=0;
+				var num = 0;
 				document.getElementById("search").addEventListener('tap', function() {
-					if(num){
+					if (num) {
 						return;
 					}
-					num=1;
-					document.getElementById('content').innerHTML='';
-					var jxl =document.getElementById("jxl").value;
-					var jc =document.getElementById("jc").value;
+					num = 1;
+					document.getElementById('content').innerHTML = '';
+					var jxl = document.getElementById("jxl").value;
+					var jc = document.getElementById("jc").value;
 					mui.ajax({
 						url: "http://2.minikb.sinaapp.com/controller/room_controller.php",
 						dataType: "json",
 						data: {
 							jxl: jxl,
-							jc:jc,
-							c:"GetNullRoom"
+							jc: jc,
+							c: "GetNullRoom"
+						},
+						beforeSend: function() {
+								plus.nativeUI.showWaiting('...');
+						},
+						complete: function() {
+								plus.nativeUI.closeWaiting();
 						},
 						cache: false,
-						success: function(data) { 
-							var list=document.getElementById('content');
-							num=0;
-							if(!data){
-								html="<li class=\"mui-table-view-cell\">没有空教室哦！</li>";
-								list.innerHTML+=html;
+						success: function(data) {
+							var list = document.getElementById('content');
+							num = 0;
+							if (!data) {
+								html = "<li class=\"mui-table-view-cell\">没有空教室哦！</li>";
+								list.innerHTML += html;
 								return;
 							}
-							for(i in data){
-							var html = '<li class="mui-table-view-cell">教室：' + data[i].js +"|"+data[i].type+
-								'<span class="mui-badge mui-badge-red">座位：'+data[i].zw+'</span>' +
-								'</li>' ;
-								var time=data[i].times;
-							list.innerHTML+=html;
+							for (i in data) {
+								var html = '<li class="mui-table-view-cell">教室：' + data[i].js + "|" + data[i].type +
+									'<span class="mui-badge mui-badge-red">座位：' + data[i].zw + '</span>' +
+									'</li>';
+								var time = data[i].times;
+								list.innerHTML += html;
 							}
-							var dates=new Date(parseInt(time) * 1000).toLocaleString().replace(/:\d{1,2}$/,' '); 
-							html="<li class=\"mui-table-view-cell\">数据缓存于："+dates+"</li>";
-								list.innerHTML+=html;
+							var dates = new Date(parseInt(time) * 1000).toLocaleString().replace(/:\d{1,2}$/, ' ');
+							html = "<li class=\"mui-table-view-cell\">数据缓存于：" + dates + "</li>";
+							list.innerHTML += html;
 						},
 						error: function(e) {
 							alert("网络错误~~(>_<)~~");
-							num=0;
+							num = 0;
 						}
 					});
 				});

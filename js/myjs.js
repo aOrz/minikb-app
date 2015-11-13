@@ -1,21 +1,21 @@
 //在登陆页面点击注册账号跳转页面函数
 function RegisterLink() {
-		var regButton = document.getElementById('reg');
-		mui.openWindow({
-			url: 'reg.html',
-			id: 'reg',
-			show: {
-				aniShow: 'pop-in'
-			},
-			styles: {
-				popGesture: 'hide'
-			},
-			waiting: {
-				autoShow: false
-			}
-		});
-	}
-	//打开个人信息链接
+	var regButton = document.getElementById('reg');
+	mui.openWindow({
+		url: 'reg.html',
+		id: 'reg',
+		show: {
+			aniShow: 'pop-in'
+		},
+		styles: {
+			popGesture: 'hide'
+		},
+		waiting: {
+			autoShow: false
+		}
+	});
+}
+//打开个人信息链接
 
 function OpenUserIntroLink() {
 	mui.openWindow({
@@ -567,67 +567,73 @@ function tanchu(td) {
 
 //根据用户ID获得用户所有信息
 function GetUserInfoByUserId() {
-		var userId = plus.storage.getItem("id");
-		mui.ajax('http://2.minikb.sinaapp.com/controller/user_controller.php', {
-			data: {
-				c: 'GetUserInfoByUserId',
-				userId: userId
-			},
-			dataType: 'json', //服务器返回json格式数据
-			type: 'get', //HTTP请求类型
-			success: function(data) {
-				//服务器返回响应，根据响应结果，分析是否登录成功；
-				document.getElementById("account").value = data.nick_name;
-				GetSchoolName();
-				document.getElementById("school").value = data.school;
-				GetCollegeNameBySchool();
-				document.getElementById("major").value = (data.class)[0];
-				var className = data.class;
-				className = className.substr(1, className.length - 1);
-				document.getElementById("class").value = className;
-			},
-			error: function(xhr, type, errorThrown) {
-				//异常处理；
-				plus.nativeUI.toast("网络错误");
-				console.log(type);
-			}
-		});
-	}
-	//更新用户信息
+	var userId = plus.storage.getItem("id");
+	mui.ajax('http://2.minikb.sinaapp.com/controller/user_controller.php', {
+		data: {
+			c: 'GetUserInfoByUserId',
+			userId: userId
+		},
+		beforeSend: function() {
+			plus.nativeUI.showWaiting();
+		},
+		complete: function() {
+			plus.nativeUI.closeWaiting();
+		},
+		dataType: 'json', //服务器返回json格式数据
+		type: 'get', //HTTP请求类型
+		success: function(data) {
+			//服务器返回响应，根据响应结果，分析是否登录成功；
+			document.getElementById("account").value = data.nick_name;
+			GetSchoolName();
+			document.getElementById("school").value = data.school;
+			GetCollegeNameBySchool();
+			document.getElementById("major").value = (data.class)[0];
+			var className = data.class;
+			className = className.substr(1, className.length - 1);
+			document.getElementById("class").value = className;
+		},
+		error: function(xhr, type, errorThrown) {
+			//异常处理；
+			plus.nativeUI.toast("网络错误");
+			console.log(type);
+		}
+	});
+}
+//更新用户信息
 
 function UPdataUserInfoByUserId() {
-		var userId = plus.storage.getItem("id");
-		mui.ajax('http://2.minikb.sinaapp.com/controller/user_controller.php', {
-			data: {
-				c: 'GetUserInfoByUserId',
-				userId: userId
-			},
-			dataType: 'json', //服务器返回json格式数据
-			type: 'get', //HTTP请求类型
-			success: function(data) {
-				//服务器返回响应，根据响应结果，分析是否登录成功；
-				//			document.getElementById("account").value=data.nick_name;
-				//			GetSchoolName();
-				//			document.getElementById("school").value=data.school;
-				//			GetCollegeNameBySchool();
-				//			document.getElementById("major").value=(data.class)[0];
-				//			var className=data.class;
-				//			className=className.substr(1,className.length-1);
-				//			document.getElementById("class").value=className;
-				plus.storage.setItem("ex", '1');
-				plus.storage.setItem('nc', data['nick_name']);
-				plus.storage.setItem('xx', data['school']);
-				plus.storage.setItem('class', data['class']);
-				plus.storage.setItem('id', userId);
-			},
-			error: function(xhr, type, errorThrown) {
-				//异常处理；
-				plus.nativeUI.toast("网络错误");
-				console.log(type);
-			}
-		});
-	}
-	//修改用户信息
+	var userId = plus.storage.getItem("id");
+	mui.ajax('http://2.minikb.sinaapp.com/controller/user_controller.php', {
+		data: {
+			c: 'GetUserInfoByUserId',
+			userId: userId
+		},
+		dataType: 'json', //服务器返回json格式数据
+		type: 'get', //HTTP请求类型
+		success: function(data) {
+			//服务器返回响应，根据响应结果，分析是否登录成功；
+			//			document.getElementById("account").value=data.nick_name;
+			//			GetSchoolName();
+			//			document.getElementById("school").value=data.school;
+			//			GetCollegeNameBySchool();
+			//			document.getElementById("major").value=(data.class)[0];
+			//			var className=data.class;
+			//			className=className.substr(1,className.length-1);
+			//			document.getElementById("class").value=className;
+			plus.storage.setItem("ex", '1');
+			plus.storage.setItem('nc', data['nick_name']);
+			plus.storage.setItem('xx', data['school']);
+			plus.storage.setItem('class', data['class']);
+			plus.storage.setItem('id', userId);
+		},
+		error: function(xhr, type, errorThrown) {
+			//异常处理；
+			plus.nativeUI.toast("网络错误");
+			console.log(type);
+		}
+	});
+}
+//修改用户信息
 
 function AlertUserInfo() {
 	var userName = document.getElementById("account").value;
@@ -922,47 +928,47 @@ function GetDateDiff(startDate) {
 
 //修改用户密码
 function AlertUserPwd() {
-		var old_password = document.getElementById("oldpassword").value;
-		var new_password = document.getElementById("password").value;
-		var new_password2 = document.getElementById("password_confirm").value;
+	var old_password = document.getElementById("oldpassword").value;
+	var new_password = document.getElementById("password").value;
+	var new_password2 = document.getElementById("password_confirm").value;
 
-		if (!old_password || !new_password || !new_password2) {
-			plus.nativeUI.toast("请将信息输入完整");
-			return;
-		}
-
-		if (new_password != new_password2) {
-			plus.nativeUI.toast("两次密码不一致");
-			return;
-		}
-
-		var id = plus.storage.getItem("id");
-		mui.ajax('http://2.minikb.sinaapp.com/controller/user_controller.php', {
-			//		async: false,
-			data: {
-				c: 'AlertUserPwd',
-				userId: id,
-				userPwd: new_password,
-				oldPwd: old_password
-			},
-			dataType: 'json', //服务器返回json格式数据
-			type: 'get', //HTTP请求类型
-			timeout: 10000, //超时时间设置为10秒；
-			success: function(data) {
-				if (data == 1) {
-					plus.nativeUI.toast("修改成功");
-				} else {
-					plus.nativeUI.toast("旧密码错误，请重试");
-				}
-			},
-			error: function(xhr, type, errorThrown) {
-				//异常处理；
-				console.log(type);
-				plus.nativeUI.toast("网络错误");
-			}
-		});
+	if (!old_password || !new_password || !new_password2) {
+		plus.nativeUI.toast("请将信息输入完整");
+		return;
 	}
-	//修改课表函数
+
+	if (new_password != new_password2) {
+		plus.nativeUI.toast("两次密码不一致");
+		return;
+	}
+
+	var id = plus.storage.getItem("id");
+	mui.ajax('http://2.minikb.sinaapp.com/controller/user_controller.php', {
+		//		async: false,
+		data: {
+			c: 'AlertUserPwd',
+			userId: id,
+			userPwd: new_password,
+			oldPwd: old_password
+		},
+		dataType: 'json', //服务器返回json格式数据
+		type: 'get', //HTTP请求类型
+		timeout: 10000, //超时时间设置为10秒；
+		success: function(data) {
+			if (data == 1) {
+				plus.nativeUI.toast("修改成功");
+			} else {
+				plus.nativeUI.toast("旧密码错误，请重试");
+			}
+		},
+		error: function(xhr, type, errorThrown) {
+			//异常处理；
+			console.log(type);
+			plus.nativeUI.toast("网络错误");
+		}
+	});
+}
+//修改课表函数
 
 function xgkc() {
 	var rq = document.getElementById('rq').value;
@@ -1033,51 +1039,51 @@ function kecheng() {
 
 //查看课表是否更新
 function UpdataCourse() {
-		var id = plus.storage.getItem("id") || localStorage.getItem('id');
-		mui.ajax('http://2.minikb.sinaapp.com/controller/user_controller.php', {
-			data: {
-				c: 'UpdataCourse',
-				userId: id
-			},
-			dataType: 'json', //服务器返回json格式数据
-			type: 'get', //HTTP请求类型
-			timeout: 10000, //超时时间设置为10秒；
-			success: function(data) {
-				if (data != 0) {
-					for (var i = 1; i <= 44; i++) {
-						var ind = 's' + i;
-						plus.storage.setItem('"' + i + '"', data[ind]);
-					}
-					plus.nativeUI.toast("课表更新成功，请到全部课表页面查看");
-				} else {
-					plus.nativeUI.toast("还没有新的课表哦！");
+	var id = plus.storage.getItem("id") || localStorage.getItem('id');
+	mui.ajax('http://2.minikb.sinaapp.com/controller/user_controller.php', {
+		data: {
+			c: 'UpdataCourse',
+			userId: id
+		},
+		dataType: 'json', //服务器返回json格式数据
+		type: 'get', //HTTP请求类型
+		timeout: 10000, //超时时间设置为10秒；
+		success: function(data) {
+			if (data != 0) {
+				for (var i = 1; i <= 44; i++) {
+					var ind = 's' + i;
+					plus.storage.setItem('"' + i + '"', data[ind]);
 				}
-			},
-			error: function(xhr, type, errorThrown) {
-				//异常处理；
-				console.log(type);
-				plus.nativeUI.toast("网络错误");
+				plus.nativeUI.toast("课表更新成功，请到全部课表页面查看");
+			} else {
+				plus.nativeUI.toast("还没有新的课表哦！");
 			}
-		});
-	}
-	//storage兼容性。
+		},
+		error: function(xhr, type, errorThrown) {
+			//异常处理；
+			console.log(type);
+			plus.nativeUI.toast("网络错误");
+		}
+	});
+}
+//storage兼容性。
 
 function CheckStorage() {
-		if (localStorage.ex == 1) {
-			for (var i = 1; i <= 44; i++) {
-				plus.storage.setItem('"' + i + '"', localStorage.getItem(i));
-			}
-
-			plus.storage.setItem("ex", '1');
-			plus.storage.setItem('nc', localStorage.getItem('nc'));
-			plus.storage.setItem('xx', localStorage.getItem('school'));
-			plus.storage.setItem('class', localStorage.getItem('class'));
-			plus.storage.setItem('id', localStorage.getItem('id'));
-			UPdataUserInfoByUserId();
-			localStorage.removeItem('ex');
+	if (localStorage.ex == 1) {
+		for (var i = 1; i <= 44; i++) {
+			plus.storage.setItem('"' + i + '"', localStorage.getItem(i));
 		}
+
+		plus.storage.setItem("ex", '1');
+		plus.storage.setItem('nc', localStorage.getItem('nc'));
+		plus.storage.setItem('xx', localStorage.getItem('school'));
+		plus.storage.setItem('class', localStorage.getItem('class'));
+		plus.storage.setItem('id', localStorage.getItem('id'));
+		UPdataUserInfoByUserId();
+		localStorage.removeItem('ex');
 	}
-	//得到热评榜单和高分榜单
+}
+//得到热评榜单和高分榜单
 
 function GetRankList() {
 	mui.ajax('http://4.minikb.sinaapp.com/php/action/ranklist.php', {
@@ -1167,21 +1173,21 @@ function GetRankList() {
 
 //得到
 function Getxiaoli() {
-mui.ajax('http://minikb.sinaapp.com/public/json/holiday.php', {
-				data: {},
-				dataType: 'json', //服务器返回json格式数据
-				type: 'get', //HTTP请求类型
-				timeout: 3000, //超时时间设置为10秒；
-				success: function(data) {
-					if (!data) {
-						mui.alert("网络错误");
-					}
-					localStorage.holiday = JSON.stringify(data);
-//					plus.storage.setItem("holiday",JSON.stringify(data));
-				},
-				error: function(xhr, type, errorThrown) {
-					//异常处理；
-					plus.nativeUI.toast("网络错误");
-				}
-			});
+	mui.ajax('http://minikb.sinaapp.com/public/json/holiday.php', {
+		data: {},
+		dataType: 'json', //服务器返回json格式数据
+		type: 'get', //HTTP请求类型
+		timeout: 3000, //超时时间设置为10秒；
+		success: function(data) {
+			if (!data) {
+				mui.alert("网络错误");
+			}
+			localStorage.holiday = JSON.stringify(data);
+			//					plus.storage.setItem("holiday",JSON.stringify(data));
+		},
+		error: function(xhr, type, errorThrown) {
+			//异常处理；
+			plus.nativeUI.toast("网络错误");
+		}
+	});
 }
