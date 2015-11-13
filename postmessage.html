@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<script type="text/javascript" charset="utf-8">
+			mui.init({
+				swipeBack:true,
+				beforeback: function() {
+					return true;
+				},
+				preloadPages: [{
+					url: 'message.html',
+					id: 'message.html'
+				}]
+			});
+		</script>
+		<style type="text/css">
+			body,
+			html,
+			.mui-content {
+				height: 100%;
+			}
+			.message {
+				width: 100%;
+				background-color: rgba(52, 73, 94, 1.0);
+				color: #FFF;
+				padding: 10px;
+			}
+			.massage_header {
+				padding: 10px;
+				height: 50px;
+			}
+			.massage_header img {
+				border-radius: 50%;
+			}
+			.massage_header .username {
+				position: relative;
+				font-size: 20px;
+				top: -15px;
+			}
+			.message .content_body {
+				margin: 20px auto;
+				width: 90%;
+				word-break: break-all;
+				word-wrap: break-word;
+			}
+			.message .content_body .text {
+				text-indent: 12px;
+				line-height: 25px;
+				font-size: 17px;
+				letter-spacing: 2px;
+				color: #FFF;
+				word-break: break-word;
+			}
+			.message .massage_header .write {
+				float: right;
+				padding-right: 5%;
+				padding-top: 15px;
+				font-size: 20px;
+			}
+			.message_foooter {
+				margin-bottom: 20px;
+			}
+			.message_foooter .time {
+				padding-left: 20px;
+				display: inline;
+			}
+			.message_foooter .time span {
+				color: #FFF;
+				font-size: 18px;
+			}
+			.message_foooter .comment {
+				float: right;
+				padding-right: 30px;
+			}
+			.message_foooter .comment span {
+				font-size: 20px;
+			}
+			.message .message_content {
+				width: 100%;
+				margin: 0px;
+				background: rgba(0, 0, 0, 0);
+				min-height: 150px;
+				border: 0px;
+			}
+			.mui-switch.mui-active:before {
+				top: 6px;
+				right: auto;
+				left: 15px;
+				color: #fff;
+				content: "匿名";
+			}
+			.mui-switch.mui-active {
+				background-color: rgba(52, 73, 94, 1.0);
+				border-color: rgba(52, 73, 94, 1.0);
+			}
+			.mui-switch {
+				font-size: 13px;
+			}
+			.mui-switch:before {
+				top: 6px;
+				font-size: 14px;
+				color: rgba(52, 73, 94, 1.0);
+				content: "实名";
+			}
+			.mui-switch .mui-switch-handle {
+				width: 48px;
+				height: 38px;
+			}
+			.mui-switch {
+				width: 94px;
+				height: 40px;
+				float: left
+			}
+			.footer {
+				padding: 30px 20px;
+			}
+			.footer .postbtn {
+				display: inline;
+				float: right;
+				width: 94px;
+				height: 40px;
+				background: rgba(52, 73, 94, 1.0);
+				color: #FFF;
+				font-size: 18px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon  mui-icon-back mui-pull-left"></a>
+			<h1 class="mui-title">写留言</h1>
+		</header>
+		<div class="mui-content">
+
+			<div class="mui-table-view message" style="margin: 0px;">
+				<textarea class="message_content" placeholder="写下你想说的话..." id="msg-text"></textarea>
+			</div>
+			<div class="footer">
+				<!--<div class="mui-switch mui-active">
+					<div class="mui-switch-handle"></div>
+				</div>-->
+				<button class="postbtn" type="button" id="release">发布</button>
+			</div>
+		</div>
+	</body>
+	<script>
+		mui.plusReady(function() {
+			var detailPage = null;
+			var num=0;
+			document.getElementById('release').addEventListener('tap', function() {
+				if(num){
+					return 0;
+				}else{
+					num=1;
+				}
+				var text = document.getElementById('msg-text').value;
+				if (!text) {
+					plus.nativeUI.toast("写点心情吧！");
+					return 0;
+				}
+				var userId = plus.storage.getItem('id');
+				if (!userId) {
+					plus.nativeUI.toast('登录过期');
+					return 0;
+				}
+				plus.nativeUI.showWaiting( "等待中..." );
+				mui.ajax('http://2.minikb.sinaapp.com/controller/message_board_controller.php', {
+					data: {
+						c: 'SaveMessage',
+						userId: userId,
+						message: text
+					},
+					dataType: 'json', //服务器返回json格式数据
+					type: 'get', //HTTP请求类型
+					timeout: 5000, //超时时间设置为10秒；
+					complete:function(){
+						plus.nativeUI.closeWaiting();
+					},
+					success: function(data) {
+						plus.nativeUI.closeWaiting();
+						if (!data) {
+							plus.nativeUI.toast("网络错误");
+						} else {
+							if (!detailPage) {
+								detailPage = plus.webview.getWebviewById('message.html');
+							}
+							document.getElementById('msg-text').value = '';
+							mui.fire(detailPage, 'sssaba', {});
+							mui.back()
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						//异常处理；
+						plus.nativeUI.toast("网络错误");
+					}
+				});
+			})
+		})
+	</script>
+
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/style.css" />
+		<script src="js/mui.min.js"></script>
+		<style>
+			html,
+			body {
+				height: 100%;
+				background-color: #efeff4;
+			}
+			.mui-content{
+				height: 100%;
+				margin-top: 100px;
+				background-color: #efeff4;
+				position: relative;
+				bottom: 50px;
+
+			}
+			.mui-bar-nav~.mui-content {
+				padding-top: 0;
+			}
+			.title {
+				margin: 20px 15px 10px;
+				color: #6d6d72;
+				font-size: 15px;
+			}
+			.oa-contact-cell.mui-table .mui-table-cell {
+				padding: 11px 0;
+				vertical-align: middle;
+			}
+			.mui-bar-tab .mui-tab-item.mui-active{
+				color: #FFF;
+			}
+			.oa-contact-cell {
+				position: relative;
+				margin: -11px 0;
+			}
+			.oa-contact-avatar {
+				width: 75px;
+			}
+			.oa-contact-avatar img {
+				border-radius: 50%;
+			}
+			.oa-contact-content {
+				width: 100%;
+			}
+			.oa-contact-name {
+				margin-right: 20px;
+			}
+			.oa-contact-name,
+			oa-contact-position {
+				float: left;
+			}
+			.mui-media-body{
+				margin-top: 20px;
+				margin-left: 70px;
+			}
+		</style>
+		<script>
+			mui.init({swipeBack:true});
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">关于</h1>
+		</header>
+		<nav class="mui-bar mui-bar-tab">
+			<a class="mui-tab-item mui-active" href="#tabbar">
+				<span class="mui-tab-label">功能介绍</span>
+			</a>
+			<a class="mui-tab-item" href="#tabbar-with-chat">
+				<span class="mui-tab-label">团队介绍</span>
+			</a>
+		</nav>
+		<div class="mui-content">
+			<div id="tabbar" class="mui-control-content mui-active">
+				<div class="mui-table-view-cell mui-media">
+					<a href="javascript:;">
+						<img class="mui-media-object mui-pull-left" style="width: 60px;" src="images/80.png">
+						<div class="mui-media-body">
+							迷你课表
+							<p class='mui-ellipsis'>版本：2.3</p>
+						</div>
+					</a>
+				</div>
+				<div style="padding-top: 10px;padding-left: 10px;padding-right: 10px;">
+					<p class="mui-h4">迷你课表是一款专为烟台大学的学生服务的课表APP。
+					</p>
+					<p class="mui-h4" style="color: #1f1f1f">1.0基础版：</p>
+					<p>
+							   1.无需手动添加课程，选择学院和班级一键查询班级课表<br />
+							   2.根据老师名或者课程名查询课程具体信息 <br />
+							   3.支持今日课表和全部课表查看<br />
+							   4.支持离线查看课表<br />
+							   5.简洁轻巧，操作便捷，省事省电省流量。
+					</p>
+					<p class="mui-h4" style="color: #1f1f1f">2.1升级版：</p>
+					<p>
+						1.新增留言板匿名留言评论功能<br />
+						2.新增校历日期节假日查询功能<br />
+						3.新增全部课表页面长按修改课表功能<br />
+						4.新增课表云备份功能<br />
+						5.新增客服小课信息反馈、自动聊天功能<br />
+						6.优化界面设计，优化页面逻辑
+					</p>
+				</div>
+			</div>
+			<div id="tabbar-with-chat" class="mui-control-content">
+				<div class="title">
+					&nbsp;&nbsp;&nbsp;&nbsp;迷你课表是由Make团队亲力打造。一直以来，没有任何一款课表App集成烟大的课表，烟大学子若要使用课表须手动输入课表或Copy别人的课表，繁琐不简易，且课表软件越来越臃肿，广告推送也越来越多。在此背景下我们开发了迷你课表烟大人专属的手机App，如果你也是一个像我们一样有着梦想的人，欢迎加入我们QQ群：154784148。
+
+				</div>
+
+				<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed">
+					<li class="mui-table-view-cell">
+						<div class="mui-slider-cell">
+							<div class="oa-contact-cell mui-table">
+								<div class="oa-contact-avatar mui-table-cell">
+									<img src="images/wz.png" />
+								</div>
+								<div class="oa-contact-content mui-table-cell">
+									<div class="mui-clearfix">
+										<h4 class="oa-contact-name">王振</h4>
+										<span class="oa-contact-position mui-h6">18865513398</span>
+									</div>
+									<p class="oa-contact-email mui-h6">
+										Q:503241187
+									</p>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li class="mui-table-view-cell">
+						<div class="mui-slider-cell">
+							<div class="oa-contact-cell mui-table">
+								<div class="oa-contact-avatar mui-table-cell">
+									<img src="images/xp.png" />
+								</div>
+								<div class="oa-contact-content mui-table-cell">
+									<div class="mui-clearfix">
+										<h4 class="oa-contact-name">姜永平</h4>
+										<span class="oa-contact-position mui-h6">18865513850</span>
+									</div>
+									<p class="oa-contact-email mui-h6">
+										Q:944051010
+									</p>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li class="mui-table-view-cell">
+						<div class="mui-slider-cell">
+							<div class="oa-contact-cell mui-table">
+								<div class="oa-contact-avatar mui-table-cell">
+									<img src="images/ssm.png" />
+								</div>
+								<div class="oa-contact-content mui-table-cell">
+									<div class="mui-clearfix">
+										<h4 class="oa-contact-name">孙淑敏</h4>
+										<span class="oa-contact-position mui-h6">18865513351</span>
+									</div>
+									<p class="oa-contact-email mui-h6">
+										Q:1065004086
+									</p>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+
+			</div>
+
+			<div id="tabbar-with-contact" class="mui-control-content">
+				<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed">
+					<li class="mui-table-view-cell">
+						<div class="mui-slider-cell">
+							<div class="oa-contact-cell mui-table" style="padding: 10px;">
+								1.班级设置错误怎么办？点击菜单栏【设置班级】，可重新设置班级。
+							</div>
+						</div>
+					</li>
+					<li class="mui-table-view-cell">
+						<div class="mui-slider-cell">
+							<div class="oa-contact-cell mui-table" style="padding: 10px;">
+								2.课程表有些课程不一样怎么办？点击菜单栏【修改课程】，选择课程输入课程内容即可修改。
+							</div>
+						</div>
+					</li>
+
+					<li class="mui-table-view-cell">
+						<div class="mui-slider-cell">
+							<div class="oa-contact-cell mui-table" style="padding: 10px;">
+								3.有些情况下会发生刷新不彻底的Bug，比如修改课表后不能立刻显示；退出登录后昵称还在，请退出App后重新打开。
+							</div>
+						</div>
+					</li>
+					<li class="mui-table-view-cell">
+						<div class="mui-slider-cell">
+							<div class="oa-contact-cell mui-table" style="padding: 10px;">
+								4.如果您有任何问题都可以加入迷你课表qq群和我们讨论，群号：154784148。
+							</div>
+						</div>
+					</li>
+				</ul>
+				<!--<p>如果您有任何问题都可以加入迷你课表qq群和我们讨论，群号：154784148</p>-->
+				<!--<div>
+				<!--<iframe height="650" allowTransparency="true" style="width:100%;border:none;overflow:auto;" frameborder="0" src="http://www.mikecrm.com/f.php?t=2eOuhY"></iframe>-->
+				<!--<a></a></div>-->
+			</div>
+		</div>
+
+	</body>
+
+</html>

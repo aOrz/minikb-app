@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<script type="text/javascript" src="js/myjs.js" ></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init({swipeBack:true});
+		</script>
+		<style>
+			a {
+				height: 50px;
+			}
+			li {
+				height: 40px;
+				padding: -50px;
+				margin: 0px;
+			}
+			select,
+			input {
+				margin-top: -20px;
+			}
+			.mui-content {
+				background-color: white;
+			}
+			.mui-input-group:before,.mui-input-group:after{
+				background: rgba(0,0,0,0);
+			}
+			.mui-card{
+				margin: 0px;
+				border-bottom: 1px solid #CCCCCC;
+				border-radius: 0px;
+			}
+			.mui-btn-blue, .mui-btn-primary, input[type=submit]{
+				margin-top: 10px;
+				width: 100%;
+				border: 0px;
+				border-radius: 0px;
+				height: 40px;
+				background: #00B6EC;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">修改课表</h1>
+		</header> 
+
+		<div class="mui-content" style="margin-top: 18px;">
+			<form class="mui-input-group" onclick="kecheng()">
+				<div class="mui-card">
+					<ul class="mui-table-view" style="margin-top: 0px;">
+						<li class="mui-table-view-cell " style="background-color: powderblue;">
+							<h5>日期：</h5>
+						</li>
+						<li class="mui-table-view-cell ">
+							<a class="mui-navigate-right" style="height: 40px;" style="margin-top: -50;">
+								<select id="rq" class="mui-input-clear mui-navigate-right">
+									<option value="1">星期一</option>
+									<option value="2">星期二</option>
+									<option value="3">星期三</option>
+									<option value="4">星期四</option>
+									<option value="5">星期五</option>
+									<option value="6">星期六</option>
+									<option value="7">星期天</option>
+								</select>
+							</a>
+
+						</li>
+					</ul>
+				</div>
+				<div class="mui-card" style="margin-top: 18px;">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell " style="background-color: powderblue;">
+							<h5>节次：</h5>
+						</li>
+						<li class="mui-table-view-cell " style="height: 40px;">
+							<a class="mui-navigate-right">
+								<select id="jc" class="mui-input-clear mui-navigate-right">
+									<option value="1">第一节</option>
+									<option value="2">第二节</option>
+									<option value="3">第三节</option>
+									<option value="4">第四节</option>
+									<option value="5">第五节</option>
+									<option value="6">设计实习</option>
+									<option value="7">备注</option>
+								</select>
+							</a>
+
+						</li>
+					</ul>
+				</div>
+				<div class="mui-card" style="margin-top: 18px;">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell " style="background-color: powderblue;">
+							<h5>内容：<span style="font-size: 10px;">(如需删课，清空课程内容，确认即可)</span></h5>
+						</li>
+						<textarea id="nr" rows="2" placeholder="输入课程内容"></textarea>
+					</ul>
+				</div>
+				<div class="mui-button-row">
+					<button class="mui-btn mui-btn-primary" type="button" onclick="xgkc();">确认修改</button>
+				</div>
+
+			</form>
+			</div>
+			<script>
+			mui.plusReady(function(){
+				document.getElementById('nr').value=plus.storage.getItem("1");
+			})
+			</script>
+	</body>
+
+</html>

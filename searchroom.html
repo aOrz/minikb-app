@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>查询空教室</title>
+		<script src="js/mui.min.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+		<style type="text/css">
+			.mui-content,
+html,
+body {
+	height: 100%;
+}
+.content {
+	padding: 20px 5%;
+	text-align: center;
+}
+.content button {
+	line-height: 40px;
+	padding-bottom: 0px;
+	padding-top: 0px;
+}
+		</style>
+	</head>
+
+	<body>
+		<!--<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon-back mui-icon mui-pull-left"></a>
+			<p class="mui-pull-right weekday">第24周</p>
+			<h1 class="mui-title">查询空教室</h1>
+		</header>-->
+		<div class="mui-content">
+			<div class="content">
+				<br />
+				<br />
+				<div>
+					<select>
+						<option>烟台大学</option>
+					</select>
+				</div>
+				<div class="room">
+					
+					
+					<select id="jxl">
+						<option value="8" selected>综合楼</option>
+						<option value="5">五教</option>
+						<option value="7">七教</option>
+						<option value="4">四教</option>
+						<option value="1">一教</option>
+						<option value="2">二教</option>
+						<option value="3">三教</option>
+						<option value="6">六教</option>
+						<!--<option value="24">科技馆</option>
+						<option value="01">法学院</option>
+						<option value="9">计算中心</option>
+						<option value="10">外院公共语音室</option>
+						<option value="11">工程实训中心</option>
+						<option value="12">建筑馆</option>
+						<option value="14">外院205</option>
+						<option value="15">网球场</option>
+						<option value="16">外院专业语音室</option>
+						<option value="17">足球场</option>
+						<option value="18">数学机房</option>
+						<option value="19">外院视听室</option>
+						<option value="21">物理实验中心</option>
+						<option value="22">体教部舞蹈房</option>
+						<option value="23">育秀大楼</option>
+						<option value="25">大学生活动</option>
+						<option value="26">校园管理</option>
+						<option value="27">社区中心</option>
+						<option value="28">实验室</option>
+						<option value="29">设计实习地</option>
+						<option value="30">音乐系</option>
+						<option value="31">体育课</option>
+						<option value="32">外院</option>-->
+					</select>
+				</div>
+				<div class="class">
+					<select name="jc" id="jc">
+						<option value="1">第1节</option>
+						<option value="2">第2节</option>
+						<option value="3">第3节</option>
+						<option value="4">第4节</option>
+						<option value="5">第5节</option>
+						<option value="6">第6节</option>
+						<option value="7">第7节</option>
+						<option value="8">第8节</option>
+						<option value="9">第9节</option>
+						<option value="10">第10节</option>
+						<option value="11">第11节</option>
+						<option value="12">第12节</option>
+					</select>
+				</div>
+				<!--<div class="date">
+					<select name="">
+						<option value="">星期一</option>
+						<option value="">星期二</option>
+						<option value="">星期三</option>
+						<option value="">星期四</option>
+						<option value="">星期五</option>
+						<option value="">星期六</option>
+						<option value="">星期七</option>
+					</select>
+				</div>-->
+				<button id="search" class="mui-btn mui-btn-block mui-btn-primary">查找</button>
+			</div>
+			<div class="mui-content-padded">
+			<ul class="mui-table-view" id="content">
+			</ul>
+		</div>
+		</div>
+
+		
+	
+		<script>
+			mui.ready(function() {
+				var num=0;
+				document.getElementById("search").addEventListener('tap', function() {
+					if(num){
+						return;
+					}
+					num=1;
+					document.getElementById('content').innerHTML='';
+					var jxl =document.getElementById("jxl").value;
+					var jc =document.getElementById("jc").value;
+					mui.ajax({
+						url: "http://2.minikb.sinaapp.com/controller/room_controller.php",
+						dataType: "json",
+						data: {
+							jxl: jxl,
+							jc:jc,
+							c:"GetNullRoom"
+						},
+						cache: false,
+						success: function(data) { 
+							var list=document.getElementById('content');
+							num=0;
+							if(!data){
+								html="<li class=\"mui-table-view-cell\">没有空教室哦！</li>";
+								list.innerHTML+=html;
+								return;
+							}
+							for(i in data){
+							var html = '<li class="mui-table-view-cell">教室：' + data[i].js +"|"+data[i].type+
+								'<span class="mui-badge mui-badge-red">座位：'+data[i].zw+'</span>' +
+								'</li>' ;
+								var time=data[i].times;
+							list.innerHTML+=html;
+							}
+							var dates=new Date(parseInt(time) * 1000).toLocaleString().replace(/:\d{1,2}$/,' '); 
+							html="<li class=\"mui-table-view-cell\">数据缓存于："+dates+"</li>";
+								list.innerHTML+=html;
+						},
+						error: function(e) {
+							alert("网络错误~~(>_<)~~");
+							num=0;
+						}
+					});
+				});
+			});
+		</script>
+	</body>
+
+</html>

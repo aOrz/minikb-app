@@ -1,0 +1,731 @@
+/*login_css开始*/
+
+.ui-page-login,
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	background: #F6ECE4;
+}
+.mui-bar a {
+	color: white;
+}
+.login .header_bg {
+	position: fixed;
+	width: 100%;
+	height: 20px;
+	background: #000;
+	top: 0px;
+}
+.mui-bar {
+	background-color: #33cccc;
+}
+.mui-title {
+	color: #FFF;
+}
+.mui-content {
+	height: 100%;
+	background: #F6ECE4;
+}
+.login .welcome {
+	text-align: center;
+	margin: 20px auto;
+}
+.login .welcome img {
+	width: 120px;
+	border-radius: 50%;
+}
+.login .user_input,
+.login .password_input {
+	text-align: center;
+}
+.login .password_input {
+	position: relative;
+	top: -40px;
+}
+.login .user_icon,
+.login .password_icon {
+	height: 40px;
+	width: 40px;
+	position: relative;
+	line-height: 40px;
+	top: -40px;
+	color: #BBBBBB;
+}
+.login .mui-icon {
+	font-size: 28px;
+}
+.login .user_input input,
+.login .password_input input {
+	width: 100%;
+	height: 40px;
+	border: 0px;
+	position: relative;
+	padding-left: 45px;
+	margin: 0px;
+}
+.login .password_input input {
+	border-top: 1px solid #cccccc;
+}
+.login_btn {
+	text-align: center;
+	margin-top: 20px;
+}
+.login_btn button {
+	width: 100%;
+	height: 40px;
+}
+.mui-btn-blue,
+.mui-btn-primary,
+input[type=submit] {
+	background: #00B6EC;
+	border: 0px;
+	margin: 0 auto;
+	padding: 0px;
+}
+.login .mui-btn-block {
+	width: auto;
+}
+.login_form {
+	height: 80px;
+}
+.login footer {
+	width: 100%;
+	text-align: center;
+	margin-top: 20px;
+}
+.login footer a {
+	color: #33cccc;
+	padding: 0px 20px;
+	font-size: 14px;
+}
+.login footer span {
+	color: #BBBBBB;
+}
+/*login_css结束*/
+/*reg_css开始*/
+
+.reg_form {
+	height: 300px;
+	margin-top: 20px;
+}
+.reg .email_input input,
+.reg .name_input input,
+.reg .password_input input,
+.reg .againpsd_input input {
+	width: 100%;
+	height: 40px;
+	border: 0px;
+	position: relative;
+	padding-left: 45px;
+	margin-bottom: 0px;
+}
+.reg .name_input,
+.reg .password_input,
+.reg .againpsd_input {
+	border-top: 1px solid #cccccc;
+}
+.reg .other {
+	margin-top: 20px;
+	position: relative;
+	top: -160px;
+}
+.reg select {
+	margin: 0px;
+	font-size: 15px;
+	line-height: 15px;
+}
+.reg .class_input {
+	width: 100%;
+}
+.reg .major_select,
+.reg .class_input {
+	border-top: 1px solid #cccccc;
+}
+.reg select {
+	width: 100%;
+	height: 40px;
+	border: 0px;
+	position: relative;
+	padding-left: 45px;
+	margin-bottom: 0px;
+}
+.reg .class_input input {
+	width: 100%;
+	height: 40px;
+	border: 0px;
+	position: relative;
+	padding-left: 45px;
+	margin-bottom: 0px;
+}
+.reg .icon {
+	height: 40px;
+	width: 40px;
+	position: relative;
+	line-height: 40px;
+	top: -40px;
+	color: #BBBBBB;
+	text-align: center;
+}
+.reg .icon .mui-icon {
+	font-size: 28px;
+}
+.reg .name_input {
+	position: relative;
+	top: -40px;
+}
+.reg .password_input {
+	position: relative;
+	top: -80px;
+}
+.reg .againpsd_input {
+	position: relative;
+	top: -120px;
+}
+.reg .school_select {} .reg .school_select img {
+	width: 22px;
+	vertical-align: middle;
+}
+.reg .major_select {
+	position: relative;
+	top: -40px;
+}
+.reg .class_input {
+	position: relative;
+	top: -80px;
+}
+.reg .reg_btn {
+	width: 100%;
+	margin-top: 30px;
+}
+.reg .reg_btn button {
+	padding: 0px;
+	width: 100%;
+	height: 40px;
+	font-size: 14px;
+}
+/*reg_css结束*/
+/*折角_css开始*/
+
+.note {
+	position: relative;
+	width: 480px;
+	padding: 1em 1.5em;
+	margin: 2em auto;
+	color: #fff;
+	background: #97C02F;
+	overflow: hidden;
+}
+.changcolor:before,
+.changcolor1:before,
+.changcolor2:before,
+.changcolor3:before,
+.changcolor4:before,
+.changcolor5:before,
+.changcolor6:before,
+.changcolor7:before {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 0;
+	border-width: 0 20px 22px 0;
+	/* This trick side-steps a webkit bug */
+	
+	border-style: solid;
+	border-color: #fff #fff #dff0d8 #dff0d8;
+	/* A bit more verbose to work with .rounded too */
+	
+	background: #e4e4ee;
+	/* For Opera when also applying a border-radius */
+	
+	display: block;
+	width: 0;
+	/* Only for Firefox 3.0 damage limitation */
+	/* Optional: shadow */
+	
+	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 1px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 1px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+/*折角_css结束*/
+/*kb_css开始*/
+
+.bg-primary {
+	background-color: #e4e4ee;
+}
+a.bg-primary:hover {
+	background-color: #286090;
+}
+.bg-success {
+	background-color: #dff0d8;
+	/*green*/
+}
+a.bg-success:hover {
+	background-color: #c1e2b3;
+}
+.bg-info {
+	background-color: #d9edf7;
+}
+a.bg-info:hover {
+	background-color: #afd9ee;
+}
+.bg-warning {
+	background-color: #fcf8e3;
+}
+a.bg-warning:hover {
+	background-color: #f7ecb5;
+}
+.bg-danger {
+	background-color: #f2dede;
+}
+a.bg-danger:hover {
+	background-color: #e4b9b9;
+}
+.bg-lan {
+	background-color: #AFD9EE;
+}
+.bg-ss {
+	background-color: #C1E2B3;
+}
+.bg-sa {
+	background-color: #F7ECB5;
+}
+.kb body {
+	margin-left: 0px;
+	font-family: 'trebuchet MS', 'Lucida sans', Arial;
+	font-size: 9px;
+	color: #444;
+}
+table {
+	text-align: center;
+	*border-collapse: collapse;
+	word-break: break-all;
+	border-spacing: 0;
+	width: 100%;
+}
+.bordered {
+	border: solid #ccc 1px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	-webkit-box-shadow: 0 1px 1px #ccc;
+	-moz-box-shadow: 0 1px 1px #ccc;
+	box-shadow: 0 1px 1px #ccc;
+}
+.bordered td,
+.bordered th {
+	border-left: 1px solid #ccc;
+	border-top: 1px solid #ccc;
+	padding: 1px;
+	text-align: center;
+}
+td {
+	font-size: 0.5em;
+}
+.bordered th {
+	background-color: #dce9f9;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#ebf3fc), to(#dce9f9));
+	background-image: -webkit-linear-gradient(top, #ebf3fc, #dce9f9);
+	background-image: -moz-linear-gradient(top, #ebf3fc, #dce9f9);
+	background-image: -ms-linear-gradient(top, #ebf3fc, #dce9f9);
+	background-image: -o-linear-gradient(top, #ebf3fc, #dce9f9);
+	background-image: linear-gradient(top, #ebf3fc, #dce9f9);
+	-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset;
+	-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset;
+	border-top: none;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
+}
+.bordered td:first-child,
+.bordered th:first-child {
+	border-left: none;
+}
+.bordered th:first-child {
+	-moz-border-radius: 6px 0 0 0;
+	-webkit-border-radius: 6px 0 0 0;
+	border-radius: 6px 0 0 0;
+}
+.bordered th:last-child {
+	-moz-border-radius: 0 6px 0 0;
+	-webkit-border-radius: 0 6px 0 0;
+	border-radius: 0 6px 0 0;
+}
+.bordered th:only-child {
+	-moz-border-radius: 6px 6px 0 0;
+	-webkit-border-radius: 6px 6px 0 0;
+	border-radius: 6px 6px 0 0;
+}
+.bordered tr:last-child td:first-child {
+	-moz-border-radius: 0 0 0 6px;
+	-webkit-border-radius: 0 0 0 6px;
+	border-radius: 0 0 0 6px;
+}
+.bordered tr:last-child td:last-child {
+	-moz-border-radius: 0 0 6px 0;
+	-webkit-border-radius: 0 0 6px 0;
+	border-radius: 0 0 6px 0;
+}
+.setwidth {
+	width: 65px;
+}
+@media only screen and (min-width: 481px) {
+	.setWidth {
+		width: 120px;
+		font-size: 0.75em;
+		word-break: break-all;
+	}
+}
+@media only screen and (max-width: 480px) {
+	.setWidth {
+		width: 60px;
+		word-break: break-all;
+	}
+}
+/*kb_css结束*/
+/*index-menu_css开始*/
+
+.index-menu .mui-table-view .my_user:hover {
+	background-color: #282626;
+	border-left: 5px solid #68BA8A;
+}
+.index-menu .mui-table-view .my_day:hover {
+	background-color: #282626;
+	border-left: 5px solid #e4e4ee;
+}
+.index-menu .mui-table-view .my_kb:hover {
+	background-color: #282626;
+	border-left: 5px solid #dff0d8;
+}
+.index-menu .mui-table-view .my_ck:hover {
+	background-color: #282626;
+	border-left: 5px solid #afd9ee;
+}
+.mui-table-view .my_set:hover {
+	background-color: #282626;
+	border-left: 5px solid #f7ecb5;
+}
+.mui-table-view .my_change:hover {
+	background-color: #282626;
+	border-left: 5px solid #f2dede;
+}
+.mui-table-view .my_help:hover {
+	background-color: #282626;
+	border-left: 5px solid #AFD9EE;
+}
+.mui-table-view .my_about:hover {
+	background-color: #282626;
+	border-left: 5px solid #F7ECB5;
+}
+.content .mui-btn-danger {
+	background-color: #33CCCC;
+	border: 0px;
+}
+.index-menu .mui-content {
+	background-color: #333;
+	color: #fff;
+}
+.index-menu .title {
+	margin: 35px 15px 10px;
+	font-size: 20px;
+}
+.index-menu .title+.content {
+	margin: 10px 15px 35px;
+	color: #bbb;
+	text-indent: 1em;
+	font-size: 14px;
+	line-height: 24px;
+}
+.index-menu .mui-table-view {
+	margin-bottom: 35px;
+	background-color: #333;
+}
+.index-menu .mui-content>.mui-table-view:first-child {
+	margin-top: 0px;
+}
+.index-menu .user_face {
+	height: 60px;
+	margin: 10px 0px;
+	width: 100%;
+}
+.index-menu .user_face img {
+	border-radius: 50%;
+	width: 60px;
+	float: left;
+}
+.index-menu .user_face .intro {
+	float: left;
+	padding-left: 20px;
+	height: 60px;
+	width: 80px;
+}
+.index-menu .user_face .intro h1 {
+	color: #FFF;
+	font-size: 22px;
+}
+.index-menu .user_face .intro p {
+	font-size: 14px;
+	margin: 0 auto;
+	padding-left: 5px;
+}
+/*index-menu_css结束*/
+/*usermessage_css开始*/
+
+.usermessage .email_input input,
+.usermessage .name_input input,
+.usermessage .password_input input,
+.usermessage .againpsd_input input {
+	width: 100%;
+	height: 40px;
+	border: 0px;
+	position: relative;
+	padding-left: 45px;
+	margin-bottom: 0px;
+}
+.usermessage .name_input,
+.usermessage .password_input,
+.usermessage .againpsd_input {
+	border-top: 1px solid #cccccc;
+}
+.usermessage .other {
+	margin-top: 20px;
+	position: relative;
+	top: -40px;
+}
+.usermessage select {
+	margin: 0px;
+	font-size: 15px;
+	line-height: 15px;
+}
+.usermessage .class_input {
+	width: 100%;
+}
+.usermessage .major_select,
+.usermessage .class_input {
+	border-top: 1px solid #cccccc;
+}
+.usermessage select {
+	width: 100%;
+	height: 40px;
+	border: 0px;
+	position: relative;
+	padding-left: 45px;
+	margin-bottom: 0px;
+}
+.usermessage .class_input input {
+	width: 100%;
+	height: 40px;
+	border: 0px;
+	position: relative;
+	padding-left: 45px;
+	margin-bottom: 0px;
+}
+.usermessage .icon {
+	height: 40px;
+	width: 40px;
+	position: relative;
+	line-height: 40px;
+	top: -40px;
+	color: #BBBBBB;
+	text-align: center;
+}
+.usermessage .icon .mui-icon {
+	font-size: 28px;
+}
+.usermessage .name_input {
+	position: relative;
+	top: 0px;
+}
+.usermessage .school_select {
+	position: relative;
+	top: 0px;
+}
+.usermessage .major_select {
+	position: relative;
+	top: -40px;
+}
+.usermessage .class_input {
+	position: relative;
+	top: -80px;
+}
+.usermessage .reg_btn {
+	width: 100%;
+	margin-top: 0px;
+}
+.usermessage .reg_btn button {
+	padding: 0px;
+	width: 100%;
+	height: 40px;
+	font-size: 14px;
+}
+/*usermessage_css结束*/
+/*searchclass_css开始*/
+
+.searchclass .icon {
+	text-align: center;
+	padding-top: 30px
+}
+.searchclass .icon img {
+	width: 100px;
+}
+.searchclass .searchbtn {
+	text-align: center;
+	margin: 20px auto;
+	width: 90%;
+	height: 40px;
+	vertical-align: middle;
+}
+/*searchclass_css结束*/
+/*forwardest_css开始 */
+
+.forwardest,
+.forwardest .mui-content {
+	background: #FFF;
+}
+.forwardest .mui-control-content {
+	background-color: white;
+	min-height: 800px;
+}
+.forwardest .mui-control-content .mui-loading {
+	margin-top: 50px;
+}
+.forwardest .mui-table-view-cell {
+	min-height: 80px;
+}
+.forwardest .ranking {
+	text-align: center;
+	margin: 0 auto;
+	position: relative;
+	top: 20px;
+	left: 15px;
+	color: #33CCCC;
+	font-weight: bold;
+}
+.forwardest .more {
+	position: relative;
+	top: 10px;
+}
+.forwardest .address {
+	position: relative;
+	top: 10px;
+	word-break: break-word;
+}
+.forwardest .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-progress-bar {
+	background-color: #33cccc;
+}
+.forwardest .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+	color: #33CCCC;
+	font-size: 20px;
+}
+.forwardest #sliderSegmentedControl {
+	color: #BBBBBB;
+}
+.forwardest .ulsearch {
+	margin: 0px;
+	padding: 0px;
+}
+.forwardest .search {
+	padding-top: 6px;
+	padding-right: 10px;
+	padding-left: 10px;
+	height: 50px;
+	border-bottom: 3px solid #c8c7cc;
+	background: #FFF;
+}
+.forwardest #searchBtn {
+	width: 20%;
+	float: right;
+	margin-top: -50px;
+	border: 0px;
+	background: rgba(0, 0, 0, 0);
+	color: #33cccc;
+	font-size: 18px;
+}
+.forwardest #specialInput {
+	width: 80%;
+}
+.forwardest .mui-segmented-control .mui-control-item.mui-active {
+	background: #33CCCC;
+	color: #FFFFFF;
+	font-size: 20px;
+	font-weight: bold;
+}
+.forwardest .mui-segmented-control {
+	border: 1px solid #33CCCC;
+}
+.forwardest .mui-segmented-control .mui-control-item {
+	color: #33CCCC;
+	border-left: 1px solid #33CCCC;
+	border-color: #33CCCC;
+}
+.forwardest .mui-card .mui-control-content {
+	padding: 10px;
+}
+.forwardest .mui-control-content {
+	min-height: 800px;
+}
+/*forwardest_css 结束*/
+/*calender_css开始*/
+.calender table{
+	width: 100%;
+	border: 1px solid rgba(0,0,0,0);
+}
+.calender table .table_title{
+	text-align: center;
+	background: #33cccc;
+	height: 40px;
+	color: #FFF;
+	font-size: 25px;
+}
+.calender.holiday {
+	color: red;
+}
+.calender #other {
+	padding: 15px;
+	margin-top: 15px;
+	color: #777;
+	background-color: #fafafa;
+	border: 1px solid #CCCCCC;
+	border-left: 0px;
+	border-right: 0px;
+}
+.calender table select {
+	width: auto;
+	height: 40px;
+	font-size: 20px;
+	color: #33CCCC;
+	font-weight: bold;
+}
+.calender #GZ {
+	margin-left: 20px;
+}
+.calender .select_year{
+	font-size: 20px;
+	border: 1px solid #33cccc;
+}
+.calender .table_body{
+	height: 40px;
+}
+/*calender_css结束*/
+.changepassword .password_form{
+	position: relative;
+	top: 50px;
+}
+.changepassword .password_form input{
+	border: 0px;
+	border-bottom: 1px solid #CCCCCC;
+}
+.changepassword #password{
+	margin: 0px;
+}
+.changepassword .password_form button{
+	border: 0px;
+	width: 100%;
+	margin-top: 40px;
+	height: 40px;
+	background: #00B6EC;
+	color: #FFF;
+}
+.changepassword .mui-bar .mui-btn-link{
+	color: #FFF;
+}

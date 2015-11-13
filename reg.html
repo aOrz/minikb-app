@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html class="ui-page-login">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
+		<style>
+			.area {
+				margin: 20px auto 0px auto;
+			}
+			.mui-input-group:first-child {
+				margin-top: 20px;
+			}
+			.mui-input-group label {
+				width: 22%;
+			}
+			.mui-input-row label~input,
+			.mui-input-row label~select,
+			.mui-input-row label~textarea {
+				width: 78%;
+			}
+			.mui-checkbox input[type=checkbox],
+			.mui-radio input[type=radio] {
+				top: 6px;
+			}
+			.mui-content-padded {
+				margin-top: 25px;
+			}
+			.mui-btn {
+				padding: 10px;
+			}
+		</style>
+	</head>
+
+	<body class="reg">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">注册</h1>
+		</header>
+		<div class="mui-content">
+			<form class="reg_form">
+				<div class="email_input">
+					<input id='email' type="email" class="mui-input-clear mui-input" placeholder="邮箱">
+					<div class="icon">
+						<span class="mui-icon mui-icon-email"></span>
+					</div>
+				</div>
+				<div class="name_input">
+					<input id='account' type="text" class="mui-input-clear mui-input" placeholder="昵称">
+					<div class="icon">
+						<span class="mui-icon mui-icon-person"></span>
+					</div>
+				</div>
+				<div class="password_input">
+					<input id='password' type="password" class="mui-input-clear mui-input" placeholder="密码">
+					<div class="icon">
+						<span class="mui-icon mui-icon-locked"></span>
+					</div>
+				</div>
+				<div class="againpsd_input">
+					<input id='password_confirm' type="password" class="mui-input-clear mui-input" placeholder="确认密码">
+					<div class="icon">
+						<span class="mui-icon mui-icon-checkmarkempty" style="font-size: 40px;"></span>
+					</div>
+				</div>
+				<div class="other">
+					<div class="school_select">
+						<select id="school" onchange="GetCollegeNameBySchool()">
+							<option selected="selected" value="">学校</option>
+						</select>
+						<div class="icon">
+							<span class="mui-icon mui-icon-home"></span>
+						</div>
+					</div>
+					<div class="major_select">
+						<select id="major">
+							<option value="" selected="">学院</option>
+						</select>
+						<div class="icon">
+							<span class="mui-icon mui-icon-star"></span>
+						</div>
+					</div>
+					<div class="class_input">
+						<input id="class" type="text" class="mui-input-clear mui-input" placeholder="例133-2">
+						<div class="icon">
+							<span class="mui-icon mui-icon-compose"></span>
+						</div>
+					</div>
+				</div>
+			</form>
+			<div class="reg_btn">
+				<button onclick="CheckReg()" class="mui-btn mui-btn-block mui-btn-primary">注册</button>
+			</div>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/myjs.js" ></script>
+		<script>
+		mui.plusReady(function(){
+			GetSchoolName();
+		});
+			(function($, doc) {
+				$.init();
+				$.plusReady(function() {
+
+				});
+			}(mui, document));
+		</script>
+	</body>
+
+</html>

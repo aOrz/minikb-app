@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>迷你课表</title>
+		<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/style.css" />
+		
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/myjs.js" ></script>
+		<style type="text/css">
+			body,.mui-content{
+			  	background-color: #333;
+			  	color:#fff;
+			}
+			.title{
+				margin: 35px 15px 10px;
+			}
+			.title+.content{
+			  	margin: 10px 15px 35px;
+			  	color: #bbb;
+			  	text-indent: 1em;
+			  	font-size: 14px;
+			  	line-height: 24px;
+			}
+			.mui-table-view{
+			  	margin-bottom: 35px;
+			}
+			.usermessage .mui-navigate-right:after, .mui-push-right:after {
+				top: 70%;
+			}
+			#nc{
+				overflow: inherit;
+			}
+		</style>
+	</head>
+
+	<body class="index-menu">
+		<div class="mui-content">
+			
+			<ul class="mui-table-view mui-table-view-chevron mui-table-view-inverted" style="color: #ddd;">
+				<li class="mui-table-view-cell usermessage">
+					<a class="mui-navigate-right" open-type="common" href="usermessage.html">
+						<div class="user_face">
+							<img id="face" src="images/80.png" />
+							<span id="intro" class="intro">
+								<h1 id="nc" class="mui-ellipsis"></h1>
+								<p id="day"> </p>
+							</span>
+						</div> 
+					</a>
+				</li>
+				<!--<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" open-type="common" href="login.html">
+						用户登录
+					</a>
+				</li>-->
+				
+				<!--<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" open-type="common" href="jr.html">
+						今日课表
+					</a>
+				</li>-->
+				<li class="mui-table-view-cell"> 
+					<a class="mui-navigate-right" open-type="common" href="kb.html">
+						全部课表
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" href="searchclass.html">
+						我要蹭课
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" href="searchroom.html">
+						查空教室
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" href="calendar.html">
+						校历查询
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" open-type="common" href="im-chat.html">
+						课表小助手
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" open-type="common" href="xgkb.html">
+						修改课表
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" open-type="common" href="setting.html">
+						设置
+					</a>
+				</li>
+			</ul>
+		</div>
+		
+		<script type="text/javascript" charset="utf-8">
+		mui.init({
+				gestureConfig: {
+					tap: true, //默认为true
+					swipe: true, //默认为true
+				}
+			});
+			var aniShow = "slide-in-right";
+			//关于backbutton和menubutton两个按键的说明，在iOS平台不存在，故需隐藏
+			if(!mui.os.android){
+				var span = document.getElementById("android-only")
+				if(span){
+					span.style.display = "none";
+				}
+				aniShow = "pop-in";
+			}
+			var subWebview=null,template=null,index=null;
+			mui.plusReady(function () {
+				//获得主页面webview引用；
+				index = plus.webview.currentWebview().opener();
+				GetStartTime();
+				var nc=document.getElementById("nc");
+				if(plus.storage.getItem("nc")==null||plus.storage.getItem("nc")==""){
+					nc.innerHTML="小课";
+				}
+				else{
+//					alert(plus.storage.getItem("nc"));
+					nc.innerHTML=plus.storage.getItem("nc");
+				}
+				
+//				var cl=document.getElementById("cl");
+//				if(plus.storage.getItem("class")==null||plus.storage.getItem("class")==""){
+//					cl.innerHTML="还没登陆";
+//				}
+//				else{
+//					cl.innerHTML=plus.storage.getItem("class")+'班';
+//				}
+				
+				
+			})
+			mui('.mui-table-view').on('tap', 'a', function() {
+				var id = this.getAttribute("href");
+				var type = this.getAttribute("open-type");
+				var href = this.href;
+				if(type=="common"||(mui.os.ios)){
+					var webview_style = {
+						popGesture: "close"
+					};
+					mui.openWindow({
+						id: id,
+						url: href,
+						styles: webview_style,
+						show: {
+							aniShow: aniShow
+						},
+						waiting: {
+							autoShow: false
+						}
+					});
+				}else{
+					var href = this.href;
+					var title = this.innerText;
+					template = plus.webview.getWebviewById("default-main");
+					//获得共用子webview
+					subWebview = template.children()[0];
+					
+					//通知模板修改标题，并显示隐藏右上角图标；
+					mui.fire(template,'updateHeader',{title:title,showMenu:false,statusBarBackground: '#33cccc'});
+					if (subWebview.getURL() != href) {
+						subWebview.loadURL(href);
+					} else {
+						 subWebview.show();
+					}
+					template.show('slide-in-right', 150);
+				}
+			});
+			
+			/**
+			 * 关闭侧滑菜单
+			 */
+			function close() {
+				mui.fire(mui.currentWebview.opener(),"menu:close");
+			}
+			
+			
+			//在android4.4.2中的swipe事件，需要preventDefault一下，否则触发不正常
+			window.addEventListener('dragstart',function(e){
+				mui.gestures.touch.lockDirection = true; //锁定方向
+				mui.gestures.touch.startDirection = e.detail.direction;
+			});
+			window.addEventListener('dragleft', function(e) {
+				if(!mui.isScrolling){
+					e.detail.gesture.preventDefault();	
+				}
+			});
+			//监听左滑事件，若菜单已展开，左滑要关闭菜单；
+			window.addEventListener("swipeleft",function (e) {
+				if(Math.abs(e.detail.angle)>170){
+					close();						
+				}
+			});
+		</script>
+	</body>
+
+</html>
