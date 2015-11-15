@@ -324,13 +324,8 @@ td {
 	font-size: 0.5em;
 }
 .bordered th {
-	background-color: #dce9f9;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#ebf3fc), to(#dce9f9));
-	background-image: -webkit-linear-gradient(top, #ebf3fc, #dce9f9);
-	background-image: -moz-linear-gradient(top, #ebf3fc, #dce9f9);
-	background-image: -ms-linear-gradient(top, #ebf3fc, #dce9f9);
-	background-image: -o-linear-gradient(top, #ebf3fc, #dce9f9);
-	background-image: linear-gradient(top, #ebf3fc, #dce9f9);
+	/*background-color: #dce9f9;*/
+	
 	-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset;
 	-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset;
 	box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset;
@@ -342,9 +337,11 @@ td {
 	border-left: none;
 }
 .bordered th:first-child {
+border-top: 1px solid #ccc;
 	-moz-border-radius: 6px 0 0 0;
 	-webkit-border-radius: 6px 0 0 0;
 	border-radius: 6px 0 0 0;
+	font-size: 0.55em;
 }
 .bordered th:last-child {
 	-moz-border-radius: 0 6px 0 0;
@@ -368,17 +365,25 @@ td {
 }
 .setwidth {
 	width: 65px;
+	font-size: 0.5em;
+	height: 20px;
 }
 @media only screen and (min-width: 481px) {
 	.setWidth {
+	line-height: 16px;
 		width: 120px;
-		font-size: 0.75em;
+		height: 16px;
+		font-size: 0.55em;
 		word-break: break-all;
 	}
 }
 @media only screen and (max-width: 480px) {
 	.setWidth {
+	line-height: 16px;
+
 		width: 60px;
+		height: 16px;
+		font-size: 0.55em;
 		word-break: break-all;
 	}
 }

@@ -65,28 +65,23 @@
 					</a>
 				</li>-->
 				<li class="mui-table-view-cell"> 
-					<a class="mui-navigate-right" open-type="common" href="kb.html">
+					<a class="mui-navigate-right" open-type="" href="kb.html">
 						全部课表
 					</a>
 				</li>
 				<li class="mui-table-view-cell">
-					<a class="mui-navigate-right" href="searchclass.html">
+					<a class="mui-navigate-right" open-type="common" href="searchclass.html">
 						我要蹭课
 					</a>
 				</li>
 				<li class="mui-table-view-cell">
-					<a class="mui-navigate-right" href="searchroom.html">
+					<a class="mui-navigate-right" open-type="common" href="searchroom.html">
 						查空教室
 					</a>
 				</li>
 				<li class="mui-table-view-cell">
-					<a class="mui-navigate-right" href="calendar.html">
+					<a class="mui-navigate-right" open-type="common" href="calendar.html">
 						校历查询
-					</a>
-				</li>
-				<li class="mui-table-view-cell">
-					<a class="mui-navigate-right" open-type="common" href="im-chat.html">
-						课表小助手
 					</a>
 				</li>
 				<li class="mui-table-view-cell">
@@ -94,6 +89,12 @@
 						修改课表
 					</a>
 				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" open-type="common" href="im-chat.html">
+						课表小助手
+					</a>
+				</li>
+				
 				<li class="mui-table-view-cell">
 					<a class="mui-navigate-right" open-type="common" href="setting.html">
 						设置
@@ -109,7 +110,7 @@
 					swipe: true, //默认为true
 				}
 			});
-			var aniShow = "slide-in-right";
+			var aniShow = "pop-in";
 			//关于backbutton和menubutton两个按键的说明，在iOS平台不存在，故需隐藏
 			if(!mui.os.android){
 				var span = document.getElementById("android-only")
@@ -146,10 +147,14 @@
 				var id = this.getAttribute("href");
 				var type = this.getAttribute("open-type");
 				var href = this.href;
-				if(type=="common"||(mui.os.ios)){
-					var webview_style = {
-						popGesture: "close"
+				var webview_style = {
+						popGesture: "close",
+						bounce:'all',
+						scalable:true,
+						scrollIndicator:'none'
 					};
+				if(type=="common"||(mui.os.ios)){
+					
 					mui.openWindow({
 						id: id,
 						url: href,
@@ -172,10 +177,11 @@
 					mui.fire(template,'updateHeader',{title:title,showMenu:false,statusBarBackground: '#33cccc'});
 					if (subWebview.getURL() != href) {
 						subWebview.loadURL(href);
+						subWebview.setStyle( webview_style );
 					} else {
 						 subWebview.show();
 					}
-					template.show('slide-in-right', 150);
+					template.show('slide-in-right', 200);
 				}
 			});
 			

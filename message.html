@@ -189,21 +189,21 @@
 				</ul>
 			</div>
 		</div>
-	
+
 		<script src="js/mui.min.js"></script>
 		<script>
 			mui.plusReady(function() {
 				var page = 1;
 				ajaxs();
 				window.addEventListener('sssaba', function(event) {
-										page = 1; 
-									document.getElementById('contents').innerHTML = '';
-									ajaxs();
-									//plus.webview.currentWebview().reload();
-//					location.reload();
+					page = 1;
+					document.getElementById('contents').innerHTML = '';
+					ajaxs();
+					//plus.webview.currentWebview().reload();
+					//					location.reload();
 				});
 				mui.init({
-					swipeBack:true,
+					swipeBack: true,
 					pullRefresh: {
 						container: '#refreshContainer', //待刷新区域标识，querySelector能定位的css选择器均可，比如：id、.class等
 						up: {
@@ -220,63 +220,70 @@
 						id: 'postmessage.html'
 					}]
 				});
-				var color=Array('boy','girl');
+				var color = Array('boy', 'girl');
+
 				function ajaxs() {
-						mui.ajax('http://2.minikb.sinaapp.com/controller/message_board_controller.php', {
-							data: {
-								page: page,
-								c: 'GetMessageByPage'
-							},
-							dataType: 'json', //服务器返回json格式数据
-							type: 'get', //HTTP请求类型
-							timeout: 10000, //超时时间设置为10秒；
-							success: function(data) {
-								if (!data) {
-									//alert("没有文字哦！")
-								}
-								for (var i = 0; i < data.length; i++) {
-									data1 = data[i];
-									var num = Math.ceil(Math.random() * 6);
-									html = '<li class="message '+color[i%2]+'" data-id="' + data1['mood_id'] + '" >' +
-										'<div class="massage_header" >' +
-										'<img src="images/face/' + num + '.png" style="width: 50px;" />' +
-										'<span class="username">某同学</span>' +
-										//								'<span class="write mui-icon mui-icon-redo">分享</span>' +
-										'</div>' +
-										'<div class="content_body">' +
-										'<p class="text">' + data1['moods'] +
-										'</p>' +
-										'</div>' +
-										'<div class="message_foooter">' +
-										'<div class="time">' +
-										'<span>' + getDateDiff(data1['indate']) + '</span>' +
-										'</div>' +
-										'<div class="comment">' +
-										'<span class="mui-icon mui-icon-chatbubble"></span>' +
-										'<span>' + data1['comments'] + '</span>' +
-										'</div>' +
-										'</div>' +
-										'</li>';
-									document.getElementById('contents').innerHTML += html;
-								}
-								var isture = 0;
-								if (i < 9) {
-									isture = 1;
-								}
-								mui('#refreshContainer').pullRefresh().endPullupToRefresh(isture);
-							},
-							error: function(xhr, type, errorThrown) {
-								//异常处理；
-								plus.nativeUI.toast("网络错误，请稍后重试！")
+					mui.ajax('http://2.minikb.sinaapp.com/controller/message_board_controller.php', {
+						data: {
+							page: page,
+							c: 'GetMessageByPage'
+						},
+						dataType: 'json', //服务器返回json格式数据
+						type: 'get', //HTTP请求类型
+						beforeSend: function() {
+							plus.nativeUI.showWaiting();
+						},
+						complete: function() {
+							plus.nativeUI.closeWaiting();
+						},
+						timeout: 5000, //超时时间设置为10秒；
+						success: function(data) {
+							if (!data) {
+								//alert("没有文字哦！")
 							}
-						});
-						page++;
-					}
-					//			function comment(athis) {
-					//				data = athis.innerHTML;
-					//				alert(data)
-					//				mui.fire(targetPage, 'customEvent', {});
-					//			}
+							for (var i = 0; i < data.length; i++) {
+								data1 = data[i];
+								var num = Math.ceil(Math.random() * 6);
+								html = '<li class="message ' + color[i % 2] + '" data-id="' + data1['mood_id'] + '" >' +
+									'<div class="massage_header" >' +
+									'<img src="images/face/' + num + '.png" style="width: 50px;" />' +
+									'<span class="username">某同学</span>' +
+									//								'<span class="write mui-icon mui-icon-redo">分享</span>' +
+									'</div>' +
+									'<div class="content_body">' +
+									'<p class="text">' + data1['moods'] +
+									'</p>' +
+									'</div>' +
+									'<div class="message_foooter">' +
+									'<div class="time">' +
+									'<span>' + getDateDiff(data1['indate']) + '</span>' +
+									'</div>' +
+									'<div class="comment">' +
+									'<span class="mui-icon mui-icon-chatbubble"></span>' +
+									'<span>' + data1['comments'] + '</span>' +
+									'</div>' +
+									'</div>' +
+									'</li>';
+								document.getElementById('contents').innerHTML += html;
+							}
+							var isture = 0;
+							if (i < 9) {
+								isture = 1;
+							}
+							mui('#refreshContainer').pullRefresh().endPullupToRefresh(isture);
+						},
+						error: function(xhr, type, errorThrown) {
+							//异常处理；
+							plus.nativeUI.toast("网络错误，请稍后重试！")
+						}
+					});
+					page++;
+				}
+				//			function comment(athis) {
+				//				data = athis.innerHTML;
+				//				alert(data)
+				//				mui.fire(targetPage, 'customEvent', {});
+				//			}
 				var detailPage = null;
 				mui('.mui-table-view').on('tap', 'li', function(e) {
 					var id = this.getAttribute('data-id');

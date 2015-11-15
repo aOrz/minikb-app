@@ -9,11 +9,11 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
 		<link rel="stylesheet" href="css/mui.min.css">
-		<link rel="stylesheet" href="css/style.css"/>
+		<link rel="stylesheet" href="css/style.css" />
 		<script src="js/mui.min.js"></script>
 		<script src="js/update.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript" src="js/myjs.js"></script>
-		
+
 	</head>
 
 	<body>
@@ -35,17 +35,17 @@
 					doubletap: true
 				},
 				subpages: [{
-					id: 'list.html', 
+					id: 'list.html',
 					url: 'list.html',
 					styles: {
 						top: '45px',
 						bottom: 0,
-						bounce: 'vertical'
+						bounce: 'vertical',
+						scrollIndicator: 'none',
 					}
 				}]
 			});
 			mui.plusReady(function() {
-				
 				//仅支持竖屏显示
 				plus.screen.lockOrientation("portrait-primary");
 				main = plus.webview.currentWebview();
@@ -64,14 +64,13 @@
 							aniShow: 'none'
 						}
 					});
-				}, 000);
+				}, 10);
 			});
 			var isInTransition = false;
 			/**
 			 * 显示侧滑菜单
 			 */
 			function openMenu() {
-				
 				if (isInTransition) {
 					return;
 				}
@@ -126,27 +125,26 @@
 					}, 300);
 				}
 			};
-			 //点击左上角侧滑图标，打开侧滑菜单；
+			//点击左上角侧滑图标，打开侧滑菜单；
 			document.querySelector('.mui-icon-bars').addEventListener('tap', function(e) {
-				
 				if (showMenu) {
 					closeMenu();
 				} else {
 					openMenu();
 				}
 			});
-			 //敲击顶部导航，内容区回到顶部
+			//敲击顶部导航，内容区回到顶部
 			document.querySelector('header').addEventListener('doubletap', function() {
 				main.children()[0].evalJS('mui.scrollTo(0, 100)');
 			});
-			 //主界面向右滑动，若菜单未显示，则显示菜单；否则不做任何操作
+			//主界面向右滑动，若菜单未显示，则显示菜单；否则不做任何操作
 			window.addEventListener("swiperight", openMenu);
-			 //主界面向左滑动，若菜单已显示，则关闭菜单；否则，不做任何操作；
+			//主界面向左滑动，若菜单已显示，则关闭菜单；否则，不做任何操作；
 			window.addEventListener("swipeleft", closeMenu);
-			 //侧滑菜单触发关闭菜单命令
+			//侧滑菜单触发关闭菜单命令
 			window.addEventListener("menu:close", closeMenu);
 			window.addEventListener("menu:open", openMenu);
-			 //重写mui.menu方法，Android版本menu按键按下可自动打开、关闭侧滑菜单；
+			//重写mui.menu方法，Android版本menu按键按下可自动打开、关闭侧滑菜单；
 			mui.menu = function() {
 					if (showMenu) {
 						closeMenu();
@@ -158,11 +156,19 @@
 			var subWebview = null,
 				template = null;
 			document.getElementById('info').addEventListener('tap', function() {
-				mui.openWindow({url:'message.html'});
-				 
+				mui.openWindow({
+					id: 'message',
+					url: 'message.html',
+					styles: {
+						scrollIndicator: 'none'
+					},
+					waiting: {
+						autoShow: false,
+					}
+				});
 			});
-			 //首页返回键处理
-			 //处理逻辑：1秒内，连续两次按返回键，则退出应用；
+			//首页返回键处理
+			//处理逻辑：1秒内，连续两次按返回键，则退出应用；
 			var first = null;
 			mui.back = function() {
 				if (showMenu) {
@@ -177,28 +183,28 @@
 						}, 1000);
 					} else {
 						if (new Date().getTime() - first < 1000) {
-							plus.runtime.quit();
+							//plus.runtime.quit();
+							var main = plus.android.runtimeMainActivity();
+							main.moveTaskToBack(false);
 						}
 					}
 				}
 			};
 		</script>
-				<script>
-				
-			if (mui.os.stream) {
-     //创建桌面快捷方式
-     if (mui.isFunction(plus.navigator.createShortcut)) {
-     	
-          var shortcut = plus.storage.getItem("SHORTCUT");
-          if (!shortcut) { //判断只在第一次启动时创建快捷方式，避免反复创建快捷方式。
-               plus.navigator.createShortcut({
-                    name: "迷你课表",
-                    icon: "img/80.png"  
-               });
-        plus.storage.setItem("SHORTCUT", "true");
-          }
-     }
-}
+		<script>
+			// 监听plusready事件  
+			document.addEventListener("plusready", function() {
+				// 扩展API加载完毕，现在可以正常调用扩展API
+				// 添加监听从系统消息中心点击某条消息启动应用事件
+				plus.push.addEventListener("receive", function(msg) {
+					// 分析msg.payload处理业务逻辑 
+					plus.push.createMessage(msg.content, msg.payload || '', msg);
+				}, false);
+				plus.push.addEventListener("click", function(msg) {
+					// 分析msg.payload处理业务逻辑 
+					alert(msg.content);
+				}, false);
+			}, false);
 		</script>
 	</body>
 

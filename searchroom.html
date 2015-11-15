@@ -31,11 +31,10 @@
 	</head>
 
 	<body>
-		<!--<header class="mui-bar mui-bar-nav">
+		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon-back mui-icon mui-pull-left"></a>
-			<p class="mui-pull-right weekday">第24周</p>
 			<h1 class="mui-title">查询空教室</h1>
-		</header>-->
+		</header>
 		<div class="mui-content">
 			<div class="content">
 				<br />
@@ -136,7 +135,7 @@
 							c: "GetNullRoom"
 						},
 						beforeSend: function() {
-								plus.nativeUI.showWaiting('...');
+								plus.nativeUI.showWaiting();
 						},
 						complete: function() {
 								plus.nativeUI.closeWaiting();

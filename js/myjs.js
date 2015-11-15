@@ -339,6 +339,12 @@ function GetSchoolName() {
 		data: {
 			c: 'schoolName'
 		},
+		beforeSend: function() {
+			plus.nativeUI.showWaiting();
+		},
+		complete: function() {
+			plus.nativeUI.closeWaiting();
+		},
 		dataType: 'json', //服务器返回json格式数据
 		type: 'get', //HTTP请求类型
 		success: function(data) {
@@ -364,8 +370,8 @@ function GetCollegeNameBySchool(school) {
 	var major = document.getElementById("major");
 	document.getElementById('class').style.display = "inline";
 	major.innerHTML = '';
-	if (school == "") {
-		return;
+	if (!school) {
+	school ='yd';
 	} else if (school == 'yd1') {
 		major.innerHTML = '<option value="未知">未知</option>';
 		document.getElementById('class').value = 1;
@@ -381,6 +387,12 @@ function GetCollegeNameBySchool(school) {
 		},
 		dataType: 'json', //服务器返回json格式数据
 		type: 'get', //HTTP请求类型
+		beforeSend: function() {
+			plus.nativeUI.showWaiting();
+		},
+		complete: function() {
+			plus.nativeUI.closeWaiting();
+		},
 		success: function(data) {
 			//服务器返回响应，根据响应结果，分析是否请求成功；
 			for (var i in data) {
@@ -398,6 +410,8 @@ function GetCollegeNameBySchool(school) {
 
 //得到今日课表
 function GetTodayClass() {
+	var html = document.getElementById("course_list");
+	html.innerHTML = '';
 	var dx = {
 		1: '一',
 		2: '二',
@@ -442,7 +456,7 @@ function GetTodayClass() {
 				colorNumber++;
 				isture = 1;
 				var n1 = parseInt(i) + parseInt(1);
-				var html = document.getElementById("course_list");
+				//var html = document.getElementById("course_list");
 				var insertHtml = '<li class="cell ' + color[colorNumber % 5] + '"><div class="mui-table"><div class="mui-table-cell"><h4 class="mui-ellipsis">' + '周' + dx[currentTime] + '第' + n1 + '大节</h4>' + '<p>' +
 					tdatac + '</p><p class="mui-h6 mui-ellipsis">' + dataTime[n1] + '</p></div></div></li>';
 				html.innerHTML = html.innerHTML + insertHtml;
@@ -453,7 +467,7 @@ function GetTodayClass() {
 	//提示今天没有课了
 	if (!isture) {
 		colorNumber++;
-		var html = document.getElementById("course_list");
+		//var html = document.getElementById("course_list");
 		var insertHtml = '<li class="cell ' + color[colorNumber % 5] + '"><div class="mui-table"><div class="mui-table-cell"><h4 class="mui-ellipsis"></h4><p>' + '今天没课了哦！准备明天的课吧！' + '</p><p class="mui-h6 mui-ellipsis"></p></div></div></li>';
 		html.innerHTML = html.innerHTML + insertHtml;
 	}
@@ -464,7 +478,7 @@ function GetTodayClass() {
 		currentTime++;
 	}
 
-	var html = document.getElementById("course_list");
+	//var html = document.getElementById("course_list");
 	var insertHtml = '<hr style="border:1px dashed  #cccccc;width: 90%" />';
 	html.innerHTML = html.innerHTML + insertHtml;
 
@@ -477,7 +491,7 @@ function GetTodayClass() {
 			colorNumber++;
 			isture = 1;
 			var n1 = parseInt(i) + parseInt(1);
-			var html = document.getElementById("course_list");
+			//var html = document.getElementById("course_list");
 			var insertHtml = '<li class="cell ' + color[colorNumber % 5] + '"><div class="mui-table"><div class="mui-table-cell"><h4 class="mui-ellipsis">' + '周' + dx[currentTime] + '第' + n1 + '大节</h4>' + '<p>' + tdatac + '</p><p class="mui-h6 mui-ellipsis">' + dataTime[n1] + '</p></div></div></li>';
 			html.innerHTML = html.innerHTML + insertHtml;
 		}
@@ -486,7 +500,7 @@ function GetTodayClass() {
 	//提示明天没有课了
 	if (!isture) {
 		colorNumber++;
-		var html = document.getElementById("course_list");
+		//var html = document.getElementById("course_list");
 		var insertHtml = '<li class="cell ' + color[colorNumber % 5] + '"><div class="mui-table"><div class="mui-table-cell"><h4 class="mui-ellipsis"></h4><p>' + '明天没课了哦！计划怎么去玩吧！' + '</p><p class="mui-h6 mui-ellipsis"></p></div></div></li>';
 		html.innerHTML = html.innerHTML + insertHtml;
 	}
