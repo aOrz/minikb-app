@@ -174,7 +174,7 @@
 					subWebview = template.children()[0];
 					
 					//通知模板修改标题，并显示隐藏右上角图标；
-					mui.fire(template,'updateHeader',{title:title,showMenu:false,statusBarBackground: '#33cccc'});
+					mui.fire(template,'updateHeader',{title:title,showMenu:true,statusBarBackground: '#33cccc'});
 					if (subWebview.getURL() != href) {
 						subWebview.loadURL(href);
 						subWebview.setStyle( webview_style );
