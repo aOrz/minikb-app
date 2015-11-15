@@ -19,10 +19,12 @@
 				font-size: 1.6rem;
 				background-color: #efeff4;
 			}
+			
 			.mui-bar~.mui-content .mui-fullscreen {
 				top: 44px;
 				height: auto;
 			}
+			
 			.mui-pull-top-tips {
 				position: absolute;
 				top: -20px;
@@ -32,9 +34,11 @@
 				height: 40px;
 				border-radius: 100%;
 			}
+			
 			.mui-bar~.mui-pull-top-tips {
 				top: 24px;
 			}
+			
 			.mui-pull-top-wrapper {
 				width: 42px;
 				height: 42px;
@@ -47,24 +51,28 @@
 				box-shadow: 0 4px 10px #bbb;
 				/*overflow: hidden;*/
 			}
+			
 			.mui-pull-top-tips.mui-transitioning {
 				-webkit-transition-duration: 200ms;
 				transition-duration: 200ms;
 			}
+			
 			.mui-pull-top-tips .mui-pull-loading {
 				/*-webkit-backface-visibility: hidden;
 				-webkit-transition-duration: 400ms;
 				transition-duration: 400ms;*/
-				
 				margin: 0;
 			}
+			
 			.mui-pull-top-wrapper .mui-icon,
 			.mui-pull-top-wrapper .mui-spinner {
 				margin-top: 7px;
 			}
+			
 			.mui-pull-top-wrapper .mui-icon.mui-reverse {
 				/*-webkit-transform: rotate(180deg) translateZ(0);*/
 			}
+			
 			.mui-pull-bottom-tips {
 				text-align: center;
 				background-color: #efeff4;
@@ -72,6 +80,7 @@
 				line-height: 40px;
 				color: #777;
 			}
+			
 			.mui-pull-top-canvas {
 				background-color: #fafafa;
 				border-radius: 40px;
@@ -80,39 +89,48 @@
 				height: 40px;
 				margin: 0 auto;
 			}
+			
 			.mui-pull-top-canvas canvas {
 				width: 40px;
 			}
+			
 			.mui-slider-indicator.mui-segmented-control {
 				background-color: #efeff4;
 			}
+			
 			.mui-table-view-cell:after {
 				left: 0px;
 			}
+			
 			.message {
 				width: 100%;
 				background-color: rgba(52, 73, 94, 1.0);
 				color: #FFF;
 				padding: 10px;
 			}
+			
 			.massage_header {
 				padding: 10px;
 				height: 50px;
 			}
+			
 			.massage_header img {
 				border-radius: 50%;
 			}
+			
 			.massage_header .username {
 				position: relative;
 				font-size: 20px;
 				top: -15px;
 			}
+			
 			.message .content_body {
 				margin: 20px auto;
 				width: 90%;
 				word-break: break-all;
 				word-wrap: break-word;
 			}
+			
 			.message .content_body .text {
 				text-indent: 12px;
 				line-height: 25px;
@@ -121,36 +139,45 @@
 				color: #FFF;
 				word-break: break-word;
 			}
+			
 			.message .massage_header .write {
 				float: right;
 				padding-right: 5%;
 				padding-top: 15px;
 				font-size: 20px;
 			}
+			
 			.message_foooter {
 				margin-bottom: 20px;
 			}
+			
 			.message_foooter .time {
 				padding-left: 20px;
 				display: inline;
 			}
+			
 			.message_foooter .time span {
 				color: #FFF;
 				font-size: 18px;
 			}
+			
 			.message_foooter .comment {
 				float: right;
 				padding-right: 30px;
 			}
+			
 			.message_foooter .comment span {
 				font-size: 20px;
 			}
+			
 			.mui-scroll-wrapper {
 				overflow: auto;
 			}
+			
 			.mui-scroll {
 				background-color: rgba(52, 73, 94, 1.0);
 			}
+			
 			.mui-pull-bottom-pocket {
 				background-color: rgba(52, 73, 94, 1.0);
 			}
@@ -161,17 +188,21 @@
 			.mui-pull-caption {
 				color: white;
 			}
+			
 			.mui-icon-pulldown {
 				color: white;
 			}
+			
 			li {
 				border-bottom: 2px solid #CCCCCC;
 			}
-			.boy{
-				background: rgba(52, 73, 94,1.0);
+			
+			.boy {
+				background: rgba(52, 73, 94, 1.0);
 			}
-			.girl{
-				background: rgba(233,98,113,1.0);
+			
+			.girl {
+				background: rgba(233, 98, 113, 1.0);
 			}
 		</style>
 	</head>
@@ -230,12 +261,12 @@
 						},
 						dataType: 'json', //服务器返回json格式数据
 						type: 'get', //HTTP请求类型
-						beforeSend: function() {
-							plus.nativeUI.showWaiting();
-						},
-						complete: function() {
-							plus.nativeUI.closeWaiting();
-						},
+						//						beforeSend: function() {
+						//							plus.nativeUI.showWaiting();
+						//						},
+						//						complete: function() {
+						//							plus.nativeUI.closeWaiting();
+						//						},
 						timeout: 5000, //超时时间设置为10秒；
 						success: function(data) {
 							if (!data) {
@@ -266,6 +297,9 @@
 									'</li>';
 								document.getElementById('contents').innerHTML += html;
 							}
+							plus.nativeUI.closeWaiting();
+					//显示当前页面
+					mui.currentWebview.show();
 							var isture = 0;
 							if (i < 9) {
 								isture = 1;
