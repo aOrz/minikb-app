@@ -9,7 +9,7 @@
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<script type="text/javascript" charset="utf-8">
 			mui.init({
-				swipeBack:true,
+				swipeBack: true,
 				beforeback: function() {
 					return true;
 				},
@@ -25,30 +25,36 @@
 			.mui-content {
 				height: 100%;
 			}
+			
 			.message {
 				width: 100%;
 				background-color: rgba(52, 73, 94, 1.0);
 				color: #FFF;
 				padding: 10px;
 			}
+			
 			.massage_header {
 				padding: 10px;
 				height: 50px;
 			}
+			
 			.massage_header img {
 				border-radius: 50%;
 			}
+			
 			.massage_header .username {
 				position: relative;
 				font-size: 20px;
 				top: -15px;
 			}
+			
 			.message .content_body {
 				margin: 20px auto;
 				width: 90%;
 				word-break: break-all;
 				word-wrap: break-word;
 			}
+			
 			.message .content_body .text {
 				text-indent: 12px;
 				line-height: 25px;
@@ -57,30 +63,37 @@
 				color: #FFF;
 				word-break: break-word;
 			}
+			
 			.message .massage_header .write {
 				float: right;
 				padding-right: 5%;
 				padding-top: 15px;
 				font-size: 20px;
 			}
+			
 			.message_foooter {
 				margin-bottom: 20px;
 			}
+			
 			.message_foooter .time {
 				padding-left: 20px;
 				display: inline;
 			}
+			
 			.message_foooter .time span {
 				color: #FFF;
 				font-size: 18px;
 			}
+			
 			.message_foooter .comment {
 				float: right;
 				padding-right: 30px;
 			}
+			
 			.message_foooter .comment span {
 				font-size: 20px;
 			}
+			
 			.message .message_content {
 				width: 100%;
 				margin: 0px;
@@ -88,6 +101,7 @@
 				min-height: 150px;
 				border: 0px;
 			}
+			
 			.mui-switch.mui-active:before {
 				top: 6px;
 				right: auto;
@@ -95,31 +109,38 @@
 				color: #fff;
 				content: "匿名";
 			}
+			
 			.mui-switch.mui-active {
 				background-color: rgba(52, 73, 94, 1.0);
 				border-color: rgba(52, 73, 94, 1.0);
 			}
+			
 			.mui-switch {
 				font-size: 13px;
 			}
+			
 			.mui-switch:before {
 				top: 6px;
 				font-size: 14px;
 				color: rgba(52, 73, 94, 1.0);
 				content: "实名";
 			}
+			
 			.mui-switch .mui-switch-handle {
 				width: 48px;
 				height: 38px;
 			}
+			
 			.mui-switch {
 				width: 94px;
 				height: 40px;
 				float: left
 			}
+			
 			.footer {
 				padding: 30px 20px;
 			}
+			
 			.footer .postbtn {
 				display: inline;
 				float: right;
@@ -153,12 +174,12 @@
 	<script>
 		mui.plusReady(function() {
 			var detailPage = null;
-			var num=0;
+			var num = 0;
 			document.getElementById('release').addEventListener('tap', function() {
-				if(num){
+				if (num) {
 					return 0;
-				}else{
-					num=1;
+				} else {
+					num = 1;
 				}
 				var text = document.getElementById('msg-text').value;
 				if (!text) {
@@ -170,7 +191,6 @@
 					plus.nativeUI.toast('登录过期');
 					return 0;
 				}
-				plus.nativeUI.showWaiting( "等待中..." );
 				mui.ajax('http://2.minikb.sinaapp.com/controller/message_board_controller.php', {
 					data: {
 						c: 'SaveMessage',
@@ -180,11 +200,13 @@
 					dataType: 'json', //服务器返回json格式数据
 					type: 'get', //HTTP请求类型
 					timeout: 5000, //超时时间设置为10秒；
-					complete:function(){
+					beforeSend: function() {
+						plus.nativeUI.showWaiting();
+					},
+					complete: function() {
 						plus.nativeUI.closeWaiting();
 					},
 					success: function(data) {
-						plus.nativeUI.closeWaiting();
 						if (!data) {
 							plus.nativeUI.toast("网络错误");
 						} else {
@@ -193,7 +215,7 @@
 							}
 							document.getElementById('msg-text').value = '';
 							mui.fire(detailPage, 'sssaba', {});
-							mui.back()
+							mui.back();
 						}
 					},
 					error: function(xhr, type, errorThrown) {

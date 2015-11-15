@@ -718,7 +718,7 @@ function SearchResultLink(way) {
 		var name = document.getElementById("teachercoursename").value;
 		plus.storage.setItem("searchName", name);
 	}
-	mui.openWindow("ck.html");
+	mui.openWindow({url:"ck.html",styles:{scrollIndicator:'none'}});
 }
 
 //蹭课信息
