@@ -319,8 +319,12 @@
 				});
 			}
 		document.getElementById('logout').addEventListener('tap',function(){
-			plus.storage.clear();
-			mui.openWindow('login.html') 
+		list = plus.webview.getWebviewById('list.html');
+		mui.fire(list, "login",'');
+		plus.storage.clear();
+		mui.back();
+//			plus.storage.clear();
+//			mui.openWindow('login.html');
 		})
 		})
 	</script>

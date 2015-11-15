@@ -13,16 +13,18 @@
 		<style>
 			#list {
 				/*避免导航边框和列表背景边框重叠，看起来像两条边框似得；*/
-				
 				margin-top: -1px;
 			}
+			
 			html,
 			body {
 				background: #FFF;
 			}
+			
 			.mui-bar-nav~.mui-content {
 				padding: 0;
 			}
+			
 			.mui-table h4,
 			.mui-table h5,
 			.mui-table .mui-h5,
@@ -30,45 +32,57 @@
 			.mui-table p {
 				margin-top: 0;
 			}
+			
 			.mui-table h4 {
 				line-height: 21px;
 				font-weight: 500;
 			}
+			
 			.mui-table .oa-icon {
 				position: absolute;
 				right: 0;
 				bottom: 0;
 			}
+			
 			.mui-table .oa-icon-star-filled {
 				color: #f14e41;
 			}
+			
 			.changcolor {
 				background-color: powderblue;
 			}
+			
 			.changcolor1 {
 				background-color: #e4e4ee;
 			}
+			
 			.changcolor2 {
 				background-color: #dff0d8;
 			}
+			
 			.changcolor3 {
 				background-color: #d9edf7;
 			}
+			
 			.changcolor4 {
 				background-color: #fcf8e3;
 			}
+			
 			.mui-text-right {
 				width: 50px;
 			}
+			
 			li {
 				margin: 20px 20px;
 			}
+			
 			.cell {
 				position: relative;
 				padding: 11px 15px;
 				overflow: hidden;
 				-webkit-touch-callout: none;
 			}
+			
 			.mui-content {
 				background-color: white;
 			}
@@ -92,12 +106,12 @@
 				}
 			});
 			document.addEventListener("swiperight", function() {
-				var index='';
+				var index = '';
 				!index && (index = mui.currentWebview.parent());
 				mui.fire(index, 'menu:open');
 			});
 			var aniShow = "pop-in";
-			 //只有ios支持的功能需要在Android平台隐藏；
+			//只有ios支持的功能需要在Android平台隐藏；
 			if (mui.os.android) {
 				var list = document.querySelectorAll('.ios-only');
 				if (list) {
@@ -110,16 +124,16 @@
 					aniShow = "slide-in-right";
 				}
 			}
-			 //初始化，并预加载webview模式的选项卡			
-			function preload() {
-				//mui.preload({url:'examples/tab-webview-main.html'});
-				mui.preload({
-					url: "examples/pullrefresh_main.html",
-					styles: {
-						popGesture: 'hide'
-					}
-				});
-			}
+			//初始化，并预加载webview模式的选项卡			
+			//			function preload() {
+			//				//mui.preload({url:'examples/tab-webview-main.html'});
+			//				mui.preload({
+			//					url: "examples/pullrefresh_main.html",
+			//					styles: {
+			//						popGesture: 'hide'
+			//					}
+			//				});
+			//			}
 			var templates = {};
 			var getTemplate = function(name, header, content) {
 				var template = templates[name];
@@ -137,14 +151,14 @@
 					});
 					//预加载共用子webview
 					var subWebview = mui.preload({
-						url: 'kb.html',//直接预加载课表页面
+						url: 'kb.html', //直接预加载课表页面
 						id: name + "-sub",
 						styles: {
 							top: '45px',
 							bottom: '0px',
-							bounce:'all',
-						scalable:true,
-						scrollIndicator:'none'
+							bounce: 'all',
+							scalable: true,
+							scrollIndicator: 'none'
 						},
 						extras: {
 							mType: 'sub'
@@ -175,9 +189,9 @@
 				getTemplate('default', 'examples/template.html');
 			};
 			mui.plusReady(function() {
-			document.addEventListener( "resume", function(){
-				GetTodayClass();
-			}, false );
+				document.addEventListener("resume", function() {
+					GetTodayClass();
+				}, false);
 				GetTodayClass();
 				CheckStorage();
 				if (!plus.storage.getItem('ex')) {
@@ -189,6 +203,8 @@
 				window.addEventListener('customEvent', function() {
 					document.getElementById('course_list').innerHTML = '';
 					GetTodayClass();
+					subWebview = plus.webview.getWebviewById('default-sub');
+					subWebview.reload(true);
 				})
 				plus.navigator.closeSplashscreen();
 				plus.navigator.setFullscreen(false);
@@ -199,10 +215,14 @@
 			});
 			var index = null; //主页面
 			function openMenu() {
-					!index && (index = mui.currentWebview.parent());
-					mui.fire(index, "menu:open");
-				}
-				//在android4.4.2中的swipe事件，需要preventDefault一下，否则触发不正常
+				!index && (index = mui.currentWebview.parent());
+				mui.fire(index, "menu:open");
+			}
+			function closeMenu() {
+				!index && (index = mui.currentWebview.parent());
+				mui.fire(index, "menu:close");
+			}
+			//在android4.4.2中的swipe事件，需要preventDefault一下，否则触发不正常
 			window.addEventListener('dragstart', function(e) {
 				mui.gestures.touch.lockDirection = true; //锁定方向
 				mui.gestures.touch.startDirection = e.detail.direction;
@@ -212,12 +232,17 @@
 					e.detail.gesture.preventDefault();
 				}
 			});
-			 //监听右滑事件，若侧滑菜单未显示，右滑要显示菜单；
+			//监听右滑事件，若侧滑菜单未显示，右滑要显示菜单；
 			window.addEventListener("swiperight", function(e) {
 				//默认滑动角度在-45度到45度之间，都会触发右滑菜单，为避免误操作，可自定义限制滑动角度；
 				if (Math.abs(e.detail.angle) < 4) {
 					openMenu();
 				}
+			});
+			//退出登录之后执行
+			window.addEventListener('login', function(event) {
+			closeMenu();
+			mui.openWindow('login.html')
 			});
 		</script>
 	</body>
