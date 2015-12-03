@@ -334,27 +334,49 @@ function ClassExists(school, major, className) {
 //获得学校名称
 function GetSchoolName() {
 	var school = document.getElementById("school");
+	var schoolName = localStorage.getItem('schoolName');
+	if (schoolName) {
+		data = JSON.parse(schoolName)
+		for (var i in data) {
+			var insertHtml = '<option value="' + i + '">' + data[i] + '</option>';
+			school.innerHTML += insertHtml;
+		}
+		var insertHtml = '<option value="yd1">' + '其他学校' + '</option>';
+		school.innerHTML += insertHtml;
+		var show_n = 0
+	} else {
+		var show_n = 1;
+	}
 	mui.ajax('http://2.minikb.sinaapp.com/public/json/config.php', {
 		async: false,
 		data: {
 			c: 'schoolName'
 		},
 		beforeSend: function() {
-			plus.nativeUI.showWaiting();
+			if (show_n)
+				plus.nativeUI.showWaiting();
 		},
 		complete: function() {
-			plus.nativeUI.closeWaiting();
+			if (show_n)
+				plus.nativeUI.closeWaiting();
 		},
 		dataType: 'json', //服务器返回json格式数据
 		type: 'get', //HTTP请求类型
 		success: function(data) {
 			//服务器返回响应，根据响应结果，分析是否请求成功；
-			for (var i in data) {
-				var insertHtml = '<option value="' + i + '">' + data[i] + '</option>';
-				school.innerHTML = school.innerHTML + insertHtml;
+			if (data) {
+				localStorage.setItem('schoolName', JSON.stringify(data));
 			}
-			var insertHtml = '<option value="yd1">' + '其他学校' + '</option>';
-			school.innerHTML = school.innerHTML + insertHtml;
+			if (show_n) {
+				school.innerHTML = '';
+				for (var i in data) {
+					var insertHtml = '<option value="' + i + '">' + data[i] + '</option>';
+					school.innerHTML += insertHtml;
+				}
+				var insertHtml = '<option value="yd1">' + '其他学校' + '</option>';
+				school.innerHTML += insertHtml;
+			}
+
 		},
 		error: function(xhr, type, errorThrown) {
 			//异常处理；
@@ -371,15 +393,25 @@ function GetCollegeNameBySchool(school) {
 	document.getElementById('class').style.display = "inline";
 	major.innerHTML = '';
 	if (!school) {
-	school ='yd';
+		school = 'yd';
 	} else if (school == 'yd1') {
 		major.innerHTML = '<option value="未知">未知</option>';
 		document.getElementById('class').value = 1;
 		document.getElementById('class').style.display = "none";
 	}
+	var CollegeName = localStorage.getItem(school + 'CollegeName');
+	if (CollegeName) {
+		data = JSON.parse(CollegeName)
+		for (var i in data) {
+			var insertHtml = '<option value="' + data[i] + '">' + data[i] + '</option>';
+			major.innerHTML = major.innerHTML + insertHtml;
+		}
+		var show_n = 0
+	} else {
+		var show_n = 1;
+	}
 
-
-	mui.ajax('http://2.minikb.sinaapp.com/public/json/config.php?c=collegeName&schoolName=wj', {
+	mui.ajax('http://2.minikb.sinaapp.com/public/json/config.php?c=collegeName', {
 		async: false,
 		data: {
 			c: 'collegeName',
@@ -388,16 +420,21 @@ function GetCollegeNameBySchool(school) {
 		dataType: 'json', //服务器返回json格式数据
 		type: 'get', //HTTP请求类型
 		beforeSend: function() {
-			plus.nativeUI.showWaiting();
+			if (show_n)
+				plus.nativeUI.showWaiting();
 		},
 		complete: function() {
-			plus.nativeUI.closeWaiting();
+			if (show_n)
+				plus.nativeUI.closeWaiting();
 		},
 		success: function(data) {
+			localStorage.setItem(school + 'CollegeName', JSON.stringify(data));
 			//服务器返回响应，根据响应结果，分析是否请求成功；
-			for (var i in data) {
-				var insertHtml = '<option value="' + data[i] + '">' + data[i] + '</option>';
-				major.innerHTML = major.innerHTML + insertHtml;
+			if (show_n) {
+				for (var i in data) {
+					var insertHtml = '<option value="' + data[i] + '">' + data[i] + '</option>';
+					major.innerHTML = major.innerHTML + insertHtml;
+				}
 			}
 		},
 		error: function(xhr, type, errorThrown) {
@@ -718,7 +755,12 @@ function SearchResultLink(way) {
 		var name = document.getElementById("teachercoursename").value;
 		plus.storage.setItem("searchName", name);
 	}
-	mui.openWindow({url:"ck.html",styles:{scrollIndicator:'none'}});
+	mui.openWindow({
+		url: "ck.html",
+		styles: {
+			scrollIndicator: 'none'
+		}
+	});
 }
 
 //蹭课信息

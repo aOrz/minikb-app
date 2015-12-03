@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/style.css" />
+		<script type="text/javascript" charset="utf-8">
+			mui.init({
+				//				subpages: [{
+				//					url: 'http://10.10.49.249/html/zzb/', //子页面HTML地址，支持本地地址和网络地址
+				//					id: 'index1', //子页面标志
+				//					styles: {
+				//						top: '46px', //子页面顶部位置
+				//						bottom: '0px'
+				//					},
+				//				}]
+			});
+			var ws = null,
+				embed = null;
+			// H5 plus事件处理
+			function plusReady() {
+				ws = plus.webview.currentWebview();
+				ws.appendJsFile('_www/js/mui.min.js');
+				embed = plus.webview.create("http://2.minikb.sinaapp.com/view/other/index.html", "", {
+					top: "46px",
+					bottom: "0px"
+				});
+				embed.addEventListener("loaded", function(e) {
+					embed.show(); 
+				}, false);
+				
+			}
+			if (window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener("plusready", plusReady, false);
+			}
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-action-back mui-icon-back mui-pull-left" style="color: aliceblue;"></a>
+			<a class="mui-icon mui-icon-home mui-pull-right" onclick="loadHtmlUrl()"></a>
+			<h1 class="mui-title" style="color: white;">其他功能</h1>
+		</header>
+		<div class="mui-contion">
+			加载中。。。。。
+		</div>
+		<script>
+			function loadHtmlUrl() {
+				embed.loadURL('http://2.minikb.sinaapp.com/view/other/index.html');
+			}
+			//			document.getElementById('home').addEventListener('tap', function() {
+			//				var h = plus.webview.getWebviewById('index1');
+			//				h.loadURL('http://xx.fddcn.cn')
+			//				alert(1)
+			//			})
+		</script>
+	</body>
+
+</html>

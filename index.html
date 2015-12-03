@@ -46,6 +46,16 @@
 				}]
 			});
 			mui.plusReady(function() {
+		//监听系统发来的push事件
+				plus.push.addEventListener("receive", function(msg) {
+					// 分析msg.payload处理业务逻辑 
+					plus.push.createMessage(msg.content, msg.payload || '', msg);
+				}, false);
+				// 添加监听从系统消息中心点击某条消息启动应用事件
+				plus.push.addEventListener("click", function(msg) {
+					// 分析msg.payload处理业务逻辑 
+					alert(msg.content);
+				}, false);
 				//仅支持竖屏显示
 				plus.screen.lockOrientation("portrait-primary");
 				main = plus.webview.currentWebview();
@@ -174,37 +184,10 @@
 				if (showMenu) {
 					closeMenu();
 				} else {
-					//首次按键，提示‘再按一次退出应用’
-					if (!first) {
-						first = new Date().getTime();
-						mui.toast('再按一次退出应用');
-						setTimeout(function() {
-							first = null;
-						}, 1000);
-					} else {
-						if (new Date().getTime() - first < 1000) {
-							//plus.runtime.quit();
-							var main = plus.android.runtimeMainActivity();
+					var main = plus.android.runtimeMainActivity();
 							main.moveTaskToBack(false);
-						}
-					}
 				}
 			};
-		</script>
-		<script>
-			// 监听plusready事件  
-			document.addEventListener("plusready", function() {
-				// 扩展API加载完毕，现在可以正常调用扩展API
-				// 添加监听从系统消息中心点击某条消息启动应用事件
-				plus.push.addEventListener("receive", function(msg) {
-					// 分析msg.payload处理业务逻辑 
-					plus.push.createMessage(msg.content, msg.payload || '', msg);
-				}, false);
-				plus.push.addEventListener("click", function(msg) {
-					// 分析msg.payload处理业务逻辑 
-					alert(msg.content);
-				}, false);
-			}, false);
 		</script>
 	</body>
 

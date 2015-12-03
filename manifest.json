@@ -3,8 +3,8 @@
 	"id": "H5291D2691",/*必选，应用的标识*/
 	"name": "迷你课表",/*必选，应用名称*/
 	"version": {
-		"name": "2.5",/*必选，版本名称*/
-		"code": "14668"
+		"name": "2.7.1",/*必选，版本名称*/
+		"code": "14670"
 	},
 	"description": "",/*可选，应用描述信息*/
 	"icons": {
@@ -55,7 +55,7 @@
 			"autoclose": true,/*如果为true，程序启动的图片可以自动关闭，如果为false，开发者需要手动关闭*/
 			"waiting": false,"delay":"400"/*是否在程序启动界面显示等待雪花，true表示显示，false表示不显示。*/
 		},
-		"runmode": "normal",/*两个值，liberate或normal，前者在应用安装时释放资源，后者不需要释放资源*/
+		"runmode": "liberate",/*两个值，liberate或normal，前者在应用安装时释放资源，后者不需要释放资源*/
 		"signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",/*可选，保留给应用签名，暂不使用*/
 		"distribute": {"plugins":{"statics":{},"push":{"igexin":{"appid":"5GV5tN4obyAb15uLnYzWz","appkey":"ebRpZ0SpCW5fK6pYIY99r5","appsecret":"oKk4NDSu0P8FvS0kndWui6"}},"share":{"qq":{"appid":"1104300281","description":"QQ分享"},"sina":{"appkey":"1546290764","appsecret":"925dfff8fad49bb3ef75abb6cdcb7aa8","redirect_uri":"https://api.weibo.com/oauth2/default.html","description":"可选，新浪微博分享"},"weixin":{"appid":"wx870f6f969fe392d8","appsecret":"db17e3039994ed3e30eb254e45b02bcf","description":"可选，微信分享"}}},
 			"debug": false,/*可选，是否为debug模式，可取值：true表示debug模式运行，false表示release模式运行，默认值为false*/
