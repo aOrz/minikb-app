@@ -82,7 +82,8 @@ function GetLsPwd() {
 function CheckLogin() {
 	var userId = document.getElementById('account').value;
 	var userPwd = document.getElementById('password').value;
-
+     localStorage.setItem('mail',userId);
+     localStorage.setItem('pwd',userPwd);
 	if ((!userId) || (!userPwd)) {
 		//plus.nativeUI.closeWaiting();
 		plus.nativeUI.toast("请把信息输入完整");

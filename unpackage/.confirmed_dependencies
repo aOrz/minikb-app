@@ -27,7 +27,12 @@
 	},
 	"login.html": {
 		"resources": [
-			"images/80.png"
+			"images/80.png",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/myjs.js"
 		]
 	},
 	"list.html": {
@@ -55,7 +60,8 @@
 			"setting.html"
 		],
 		"resources": [
-			"images/80.png"
+			"images/80.png",
+			"fonts/mui.ttf"
 		]
 	},
 	"searchroom.html": {
