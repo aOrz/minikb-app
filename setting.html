@@ -205,7 +205,7 @@
 					<a onclick="OpenWindows('xgkb')" class="mui-navigate-right">修改课表</a>
 				</li>
 				<li class="mui-table-view-cell">
-					<a onclick="UpdataCourse()" class="mui-navigate-right">检查课表更新</a>
+					<a onclick="UpdataCourse()" class="mui-navigate-right">检查APP更新</a>
 				</li>
 			</ul>
 			<ul class="mui-table-view mui-table-view-chevron">
@@ -220,7 +220,7 @@
 			</ul>
 			<ul class="mui-table-view mui-table-view-chevron">
 				<li class="mui-table-view-cell">
-					<a href="about.html" class="mui-navigate-right">关于迷你课表 <i class="mui-pull-right update">V2.7.2</i></a>
+					<a href="about.html" class="mui-navigate-right">关于迷你课表 <i class="mui-pull-right update" id="bb">V2.7.2</i></a>
 				</li>
 			</ul>
 			<ul class="mui-table-view">
@@ -232,6 +232,7 @@
 	</body>
 	<script>
 		mui.plusReady(function(){
+			document.getElementById('bb').innerHTML='V'+plus.runtime.version;
 			document.getElementById("nc").innerHTML=plus.storage.getItem("nc");
 			document.getElementById("class").innerHTML=plus.storage.getItem("class")+"班"; //分享操作
 		var shares = {};

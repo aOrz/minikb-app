@@ -1,5 +1,7 @@
 /*login_css开始*/
-
+.mui-bar-nav{
+	background-color: #33CCCC;
+}
 .ui-page-login,
 body {
 	width: 100%;

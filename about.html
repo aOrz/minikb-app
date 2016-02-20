@@ -93,7 +93,7 @@
 						<img class="mui-media-object mui-pull-left" style="width: 60px;" src="images/80.png">
 						<div class="mui-media-body">
 							迷你课表
-							<p class='mui-ellipsis'>版本：2.7.2</p>
+							<p class='mui-ellipsis'>版本：<span id="bb"></span></p>
 						</div>
 					</a>
 				</div>
@@ -234,7 +234,11 @@
 				<!--<a></a></div>-->
 			</div>
 		</div>
-
+<script>
+	mui.plusReady(function(){
+					document.getElementById('bb').innerHTML='V'+plus.runtime.version;
+	})
+</script>
 	</body>
 
 </html>
