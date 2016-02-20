@@ -593,6 +593,7 @@
 				timeout: 5000, //超时时间设置为10秒；
 				complete: function() {
 					plus.nativeUI.closeWaiting();
+					num = 0;
 				},
 				success: function(data) {
 					if (!data) {

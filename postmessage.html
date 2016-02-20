@@ -205,16 +205,21 @@
 					},
 					complete: function() {
 						plus.nativeUI.closeWaiting();
+						num = 0;
 					},
 					success: function(data) {
 						if (!data) {
 							plus.nativeUI.toast("网络错误");
 						} else {
+							console.log(JSON.stringify(data))
 							if (!detailPage) {
 								detailPage = plus.webview.getWebviewById('message.html');
 							}
 							document.getElementById('msg-text').value = '';
-							mui.fire(detailPage, 'sssaba', {});
+							mui.fire(detailPage, 'sssaba', {
+								mood_id: data,
+								moods: text
+							});
 							mui.back();
 						}
 					},

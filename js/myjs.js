@@ -633,6 +633,7 @@ function GetUserInfoByUserId() {
 		dataType: 'json', //服务器返回json格式数据
 		type: 'get', //HTTP请求类型
 		success: function(data) {
+			console.log(JSON.stringify(data))
 			//服务器返回响应，根据响应结果，分析是否登录成功；
 			document.getElementById("account").value = data.nick_name;
 			GetSchoolName();

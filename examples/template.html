@@ -15,6 +15,12 @@
 				background-color: #efeff4;
 			}
 			
+			.mui-bar {
+				background-color: #33cccc;
+			}
+			.mui-bar a,.mui-bar h1{
+				color: white;
+			}
 			.mui-loader {
 				position: absolute;
 				top: 25%;
@@ -226,15 +232,12 @@
 					bitmap.save("_doc/share_kb.jpg", {}, function(i) {
 						console.log('保存图片成功：' + JSON.stringify(i));
 						msg.pictures = ['_doc/share_kb.jpg'];
-						
-						
 						msg.title = "迷你课表";
 						msg.content = "我在使用迷你课表，里面内置了班级课表，快来看看吧！";
 						if (~share.id.indexOf('weibo')) {
-									msg.content += "；体验地址：http://cdn.sinacloud.net/minikb/minikb.apk";
-								}
-							//	msg.thumbs = ["_www/images/80.png"];
-						
+							msg.content += "；体验地址：http://cdn.sinacloud.net/minikb/minikb.apk";
+						}
+						//	msg.thumbs = ["_www/images/80.png"];
 						share.send(msg, function() {
 							console.log("分享到\"" + share.description + "\"成功！ ");
 						}, function(e) {

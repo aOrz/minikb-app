@@ -3,8 +3,8 @@
 	"id": "H5291D2691",/*必选，应用的标识*/
 	"name": "迷你课表",/*必选，应用名称*/
 	"version": {
-		"name": "2.7.1",/*必选，版本名称*/
-		"code": "14670"
+		"name": "2.7.2",/*必选，版本名称*/
+		"code": "14671"
 	},
 	"description": "",/*可选，应用描述信息*/
 	"icons": {
@@ -140,6 +140,270 @@
             "url": "list.html"
         }
 			}
+		}
+	},
+	"dependencies": {
+		"pages": {
+			"index.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/update.js",
+					"css/style.css",
+					"list.html",
+					"js/myjs.js"
+				],
+				"refer": [
+					"index-menu.html",
+					"message.html"
+				],
+				"priority": 0
+			},
+			"index-menu.html": {
+				"resources": [
+					"images/80.png",
+					"fonts/mui.ttf",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"css/style.css"
+				],
+				"refer": [
+					"setting.html",
+					"searchclass.html",
+					"im-chat.html",
+					"usermessage.html",
+					"searchroom.html",
+					"xgkb.html",
+					"other.html"
+				],
+				"priority": 0
+			},
+			"examples/template.html": {
+				"resources": [
+					"kb.html",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"list.html": {
+				"resources": [
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"css/style.css",
+					"js/myjs.js"
+				],
+				"refer": [
+					"examples/template.html",
+					"kb.html",
+					"login.html"
+				],
+				"priority": 0
+			},
+			"message.html": {
+				"resources": [
+					"images/face/2.png",
+					"images/face/6.png",
+					"images/face/4.png",
+					"images/face/5.png",
+					"images/face/3.png",
+					"images/face/1.png",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css"
+				],
+				"refer": [
+					"postmessage.html",
+					"comment.html"
+				],
+				"priority": 0
+			},
+			"postmessage.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css"
+				],
+				"refer": [
+					"message.html"
+				],
+				"priority": 0
+			},
+			"comment.html": {
+				"resources": [
+					"images/face/5.png",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/face/6.png",
+					"images/face/1.png",
+					"images/face/3.png",
+					"images/face/4.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"setting.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"images/80.png",
+					"css/mui.min.css",
+					"css/style.css",
+					"js/myjs.js",
+					"about.html"
+				],
+				"refer": [
+					"usermessage.html",
+					"changepassword.html"
+				],
+				"priority": 0
+			},
+			"about.html": {
+				"resources": [
+					"images/xp.png",
+					"images/wz.png",
+					"setting.html",
+					"images/ssm.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"searchclass.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"images/80.png",
+					"css/mui.min.css",
+					"css/style.css",
+					"js/myjs.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"im-chat.html": {
+				"resources": [
+					"images/face/1.png",
+					"js/mui.imageViewer.js",
+					"images/face/2.png",
+					"script/jquery-1.11.1.js",
+					"js/mui.min.js",
+					"script/json2.js",
+					"fonts/mui.ttf",
+					"script/easemob.im-1.0.5.js",
+					"css/mui.min.css",
+					"css/style.css",
+					"css/mui.imageviewer.css",
+					"js/arttmpl.js",
+					"script/strophe-custom-2.0.0.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"usermessage.html": {
+				"resources": [
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"css/style.css",
+					"js/myjs.js",
+					"fonts/mui.ttf"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"changepassword.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/style.css",
+					"js/myjs.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"login.html": {
+				"resources": [
+					"images/80.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"kb.html": {
+				"resources": [
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"css/style.css",
+					"js/myjs.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"searchroom.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/vue.min.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"xgkb.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/myjs.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"other.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/style.css"
+				],
+				"refer": [],
+				"priority": 0
+			}
+		},
+		"index": {
+			"resources": [
+				"js/mui.min.js",
+				"fonts/mui.ttf",
+				"css/mui.min.css",
+				"js/update.js",
+				"css/style.css",
+				"list.html",
+				"js/myjs.js"
+			],
+			"refer": [
+				"index-menu.html"
+			],
+			"priority": 0
+		},
+		"idle": {
+			"resources": [
+				"calendar.html",
+				"jr.html",
+				"response.html",
+				"images/pull_arrow.png",
+				"images/beforestar.png",
+				"ck.html",
+				"js/mui.view.js",
+				"examples/pullrefresh_sub.html",
+				"images/star.png",
+				"reg.html",
+				"images/pull_fresh.png",
+				"examples/pullrefresh_with_tab.html",
+				"examples/pullrefresh_main.html"
+			]
 		}
 	}
 
