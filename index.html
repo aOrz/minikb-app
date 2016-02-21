@@ -19,7 +19,7 @@
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-icon mui-icon-bars mui-pull-left"></a>
-						<!--<a id="menu" class="mui-action-menu mui-icon mui-icon-plus mui-pull-right" href="#topPopover"></a>-->
+			<!--<a id="menu" class="mui-action-menu mui-icon mui-icon-plus mui-pull-right" href="#topPopover"></a>-->
 			<a id="info" class="mui-icon mui-icon-chat mui-pull-right"></a>
 			<h1 class="mui-title ">迷你课表</h1>
 		</header>
@@ -47,6 +47,42 @@
 				}]
 			});
 			mui.plusReady(function() {
+				//提示上课
+				function Tring(){
+					var class_time = {
+						7:1,
+						9:2,
+						13:3,
+						15:4,
+						18:5
+					}
+					var delay =localStorage.getItem('delay');
+					var dates = new Date();
+					var hour = dates.getHours ();
+					var minutes = dates.getMinutes ();
+					var week = dates.getDay();
+					if(!week){
+						week+=7;
+					}
+					if(delay&&class_time[hour]){
+						var ring_time = 60-delay;
+						if(ring_time == minutes){
+							var course_num = week*7+class_time[hour];
+							var course = plus.storage.getItem('"' + course_num + '"')
+							var title = '第'+class_time[hour]+'节上课提醒'
+							if(course){
+								plus.push.createMessage( course, 'payload', {title:title,cover:true,delay:0} );										
+							}
+
+						}
+					}else{
+						return 0;
+					}
+
+//					alert(hour)
+
+				}
+				setInterval(Tring,5000);//每分钟检查一次
 		//监听系统发来的push事件
 				plus.push.addEventListener("receive", function(msg) {
 					// 分析msg.payload处理业务逻辑 
@@ -190,7 +226,7 @@
 				}
 			};
 		</script>
-				<div id="topPopover" class="mui-popover">
+		<div id="topPopover" class="mui-popover">
 			<div class="mui-popover-arrow"></div>
 			<div class="mui-scroll-wrapper">
 				<div class="mui-scroll">

@@ -67,7 +67,8 @@
 			"other.html",
 			"im-chat.html",
 			"setting.html",
-			"calendar.html"
+			"calendar.html",
+			"usermessage.html"
 		],
 		"resources": [
 			"images/80.png",
@@ -96,7 +97,9 @@
 			"css/style.css",
 			"js/myjs.js"
 		],
-		"refer": []
+		"refer": [
+			"ck.html"
+		]
 	},
 	"xgkb.html": {
 		"resources": [
@@ -148,7 +151,10 @@
 		"refer": [
 			"im-chat.html",
 			"xgkb.html",
-			"changepassword.html"
+			"changepassword.html",
+			"usermessage.html",
+			"about.html",
+			"ring.html"
 		]
 	},
 	"message.html": {
@@ -190,7 +196,9 @@
 			"css/mui.min.css",
 			"css/style.css"
 		],
-		"refer": []
+		"refer": [
+			"setting.html"
+		]
 	},
 	"comment.html": {
 		"resources": [
@@ -201,6 +209,27 @@
 			"fonts/mui.ttf",
 			"css/mui.min.css",
 			"images/face/4.png"
+		],
+		"refer": []
+	},
+	"ck.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/myjs.js"
+		],
+		"refer": []
+	},
+	"ring.html": {
+		"resources": [
+			"js/vue.min.js",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/myjs.js"
 		]
 	}
 }

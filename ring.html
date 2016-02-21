@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>迷你课表</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/style.css" />
+
+		<script type="text/javascript" src="js/myjs.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script src="js/mui.min.js"></script>
+		<style>
+			html,
+			body {
+				background-color: #FFF;
+				margin-top: 25px;
+			}
+			
+			.mui-bar-nav~.mui-content {
+				padding: 0;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">提醒设置</h1>
+		</header>
+		<div class="mui-content">
+			<ul class="mui-table-view" id="ul">
+				<li class="mui-table-view-cell" >
+					<span>提醒状态</span>
+					<div v-bind:class="{'mui-active':actives}" class="mui-switch mui-switch-blue" >
+						<div class="mui-switch-handle"></div>
+					</div>
+				</li>
+				<template v-if="open">
+				<li class="mui-table-view-cell" >
+					<label>课前{{minu}}分钟</label>
+					<div class="mui-numbox mui-pull-right" style="height: 30px;">
+						<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+						<input class="mui-input-numbox" v-model="minu" type="number" />
+						<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+					</div>
+				</li>
+				</template>
+			</ul>
+		</div>
+
+	</body>
+	<script type="text/javascript">
+		mui.init({
+			swipeBack: true,
+			gestureConfig: {
+				swipe: true
+			}
+		});
+		if(!localStorage.getItem('delay')){
+			var data = {open:0,minu:1,actives:0};
+			localStorage.setItem('delay',JSON.stringify(data))
+		}
+
+		var data = JSON.parse(localStorage.getItem('delay'));
+		data.actives = data.open
+		var vm = new Vue({
+			el:'#ul',
+			data:data,
+//			computed:{
+//				active:function(){
+//					return this.open;
+//				}
+//			}
+		})
+		vm.$watch('open',function(val){
+			vm.open = val; 
+			localStorage.setItem('delay',JSON.stringify(data));
+
+		})
+		vm.$watch('minu',function(val){
+			if(val>20){
+				val = 20;
+			}
+			if(val<1){
+				val = 1;
+			}
+			vm.minu=val;
+			localStorage.setItem('delay',JSON.stringify(data));
+		})
+		mui('.mui-content .mui-switch').each(function() { //循环所有toggle
+			/**
+			 * toggle 事件监听
+			 */
+			this.addEventListener('toggle', function(event) {
+				//event.detail.isActive 可直接获取当前状态
+			vm.open = this.classList.contains('mui-active') ? true : false;
+			});
+		});
+		mui.plusReady(function() {})
+		document.addEventListener("swiperight", function(e) {
+			//默认滑动角度在-45度到45度之间，都会触发右滑菜单，为避免误操作，可自定义限制滑动角度；
+			mui.back();
+		});
+	</script>
+
+</html>
