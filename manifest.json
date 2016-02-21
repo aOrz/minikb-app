@@ -167,7 +167,8 @@
 					"js/mui.min.js",
 					"css/mui.min.css",
 					"css/style.css",
-					"js/myjs.js"
+					"js/myjs.js",
+					"js/vue.min.js"
 				],
 				"refer": [
 					"setting.html",
@@ -257,7 +258,8 @@
 					"css/mui.min.css",
 					"css/style.css",
 					"js/myjs.js",
-					"about.html"
+					"about.html",
+					"js/vue.min.js"
 				],
 				"refer": [
 					"usermessage.html",

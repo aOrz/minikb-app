@@ -10,6 +10,7 @@
 		<link rel="stylesheet" href="css/style.css" />
 		
 		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/vue.min.js" ></script>
 		<script type="text/javascript" src="js/myjs.js" ></script>
 		<style type="text/css">
 			body,.mui-content{
@@ -41,7 +42,7 @@
 	<body class="index-menu">
 		<div class="mui-content">
 			
-			<ul class="mui-table-view mui-table-view-chevron mui-table-view-inverted" style="color: #ddd;">
+			<ul class="mui-table-view mui-table-view-chevron mui-table-view-inverted" style="color: #ddd;" id="i-menu">
 				<li class="mui-table-view-cell usermessage">
 					<a class="mui-navigate-right" open-type="common" href="usermessage.html">
 						<div class="user_face">
@@ -101,7 +102,7 @@
 				</li>
 				<li class="mui-table-view-cell">
 					<a class="mui-navigate-right" open-type="common" href="setting.html">
-						设置
+						设置<span class="mui-badge mui-badge-danger" v-if="is_warn">1</span>
 					</a>
 				</li>
 			</ul>
@@ -125,6 +126,20 @@
 			}
 			var subWebview=null,template=null,index=null;
 			mui.plusReady(function () {
+				new Vue({
+				el: '#i-menu',
+				data: {
+					version: 'V' + plus.runtime.version,
+				},
+				computed: {
+					is_warn: function() {
+						if (localStorage.getItem('warn_num') != plus.runtime.version)
+							return 1;
+						else
+							return 0;
+					}
+				}
+			})
 				//获得主页面webview引用；
 				index = plus.webview.currentWebview().opener();
 				GetStartTime();
