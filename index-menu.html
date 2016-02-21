@@ -48,8 +48,8 @@
 						<div class="user_face">
 							<img id="face" src="images/80.png" />
 							<span id="intro" class="intro">
-								<h1 id="nc" class="mui-ellipsis"></h1>
-								<p id="day"> </p>
+								<h1 class="mui-ellipsis" id="nc" v-cloak>{{nc}}</h1>
+								<p id="day"></p>
 							</span>
 						</div> 
 					</a>
@@ -70,17 +70,17 @@
 						全部课表
 					</a>
 				</li>
-				<li class="mui-table-view-cell">
+				<li class="mui-table-view-cell" v-if="xx">
 					<a class="mui-navigate-right" open-type="common" href="searchclass.html">
 						我要蹭课
 					</a>
 				</li>
-				<li class="mui-table-view-cell">
+				<li class="mui-table-view-cell" v-if="xx">
 					<a class="mui-navigate-right" open-type="common" href="searchroom.html">
 						查空教室
 					</a>
 				</li>
-				<li class="mui-table-view-cell">
+				<li class="mui-table-view-cell" v-if="xx">
 					<a class="mui-navigate-right" open-type="common" href="calendar.html">
 						校历查询
 					</a>
@@ -102,7 +102,7 @@
 				</li>
 				<li class="mui-table-view-cell">
 					<a class="mui-navigate-right" open-type="common" href="setting.html">
-						设置<span class="mui-badge mui-badge-danger" v-if="is_warn">1</span>
+						设置<span class="mui-badge mui-badge-danger" v-if="is_warn" v-cloak>1</span>
 					</a>
 				</li>
 			</ul>
@@ -137,20 +137,26 @@
 							return 1;
 						else
 							return 0;
+					},
+					nc:function(){
+						var name = plus.storage.getItem("nc");
+						if(name==null)
+						  name = '小课'
+						return name;
+					},
+					xx:function(){
+						var school = plus.storage.getItem('xx');
+						var bl=1;
+						if(school!='yd'&&school!=wj){
+							bl=0;
+						}
+						return bl;
 					}
 				}
 			})
 				//获得主页面webview引用；
 				index = plus.webview.currentWebview().opener();
 				GetStartTime();
-				var nc=document.getElementById("nc");
-				if(plus.storage.getItem("nc")==null||plus.storage.getItem("nc")==""){
-					nc.innerHTML="小课";
-				}
-				else{
-//					alert(plus.storage.getItem("nc"));
-					nc.innerHTML=plus.storage.getItem("nc");
-				}
 				
 //				var cl=document.getElementById("cl");
 //				if(plus.storage.getItem("class")==null||plus.storage.getItem("class")==""){
