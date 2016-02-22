@@ -16,7 +16,6 @@ function RegisterLink() {
 	});
 }
 //打开个人信息链接
-
 function OpenUserIntroLink() {
 	mui.openWindow({
 		url: 'usermessage.html',
@@ -82,8 +81,8 @@ function GetLsPwd() {
 function CheckLogin() {
 	var userId = document.getElementById('account').value;
 	var userPwd = document.getElementById('password').value;
-     localStorage.setItem('mail',userId);
-     localStorage.setItem('pwd',userPwd);
+	localStorage.setItem('mail', userId);
+	localStorage.setItem('pwd', userPwd);
 	if ((!userId) || (!userPwd)) {
 		//plus.nativeUI.closeWaiting();
 		plus.nativeUI.toast("请把信息输入完整");
@@ -637,7 +636,7 @@ function GetUserInfoByUserId() {
 		type: 'get', //HTTP请求类型
 		success: function(data) {
 			console.log(JSON.stringify(data))
-			//服务器返回响应，根据响应结果，分析是否登录成功；
+				//服务器返回响应，根据响应结果，分析是否登录成功；
 			document.getElementById("account").value = data.nick_name;
 			GetSchoolName();
 			document.getElementById("school").value = data.school;
@@ -1106,7 +1105,7 @@ function kecheng() {
 	}
 }
 
-//查看课表是否更新
+//查看课表是否更新 
 function UpdataCourse() {
 	var id = plus.storage.getItem("id") || localStorage.getItem('id');
 	mui.ajax('http://2.minikb.sinaapp.com/controller/user_controller.php', {
@@ -1114,15 +1113,24 @@ function UpdataCourse() {
 			c: 'UpdataCourse',
 			userId: id
 		},
+		beforeSend: function() {
+			plus.nativeUI.showWaiting();
+		},
+		complete: function() {
+			plus.nativeUI.closeWaiting();
+		},
 		dataType: 'json', //服务器返回json格式数据
 		type: 'get', //HTTP请求类型
 		timeout: 10000, //超时时间设置为10秒；
 		success: function(data) {
+			data = data[0];
 			if (data != 0) {
 				for (var i = 1; i <= 44; i++) {
 					var ind = 's' + i;
 					plus.storage.setItem('"' + i + '"', data[ind]);
 				}
+				detailPage = plus.webview.getWebviewById('list.html');
+				mui.fire(detailPage, 'customEvent', {});
 				plus.nativeUI.toast("课表更新成功，请到全部课表页面查看");
 			} else {
 				plus.nativeUI.toast("还没有新的课表哦！");

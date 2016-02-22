@@ -252,7 +252,7 @@
 						<a id="sharexs" class="mui-navigate-right">分享推荐</a>
 					</li>
 					<li class="mui-table-view-cell">
-						<a onclick="UpdataCourse()" class="mui-navigate-right">检查APP更新</a>
+						<a id="updatacourse" class="mui-navigate-right">重置课程表</a>
 					</li>
 				</ul>
 			</ul>
@@ -293,8 +293,19 @@
 				}
 			})
 		})
-		var shares = {};
+		//监听更新按钮
+var upcourse = document.getElementById('updatacourse')
+upcourse.addEventListener('tap',function(){
+	var btnArray = ['否', '更新'];
+	mui.confirm('更新将会把课程表重置为服务器上最新的班级课程表', '迷你课表', btnArray, function(e) {
+		if (e.index == 1) {
+			UpdataCourse();
+		}
+	})
+	
+})
 		mui.plusReady(function() {
+		var shares = {};
 			plus.share.getServices(function(s) {
 				if (s && s.length > 0) {
 					for (var i = 0; i < s.length; i++) {

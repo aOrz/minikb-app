@@ -10,6 +10,31 @@
 
 		<link rel="stylesheet" href="css/mui.min.css">
 		<link rel="stylesheet" href="css/style.css" />
+		<style>
+			.mui-bar .mui-title {
+				right: auto;
+			}
+			.mui-icon-bars{
+				font-weight: 800;
+				margin-left: px;
+			}
+			#compose{
+				font-size: 28px;
+				padding-top: 8px;
+				padding-bottom: 8px;
+				font-weight: 800;
+				margin-left: 3px;
+			}
+			#info{
+				font-size: 22px;
+				padding-top: 11px;
+				padding-bottom: 11px;
+			}
+			#loop{
+				font-weight: 800;
+				margin-right: 5px;
+			}
+		</style>
 		<script src="js/mui.min.js"></script>
 		<script src="js/update.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript" src="js/myjs.js"></script>
@@ -19,8 +44,11 @@
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-icon mui-icon-bars mui-pull-left"></a>
-			<!--<a id="menu" class="mui-action-menu mui-icon mui-icon-plus mui-pull-right" href="#topPopover"></a>-->
+			<a id="compose" class="mui-icon mui-icon-compose mui-pull-right"></a>
 			<a id="info" class="mui-icon mui-icon-chat mui-pull-right"></a>
+			<a id="loop" class="mui-icon mui-icon-loop mui-pull-right" href="#topPopover"></a> 
+
+
 			<h1 class="mui-title mui-pull-left">迷你课表</h1>
 		</header>
 
@@ -227,37 +255,6 @@
 				}
 			};
 		</script>
-		<div id="topPopover" class="mui-popover">
-			<div class="mui-popover-arrow"></div>
-			<div class="mui-scroll-wrapper">
-				<div class="mui-scroll">
-					<ul class="mui-table-view">
-						<li class="mui-table-view-cell">
-							<a href="#">Item1</a>
-						</li>
-						<li class="mui-table-view-cell"><a href="#">Item2</a>
-						</li>
-						<li class="mui-table-view-cell"><a href="#">Item3</a>
-						</li>
-						<li class="mui-table-view-cell"><a href="#">Item4</a>
-						</li>
-						<li class="mui-table-view-cell"><a href="#">Item5</a>
-						</li>
-						<li class="mui-table-view-cell"><a href="#">Item6</a>
-						</li>
-						<li class="mui-table-view-cell"><a href="#">Item7</a>
-						</li>
-						<li class="mui-table-view-cell"><a href="#">Item8</a>
-						</li>
-						<li class="mui-table-view-cell"><a href="#">Item9</a>
-						</li>
-						<li class="mui-table-view-cell"><a href="#">Item10</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-
-		</div>
 
 	</body>
 
