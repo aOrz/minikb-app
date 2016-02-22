@@ -319,7 +319,7 @@
 			//			setTimeout(function() {
 			//				initImgPreview();
 			//			}, 500);
-		});
+
 		//分享链接点击事件
 		document.getElementById("sharexs").addEventListener('tap', function() {
 			console.log(10)
@@ -387,6 +387,7 @@
 				console.log("分享到\"" + share.description + "\"失败: " + e.code + " - " + e.message);
 			});
 		}
+				});
 		document.getElementById('logout').addEventListener('tap', function() {
 			list = plus.webview.getWebviewById('list.html');
 			mui.fire(list, "login", '');
