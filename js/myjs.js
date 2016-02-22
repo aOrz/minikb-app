@@ -1073,15 +1073,6 @@ function AlertCourse(id, course) {
 		type: 'get', //HTTP请求类型
 		timeout: 10000, //超时时间设置为10秒；
 		success: function(data) {
-			//				if (data != 0) {
-			//					for (var i = 1; i <= 44; i++) {
-			//						var ind = 's' + i;
-			//						plus.storage.setItem('"' + i + '"', data[ind]);
-			//					}
-			//					plus.nativeUI.toast("课表更新成功，请到全部课表页面查看");
-			//				} else {
-			//					plus.nativeUI.toast("还没有新的课表哦！");
-			//				}
 		},
 		error: function(xhr, type, errorThrown) {
 			//异常处理；
@@ -1131,7 +1122,7 @@ function UpdataCourse() {
 				}
 				detailPage = plus.webview.getWebviewById('list.html');
 				mui.fire(detailPage, 'customEvent', {});
-				plus.nativeUI.toast("课表更新成功，请到全部课表页面查看");
+				plus.nativeUI.toast("课表重置成功");
 			} else {
 				plus.nativeUI.toast("还没有新的课表哦！");
 			}

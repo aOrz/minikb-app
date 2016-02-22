@@ -202,12 +202,14 @@
 				if (!localStorage.holiday) {
 					Getxiaoli();
 				}
-				window.addEventListener('customEvent', function() {
+				window.addEventListener('customEvent', function(event) {
 					document.getElementById('course_list').innerHTML = '';
 					GetTodayClass();
 					subWebview = plus.webview.getWebviewById('default-sub');
+					if(event.detail.page!= 'all')
 					subWebview.reload(true);
 				})
+				
 				plus.navigator.closeSplashscreen();
 				plus.navigator.setFullscreen(false);
 				//初始化模板

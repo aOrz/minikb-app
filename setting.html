@@ -270,42 +270,41 @@
 	</body>
 	<script>
 		mui.plusReady(function() {
-			new Vue({
-				el: '#bb',
-				data: {
-					version: 'V' + plus.runtime.version,
-					nc: plus.storage.getItem("nc"),
-					class_: plus.storage.getItem("class") + "班"
-				},
-				computed: {
-					is_warn: function() {
-						if (localStorage.getItem('warn_num') != plus.runtime.version)
-							return 1;
-						else
-							return 0;
+				new Vue({
+					el: '#bb',
+					data: {
+						version: 'V' + plus.runtime.version,
+						nc: plus.storage.getItem("nc"),
+						class_: plus.storage.getItem("class") + "班"
+					},
+					computed: {
+						is_warn: function() {
+							if (localStorage.getItem('warn_num') != plus.runtime.version)
+								return 1;
+							else
+								return 0;
+						}
+					},
+					methods: {
+						not_warn: function(event) {
+							this.is_warn = 0;
+							localStorage.setItem('warn_num', plus.runtime.version)
+						}
 					}
-				},
-				methods: {
-					not_warn: function(event) {
-						this.is_warn = 0;
-						localStorage.setItem('warn_num', plus.runtime.version)
-					}
+				})
+			})
+			//监听更新按钮
+		var upcourse = document.getElementById('updatacourse')
+		upcourse.addEventListener('tap', function() {
+			var btnArray = ['否', '更新'];
+			mui.confirm('更新将会把课程表重置为服务器上最新的班级课程表', '迷你课表', btnArray, function(e) {
+				if (e.index == 1) {
+					UpdataCourse();
 				}
 			})
 		})
-		//监听更新按钮
-var upcourse = document.getElementById('updatacourse')
-upcourse.addEventListener('tap',function(){
-	var btnArray = ['否', '更新'];
-	mui.confirm('更新将会把课程表重置为服务器上最新的班级课程表', '迷你课表', btnArray, function(e) {
-		if (e.index == 1) {
-			UpdataCourse();
-		}
-	})
-	
-})
 		mui.plusReady(function() {
-		var shares = {};
+			var shares = {};
 			plus.share.getServices(function(s) {
 				if (s && s.length > 0) {
 					for (var i = 0; i < s.length; i++) {

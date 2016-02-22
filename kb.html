@@ -31,7 +31,7 @@
 			<a class="mui-icon mui-icon-redo mui-pull-right" id="shares" style="font-size: 29px;"></a>
 			<h1 class="mui-title">全部课表</h1>
 		</header>-->
-		<div id="kb" >
+		<div id="kb">
 			<table class="bordered" style="table-layout:fixed;" id="tables">
 				<thead>
 					<tr>
@@ -72,18 +72,13 @@
 					keyEventBind: {
 						backbutton: true
 					},
-//					subpages: [{
-//						  url:'kb.html',
-//    					id:'kb.html',
-//						styles: {
-//							top: '45px', //mui标题栏默认高度为45px；
-//							bottom: '0px' //默认为0px，可不定义；
-//						}
-//					}],
 					gestureConfig: {
 						longtap: true
 					}
 				});
+				GetAllClass();
+				//关闭splash页面；
+				plus.navigator.closeSplashscreen();
 			});
 			//只有ios支持的功能需要在Android平台隐藏；
 			if (mui.os.android) {
@@ -107,28 +102,18 @@
 								return 0;
 							} else {
 								tem.innerHTML = s.value;
+								s.value = s.value.replace(/[ ]/g, "")
 								plus.storage.setItem(num, s.value);
 								AlertCourse(nus, s.value);
 								var detailPage = plus.webview.getWebviewById('list.html');
 								//触发详情页面的newsId事件
-								mui.fire(detailPage, 'customEvent', {});
+								mui.fire(detailPage, 'customEvent', {page:'all'});
 								plus.nativeUI.toast('修改成功');
 							}
 						})
 					}
 				})
 			})
-
-			mui.plusReady(function() {
-				GetAllClass();
-				//关闭splash页面；
-				plus.navigator.closeSplashscreen();
-				//初始化模板
-				//延迟加载的原因：等待index页面先创建menu和mask，这样就可以保证页面的zindex顺序；
-//				setTimeout(function() {
-//					initTemplates(); //预加载所有模板	
-//				}, 300);
-			});
 			var index = null; //主页面
 			function openMenu() {
 				!index && (index = mui.currentWebview.parent());
@@ -153,53 +138,7 @@
 				//				initImgPreview();
 				//			}, 500);
 			});
-			//分享链接点击事件
-	/*		document.getElementById("shares").addEventListener('tap', function() {
-				var ids = [{
-						id: "weixin",
-						ex: "WXSceneSession"
-					}, {
-						id: "weixin",
-						ex: "WXSceneTimeline"
-					}, {
-						id: "sinaweibo"
-					}, {
-						id: "qq"
-					}],
-					bts = [{
-						title: "发送给微信好友"
-					}, {
-						title: "分享到微信朋友圈"
-					}, {
-						title: "分享到新浪微博"
-					}, {
-						title: "分享到QQ"
-					}];
-				plus.nativeUI.actionSheet({
-					cancel: "取消",
-					buttons: bts
-				}, function(e) {
-					var i = e.index;
-					if (i > 0) {
-						var s_id = ids[i - 1].id;
-						var share = shares[s_id];
-						if (share) {
-							if (share.authenticated) {
-								shareMessage(share, ids[i - 1].ex);
-							} else {
-								share.authorize(function() {
-									shareMessage(share, ids[i - 1].ex);
-								}, function(e) {
-									console.log("认证授权失败：" + e.code + " - " + e.message);
-								});
-							}
-						} else {
-							mui.toast("无法获取分享服务，请检查manifest.json中分享插件参数配置，并重新打包")
-						}
-					}
-				});
-			});
-*/
+
 			function shareMessage(share, ex) {
 				var msg = {
 					extra: {

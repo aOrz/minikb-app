@@ -14,23 +14,27 @@
 			.mui-bar .mui-title {
 				right: auto;
 			}
-			.mui-icon-bars{
+			
+			.mui-icon-bars {
 				font-weight: 800;
 				margin-left: px;
 			}
-			#compose{
+			
+			#compose {
 				font-size: 28px;
 				padding-top: 8px;
 				padding-bottom: 8px;
 				font-weight: 800;
 				margin-left: 3px;
 			}
-			#info{
+			
+			#info {
 				font-size: 22px;
 				padding-top: 11px;
 				padding-bottom: 11px;
 			}
-			#loop{
+			
+			#loop {
 				font-weight: 800;
 				margin-right: 5px;
 			}
@@ -46,8 +50,7 @@
 			<a class="mui-icon mui-icon-bars mui-pull-left"></a>
 			<a id="compose" class="mui-icon mui-icon-compose mui-pull-right"></a>
 			<a id="info" class="mui-icon mui-icon-chat mui-pull-right"></a>
-			<a id="loop" class="mui-icon mui-icon-loop mui-pull-right" href="#topPopover"></a> 
-
+			<a id="loop" class="mui-icon mui-icon-loop mui-pull-right" href="#topPopover"></a>
 
 			<h1 class="mui-title mui-pull-left">迷你课表</h1>
 		</header>
@@ -75,185 +78,191 @@
 				}]
 			});
 			mui.plusReady(function() {
-				//提示上课
-				function Tring(){
-					var class_time = {
-						7:1,
-						9:2,
-						13:3,
-						15:4,
-						18:5
-					}
-					var delay =localStorage.getItem('delay');
-					delay = JSON.parse(delay);
-					var dates = new Date();
-					var hour = dates.getHours ();
-					var minutes = dates.getMinutes ();
-					var week = dates.getDay();
-					if(!week){
-						week+=7;
-					}
-					if(delay.open&&class_time[hour]){
-						var ring_time = 60-delay.minu;
-						if(ring_time == minutes){
-							var course_num = week+(class_time[hour]-1)*7;
-							var course = plus.storage.getItem('"' + course_num + '"')
-							var title = '第'+class_time[hour]+'节上课提醒'
-							if(course){
-								plus.push.createMessage( course, 'payload', {title:title,cover:true,delay:0} );										
+						//监听更新按钮
+						var upcourse = document.getElementById('loop')
+						upcourse.addEventListener('tap', function() {
+								var btnArray = ['否', '更新'];
+								mui.confirm('更新将会把课程表重置为服务器上最新的班级课程表', '迷你课表', btnArray, function(e) {
+									if (e.index == 1) {
+										UpdataCourse();
+									}
+								})
+						})
+							//提示上课
+							function Tring() {
+								var class_time = {
+									7: 1,
+									9: 2,
+									13: 3,
+									15: 4,
+									18: 5
+								}
+								var delay = localStorage.getItem('delay');
+								delay = JSON.parse(delay);
+								var dates = new Date();
+								var hour = dates.getHours();
+								var minutes = dates.getMinutes();
+								var week = dates.getDay();
+								if (!week) {
+									week += 7;
+								}
+								if (delay.open && class_time[hour]) {
+									var ring_time = 60 - delay.minu;
+									if (ring_time == minutes) {
+										var course_num = week + (class_time[hour] - 1) * 7;
+										var course = plus.storage.getItem('"' + course_num + '"')
+										var title = '第' + class_time[hour] + '节上课提醒'
+										if (course) {
+											plus.push.createMessage(course, 'payload', {
+												title: title,
+												cover: true,
+												delay: 0
+											});
+										}
+									}
+								} else {
+									return 0;
+								}
+								//					alert(hour)
 							}
-
-						}
-					}else{
-						return 0;
-					}
-
-//					alert(hour)
-
-				}
-				setInterval(Tring,60000);//每分钟检查一次
-		//监听系统发来的push事件
-				plus.push.addEventListener("receive", function(msg) {
-					// 分析msg.payload处理业务逻辑 
-					plus.push.createMessage(msg.content, msg.payload || '', msg);
-				}, false);
-				// 添加监听从系统消息中心点击某条消息启动应用事件
-				plus.push.addEventListener("click", function(msg) {
-					// 分析msg.payload处理业务逻辑 
-					alert(msg.content);
-				}, false);
-				//仅支持竖屏显示
-				plus.screen.lockOrientation("portrait-primary");
-				main = plus.webview.currentWebview();
-				main.addEventListener('maskClick', closeMenu);
-				//处理侧滑导航，为了避免和子页面初始化等竞争资源，延迟加载侧滑页面；
-				setTimeout(function() {
-					menu = mui.preload({
-						id: 'index-menu',
-						url: 'index-menu.html',
-						styles: {
-							left: 0,
-							width: '70%',
-							zindex: -1
-						},
-						show: {
-							aniShow: 'none'
-						}
-					});
-				}, 10);
-			});
-			var isInTransition = false;
-			/**
-			 * 显示侧滑菜单
-			 */
-			function openMenu() {
-				if (isInTransition) {
-					return;
-				}
-				if (!showMenu) {
-					//侧滑菜单处于隐藏状态，则立即显示出来；
-					isInTransition = true;
-					menu.setStyle({
-						mask: 'rgba(0,0,0,0)'
-					}); //menu设置透明遮罩防止点击
-					menu.show('none', 0, function() {
-						//主窗体开始侧滑并显示遮罩
-						main.setStyle({
-							mask: 'rgba(0,0,0,0.4)',
-							left: '70%',
-							transition: {
-								duration: 150
-							}
+							setInterval(Tring, 60000); //每分钟检查一次
+							//监听系统发来的push事件
+							plus.push.addEventListener("receive", function(msg) {
+								// 分析msg.payload处理业务逻辑 
+								plus.push.createMessage(msg.content, msg.payload || '', msg);
+							}, false);
+							// 添加监听从系统消息中心点击某条消息启动应用事件
+							plus.push.addEventListener("click", function(msg) {
+								// 分析msg.payload处理业务逻辑 
+								alert(msg.content);
+							}, false);
+							//仅支持竖屏显示
+							plus.screen.lockOrientation("portrait-primary"); main = plus.webview.currentWebview(); main.addEventListener('maskClick', closeMenu);
+							//处理侧滑导航，为了避免和子页面初始化等竞争资源，延迟加载侧滑页面；
+							setTimeout(function() {
+								menu = mui.preload({
+									id: 'index-menu',
+									url: 'index-menu.html',
+									styles: {
+										left: 0,
+										width: '70%',
+										zindex: -1
+									},
+									show: {
+										aniShow: 'none'
+									}
+								});
+							}, 10);
 						});
-						mui.later(function() {
-							isInTransition = false;
+					var isInTransition = false;
+					/**
+					 * 显示侧滑菜单
+					 */
+					function openMenu() {
+						if (isInTransition) {
+							return;
+						}
+						if (!showMenu) {
+							//侧滑菜单处于隐藏状态，则立即显示出来；
+							isInTransition = true;
 							menu.setStyle({
-								mask: "none"
-							}); //移除menu的mask
-						}, 160);
-						showMenu = true;
-					});
-				}
-			};
-			/**
-			 * 关闭菜单
-			 */
-			function closeMenu() {
-				if (isInTransition) {
-					return;
-				}
-				if (showMenu) {
-					//关闭遮罩；
-					//主窗体开始侧滑；
-					isInTransition = true;
-					main.setStyle({
-						mask: 'none',
-						left: '0',
-						transition: {
-							duration: 200
+								mask: 'rgba(0,0,0,0)'
+							}); //menu设置透明遮罩防止点击
+							menu.show('none', 0, function() {
+								//主窗体开始侧滑并显示遮罩
+								main.setStyle({
+									mask: 'rgba(0,0,0,0.4)',
+									left: '70%',
+									transition: {
+										duration: 150
+									}
+								});
+								mui.later(function() {
+									isInTransition = false;
+									menu.setStyle({
+										mask: "none"
+									}); //移除menu的mask
+								}, 160);
+								showMenu = true;
+							});
+						}
+					};
+					/**
+					 * 关闭菜单
+					 */
+					function closeMenu() {
+						if (isInTransition) {
+							return;
+						}
+						if (showMenu) {
+							//关闭遮罩；
+							//主窗体开始侧滑；
+							isInTransition = true;
+							main.setStyle({
+								mask: 'none',
+								left: '0',
+								transition: {
+									duration: 200
+								}
+							});
+							showMenu = false;
+							//等动画结束后，隐藏菜单webview，节省资源；
+							mui.later(function() {
+								isInTransition = false;
+								menu.hide();
+							}, 300);
+						}
+					};
+					//点击左上角侧滑图标，打开侧滑菜单；
+					document.querySelector('.mui-icon-bars').addEventListener('tap', function(e) {
+						if (showMenu) {
+							closeMenu();
+						} else {
+							openMenu();
 						}
 					});
-					showMenu = false;
-					//等动画结束后，隐藏菜单webview，节省资源；
-					mui.later(function() {
-						isInTransition = false;
-						menu.hide();
-					}, 300);
-				}
-			};
-			//点击左上角侧滑图标，打开侧滑菜单；
-			document.querySelector('.mui-icon-bars').addEventListener('tap', function(e) {
-				if (showMenu) {
-					closeMenu();
-				} else {
-					openMenu();
-				}
-			});
-			//敲击顶部导航，内容区回到顶部
-			document.querySelector('header').addEventListener('doubletap', function() {
-				main.children()[0].evalJS('mui.scrollTo(0, 100)');
-			});
-			//主界面向右滑动，若菜单未显示，则显示菜单；否则不做任何操作
-			window.addEventListener("swiperight", openMenu);
-			//主界面向左滑动，若菜单已显示，则关闭菜单；否则，不做任何操作；
-			window.addEventListener("swipeleft", closeMenu);
-			//侧滑菜单触发关闭菜单命令
-			window.addEventListener("menu:close", closeMenu);
-			window.addEventListener("menu:open", openMenu);
-			//重写mui.menu方法，Android版本menu按键按下可自动打开、关闭侧滑菜单；
-			mui.menu = function() {
-					if (showMenu) {
-						closeMenu();
-					} else {
-						openMenu();
+					//敲击顶部导航，内容区回到顶部
+					document.querySelector('header').addEventListener('doubletap', function() {
+						main.children()[0].evalJS('mui.scrollTo(0, 100)');
+					});
+					//主界面向右滑动，若菜单未显示，则显示菜单；否则不做任何操作
+					window.addEventListener("swiperight", openMenu);
+					//主界面向左滑动，若菜单已显示，则关闭菜单；否则，不做任何操作；
+					window.addEventListener("swipeleft", closeMenu);
+					//侧滑菜单触发关闭菜单命令
+					window.addEventListener("menu:close", closeMenu); window.addEventListener("menu:open", openMenu);
+					//重写mui.menu方法，Android版本menu按键按下可自动打开、关闭侧滑菜单；
+					mui.menu = function() {
+						if (showMenu) {
+							closeMenu();
+						} else {
+							openMenu();
+						}
 					}
-				}
-				//处理右上角关于图标的点击事件；
-			var subWebview = null,
-				template = null;
-			document.getElementById('info').addEventListener('tap', function() {
-				mui.openWindow({
-					id: 'message.html',
-					url: 'message.html',
-					styles: {
-						scrollIndicator: 'none'
-					},
-//					show: {
-//						autoShow: false,
-//					}
-				});
-			});
-			//首页返回键处理
-			//处理逻辑：1秒内，连续两次按返回键，则退出应用；
-			var first = null;
-			mui.back = function() {
-				if (showMenu) {
-					closeMenu();
-				} else {
-					var main = plus.android.runtimeMainActivity();
+					//处理右上角关于图标的点击事件；
+					var subWebview = null,
+						template = null; document.getElementById('info').addEventListener('tap', function() {
+						mui.openWindow({
+							id: 'message.html',
+							url: 'message.html',
+							styles: {
+								scrollIndicator: 'none'
+							},
+							//					show: {
+							//						autoShow: false,
+							//					}
+						});
+					});
+					//首页返回键处理
+					//处理逻辑：1秒内，连续两次按返回键，则退出应用；
+					var first = null; mui.back = function() {
+						if (showMenu) {
+							closeMenu();
+						} else {
+							var main = plus.android.runtimeMainActivity();
 							main.moveTaskToBack(false);
-				}
-			};
+						}
+					};
 		</script>
 
 	</body>
