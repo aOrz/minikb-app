@@ -120,6 +120,7 @@ function CheckLogin() {
 						plus.storage.setItem("ex", '1');
 						plus.storage.setItem('nc', data['nick_name']);
 						plus.storage.setItem('xx', data['school']);
+						localStorage.setItem('xx', data['school']);
 						plus.storage.setItem('class', data['class']);
 						plus.storage.setItem('id', userId);
 
@@ -292,6 +293,7 @@ function CheckReg() {
 
 					plus.storage.setItem('nc', data['nick_name']);
 					plus.storage.setItem('xx', data['school']);
+					localStorage.setItem('xx', data['school']);
 					plus.storage.setItem('class', data['class']);
 					plus.storage.setItem('id', userId);
 					mui.back();
@@ -676,6 +678,7 @@ function UPdataUserInfoByUserId() {
 			plus.storage.setItem("ex", '1');
 			plus.storage.setItem('nc', data['nick_name']);
 			plus.storage.setItem('xx', data['school']);
+			localStorage.setItem('xx', data['school']);
 			plus.storage.setItem('class', data['class']);
 			plus.storage.setItem('id', userId);
 		},
@@ -711,6 +714,12 @@ function AlertUserInfo() {
 			nickName: userName,
 			isLogin: isLogin
 		},
+		beforeSend: function() {
+			plus.nativeUI.showWaiting();
+		},
+		complete: function() {
+			plus.nativeUI.closeWaiting();
+		},
 		dataType: 'json', //服务器返回json格式数据
 		type: 'get', //HTTP请求类型
 		//		timeout:10000,//超时时间设置为10秒；
@@ -722,6 +731,7 @@ function AlertUserInfo() {
 			} else if (data == 1) {
 				plus.storage.setItem('nc', userName);
 				plus.storage.setItem('xx', school);
+				localStorage.setItem('xx', school);
 				plus.storage.setItem('class', major + className);
 				plus.nativeUI.toast("修改成功");
 			} else {
@@ -731,6 +741,7 @@ function AlertUserInfo() {
 				}
 				plus.storage.setItem('nc', userName);
 				plus.storage.setItem('xx', school);
+				localStorage.setItem('xx', school);
 				plus.storage.setItem('class', major + className);
 				plus.nativeUI.toast("修改成功");
 			}

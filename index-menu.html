@@ -140,11 +140,11 @@
 						el: '#i-menu',
 						data: {
 							version: 'V' + plus.runtime.version,
-							old_version:'V' + localStorage.getItem('warn_num')
+							old_version:'V' + localStorage.getItem('warn_num'),
+							school:plus.storage.getItem('xx')
 						},
 						computed: {
 							is_warn: function() {
-								alert(29)
 									return this.old_version != this.version?1:0; 
 							},
 							nc: function() {
@@ -154,10 +154,10 @@
 								return name;
 							},
 							xx: function() {
-								var school = plus.storage.getItem('xx');
+								var school = this.school;
 								var bl = 1;
-								if (school != 'yd' && school != wj) {
-									bl = 1;
+								if (school != 'yd' && school != 'wj') {
+									bl = 0;
 								}
 								return bl;
 							}
@@ -168,6 +168,8 @@
 				window.addEventListener("storage", function(e) {
 					if(e.key == 'warn_num'){
 						vm.old_version = 'V' + plus.runtime.version;
+					}else if(e.key == 'xx'){
+						vm.school = localStorage.getItem('xx');
 					}
 				});
 				//获得主页面webview引用；
