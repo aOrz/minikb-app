@@ -53,10 +53,11 @@
 						7:1,
 						9:2,
 						13:3,
-						15:4,
+						5s:4,
 						18:5
 					}
 					var delay =localStorage.getItem('delay');
+					delay = JSON.parse(delay);
 					var dates = new Date();
 					var hour = dates.getHours ();
 					var minutes = dates.getMinutes ();
@@ -67,7 +68,7 @@
 					if(delay.open&&class_time[hour]){
 						var ring_time = 60-delay.minu;
 						if(ring_time == minutes){
-							var course_num = week*7+class_time[hour];
+							var course_num = week+(class_time[hour]-1)*7;
 							var course = plus.storage.getItem('"' + course_num + '"')
 							var title = '第'+class_time[hour]+'节上课提醒'
 							if(course){
@@ -82,7 +83,7 @@
 //					alert(hour)
 
 				}
-				setInterval(Tring,5000);//每分钟检查一次
+				setInterval(Tring,60000);//每分钟检查一次
 		//监听系统发来的push事件
 				plus.push.addEventListener("receive", function(msg) {
 					// 分析msg.payload处理业务逻辑 
