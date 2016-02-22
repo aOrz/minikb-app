@@ -38,7 +38,6 @@
 						<div class="mui-switch-handle"></div>
 					</div>
 				</li>
-				<template v-if="open">
 				<li class="mui-table-view-cell" >
 					<label>课前{{minu}}分钟</label>
 					<div class="mui-numbox mui-pull-right" style="height: 30px;">
@@ -47,7 +46,6 @@
 						<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
 					</div>
 				</li>
-				</template>
 			</ul>
 		</div>
 
@@ -60,7 +58,7 @@
 			}
 		});
 		if(!localStorage.getItem('delay')){
-			var data = {open:0,minu:1,actives:0};
+			var data = {open:0,minu:10,actives:0};
 			localStorage.setItem('delay',JSON.stringify(data))
 		}
 

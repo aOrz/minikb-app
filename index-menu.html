@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="utf-8">
 		<title>迷你课表</title>
@@ -8,32 +9,39 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<link rel="stylesheet" href="css/mui.min.css">
 		<link rel="stylesheet" href="css/style.css" />
-		
+
 		<script src="js/mui.min.js"></script>
-		<script type="text/javascript" src="js/vue.min.js" ></script>
-		<script type="text/javascript" src="js/myjs.js" ></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/myjs.js"></script>
 		<style type="text/css">
-			body,.mui-content{
-			  	background-color: #333;
-			  	color:#fff;
+			body,
+			.mui-content {
+				background-color: #333;
+				color: #fff;
 			}
-			.title{
+			
+			.title {
 				margin: 35px 15px 10px;
 			}
-			.title+.content{
-			  	margin: 10px 15px 35px;
-			  	color: #bbb;
-			  	text-indent: 1em;
-			  	font-size: 14px;
-			  	line-height: 24px;
+			
+			.title+.content {
+				margin: 10px 15px 35px;
+				color: #bbb;
+				text-indent: 1em;
+				font-size: 14px;
+				line-height: 24px;
 			}
-			.mui-table-view{
-			  	margin-bottom: 35px;
+			
+			.mui-table-view {
+				margin-bottom: 35px;
 			}
-			.usermessage .mui-navigate-right:after, .mui-push-right:after {
+			
+			.usermessage .mui-navigate-right:after,
+			.mui-push-right:after {
 				top: 70%;
 			}
-			#nc{
+			
+			#nc {
 				overflow: inherit;
 			}
 		</style>
@@ -41,7 +49,7 @@
 
 	<body class="index-menu">
 		<div class="mui-content">
-			
+
 			<ul class="mui-table-view mui-table-view-chevron mui-table-view-inverted" style="color: #ddd;" id="i-menu">
 				<li class="mui-table-view-cell usermessage">
 					<a class="mui-navigate-right" open-type="common" href="usermessage.html">
@@ -51,7 +59,7 @@
 								<h1 class="mui-ellipsis" id="nc" v-cloak>{{nc}}</h1>
 								<p id="day"></p>
 							</span>
-						</div> 
+						</div>
 					</a>
 				</li>
 				<!--<li class="mui-table-view-cell">
@@ -59,13 +67,13 @@
 						用户登录
 					</a>
 				</li>-->
-				
+
 				<!--<li class="mui-table-view-cell">
 					<a class="mui-navigate-right" open-type="common" href="jr.html">
 						今日课表
 					</a>
 				</li>-->
-				<li class="mui-table-view-cell"> 
+				<li class="mui-table-view-cell">
 					<a class="mui-navigate-right" open-type="" href="kb.html">
 						全部课表
 					</a>
@@ -107,9 +115,9 @@
 				</li>
 			</ul>
 		</div>
-		
+
 		<script type="text/javascript" charset="utf-8">
-		mui.init({
+			mui.init({
 				gestureConfig: {
 					tap: true, //默认为true
 					swipe: true, //默认为true
@@ -117,69 +125,73 @@
 			});
 			var aniShow = "pop-in";
 			//关于backbutton和menubutton两个按键的说明，在iOS平台不存在，故需隐藏
-			if(!mui.os.android){
+			if (!mui.os.android) {
 				var span = document.getElementById("android-only")
-				if(span){
+				if (span) {
 					span.style.display = "none";
 				}
 				aniShow = "pop-in";
 			}
-			var subWebview=null,template=null,index=null;
-			mui.plusReady(function () {
-				new Vue({
-				el: '#i-menu',
-				data: {
-					version: 'V' + plus.runtime.version,
-				},
-				computed: {
-					is_warn: function() {
-						if (localStorage.getItem('warn_num') != plus.runtime.version)
-							return 1;
-						else
-							return 0;
-					},
-					nc:function(){
-						var name = plus.storage.getItem("nc");
-						if(name==null)
-						  name = '小课'
-						return name;
-					},
-					xx:function(){
-						var school = plus.storage.getItem('xx');
-						var bl=1;
-						if(school!='yd'&&school!=wj){
-							bl=0;
+			var subWebview = null,
+				template = null,
+				index = null;
+			mui.plusReady(function() {
+		var vm = new Vue({
+						el: '#i-menu',
+						data: {
+							version: 'V' + plus.runtime.version,
+							old_version:'V' + localStorage.getItem('warn_num')
+						},
+						computed: {
+							is_warn: function() {
+								alert(29)
+									return this.old_version != this.version?1:0; 
+							},
+							nc: function() {
+								var name = plus.storage.getItem("nc");
+								if (name == null)
+									name = '小课'
+								return name;
+							},
+							xx: function() {
+								var school = plus.storage.getItem('xx');
+								var bl = 1;
+								if (school != 'yd' && school != wj) {
+									bl = 1;
+								}
+								return bl;
+							}
 						}
-						return bl;
+					})
+					//监听storage改变事件
+
+				window.addEventListener("storage", function(e) {
+					if(e.key == 'warn_num'){
+						vm.old_version = 'V' + plus.runtime.version;
 					}
-				}
-			})
+				});
 				//获得主页面webview引用；
 				index = plus.webview.currentWebview().opener();
 				GetStartTime();
-				
-//				var cl=document.getElementById("cl");
-//				if(plus.storage.getItem("class")==null||plus.storage.getItem("class")==""){
-//					cl.innerHTML="还没登陆";
-//				}
-//				else{
-//					cl.innerHTML=plus.storage.getItem("class")+'班';
-//				}
-				
-				
+				//				var cl=document.getElementById("cl");
+				//				if(plus.storage.getItem("class")==null||plus.storage.getItem("class")==""){
+				//					cl.innerHTML="还没登陆";
+				//				}
+				//				else{
+				//					cl.innerHTML=plus.storage.getItem("class")+'班';
+				//				}
 			})
 			mui('.mui-table-view').on('tap', 'a', function() {
 				var id = this.getAttribute("href");
 				var type = this.getAttribute("open-type");
 				var href = this.href;
 				var webview_style = {
-						popGesture: "close",
-						bounce:'all',
-						scalable:true,
-						scrollIndicator:'none'
-					};
-				if(type=="common"||(mui.os.ios)){
-					
+					popGesture: "close",
+					bounce: 'all',
+					scalable: true,
+					scrollIndicator: 'none'
+				};
+				if (type == "common" || (mui.os.ios)) {
 					mui.openWindow({
 						id: id,
 						url: href,
@@ -191,47 +203,47 @@
 							autoShow: false
 						}
 					});
-				}else{
+				} else {
 					var href = this.href;
 					var title = this.innerText;
 					template = plus.webview.getWebviewById("default-main");
 					//获得共用子webview
 					subWebview = template.children()[0];
-					
 					//通知模板修改标题，并显示隐藏右上角图标；
-					mui.fire(template,'updateHeader',{title:title,showMenu:true,statusBarBackground: '#33cccc'});
+					mui.fire(template, 'updateHeader', {
+						title: title,
+						showMenu: true,
+						statusBarBackground: '#33cccc'
+					});
 					if (subWebview.getURL() != href) {
 						subWebview.loadURL(href);
-						subWebview.setStyle( webview_style );
+						subWebview.setStyle(webview_style);
 					} else {
-						 subWebview.show();
+						subWebview.show();
 					}
 					template.show('slide-in-right', 200);
 				}
 			});
-			
 			/**
 			 * 关闭侧滑菜单
 			 */
 			function close() {
-				mui.fire(mui.currentWebview.opener(),"menu:close");
+				mui.fire(mui.currentWebview.opener(), "menu:close");
 			}
-			
-			
 			//在android4.4.2中的swipe事件，需要preventDefault一下，否则触发不正常
-			window.addEventListener('dragstart',function(e){
+			window.addEventListener('dragstart', function(e) {
 				mui.gestures.touch.lockDirection = true; //锁定方向
 				mui.gestures.touch.startDirection = e.detail.direction;
 			});
 			window.addEventListener('dragleft', function(e) {
-				if(!mui.isScrolling){
-					e.detail.gesture.preventDefault();	
+				if (!mui.isScrolling) {
+					e.detail.gesture.preventDefault();
 				}
 			});
 			//监听左滑事件，若菜单已展开，左滑要关闭菜单；
-			window.addEventListener("swipeleft",function (e) {
-				if(Math.abs(e.detail.angle)>170){
-					close();						
+			window.addEventListener("swipeleft", function(e) {
+				if (Math.abs(e.detail.angle) > 170) {
+					close();
 				}
 			});
 		</script>

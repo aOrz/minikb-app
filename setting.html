@@ -243,8 +243,8 @@
 					<a onclick="OpenWindows('xgkb')" class="mui-navigate-right">修改课表</a>
 				</li>
 				<li class="mui-table-view-cell">
-						<a onclick="OpenWindows('ring')" id="tel" class="mui-navigate-right">课前提醒</a>
-					</li>
+					<a onclick="OpenWindows('ring')" id="tel" class="mui-navigate-right">课前提醒</a>
+				</li>
 			</ul>
 			<ul class="mui-table-view mui-table-view-chevron">
 				<ul class="mui-table-view mui-table-view-chevron">
@@ -252,12 +252,12 @@
 						<a id="sharexs" class="mui-navigate-right">分享推荐</a>
 					</li>
 					<li class="mui-table-view-cell">
-					<a onclick="UpdataCourse()" class="mui-navigate-right">检查APP更新</a>
-				</li>
+						<a onclick="UpdataCourse()" class="mui-navigate-right">检查APP更新</a>
+					</li>
 				</ul>
 			</ul>
 			<ul class="mui-table-view mui-table-view-chevron">
-				<li class="mui-table-view-cell" >
+				<li class="mui-table-view-cell">
 					<a href="about.html" v-on:click="not_warn" class="mui-navigate-right">关于迷你课表 <i class="mui-pull-right update" v-cloak>{{version}}&nbsp;<span v-if="is_warn" class="mui-badge mui-badge-danger" v-cloak>1</span></i></a>
 				</li>
 			</ul>
@@ -274,8 +274,8 @@
 				el: '#bb',
 				data: {
 					version: 'V' + plus.runtime.version,
-					nc:plus.storage.getItem("nc"),
-					class_:plus.storage.getItem("class") + "班"
+					nc: plus.storage.getItem("nc"),
+					class_: plus.storage.getItem("class") + "班"
 				},
 				computed: {
 					is_warn: function() {
@@ -288,102 +288,102 @@
 				methods: {
 					not_warn: function(event) {
 						this.is_warn = 0;
-						localStorage.setItem('warn_num',plus.runtime.version)
+						localStorage.setItem('warn_num', plus.runtime.version)
 					}
 				}
 			})
-			var shares = {};
-			mui.plusReady(function() {
-				plus.share.getServices(function(s) {
-					if (s && s.length > 0) {
-						for (var i = 0; i < s.length; i++) {
-							var t = s[i];
-							shares[t.id] = t;
-						}
+		})
+		var shares = {};
+		mui.plusReady(function() {
+			plus.share.getServices(function(s) {
+				if (s && s.length > 0) {
+					for (var i = 0; i < s.length; i++) {
+						var t = s[i];
+						shares[t.id] = t;
 					}
-				}, function() {
-					console.log("获取分享服务列表失败");
-				});
-				//			defaultImg();
-				//			setTimeout(function() {
-				//				initImgPreview();
-				//			}, 500);
+				}
+			}, function() {
+				console.log("获取分享服务列表失败");
 			});
-			//分享链接点击事件
-			document.getElementById("sharexs").addEventListener('tap', function() {
-				console.log(10)
-				var ids = [{
-						id: "weixin",
-						ex: "WXSceneSession"
-					}, {
-						id: "weixin",
-						ex: "WXSceneTimeline"
-					}, {
-						id: "sinaweibo"
-					}, {
-						id: "qq"
-					}],
-					bts = [{
-						title: "发送给微信好友"
-					}, {
-						title: "分享到微信朋友圈"
-					}, {
-						title: "分享到新浪微博"
-					}, {
-						title: "分享到QQ"
-					}];
-				plus.nativeUI.actionSheet({
-					cancel: "取消",
-					buttons: bts
-				}, function(e) {
-					var i = e.index;
-					if (i > 0) {
-						var s_id = ids[i - 1].id;
-						var share = shares[s_id];
-						if (share) {
-							if (share.authenticated) {
-								shareMessage(share, ids[i - 1].ex);
-							} else {
-								share.authorize(function() {
-									shareMessage(share, ids[i - 1].ex);
-								}, function(e) {
-									console.log("认证授权失败：" + e.code + " - " + e.message);
-								});
-							}
+			//			defaultImg();
+			//			setTimeout(function() {
+			//				initImgPreview();
+			//			}, 500);
+		});
+		//分享链接点击事件
+		document.getElementById("sharexs").addEventListener('tap', function() {
+			console.log(10)
+			var ids = [{
+					id: "weixin",
+					ex: "WXSceneSession"
+				}, {
+					id: "weixin",
+					ex: "WXSceneTimeline"
+				}, {
+					id: "sinaweibo"
+				}, {
+					id: "qq"
+				}],
+				bts = [{
+					title: "发送给微信好友"
+				}, {
+					title: "分享到微信朋友圈"
+				}, {
+					title: "分享到新浪微博"
+				}, {
+					title: "分享到QQ"
+				}];
+			plus.nativeUI.actionSheet({
+				cancel: "取消",
+				buttons: bts
+			}, function(e) {
+				var i = e.index;
+				if (i > 0) {
+					var s_id = ids[i - 1].id;
+					var share = shares[s_id];
+					if (share) {
+						if (share.authenticated) {
+							shareMessage(share, ids[i - 1].ex);
 						} else {
-							mui.toast("无法获取分享服务")
+							share.authorize(function() {
+								shareMessage(share, ids[i - 1].ex);
+							}, function(e) {
+								console.log("认证授权失败：" + e.code + " - " + e.message);
+							});
 						}
+					} else {
+						mui.toast("无法获取分享服务")
 					}
-				});
-			});
-
-			function shareMessage(share, ex) {
-				var msg = {
-					extra: {
-						scene: ex
-					}
-				};
-				msg.href = "http://a.app.qq.com/o/simple.jsp?pkgname=io.dcloud.H5291D2691";
-				msg.title = "迷你课表";
-				msg.content = "我在使用迷你课表，里面内置了班级课表，快来看看吧！";
-				if (~share.id.indexOf('weibo')) {
-					msg.content += "；体验地址：http://cdn.sinacloud.net/minikb/minikb.apk";
 				}
-				msg.thumbs = ["_www/images/80.png"];
-				share.send(msg, function() {
-					console.log("分享到\"" + share.description + "\"成功！ ");
-				}, function(e) {
-					console.log("分享到\"" + share.description + "\"失败: " + e.code + " - " + e.message);
-				});
+			});
+		});
+
+		function shareMessage(share, ex) {
+			var msg = {
+				extra: {
+					scene: ex
+				}
+			};
+			msg.href = "http://a.app.qq.com/o/simple.jsp?pkgname=io.dcloud.H5291D2691";
+			msg.title = "迷你课表";
+			msg.content = "我在使用迷你课表，里面内置了班级课表，快来看看吧！";
+			if (~share.id.indexOf('weibo')) {
+				msg.content += "；体验地址：http://cdn.sinacloud.net/minikb/minikb.apk";
 			}
-			document.getElementById('logout').addEventListener('tap', function() {
-				list = plus.webview.getWebviewById('list.html');
-				mui.fire(list, "login", '');
-				plus.storage.clear();
-				mui.back();
-				//			plus.storage.clear();
-				//			mui.openWindow('login.html');
-			})
+			msg.thumbs = ["_www/images/80.png"];
+			share.send(msg, function() {
+				console.log("分享到\"" + share.description + "\"成功！ ");
+			}, function(e) {
+				console.log("分享到\"" + share.description + "\"失败: " + e.code + " - " + e.message);
+			});
+		}
+		document.getElementById('logout').addEventListener('tap', function() {
+			list = plus.webview.getWebviewById('list.html');
+			mui.fire(list, "login", '');
+			plus.storage.clear();
+			mui.back();
+			//			plus.storage.clear();
+			//			mui.openWindow('login.html');
 		})
 	</script>
 

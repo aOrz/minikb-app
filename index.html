@@ -64,8 +64,8 @@
 					if(!week){
 						week+=7;
 					}
-					if(delay&&class_time[hour]){
-						var ring_time = 60-delay;
+					if(delay.open&&class_time[hour]){
+						var ring_time = 60-delay.minu;
 						if(ring_time == minutes){
 							var course_num = week*7+class_time[hour];
 							var course = plus.storage.getItem('"' + course_num + '"')
