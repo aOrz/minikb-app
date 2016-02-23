@@ -704,14 +704,12 @@ border-top: 1px solid #ccc;
 	height: 40px;
 	font-size: 20px;
 	color: #33CCCC;
-	font-weight: bold;
 }
 .calender #GZ {
 	margin-left: 20px;
 }
 .calender .select_year{
 	font-size: 20px;
-	border: 1px solid #33cccc;
 }
 .calender .table_body{
 	height: 40px;
