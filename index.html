@@ -42,7 +42,7 @@
 		<script src="js/mui.min.js"></script>
 
 		<script type="text/javascript" src="js/myjs.js"></script>
-		<script type="text/javascript" src="js/vue.min.js" ></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
 	</head>
 
 	<body id="index">
@@ -50,7 +50,7 @@
 			<a class="mui-icon mui-icon-bars mui-pull-left"></a>
 			<a id="compose" class="mui-icon mui-icon-compose mui-pull-right"> <i></i></a>
 			<a id="info" class="mui-icon mui-icon-chat mui-pull-right"></a>
-			<a id="loop" v-on:click.stop="upcourse" class="mui-icon mui-icon-loop mui-pull-right"> <i v-bind:class="{ 'red_point': course_updata}"   ></i></a>
+			<a id="loop" v-on:click.stop="upcourse" class="mui-icon mui-icon-loop mui-pull-right"> <i v-bind:class="{ 'red_point': course_updata}"></i></a>
 
 			<h1 class="mui-title mui-pull-left">迷你课表</h1>
 		</header>
@@ -79,38 +79,35 @@
 			});
 			//是否有新课表
 			var index = new Vue({
-				el:'#index',
-				data:{
-					course_updata:parseInt(localStorage.getItem('course_updata'))
-				},
-				methods:{
-					upcourse:function(){
-						var upcourse = document.getElementById('loop')
-						var btnArray = ['否', '更新'];
-						var info ="更新将会把课程表重置为服务器上最新的班级课程表,是否更新？";
-						if(this.course_updata){
-							var info ="新的课程表准备好了，是否更新？";
-						}
-						mui.confirm(info, '迷你课表', btnArray, function(e) {
-							if (e.index == 1) {
-								UpdataCourse();
-								index.course_updata=0;
+					el: '#index',
+					data: {
+						course_updata: parseInt(localStorage.getItem('course_updata'))
+					},
+					methods: {
+						upcourse: function() {
+							var upcourse = document.getElementById('loop')
+							var btnArray = ['否', '更新'];
+							var info = "更新将会把课程表重置为服务器上最新的班级课程表,是否更新？";
+							if (this.course_updata) {
+								var info = "新的课程表准备好了，是否更新？";
 							}
-						})
+							mui.confirm(info, '迷你课表', btnArray, function(e) {
+								if (e.index == 1) {
+									UpdataCourse();
+									index.course_updata = 0;
+								}
+							})
+						}
 					}
-				}
-			})
+				})
 				//监听storage改变事件
-				window.addEventListener("storage", function(e) {
-					if(e.key == 'course_updata'){
-
-						index.course_updata = parseInt(localStorage.getItem('course_updata'))
-					}
-				});
+			window.addEventListener("storage", function(e) {
+				if (e.key == 'course_updata') {
+					index.course_updata = parseInt(localStorage.getItem('course_updata'))
+				}
+			});
 			mui.plusReady(function() {
-				//监听更新按钮
-				
-					//提示上课
+				//提示上课
 				function Tring() {
 					var class_time = {
 						7: 1,
@@ -151,12 +148,23 @@
 				//监听系统发来的push事件
 				plus.push.addEventListener("receive", function(msg) {
 					// 分析msg.payload处理业务逻辑 
-					plus.push.createMessage(msg.content, msg.payload || '', msg);
+					plus.nativeUI.alert( msg.msg);
 				}, false);
 				// 添加监听从系统消息中心点击某条消息启动应用事件
 				plus.push.addEventListener("click", function(msg) {
 					// 分析msg.payload处理业务逻辑 
-					alert(msg.content);
+					// 判断是从本地创建还是离线推送的消息
+					switch (msg.payload) {
+						case "local":
+						plus.nativeUI.alert( msg.content);
+							break;
+						default:
+						plus.nativeUI.alert( msg.content, function(){
+							plus.runtime.openURL(msg.payload);
+						}, msg.titlt );
+							break;
+					}
+					// 提示点击的内容
 				}, false);
 				//仅支持竖屏显示
 				plus.screen.lockOrientation("portrait-primary");
