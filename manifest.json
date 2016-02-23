@@ -379,7 +379,8 @@
 					"fonts/mui.ttf",
 					"css/mui.min.css",
 					"js/myjs.js",
-					"css/style.css"
+					"css/style.css",
+					"js/vue.min.js"
 				],
 				"refer": [],
 				"priority": 0

@@ -1038,27 +1038,25 @@ function AlertUserPwd() {
 }
 //修改课表函数
 
-function xgkc() {
-	var rq = document.getElementById('rq').value;
-	var jc = document.getElementById('jc').value;
-	var nr = document.getElementById('nr').value;
-	nr = nr.replace(/[ ]/g, "")
-	jc--;
-	var nus = num = parseInt(jc * 7) + parseInt(rq);
-	num = '"' + num + '"';
-	if (jc != 6) {
-		var kcval = plus.storage.setItem(num, nr);
-		AlertCourse(nus, nr)
-		var detailPage = plus.webview.getWebviewById('list.html');
-		//触发详情页面的newsId事件
-		mui.fire(detailPage, 'customEvent', {});
-		mui.alert('修改成功！', '修改课表');
-	} else {
-		plus.storage.setItem('"' + 43 + '"', nr);
-		AlertCourse(43, nr);
-		mui.alert('修改成功！', '修改课表');
-	}
-}
+//function xgkc() {
+//	var nr = document.getElementById('nr').value;
+//	nr = nr.replace(/[ ]/g, "")
+//	jc--;
+//	var nus = num = parseInt(jc * 7) + parseInt(rq);
+//	num = '"' + num + '"';
+//	if (jc != 6) {
+//		var kcval = plus.storage.setItem(num, nr);
+//		AlertCourse(nus, nr)
+//		var detailPage = plus.webview.getWebviewById('list.html');
+//		//触发详情页面的newsId事件
+//		mui.fire(detailPage, 'customEvent', {});
+//		mui.alert('修改成功！', '修改课表');
+//	} else {
+//		plus.storage.setItem('"' + 43 + '"', nr);
+//		AlertCourse(43, nr);
+//		mui.alert('修改成功！', '修改课表');
+//	}
+//}
 
 function AlertCourse(id, course) {
 	mui.ajax('http://2.minikb.sinaapp.com/controller/user_controller.php', {
@@ -1081,21 +1079,21 @@ function AlertCourse(id, course) {
 		}
 	});
 }
-
+/*
 function kecheng() {
 	var rq = document.getElementById('rq').value;
 	var jc = document.getElementById('jc').value;
 
 	jc--;
 	var num = parseInt(jc * 7) + parseInt(rq);
-	num = '"' + num + '"';
+	num = '"' + num +F '"';
 	if (jc != 6) {
 		var nr = document.getElementById('nr').value = plus.storage.getItem(num);
 	} else {
 		document.getElementById('nr').value = plus.storage.getItem('"' + 43 + '"');
 	}
-}
 
+*/
 //查看课表是否更新 
 function UpdataCourse() {
 	var id = plus.storage.getItem("id") || localStorage.getItem('id');
