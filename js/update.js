@@ -150,6 +150,7 @@
 				localStorage.setItem(cname,sercover);
 				localStorage.setItem('course_updata',1)
 				index.course_updata = 1;
+				index.upcourse();
 			}
 			
 			inf = j['ziyuan'];

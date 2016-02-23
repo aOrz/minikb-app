@@ -50,7 +50,7 @@
 			<a class="mui-icon mui-icon-bars mui-pull-left"></a>
 			<a id="compose" class="mui-icon mui-icon-compose mui-pull-right"> <i></i></a>
 			<a id="info" class="mui-icon mui-icon-chat mui-pull-right"></a>
-			<a id="loop" class="mui-icon mui-icon-loop mui-pull-right"> <i v-bind:class="{ 'red_point': course_updata}"   ></i></a>
+			<a id="loop" v-on:click.stop="upcourse" class="mui-icon mui-icon-loop mui-pull-right"> <i v-bind:class="{ 'red_point': course_updata}"   ></i></a>
 
 			<h1 class="mui-title mui-pull-left">迷你课表</h1>
 		</header>
@@ -82,6 +82,22 @@
 				el:'#index',
 				data:{
 					course_updata:parseInt(localStorage.getItem('course_updata'))
+				},
+				methods:{
+					upcourse:function(){
+						var upcourse = document.getElementById('loop')
+						var btnArray = ['否', '更新'];
+						var info ="更新将会把课程表重置为服务器上最新的班级课程表,是否更新？";
+						if(this.course_updata){
+							var info ="新的课程表准备好了，是否更新？";
+						}
+						mui.confirm(info, '迷你课表', btnArray, function(e) {
+							if (e.index == 1) {
+								UpdataCourse();
+								index.course_updata=0;
+							}
+						})
+					}
 				}
 			})
 				//监听storage改变事件
@@ -93,16 +109,7 @@
 				});
 			mui.plusReady(function() {
 				//监听更新按钮
-				var upcourse = document.getElementById('loop')
-				upcourse.addEventListener('tap', function() {
-						var btnArray = ['否', '更新'];
-						mui.confirm('更新将会把课程表重置为服务器上最新的班级课程表,是否更新？', '迷你课表', btnArray, function(e) {
-							if (e.index == 1) {
-								UpdataCourse();
-								index.course_updata=0;
-							}
-						})
-					})
+				
 					//提示上课
 				function Tring() {
 					var class_time = {
