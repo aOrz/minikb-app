@@ -971,7 +971,7 @@ function GetStartTime() {
 		},
 		dataType: 'json', //服务器返回json格式数据
 		type: 'get', //HTTP请求类型
-		timeout: 3000, //超时时间设置为10秒；
+		timeout: 8000, //超时时间设置为10秒；
 		success: function(data) {
 			day = GetDateDiff(data);
 			plus.storage.setItem('holiday', data);
@@ -1121,6 +1121,7 @@ function UpdataCourse() {
 				}
 				detailPage = plus.webview.getWebviewById('list.html');
 				mui.fire(detailPage, 'customEvent', {});
+				localStorage.setItem('course_updata',0)
 				plus.nativeUI.toast("课表重置成功");
 			} else {
 				plus.nativeUI.toast("还没有新的课表哦！");

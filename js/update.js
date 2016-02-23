@@ -1,4 +1,4 @@
-(function(w) {
+(function(w,index) {
 	var server = "http://2.minikb.sinaapp.com/updata.json", //获取升级描述文件服务器地址
 		localDir = "update",
 		localFile = "update.json", //本地保存升级描述目录和文件名
@@ -139,6 +139,19 @@
 		plus.runtime.getProperty(plus.runtime.appid, function(infs) {
 			curVer = infs.version;
 			console.log('当前版本' + curVer)
+			sercover=j['course_version'][plus.storage.getItem('xx')];//服务器端
+			cname= 'course_version'+plus.storage.getItem('xx');
+			curcover = parseInt(localStorage.getItem(cname)) ;
+			console.log(sercover)
+			console.log(curcover)
+			if(!curcover){
+				localStorage.setItem(cname,sercover)
+			}else if(sercover>curcover){
+				localStorage.setItem(cname,sercover);
+				localStorage.setItem('course_updata',1)
+				index.course_updata = 1;
+			}
+			
 			inf = j['ziyuan'];
 			if (inf) {
 				//console.log(JSON.stringify(inf))
@@ -151,7 +164,7 @@
 				}
 				// 判断是否需要升级
 				if (compareVersion(curVer, srvVer)) {
-					console.log('sdgfgdj')
+					console.log('检测升级')
 						// 提示用户是否升级
 					plus.ui.confirm(inf.note, function(event) {
 						i=event.index; 
@@ -246,4 +259,4 @@
 		document.addEventListener("plusready", initUpdate, false);
 	}
 
-})(window);
+})(window,index);
