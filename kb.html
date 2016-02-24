@@ -77,42 +77,66 @@
 					}
 				});
 				GetAllClass();
-				//关闭splash页面；
-				plus.navigator.closeSplashscreen();
 			});
-			//只有ios支持的功能需要在Android平台隐藏；
-			if (mui.os.android) {
-				var list = document.querySelectorAll('.ios-only');
-				if (list) {
-					for (var i = 0; i < list.length; i++) {
-						list[i].style.display = 'none';
-					}
-				}
-			}
 			mui('.bordered').on("longtap", 'td', function() {
 				var tem = this;
 				var text = this.innerHTML;
 				var nus = num = this.getAttribute('data-num');
 				num = '"' + num + '"';
-				mui.prompt('迷你课表', text, '修改课表', ['修改', '取消'], function(e) {
-					var s = e;
-					if (e.index == 0) {
-						mui.confirm("是否修改", '修改课表', ['修改', '取消'], function(e) {
-							if (e.index == 1) {
-								return 0;
-							} else {
-								tem.innerHTML = s.value;
-								s.value = s.value.replace(/[ ]/g, "")
-								plus.storage.setItem(num, s.value);
-								AlertCourse(nus, s.value);
-								var detailPage = plus.webview.getWebviewById('list.html');
-								//触发详情页面的newsId事件
-								mui.fire(detailPage, 'customEvent', {page:'all'});
-								plus.nativeUI.toast('修改成功');
-							}
-						})
-					}
-				})
+				//				mui.prompt('迷你课表', text, '修改课表', ['修改', '取消'], function(e) {
+				//					var s = e;
+				//					if (e.index == 0) {
+				//						mui.confirm("是否修改", '修改课表', ['修改', '取消'], function(e) {
+				//							if (e.index == 1) {
+				//								return 0;
+				//							} else {
+				//								tem.innerHTML = s.value;
+				//								s.value = s.value.replace(/[ ]/g, "")
+				//								plus.storage.setItem(num, s.value);
+				//								AlertCourse(nus, s.value);
+				//								var detailPage = plus.webview.getWebviewById('list.html');
+				//								//触发详情页面的newsId事件
+				//								mui.fire(detailPage, 'customEvent', {page:'all'});
+				//								plus.nativeUI.toast('修改成功');
+				//							}
+				//						})
+				//					}
+				//				})
+				layerOpen({
+					"title": "修改课程表",
+					"content": "<textarea id='et' style='background-color: #fff;border: 1px solid #ccc;'>" + text + "</textarea>",
+					"btn": ["删除", "取消", "修改"],
+					"event": [function() {
+						et.value=''
+						tem.innerHTML = et.value;
+						tem.className=''
+							plus.storage.setItem(num, et.value);
+							AlertCourse(nus, et.value);
+							var detailPage = plus.webview.getWebviewById('list.html');
+							//触发详情页面的newsId事件
+							mui.fire(detailPage, 'customEvent', {
+								page: 'all'
+							});
+							plus.nativeUI.toast('删除成功');
+					}, null,function() {
+						var et = document.getElementById("et");
+						if (!et.value) {
+							alert("请输入内容");
+							return true; //继续显示对话框
+						} else {
+							tem.innerHTML = et.value;
+							tem.className='bg-info'
+							plus.storage.setItem(num, et.value);
+							AlertCourse(nus, et.value);
+							var detailPage = plus.webview.getWebviewById('list.html');
+							//触发详情页面的newsId事件
+							mui.fire(detailPage, 'customEvent', {
+								page: 'all'
+							});
+							plus.nativeUI.toast('修改成功');
+						}
+					}]
+				});
 			})
 			var index = null; //主页面
 			function openMenu() {

@@ -747,3 +747,122 @@ border-top: 1px solid #ccc;
     right: 8px;
     position: absolute;
 }
+/*对话框根布局(属于遮罩)*/
+
+.layer_root {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	position: fixed;
+	top: 0;
+	z-index: 99999;
+	background-color: rgba(0, 0, 0, 0.5);
+	font-size: 15px;
+}
+.layer_root:before {
+	content: '';
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+}
+/*对话框主体*/
+
+.layer_main {
+	width: 80%;
+	display: inline-block;
+	vertical-align: middle;
+	background-color: #fff;
+	border-radius: 8px;
+	text-align: left;
+}
+/*标题*/
+
+.layer_title {
+	padding: 10px;
+	border-bottom: 1px solid #EBEBEB;
+}
+/*内容*/
+
+.layer_content {
+	padding: 10px;
+}
+/*按钮*/
+
+.layer_btns {
+	width: 100%;
+	text-align: center;
+	border-top: 1px solid #EBEBEB;
+}
+.layer_btns td{
+	padding: 10px;
+}
+.layer_btns td:active {
+	background-color: #F0F0F0;
+}
+.layer_btn_single {
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
+.layer_btn_left {
+	border-bottom-left-radius: 8px;
+	border-right: 1px solid #EBEBEB;
+}
+.layer_btn_middle {
+	border-right: 1px solid #EBEBEB;
+}
+.layer_btn_right {
+	border-bottom-right-radius: 8px;
+}
+/*一半大小到原大的动画*/
+.scaleIn {
+	animation: scaleIn .32s;
+	-webkit-animation: scaleIn .32s;
+}
+@-webkit-keyframes scaleIn {
+	from {
+		transform: scale(.5);
+		-webkit-transform: scale(.5);
+	}
+	to {
+		transform: scale(1);
+		-webkit-transform: scale(1);
+	}
+}
+/*缩小一半的动画*/
+.scaleOut {
+	-webkit-animation: scaleOut .32s;
+}
+@-webkit-keyframes scaleOut {
+	from {
+		transform: scale(1);
+		-webkit-transform: scale(1);
+	}
+	to {
+		transform: scale(.5);
+		-webkit-transform: scale(.5);
+	}
+}
+/*透明到不透明的动画*/
+.opacityIn {
+	-webkit-animation: opacityIn .32s;
+}
+@-webkit-keyframes opacityIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+/*不透明到透明的动画*/
+.opacityOut {
+	-webkit-animation: opacityOut .32s;
+}
+@-webkit-keyframes opacityOut {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}

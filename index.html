@@ -125,7 +125,12 @@
 					if (!week) {
 						week += 7;
 					}
-					if (delay.open && class_time[hour]) {
+					if(!delay){
+						delay={
+							open:0
+						}
+					}
+					if (delay.open && class_time[hour]) { 
 						var ring_time = 60 - delay.minu;
 						if (ring_time == minutes) {
 							var course_num = week + (class_time[hour] - 1) * 7;
