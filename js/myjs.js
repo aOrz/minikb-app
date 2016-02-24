@@ -90,8 +90,8 @@ function CheckLogin() {
 		//plus.nativeUI.closeWaiting();
 		var idExists = CheckIdExists(userId);
 		var dateTime = new Date();
-		var Num = GetLsPwd();
-
+		var Num = GetLsPwd(); 
+ 
 		plus.storage.setItem("lsPwd", Num);
 		if (idExists == 0) { //邮箱不存在
 			plus.nativeUI.toast("用户未注册");
@@ -104,8 +104,14 @@ function CheckLogin() {
 			};
 			mui.ajax('http://2.minikb.sinaapp.com/controller/user_controller.php', {
 				async: false,
-				data: loginData,
+				data: loginData, 
 				dataType: 'json', //服务器返回json格式数据
+				beforeSend: function() {
+						plus.nativeUI.showWaiting();
+				},
+				complete: function() {
+						plus.nativeUI.closeWaiting();
+				},
 				type: 'get', //HTTP请求类型
 				success: function(data) {
 					if (data == 0) {
@@ -259,7 +265,7 @@ function CheckReg() {
 	var dateTime = new Date();
 	dateTime = dateTime.getFullYear() + "-" + (dateTime.getMonth() + 1) + "-" + dateTime.getDate() + "   " + dateTime.getHours() + ":" + dateTime.getMinutes() + ":" + dateTime.getSeconds();
 
-
+	localStorage.setItem('mail', userId);
 	if (userId && userName && psd1 && psd2 && school && major && className) {
 		mui.ajax('http://2.minikb.sinaapp.com/controller/user_controller.php', {
 			async: false,
@@ -274,6 +280,12 @@ function CheckReg() {
 				isLogin: '1'
 			},
 			dataType: 'json', //服务器返回json格式数据
+			beforeSend: function() {
+				plus.nativeUI.showWaiting();
+			},
+			complete: function() {
+				plus.nativeUI.closeWaiting();
+			},
 			type: 'get', //HTTP请求类型
 			success: function(data) {
 				if (data == 0) {
@@ -991,8 +1003,8 @@ function GetDateDiff(startDate) {
 	var endtime = new Date();
 	var endTime = endtime.getTime();
 	var dates = -(startTime - endTime) / (1000 * 60 * 60 * 24) / 7;
-	if(dates<0){
-		dates=0;
+	if (dates < 0) {
+		dates = 0;
 	}
 	return Math.ceil(dates);
 }
@@ -1073,8 +1085,7 @@ function AlertCourse(id, course) {
 		dataType: 'json', //服务器返回json格式数据
 		type: 'get', //HTTP请求类型
 		timeout: 10000, //超时时间设置为10秒；
-		success: function(data) {
-		},
+		success: function(data) {},
 		error: function(xhr, type, errorThrown) {
 			//异常处理；
 			console.log(type);
@@ -1114,7 +1125,7 @@ function UpdataCourse() {
 		dataType: 'json', //服务器返回json格式数据
 		type: 'get', //HTTP请求类型
 		timeout: 10000, //超时时间设置为10秒；   
-		
+
 		success: function(data) {
 			data = data[0];
 			if (data != 0) {
@@ -1124,7 +1135,7 @@ function UpdataCourse() {
 				}
 				detailPage = plus.webview.getWebviewById('list.html');
 				mui.fire(detailPage, 'customEvent', {});
-				localStorage.setItem('course_updata',0)
+				localStorage.setItem('course_updata', 0)
 				plus.nativeUI.toast("课表重置成功");
 			} else {
 				plus.nativeUI.toast("还没有新的课表哦！");
@@ -1302,58 +1313,54 @@ function layerOpen(options) {
 	layer_root.setAttribute("class", "layer_root opacityIn");
 	//标题
 	var layer_title;
-	var layer_title_style='class="layer_title"';
-	if (options.style&&options.style.title) {
-		layer_title_style+=" style='"+options.style.title+"'";
+	var layer_title_style = 'class="layer_title"';
+	if (options.style && options.style.title) {
+		layer_title_style += " style='" + options.style.title + "'";
 	}
-	if (options.title==null){
+	if (options.title == null) {
 		//1.如果不传,则默认标题:温馨提示
-		layer_title='<div '+layer_title_style+'>温馨提示:</div>';
-	}else if(options.title==""){
+		layer_title = '<div ' + layer_title_style + '>温馨提示:</div>';
+	} else if (options.title == "") {
 		//2.如果传空串"",则不显示标题
-		layer_title="";
-	}else{
+		layer_title = "";
+	} else {
 		//3.如果有值,则显示对应的值
-		layer_title='<div '+layer_title_style+'>' + options.title + '</div>' 
+		layer_title = '<div ' + layer_title_style + '>' + options.title + '</div>'
 	}
 	//按钮
 	var layer_btns = "";
-	var layer_btns_style='id="layer_btns" class="layer_btns"';
-	if (options.style&&options.style.btn!=null) {
-		layer_btns_style+=" style='"+options.style.btn+"'";
+	var layer_btns_style = 'id="layer_btns" class="layer_btns"';
+	if (options.style && options.style.btn != null) {
+		layer_btns_style += " style='" + options.style.btn + "'";
 	}
 	if (options.btn) {
 		var btn_count = options.btn.length;
 		if (btn_count == 1) {
 			//1.只有一个按钮
-			layer_btns = '<table '+layer_btns_style+'><tr><td id="0" class="layer_btn_single">' + options.btn[0] + '</td></tr></table>';
+			layer_btns = '<table ' + layer_btns_style + '><tr><td id="0" class="layer_btn_single">' + options.btn[0] + '</td></tr></table>';
 		} else if (btn_count == 2) {
 			//2.只有两个按钮
-			layer_btns = '<table '+layer_btns_style+'><tr><td id="0" class="layer_btn_left">' + options.btn[0] + '</td><td id="1" class="layer_btn_right">' + options.btn[1] + '</td></tr></table>';
+			layer_btns = '<table ' + layer_btns_style + '><tr><td id="0" class="layer_btn_left">' + options.btn[0] + '</td><td id="1" class="layer_btn_right">' + options.btn[1] + '</td></tr></table>';
 		} else if (btn_count > 2) {
 			//3.有多个按钮
 			for (var i = 0; i < btn_count; i++) {
 				if (i == 0) {
 					layer_btns += '<td id="0" class="layer_btn_left">' + options.btn[i] + '</td>'; //最左边的按钮
 				} else if (i < btn_count - 1) {
-					layer_btns += '<td id="'+i+'" class="layer_btn_middle">' + options.btn[i] + '</td>'; //中间的按钮
+					layer_btns += '<td id="' + i + '" class="layer_btn_middle">' + options.btn[i] + '</td>'; //中间的按钮
 				} else {
-					layer_btns += '<td id="'+i+'" class="layer_btn_right">' + options.btn[i] + '</td>'; //最右边的按钮
+					layer_btns += '<td id="' + i + '" class="layer_btn_right">' + options.btn[i] + '</td>'; //最右边的按钮
 				}
 			}
-			layer_btns = '<table '+layer_btns_style+'><tr>' + layer_btns + '</tr></table>';
+			layer_btns = '<table ' + layer_btns_style + '><tr>' + layer_btns + '</tr></table>';
 		}
 	}
 	//拼接主体:标题,内容,按钮
-	var layer_content_style='class="layer_content"';
-	if (options.style&&options.style.content!=null) {
-		layer_content_style=" style='"+options.style.content+"'";
+	var layer_content_style = 'class="layer_content"';
+	if (options.style && options.style.content != null) {
+		layer_content_style = " style='" + options.style.content + "'";
 	}
-	var layerHTML = '<div class="layer_main scaleIn opacityIn" id="layer_main">' 
-				  + layer_title
-				  + '<div '+layer_content_style+'>' + options.content + '</div>' 
-				  + layer_btns 
-				  + '</div>';
+	var layerHTML = '<div class="layer_main scaleIn opacityIn" id="layer_main">' + layer_title + '<div ' + layer_content_style + '>' + options.content + '</div>' + layer_btns + '</div>';
 	layer_root.innerHTML = layerHTML;
 	//加入到body中显示
 	document.body.appendChild(layer_root);
@@ -1364,9 +1371,9 @@ function layerOpen(options) {
 			layer_btns_dom.addEventListener("tap", function(e) {
 				var tagId = e.target.getAttribute("id");
 				if (tagId) {
-					var index=Number(tagId);
-					if (options.event&&options.event.length>index) {
-						var event=options.event[index];
+					var index = Number(tagId);
+					if (options.event && options.event.length > index) {
+						var event = options.event[index];
 						if (event && event()) return; //执行回调返回true,则继续显示对话框
 					}
 					layerClose(options.closeEvent);
@@ -1376,50 +1383,50 @@ function layerOpen(options) {
 	}
 	//对话框主体,阻止事件冒泡
 	var layer_main = document.getElementById("layer_main");
-	layer_main.addEventListener("tap",function (e) {
+	layer_main.addEventListener("tap", function(e) {
 		e.stopPropagation();
 	});
 	//点击对话框外是否关闭
-	document.getElementById("layer_root").addEventListener("touchmove",function(e){
-e.preventDefault();
-});
+	document.getElementById("layer_root").addEventListener("touchmove", function(e) {
+		e.preventDefault();
+	});
 	if (options.shadeClose) {
-		layer_root.addEventListener("tap",function () {
+		layer_root.addEventListener("tap", function() {
 			layerClose(options.closeEvent);
 		});
 	}
 	//Android点击back键是否关闭,默认不传,则为true关闭
-	if (options.backClose!=false&&mui.os.android) {
+	if (options.backClose != false && mui.os.android) {
 		var old_back = mui.back;
 		//重写back方法
 		mui.back = function() {
-			layerClose(options.closeEvent);
-		}
-		//关闭后需还原
-		androidBackEvent=function () {
-			mui.back=old_back;
+				layerClose(options.closeEvent);
+			}
+			//关闭后需还原
+		androidBackEvent = function() {
+			mui.back = old_back;
 		}
 	}
 }
 /*
  * 关闭对话框
  */
-var androidBackEvent;//Android点击后退键关闭对话框的回调
+var androidBackEvent; //Android点击后退键关闭对话框的回调
 function layerClose(closeEvent) {
 	var layer_root = document.getElementById("layer_root");
-	if (layer_root){
+	if (layer_root) {
 		//关闭动画320毫秒,比300毫秒长一点,防止闪烁
 		var layer_main = document.getElementById("layer_main");
 		layer_main.classList.add("scaleOut");
 		layer_main.classList.add("opacityOut");
 		layer_root.classList.add("opacityOut");
 		//延时关闭,防止事件穿透
-		setTimeout(function () {
-		 	document.body.removeChild(layer_root);
-		},300);
+		setTimeout(function() {
+			document.body.removeChild(layer_root);
+		}, 300);
 	}
 	//对话框关闭的回调
-	closeEvent&&closeEvent();
+	closeEvent && closeEvent();
 	//Android点击后退键关闭对话框的回调
-	androidBackEvent&&androidBackEvent();
+	androidBackEvent && androidBackEvent();
 }

@@ -350,7 +350,9 @@
 					"css/style.css",
 					"js/myjs.js"
 				],
-				"refer": [],
+				"refer": [
+					"reg.html"
+				],
 				"priority": 0
 			},
 			"kb.html": {
@@ -455,7 +457,6 @@
 				"js/mui.view.js",
 				"examples/pullrefresh_sub.html",
 				"images/star.png",
-				"reg.html",
 				"images/pull_fresh.png",
 				"examples/pullrefresh_with_tab.html",
 				"examples/pullrefresh_main.html"

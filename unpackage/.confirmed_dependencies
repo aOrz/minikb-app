@@ -36,7 +36,9 @@
       "css/style.css",
       "js/myjs.js"
     ],
-    "refer": []
+    "refer": [
+      "reg.html"
+    ]
   },
   "list.html": {
     "refer": [
