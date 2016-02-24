@@ -315,10 +315,12 @@
 			}, function() {
 				console.log("获取分享服务列表失败");
 			});
-			//			defaultImg();
-			//			setTimeout(function() {
-			//				initImgPreview();
-			//			}, 500);
+			if(plus.os.name=="Android"){
+		Intent = plus.android.importClass("android.content.Intent");
+		File = plus.android.importClass("java.io.File");
+		Uri = plus.android.importClass("android.net.Uri");
+		main = plus.android.runtimeMainActivity();
+	}
 
 		//分享链接点击事件
 		document.getElementById("sharexs").addEventListener('tap', function() {
@@ -333,6 +335,8 @@
 					id: "sinaweibo"
 				}, {
 					id: "qq"
+				},{
+					id:'xitong'
 				}],
 				bts = [{
 					title: "发送给微信好友"
@@ -342,6 +346,8 @@
 					title: "分享到新浪微博"
 				}, {
 					title: "分享到QQ"
+				},{
+					title:"系统分享"
 				}];
 			plus.nativeUI.actionSheet({
 				cancel: "取消",
@@ -350,6 +356,10 @@
 				var i = e.index;
 				if (i > 0) {
 					var s_id = ids[i - 1].id;
+					if(s_id=='xitong'){
+						shareSystem();
+						return 0;
+					}
 					var share = shares[s_id];
 					if (share) {
 						if (share.authenticated) {
@@ -367,7 +377,19 @@
 				}
 			});
 		});
-
+		function shareSystem() {
+	if(plus.os.name!=="Android"){
+		plus.nativeUI.alert("此平台暂不支持系统分享功能!");
+		return;
+	}
+	var intent=new Intent(Intent.ACTION_SEND);
+	var p = "";
+		intent.setType("text/plain");
+	intent.putExtra(Intent.EXTRA_SUBJECT,"迷你课表");
+	intent.putExtra(Intent.EXTRA_TEXT,'我在使用迷你课表，里面内置了班级课表，快来看看吧！http://a.app.qq.com/o/simple.jsp?pkgname=io.dcloud.H5291D2691');
+	intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+	main.startActivity(Intent.createChooser(intent,"系统分享"));
+}
 		function shareMessage(share, ex) {
 			var msg = {
 				extra: {

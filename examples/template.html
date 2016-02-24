@@ -18,9 +18,12 @@
 			.mui-bar {
 				background-color: #C;
 			}
-			.mui-bar a,.mui-bar h1{
+			
+			.mui-bar a,
+			.mui-bar h1 {
 				color: white;
 			}
+			
 			.mui-loader {
 				position: absolute;
 				top: 25%;
@@ -167,10 +170,12 @@
 			}, function() {
 				console.log("获取分享服务列表失败");
 			});
-			//			defaultImg();
-			//			setTimeout(function() {
-			//				initImgPreview();
-			//			}, 500);
+			if (plus.os.name == "Android") {
+				Intent = plus.android.importClass("android.content.Intent");
+				File = plus.android.importClass("java.io.File");
+				Uri = plus.android.importClass("android.net.Uri");
+				main = plus.android.runtimeMainActivity();
+			}
 			//分享链接点击事件
 			document.getElementById("menu").addEventListener('tap', function() {
 				var ids = [{
@@ -183,6 +188,8 @@
 						id: "sinaweibo"
 					}, {
 						id: "qq"
+					}, {
+						id: "xitong"
 					}],
 					bts = [{
 						title: "发送给微信好友"
@@ -192,6 +199,8 @@
 						title: "分享到新浪微博"
 					}, {
 						title: "分享到QQ"
+					}, {
+						title: "系统分享"
 					}];
 				plus.nativeUI.actionSheet({
 					cancel: "取消",
@@ -200,6 +209,10 @@
 					var i = e.index;
 					if (i > 0) {
 						var s_id = ids[i - 1].id;
+						if (s_id == 'xitong') {
+							shareSystem();
+							return 0;
+						}
 						var share = shares[s_id];
 						if (share) {
 							if (share.authenticated) {
@@ -217,6 +230,52 @@
 					}
 				});
 			});
+			/**
+			 * 调用系统分享
+			 * 调用
+			 */
+			function shareSystem() {
+				if (plus.os.name !== "Android") {
+					plus.nativeUI.alert("此平台暂不支持系统分享功能!");
+					return;
+				}
+				var intent = new Intent(Intent.ACTION_SEND);
+				wc = plus.webview.currentWebview();
+				bitmap = new plus.nativeObj.Bitmap("test");
+				// 将webview内容绘制到Bitmap对象中
+				wc.draw(bitmap, function() {
+					console.log('绘制图片成功');
+					bitmap.save("_doc/share_kb.jpg", {}, function(i) {
+						console.log('保存图片成功：' + JSON.stringify(i));
+						var p = '_doc/share_kb.jpg';
+						if (p) {
+							if (p.substr(0, 7) === "file://") {
+								p = p.substr(7);
+							} else if (p.sub(0) !== "/") {
+								p = plus.io.convertLocalFileSystemURL(p);
+							}
+						}
+						var f = new File(p);
+						var uri = Uri.fromFile(f);
+						if (f.exists() && f.isFile()) {
+							console.log("image/*");
+							intent.setType("image/*");
+							intent.putExtra(Intent.EXTRA_STREAM, uri);
+						} else {
+							console.log("text/plain");
+							intent.setType("text/plain");
+						}
+						intent.putExtra(Intent.EXTRA_SUBJECT, "H5291D2691");
+						intent.putExtra(Intent.EXTRA_TEXT, '我正在使用迷你课表，快来试试吧');
+						intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+						main.startActivity(Intent.createChooser(intent, "系统分享"));
+					}, function(e) {
+						console.log('保存图片失败：' + JSON.stringify(e));
+					});
+				}, function(e) {
+					console.log('绘制图片失败：' + JSON.stringify(e));
+				});
+			}
 
 			function shareMessage(share, ex) {
 				var msg = {

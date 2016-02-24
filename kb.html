@@ -83,25 +83,6 @@
 				var text = this.innerHTML;
 				var nus = num = this.getAttribute('data-num');
 				num = '"' + num + '"';
-				//				mui.prompt('迷你课表', text, '修改课表', ['修改', '取消'], function(e) {
-				//					var s = e;
-				//					if (e.index == 0) {
-				//						mui.confirm("是否修改", '修改课表', ['修改', '取消'], function(e) {
-				//							if (e.index == 1) {
-				//								return 0;
-				//							} else {
-				//								tem.innerHTML = s.value;
-				//								s.value = s.value.replace(/[ ]/g, "")
-				//								plus.storage.setItem(num, s.value);
-				//								AlertCourse(nus, s.value);
-				//								var detailPage = plus.webview.getWebviewById('list.html');
-				//								//触发详情页面的newsId事件
-				//								mui.fire(detailPage, 'customEvent', {page:'all'});
-				//								plus.nativeUI.toast('修改成功');
-				//							}
-				//						})
-				//					}
-				//				})
 				layerOpen({
 					"title": "修改课程表",
 					"content": "<textarea id='et' style='background-color: #fff;border: 1px solid #ccc;'>" + text + "</textarea>",
@@ -142,45 +123,6 @@
 			function openMenu() {
 				!index && (index = mui.currentWebview.parent());
 				mui.fire(index, "menu:open");
-			}
-		</script>
-		<script>
-			var shares = {};
-			mui.plusReady(function() {
-				plus.share.getServices(function(s) {
-					if (s && s.length > 0) {
-						for (var i = 0; i < s.length; i++) {
-							var t = s[i];
-							shares[t.id] = t;
-						}
-					}
-				}, function() {
-					console.log("获取分享服务列表失败");
-				});
-				//			defaultImg();
-				//			setTimeout(function() {
-				//				initImgPreview();
-				//			}, 500);
-			});
-
-			function shareMessage(share, ex) {
-				var msg = {
-					extra: {
-						scene: ex
-					}
-				};
-				msg.href = "http://a.app.qq.com/o/simple.jsp?pkgname=io.dcloud.H5291D2691";
-				msg.title = "迷你课表";
-				msg.content = "我在使用迷你课表，里面内置了班级课表，快来看看吧！";
-				if (~share.id.indexOf('weibo')) {
-					msg.content += "；体验地址：http://cdn.sinacloud.net/minikb/minikb.apk";
-				}
-				msg.thumbs = ["_www/images/80.png"];
-				share.send(msg, function() {
-					console.log("分享到\"" + share.description + "\"成功！ ");
-				}, function(e) {
-					console.log("分享到\"" + share.description + "\"失败: " + e.code + " - " + e.message);
-				});
 			}
 		</script>
 	</body>
