@@ -990,7 +990,7 @@ function GetDateDiff(startDate) {
 	var startTime = new Date(Date.parse(startDate.replace(/-/g, "/"))).getTime();
 	var endtime = new Date();
 	var endTime = endtime.getTime();
-	var dates = (startTime - endTime) / (1000 * 60 * 60 * 24) / 7;
+	var dates = -(startTime - endTime) / (1000 * 60 * 60 * 24) / 7;
 	if(dates<0){
 		dates=0;
 	}
