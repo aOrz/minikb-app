@@ -301,7 +301,8 @@
 					"js/myjs.js"
 				],
 				"refer": [
-					"ck.html"
+					"ck.html",
+					"ckkb.html"
 				],
 				"priority": 0
 			},
@@ -428,6 +429,28 @@
 			"ring.html": {
 				"resources": [
 					"js/vue.min.js",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/style.css",
+					"js/myjs.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"reg.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/style.css",
+					"js/myjs.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"ckkb.html": {
+				"resources": [
 					"js/mui.min.js",
 					"fonts/mui.ttf",
 					"css/mui.min.css",

@@ -103,7 +103,8 @@
       "js/myjs.js"
     ],
     "refer": [
-      "ck.html"
+      "ck.html",
+      "ckkb.html"
     ]
   },
   "xgkb.html": {
@@ -264,5 +265,24 @@
       "css/mui.min.css"
     ],
     "refer": []
+  },
+  "reg.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/style.css",
+      "js/myjs.js"
+    ],
+    "refer": []
+  },
+  "ckkb.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/style.css",
+      "js/myjs.js"
+    ]
   }
 }

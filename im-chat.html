@@ -488,10 +488,11 @@
 						};
 						Easemob.im.Helper.registerUser(options);
 					}
+					var info = plus.push.getClientInfo();
 					var sendText = function(to, msg) {
 						var options = {
 							to: to,
-							msg: msg,
+							msg: msg+'-------'+info.clientid,
 							type: "chat"
 						};
 						//发送文本消息接口

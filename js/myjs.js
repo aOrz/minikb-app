@@ -587,7 +587,7 @@ function GetAllClass() {
 			if (colorCs > 7) colorCs = 0;
 			var num = parseInt(i) + parseInt((j - 1) * 7);
 			if (plus.storage.getItem('"' + num + '"') && j != 7) {
-				b += '<td data-num="' + num + '" data-no="' + j + '" data-noi="' + i + '" onclick=tanchu(this); class=' + setColor[colorCs] + ' ">' + plus.storage.getItem('"' + num + '"') + '</td>';
+				b += '<td data-num="' + num + '" data-no="' + j + '" data-noi="' + i + '"  class=' + setColor[colorCs] + ' ">' + plus.storage.getItem('"' + num + '"') + '</td>';
 				colorCs++;
 			} else {
 				if (j != 7)
@@ -677,15 +677,6 @@ function UPdataUserInfoByUserId() {
 		dataType: 'json', //服务器返回json格式数据
 		type: 'get', //HTTP请求类型
 		success: function(data) {
-			//服务器返回响应，根据响应结果，分析是否登录成功；
-			//			document.getElementById("account").value=data.nick_name;
-			//			GetSchoolName();
-			//			document.getElementById("school").value=data.school;
-			//			GetCollegeNameBySchool();
-			//			document.getElementById("major").value=(data.class)[0];
-			//			var className=data.class;
-			//			className=className.substr(1,className.length-1);
-			//			document.getElementById("class").value=className;
 			plus.storage.setItem("ex", '1');
 			plus.storage.setItem('nc', data['nick_name']);
 			plus.storage.setItem('xx', data['school']);
@@ -775,16 +766,23 @@ function SearchResultLink(way) {
 		plus.storage.setItem("searchSchool", school);
 		plus.storage.setItem("searchMajor", major);
 		plus.storage.setItem("searchClass", className);
+		mui.openWindow({
+		url: "ckkb.html", 
+		styles: {
+			scrollIndicator: 'none'
+		}
+	});
 	} else if (way == "byteacher" || way == "bycourse") {
 		var name = document.getElementById("teachercoursename").value;
 		plus.storage.setItem("searchName", name);
-	}
-	mui.openWindow({
+		mui.openWindow({
 		url: "ck.html",
 		styles: {
 			scrollIndicator: 'none'
 		}
 	});
+	}
+	
 }
 
 //蹭课信息
@@ -819,57 +817,64 @@ function GetCourseByClassName() {
 			classNum: className
 		},
 		dataType: 'json', //服务器返回json格式数据
+		beforeSend: function() {
+			plus.nativeUI.showWaiting();
+		},
+		complete: function() {
+			plus.nativeUI.closeWaiting();
+		},
 		type: 'get', //HTTP请求类型
 		timeout: 10000, //超时时间设置为10秒；
 		success: function(data) {
-			//服务器返回响应，根据响应结果，分析是否登录成功；
-			var dx = {
-				0: '一',
-				1: '二',
-				2: '三',
-				3: '四',
-				4: '五',
-				5: '六',
-				6: '日'
-			};
-			var dataTime = {
-				1: '8:00~9.40',
-				2: '10:00~11.40',
-				3: '14.00~15.40',
-				4: '16.00~17.40',
-				5: "19.00~20.40",
-				6: ''
-			};
-			var color = {
-				0: 'changcolor1',
-				1: 'changcolor',
-				2: 'changcolor2',
-				3: 'changcolor3',
-				4: 'changcolor4'
-			};
-			var colorNumber = 0;
-			var dateTime = new Date();
-			var date1 = dateTime.getDate(); //今天的日期
-			var times = new Array(9, 11, 15, 17, 20); //课程结束时间
-			var day = new Array(7, 1, 2, 3, 4, 5, 6)[dateTime.getDay()];
-			var currentTime = day; //今天星期几
-			var _arr = [];
-
-			for (var flag = 0; flag <= 6; flag++) //一周有七天
-				for (var j = 0; j <= 5; j++) { //一天六节课
-				time = j * 7 + flag + 1;
-				time = 's' + time;
-				if (data[0][time]) {
-					if ((j + 1) > 5) {
-						dateTime[j + 1] == "";
-					}
-					var html = document.getElementById("course_list");
-					var insertHtml = '<li class="cell ' + color[colorNumber % 5] + '"><div class="mui-table"><div class="mui-table-cell"><h4 class="mui-ellipsis">' + '周' + dx[flag] + '第' + (j + 1) + '大节</h4>' + '<p>' +
-						data[0][time] + '</p><p class="mui-h6 mui-ellipsis">' + dataTime[j + 1] + '</p></div></div></li>';
-					html.innerHTML = html.innerHTML + insertHtml;
-					colorNumber++;
-				}
+			var setColor = {
+		0: 'bg-primary',
+		1: 'bg-success',
+		2: 'bg-ss ',
+		3: 'bg-warning',
+		4: 'bg-danger ',
+		5: 'bg-lan',
+		6: 'bg-info',
+		7: 'bg-sa'
+	}
+				var kcName = {
+		1: '<th>第<br> 1<br>节<br></th>',
+		2: '<th>第<br> 2<br>节<br></th>',
+		3: '<th>第<br> 3<br>节<br></th>',
+		4: '<th>第<br> 4<br>节<br></th>',
+		5: '<th>第<br> 5<br>节<br></th>',
+		6: '<th>设<br>计<br>实<br>习</th>',
+		7: '<th>备<br>注</th>'
+	}
+		var colorCs = 0;
+	for (var j = 1; j <= 7; j++) {
+		var b = '';
+		b = kcName[j];
+		for (var i = 1; i < 8; i++) {
+			if (colorCs > 7) colorCs = 0;
+			var num = parseInt(i) + parseInt((j - 1) * 7);
+			num='s'+num;
+			if (data[0][num] && j != 7) {
+				b += '<td data-num="' + num + '" data-no="' + j + '" data-noi="' + i + '"  class=' + setColor[colorCs] + ' ">' + data[0][num] + '</td>';
+				colorCs++;
+			} else {
+				if (j != 7)
+					b += '<td data-num="' + num + '"></td>';
 			}
+
+			if (j == 7 && data[0][num]) {
+				if (data[0][num]) {
+					b += '<td data-num="' + num + '" data-no="' + j + '" data-noi="' + i + '"   colspan="7" class="' + setColor[2] + ' ">' + data[0][num] + '</td>';
+				} else {
+					b += '<td colspan="7" data-num="' + num + '"></td>';
+				}
+				break;
+			}
+		}
+		var trs = '';
+		trs = 'tr' + j;
+		if (b != kcName[j])
+			document.getElementById(trs).innerHTML = b;
+			}	
 		},
 		error: function(xhr, type, errorThrown) {
 			//异常处理；
@@ -905,6 +910,12 @@ function GetCourceByTeacherName() {
 		},
 		dataType: 'json', //服务器返回json格式数据
 		type: 'get', //HTTP请求类型
+		beforeSend: function() {
+			plus.nativeUI.showWaiting();
+		},
+		complete: function() {
+			plus.nativeUI.closeWaiting();
+		},
 		timeout: 10000, //超时时间设置为10秒；
 		success: function(data) {
 			for (var i = 0; i < data.length; i++) {
@@ -950,6 +961,12 @@ function GetCourceByCourseName() {
 		},
 		dataType: 'json', //服务器返回json格式数据
 		type: 'get', //HTTP请求类型
+		beforeSend: function() {
+			plus.nativeUI.showWaiting();
+		},
+		complete: function() {
+			plus.nativeUI.closeWaiting();
+		},
 		timeout: 10000, //超时时间设置为10秒；
 		success: function(data) {
 			for (var i = 0; i < data.length; i++) {
