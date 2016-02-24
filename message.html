@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="utf-8">
 		<title>留言板</title>
@@ -8,7 +9,7 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
 		<link rel="stylesheet" href="css/mui.min.css">
-			<link rel="stylesheet" type="text/css" href="css/style.csss"/>
+		<link rel="stylesheet" type="text/css" href="css/style.csss" />
 		<style>
 			html,
 			body {
@@ -108,9 +109,11 @@
 				color: #FFF;
 				padding: 10px;
 			}
-			.mui-bar-nav a{
+			
+			.mui-bar-nav a {
 				color: white;
 			}
+			
 			.massage_header {
 				padding: 10px;
 				height: 50px;
@@ -223,11 +226,32 @@
 			</div>
 		</div>
 
-		<script src="js/mui.min.js"></script>
+		<script src="js/mui.js"></script>
+		<script type="text/javascript" src="js/myjs.js"></script>
 		<script>
 			mui.plusReady(function() {
+				mui.init({
+					swipeBack: true,
+					pullRefresh: {
+						container: '#refreshContainer', //待刷新区域标识，querySelector能定位的css选择器均可，比如：id、.class等
+						up: {
+							contentrefresh: "拼命加载中...", //可选，正在加载状态时，上拉加载控件上显示的标题内容
+							contentnomore: '没有更多数据了',//可选，请求完毕若没有更多数据时显示的提醒内容；
+							auto:true,
+							callback: ajaxs //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+						}
+					},
+					preloadPages: [{
+						url: 'comment.html',
+						id: 'comment.html'
+					}, {
+						url: 'postmessage.html',
+						id: 'postmessage.html'
+					}]
+				});
 				var page = 1;
-				ajaxs();
+				//				ajaxs();
+//				mui('#refreshContainer').pullRefresh().pullupLoading();
 				window.addEventListener('sssaba', function(event) {
 					//page = 1;
 					var data1 = event.detail;
@@ -252,34 +276,16 @@
 						'</div>' +
 						'</div>' +
 						'</li>';
-//					document.getElementById('contents').innerHTML='';
-					document.getElementById('contents').innerHTML = html +document.getElementById('contents').innerHTML;
-//					alert(1)
-//					var newItem = document.createElement("LI")
-//					var textnode = document.createTextNode(html);
-//					newItem.appendChild(textnode)
-//					list.insertBefore(newItem, list.childNodes[0]);
+					//					document.getElementById('contents').innerHTML='';
+					document.getElementById('contents').innerHTML = html + document.getElementById('contents').innerHTML;
+					//					alert(1)
+					//					var newItem = document.createElement("LI")
+					//					var textnode = document.createTextNode(html);
+					//					newItem.appendChild(textnode)
+					//					list.insertBefore(newItem, list.childNodes[0]);
 					//ajaxs();
-					plus.webview.currentWebview().reload();
+//					plus.webview.currentWebview().reload();
 					//					location.reload();
-				});
-				mui.init({
-					swipeBack: true,
-					pullRefresh: {
-						container: '#refreshContainer', //待刷新区域标识，querySelector能定位的css选择器均可，比如：id、.class等
-						up: {
-							contentrefresh: "正在加载...", //可选，正在加载状态时，上拉加载控件上显示的标题内容
-							contentnomore: '没有更多数据了', //可选，请求完毕若没有更多数据时显示的提醒内容；
-							callback: ajaxs //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
-						}
-					},
-					preloadPages: [{
-						url: 'comment.html',
-						id: 'comment.html'
-					}, {
-						url: 'postmessage.html',
-						id: 'postmessage.html'
-					}]
 				});
 				var color = Array('boy', 'girl');
 
@@ -291,12 +297,12 @@
 						},
 						dataType: 'json', //服务器返回json格式数据
 						type: 'get', //HTTP请求类型
-						beforeSend: function() {
-							plus.nativeUI.showWaiting();
-						},
-						complete: function() {
-							plus.nativeUI.closeWaiting();
-						},
+//						beforeSend: function() {
+//							plus.nativeUI.showWaiting();
+//						},
+//						complete: function() {
+//							plus.nativeUI.closeWaiting();
+//						},
 						timeout: 10000, //超时时间设置为10秒；
 						success: function(data) {
 							if (!data) {
@@ -363,42 +369,6 @@
 						id: 'comment.html'
 					});
 				});
-				getDateDiff = function(dateTimeStamp) {
-					//JavaScript函数：
-					var minute = 60;
-					var hour = minute * 60;
-					var day = hour * 24;
-					var halfamonth = day * 15;
-					var month = day * 30;
-					var year = day * 365;
-					var now = parseInt(new Date().getTime() / 1000);
-					var diffValue = now - dateTimeStamp;
-					if (diffValue < 0) {
-						//若日期不符则弹出窗口告之
-						//alert("结束日期不能小于开始日期！");
-					}
-					var yearC = diffValue / year;
-					var monthC = diffValue / month;
-					var weekC = diffValue / (7 * day);
-					var dayC = diffValue / day;
-					var hourC = diffValue / hour;
-					var minC = diffValue / minute;
-					if (yearC >= 1) {
-						result = "" + parseInt(monthC) + "年前";
-					} else if (monthC >= 1) {
-						result = "" + parseInt(monthC) + "个月前";
-					} else if (weekC >= 1) {
-						result = "" + parseInt(weekC) + "周前";
-					} else if (dayC >= 1) {
-						result = "" + parseInt(dayC) + "天前";
-					} else if (hourC >= 1) {
-						result = "" + parseInt(hourC) + "个小时前";
-					} else if (minC >= 1) {
-						result = "" + parseInt(minC) + "分钟前";
-					} else
-						result = "刚刚";
-					return result;
-				};
 				document.getElementById('addMessage').addEventListener('tap', function() {
 					mui.openWindow({
 						url: 'postmessage.html',

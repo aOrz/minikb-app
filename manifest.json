@@ -217,7 +217,9 @@
 					"images/face/1.png",
 					"js/mui.min.js",
 					"fonts/mui.ttf",
-					"css/mui.min.css"
+					"css/mui.min.css",
+					"js/myjs.js",
+					"js/mui.js"
 				],
 				"refer": [
 					"postmessage.html",
@@ -229,7 +231,8 @@
 				"resources": [
 					"js/mui.min.js",
 					"fonts/mui.ttf",
-					"css/mui.min.css"
+					"css/mui.min.css",
+					"js/myjs.js"
 				],
 				"refer": [
 					"message.html"
@@ -246,7 +249,9 @@
 					"images/face/1.png",
 					"images/face/3.png",
 					"images/face/4.png",
-					"images/face/2.png"
+					"images/face/2.png",
+					"js/myjs.js",
+					"js/vue.min.js"
 				],
 				"refer": [],
 				"priority": 0

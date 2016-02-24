@@ -174,7 +174,9 @@
       "css/mui.min.css",
       "images/face/3.png",
       "images/face/6.png",
-      "images/face/4.png"
+      "images/face/4.png",
+      "js/myjs.js",
+      "js/mui.js"
     ],
     "refer": [
       "postmessage.html",
@@ -215,7 +217,11 @@
       "js/mui.min.js",
       "fonts/mui.ttf",
       "css/mui.min.css",
-      "images/face/4.png"
+      "images/face/4.png",
+      "js/myjs.js",
+      "js/vue.min.js",
+      "images/face/3.png",
+      "images/face/6.png"
     ],
     "refer": []
   },
@@ -247,6 +253,15 @@
       "css/mui.min.css",
       "css/style.css",
       "js/myjs.js"
+    ],
+    "refer": []
+  },
+  "postmessage.html": {
+    "resources": [
+      "js/mui.min.js",
+      "js/myjs.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css"
     ],
     "refer": []
   }

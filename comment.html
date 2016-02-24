@@ -5,8 +5,10 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
-		<script src="js/mui.min.js"></script>
 		<link href="css/mui.min.css" rel="stylesheet" />
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/myjs.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
 		<style>
 			html,
 			body {
@@ -23,9 +25,11 @@
 				font-size: 1.6rem;
 				background-color: #efeff4;
 			}
-			.mui-bar-nav a{
+			
+			.mui-bar-nav a {
 				color: white;
 			}
+			
 			footer {
 				position: fixed;
 				width: 100%;
@@ -452,7 +456,7 @@
 		</style>
 	</head>
 
-	<body>
+	<body id="comment_page">
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<a class="mui-icon mui-icon-redo mui-pull-right" id="shares" style="font-size: 29px;"></a>
@@ -464,14 +468,26 @@
 				<li class="message" id="comment">
 				</li>
 			</ul>
-			<ul class="mui-table-view otherscomment" style="margin: 0px;" id="contents">
+			<ul class="mui-table-view otherscomment" style="margin: 0px;">
+				<template v-for="item in cmt">
+					<li class="mui-table-view-cell">
+						<div class="face">
+							<img src="images/face/{{Math.ceil(Math.random() * 6)}}.png" />
+							<span class="name">第{{$index+1}}楼</span>
+						</div>
+						<div class="comment">
+							<p>{{{item.moods}}} </p>
+							<span class="time">{{item.indate}}</span>
+						</div>
+					</li>
+				</template>
 			</ul>
 		</div>
 		<footer>
 			<div class="footer-center">
-				<textarea id='msg-text' type="text" class='input-text' placeholder="我要评论"></textarea>
+				<textarea id='msg-text' type="text" class='input-text' placeholder="我要评论" v-model="new_comment"></textarea>
 			</div>
-			<label for="" class="footer-right" id="coms">
+			<label for="" class="footer-right" id="coms" v-on:click="up_comment">
 				<i class="mui-icon mui-icon-paperplane"></i>
 			</label>
 		</footer>
@@ -487,9 +503,58 @@
 			localStorage.commentid = id;
 			ajaxs(id);
 		});
+		var V_comment = new Vue({
+			el: '#comment_page',
+			data: {
+				cmt: new Array(),
+				new_comment:''
+			},
+			computed: function() {
+			},
+			methods:{
+				up_comment:function(){
+					if(!this.new_comment){
+						mui.alert("写点什么吧！")
+					}
+					var text = this.new_comment;
+					var tem = this;
+					plus.nativeUI.showWaiting("等待中...");
+			mui.ajax('http://2.minikb.sinaapp.com/controller/message_board_controller.php', {
+				data: {
+					c: 'AddComments',
+					MessageId: localStorage.commentid,
+					userId: plus.storage.getItem('id'),
+					message: text
+				},
+				dataType: 'json', //服务器返回json格式数据
+				type: 'get', //HTTP请求类型
+				timeout: 5000, //超时时间设置为10秒；
+				complete: function() {
+					plus.nativeUI.closeWaiting();
+				},
+				success: function(data) {
+					if (!data) {
+						plus.nativeUI.toast("网络错误");
+					} else {
+						var cm = {
+							indate:'刚刚',
+							moods:text
+						}
+						tem.new_comment ='';
+						tem.cmt.push(cm);
+					}
+				},
+				error: function(xhr, type, errorThrown) {
+					//异常处理；
+					plus.nativeUI.toast("网络错误");
+				}
+			});
+				}
+			}
+		})
 
 		function ajaxs(id) {
-			document.getElementById('contents').innerHTML = '';
+//			document.getElementById('contents').innerHTML = '';
 			mui.ajax('http://2.minikb.sinaapp.com/controller/message_board_controller.php', {
 				data: {
 					c: 'GetCommentsList',
@@ -498,30 +563,14 @@
 				dataType: 'json', //服务器返回json格式数据
 				type: 'get', //HTTP请求类型
 				timeout: 5000, //超时时间设置为10秒；
-				beforeSend: function() {
-					plus.nativeUI.showWaiting();
-				},
-				complete: function() {
-					plus.nativeUI.closeWaiting();
-				},  
 				success: function(data) {
 					for (var i = 0; i < data.length; i++) {
-						data1 = data[i];
-						var num = Math.ceil(Math.random() * 6);
-						lou = i + 1;
-						html = '<li class="mui-table-view-cell">' +
-							'<div class="face">' +
-							'<img src="images/face/' + num + '.png" />' +
-							'<span class="name">' + lou + '楼</span>' +
-							'</div>' +
-							'<div class="comment">' +
-							'<p>' + data1['moods'] + '</p>' +
-							'<span class="time">' + getDateDiff(data1['indate']) + '</span>' +
-							'</div>' +
-							'</li>';
-						document.getElementById('contents').innerHTML += html;
-					}
-					mui('#refreshContainer').pullRefresh().endPullupToRefresh(i == 9 ? 0 : 1);
+				data[i].indate = getDateDiff(data[i].indate )
+			}
+					if(!data){
+						V_comment.cmt=new Array();
+					}else
+					 V_comment.cmt= data;
 				},
 				error: function(xhr, type, errorThrown) {
 					//异常处理；
@@ -529,88 +578,6 @@
 				}
 			});
 		}
-		getDateDiff = function(dateTimeStamp) {
-			//JavaScript函数：
-			var minute = 60;
-			var hour = minute * 60;
-			var day = hour * 24;
-			var halfamonth = day * 15;
-			var month = day * 30;
-			var year = day * 365;
-			var now = parseInt(new Date().getTime() / 1000);
-			var diffValue = now - dateTimeStamp;
-			if (diffValue < 0) {
-				//若日期不符则弹出窗口告之
-				//alert("结束日期不能小于开始日期！");
-			}
-			var yearC = diffValue / year;
-			var monthC = diffValue / month;
-			var weekC = diffValue / (7 * day);
-			var dayC = diffValue / day;
-			var hourC = diffValue / hour;
-			var minC = diffValue / minute;
-			if (yearC >= 1) {
-				result = "" + parseInt(monthC) + "年前";
-			} else if (monthC >= 1) {
-				result = "" + parseInt(monthC) + "个月前";
-			} else if (weekC >= 1) {
-				result = "" + parseInt(weekC) + "周前";
-			} else if (dayC >= 1) {
-				result = "" + parseInt(dayC) + "天前";
-			} else if (hourC >= 1) {
-				result = "" + parseInt(hourC) + "个小时前";
-			} else if (minC >= 1) {
-				result = "" + parseInt(minC) + "分钟前";
-			} else
-				result = "刚刚";
-			return result;
-		};
-		var num = 0
-		document.getElementById('coms').addEventListener('tap', function() {
-			if (num) {
-				return 0;
-			} else {
-				num = 1;
-			}
-			var text = document.getElementById('msg-text').value;
-			if (!text) {
-				alert('写点东西吧');
-				return 0;
-			}
-			userId = plus.storage.getItem('id');
-			if (!userId) {
-				alert('没有登录哦！')
-				return 0;
-			}
-			plus.nativeUI.showWaiting("等待中...");
-			mui.ajax('http://2.minikb.sinaapp.com/controller/message_board_controller.php', {
-				data: {
-					c: 'AddComments',
-					MessageId: localStorage.commentid,
-					userId: userId,
-					message: text
-				},
-				dataType: 'json', //服务器返回json格式数据
-				type: 'get', //HTTP请求类型
-				timeout: 5000, //超时时间设置为10秒；
-				complete: function() {
-					plus.nativeUI.closeWaiting();
-					num = 0;
-				},
-				success: function(data) {
-					if (!data) {
-						plus.nativeUI.toast("网络错误");
-					} else {
-						ajaxs(localStorage.commentid);
-						document.getElementById('msg-text').value = '';
-					}
-				},
-				error: function(xhr, type, errorThrown) {
-					//异常处理；
-					plus.nativeUI.toast("网络错误");
-				}
-			});
-		})
 	</script>
 	<script>
 		var shares = {};
@@ -763,13 +730,6 @@
 				}, function(e) {
 					console.log('绘制图片失败：' + JSON.stringify(e));
 				});
-				//				msg.href = "http://a.app.qq.com/o/simple.jsp?pkgname=io.dcloud.H5291D2691";
-				//				msg.title = "迷你课表";
-				//				msg.content = "我在使用迷你课表，里面内置了班级课表，快来看看吧！";
-				//				if (~share.id.indexOf('weibo')) {
-				//					msg.content += "；体验地址：http://cdn.sinacloud.net/minikb/minikb.apk";
-				//				}
-				//				msg.thumbs = ["_www/images/80.png"];
 			}
 		});
 	</script>
