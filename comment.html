@@ -515,6 +515,7 @@
 				up_comment:function(){
 					if(!this.new_comment){
 						mui.alert("写点什么吧！")
+						return;
 					}
 					var text = this.new_comment;
 					var tem = this;
@@ -538,7 +539,7 @@
 					} else {
 						var cm = {
 							indate:'刚刚',
-							moods:text
+							moods:Tohtml(text)
 						}
 						tem.new_comment ='';
 						tem.cmt.push(cm);

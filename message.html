@@ -226,7 +226,7 @@
 			</div>
 		</div>
 
-		<script src="js/mui.js"></script>
+		<script src="js/mui.min.js"></script>
 		<script type="text/javascript" src="js/myjs.js"></script>
 		<script>
 			mui.plusReady(function() {
@@ -256,6 +256,7 @@
 					//page = 1;
 					var data1 = event.detail;
 					console.log(JSON.stringify(data1));
+					data1['moods'] =Tohtml(data1['moods']);
 					var html = '<li class="message ' + 'girl' + '" data-id="' + data1['mood_id'] + '" >' +
 						'<div class="massage_header" >' +
 						'<img src="images/face/' + '1' + '.png" style="width: 50px;" />' +

@@ -1269,7 +1269,12 @@ function GetRankList() {
 		}
 	});
 }
-
+//文本转html
+function Tohtml(str){
+	str= ((str.replace(/<(.+?)>/gi,"&lt;$1&gt;")).replace(/ /gi,"&nbsp;")).replace(/\n/gi,"<br>") 
+	
+     return str; 
+}
 //得到
 function Getxiaoli() {
 	mui.ajax('http://minikb.sinaapp.com/public/json/holiday.php', {
