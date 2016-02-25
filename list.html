@@ -49,7 +49,7 @@
 				color: #f14e41;
 			}
 			
-			.changcolor5{
+			.changcolor5 {
 				background-color: powderblue;
 			}
 			
@@ -68,9 +68,11 @@
 			.changcolor4 {
 				background-color: #fcf8e3;
 			}
-			.bgcolor{
-				background-color: #F6ECE4; 
+			
+			.bgcolor {
+				background-color: #F6ECE4;
 			}
+			
 			.mui-text-right {
 				width: 50px;
 			}
@@ -144,6 +146,7 @@
 					mui.openWindow('login.html')
 				}
 				CheckStorage();
+
 				function course_data() {
 					var cou = new Array();
 					for (var i = 1; i <= 43; i++) {
@@ -174,75 +177,76 @@
 						controls.add('bgcolor');
 						var tadaycl = document.getElementById('content' + this.day).classList;
 						tadaycl.add('mui-active')
-						
 					}
 				})
-			document.addEventListener("swiperight", function() {
-				var index = '';
-				!index && (index = mui.currentWebview.parent());
-				mui.fire(index, 'menu:open');
-			});
-			var aniShow = "pop-in";
-			var templates = {};
-			var getTemplate = function(name, header, content) {
-				var template = templates[name];
-				if (!template) {
-					//预加载共用父模板；
-					var headerWebview = mui.preload({
-						url: header,
-						id: name + "-main",
-						styles: {
-							popGesture: "hide",
-						},
-						extras: {
-							mType: 'main'
-						}
-					});
-					//预加载共用子webview
-					var subWebview = mui.preload({
-						url: 'kb.html', //直接预加载课表页面
-						id: name + "-sub",
-						styles: {
-							top: '45px',
-							bottom: '0px',
-							bounce: 'all',
-							scalable: true,
-							scrollIndicator: 'none'
-						},
-						extras: {
-							mType: 'sub'
-						}
-					});
-					subWebview.addEventListener('loaded', function() {
-						setTimeout(function() {
-							subWebview.show();
-						}, 50);
-					});
-					subWebview.hide();
-					headerWebview.append(subWebview);
-					//iOS平台支持侧滑关闭，父窗体侧滑隐藏后，同时需要隐藏子窗体；
-					if (mui.os.ios) { //5+父窗体隐藏，子窗体还可以看到？不符合逻辑吧？
-						headerWebview.addEventListener('hide', function() {
-							subWebview.hide("none");
+				document.addEventListener("swiperight", function() {
+					var index = '';
+					!index && (index = mui.currentWebview.parent());
+					mui.fire(index, 'menu:open');
+				});
+				var aniShow = "pop-in";
+				var templates = {};
+				var getTemplate = function(name, header, content) {
+					var template = templates[name];
+					if (!template) {
+						//预加载共用父模板；
+						var headerWebview = mui.preload({
+							url: header,
+							id: name + "-main",
+							styles: {
+								popGesture: "hide",
+							},
+							extras: {
+								mType: 'main'
+							}
 						});
+						//预加载共用子webview
+						var subWebview = mui.preload({
+							url: 'kb.html', //直接预加载课表页面
+							id: name + "-sub",
+							styles: {
+								top: '45px',
+								bottom: '0px',
+								bounce: 'all',
+								scalable: true,
+								scrollIndicator: 'none'
+							},
+							extras: {
+								mType: 'sub'
+							}
+						});
+						subWebview.addEventListener('loaded', function() {
+							setTimeout(function() {
+								subWebview.show();
+							}, 50);
+						});
+						subWebview.hide();
+						headerWebview.append(subWebview);
+						//iOS平台支持侧滑关闭，父窗体侧滑隐藏后，同时需要隐藏子窗体；
+						if (mui.os.ios) { //5+父窗体隐藏，子窗体还可以看到？不符合逻辑吧？
+							headerWebview.addEventListener('hide', function() {
+								subWebview.hide("none");
+							});
+						}
+						templates[name] = template = {
+							name: name,
+							header: headerWebview,
+							content: subWebview,
+						};
 					}
-					templates[name] = template = {
-						name: name,
-						header: headerWebview,
-						content: subWebview,
-					};
-				}
-				return template;
-			};
-			var initTemplates = function() {
-				getTemplate('default', 'examples/template.html');
-			};
-
-				
+					return template;
+				};
+				var initTemplates = function() {
+					getTemplate('default', 'examples/template.html');
+				};
 				window.addEventListener('customEvent', function(event) {
-//					document.getElementById('course_list').innerHTML = '';
-//					GetTodayClass();
-					list.course=course_data();
+					//					document.getElementById('course_list').innerHTML = '';
+					//					GetTodayClass();
+					var menu = plus.webview.getWebviewById('index-menu');
+					//触发菜单页更新昵称
+					if (menu)
+						mui.fire(menu, 'up_nick', {});
+					list.course = course_data();
 					console.log('页面更新')
 					subWebview = plus.webview.getWebviewById('default-sub');
 					if (event.detail.page != 'all')
@@ -286,8 +290,11 @@
 				mui.openWindow('login.html')
 			});
 			document.addEventListener("resume", function() {
-					closeMenu();
-				}, false);
+				closeMenu();
+			}, false);
+			if(!localStorage.holiday){
+				Getxiaoli()
+			}
 		</script>
 
 	</body>

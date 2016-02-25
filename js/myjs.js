@@ -90,8 +90,8 @@ function CheckLogin() {
 		//plus.nativeUI.closeWaiting();
 		var idExists = CheckIdExists(userId);
 		var dateTime = new Date();
-		var Num = GetLsPwd(); 
- 
+		var Num = GetLsPwd();
+
 		plus.storage.setItem("lsPwd", Num);
 		if (idExists == 0) { //邮箱不存在
 			plus.nativeUI.toast("用户未注册");
@@ -104,13 +104,13 @@ function CheckLogin() {
 			};
 			mui.ajax('http://2.minikb.sinaapp.com/controller/user_controller.php', {
 				async: false,
-				data: loginData, 
+				data: loginData,
 				dataType: 'json', //服务器返回json格式数据
 				beforeSend: function() {
-						plus.nativeUI.showWaiting();
+					plus.nativeUI.showWaiting();
 				},
 				complete: function() {
-						plus.nativeUI.closeWaiting();
+					plus.nativeUI.closeWaiting();
 				},
 				type: 'get', //HTTP请求类型
 				success: function(data) {
@@ -132,6 +132,7 @@ function CheckLogin() {
 						plus.nativeUI.toast("登陆成功");
 						detailPage = plus.webview.getWebviewById('list.html');
 						mui.fire(detailPage, 'customEvent', {});
+						plus.nativeUI.closeWaiting();
 						mui.back();
 					} else {
 						plus.nativeUI.toast("网络错误");
@@ -459,103 +460,103 @@ function GetCollegeNameBySchool(school) {
 	});
 }
 
-//得到今日课表
-function GetTodayClass() {
-	var html = document.getElementById("course_list");
-	html.innerHTML = '';
-	var dx = {
-		1: '一',
-		2: '二',
-		3: '三',
-		4: '四',
-		5: '五',
-		6: '六',
-		7: '日'
-	};
-	var dataTime = {
-		1: '8:00~9.40',
-		2: '10:00~11.40',
-		3: '14.00~15.40',
-		4: '16.00~17.40',
-		5: "19.00~20.40"
-	};
-	var color = {
-		0: 'changcolor1',
-		1: 'changcolor',
-		2: 'changcolor2',
-		3: 'changcolor3',
-		4: 'changcolor4'
-	};
-	var colorNumber = 0;
-	var dateTime = new Date();
-	var date1 = dateTime.getDate(); //今天的日期
-	var times = new Array(9, 11, 15, 17, 20); //课程结束时间
-	var day = new Array(7, 1, 2, 3, 4, 5, 6)[dateTime.getDay()];
-	var currentTime = day; //今天星期几
-	var _arr = [];
-	var isture = 0;
-
-	for (var i = 0; i < 5; i++) {
-		n1 = (i + 1);
-		var num = parseInt(i * 7) + parseInt(currentTime);
-		var tdatac = plus.storage.getItem('"' + num + '"');
-
-
-		if (tdatac) {
-			var myData = new Date();
-			if ((times[i] > myData.getHours()) || (times[i]) == myData.getHours() && myData.getMinutes() > 40) {
-				colorNumber++;
-				isture = 1;
-				var n1 = parseInt(i) + parseInt(1);
-				//var html = document.getElementById("course_list");
-				var insertHtml = '<li class="cell ' + color[colorNumber % 5] + '"><div class="mui-table"><div class="mui-table-cell"><h4 class="mui-ellipsis">' + '周' + dx[currentTime] + '第' + n1 + '大节</h4>' + '<p>' +
-					tdatac + '</p><p class="mui-h6 mui-ellipsis">' + dataTime[n1] + '</p></div></div></li>';
-				html.innerHTML = html.innerHTML + insertHtml;
-			}
-		}
-	}
-
-	//提示今天没有课了
-	if (!isture) {
-		colorNumber++;
-		//var html = document.getElementById("course_list");
-		var insertHtml = '<li class="cell ' + color[colorNumber % 5] + '"><div class="mui-table"><div class="mui-table-cell"><h4 class="mui-ellipsis"></h4><p>' + '今天没课了哦！准备明天的课吧！' + '</p><p class="mui-h6 mui-ellipsis"></p></div></div></li>';
-		html.innerHTML = html.innerHTML + insertHtml;
-	}
-	isture = 0;
-	if (currentTime == 7) {
-		currentTime = 1;
-	} else {
-		currentTime++;
-	}
-
-	//var html = document.getElementById("course_list");
-	var insertHtml = '<hr style="border:1px dashed  #cccccc;width: 90%" />';
-	html.innerHTML = html.innerHTML + insertHtml;
-
-	//明天的课
-	for (var i = 0; i < 5; i++) {
-		n1 = (i + 1);
-		var num = parseInt(i * 7) + parseInt(currentTime);
-		var tdatac = plus.storage.getItem('"' + num + '"');
-		if (tdatac) {
-			colorNumber++;
-			isture = 1;
-			var n1 = parseInt(i) + parseInt(1);
-			//var html = document.getElementById("course_list");
-			var insertHtml = '<li class="cell ' + color[colorNumber % 5] + '"><div class="mui-table"><div class="mui-table-cell"><h4 class="mui-ellipsis">' + '周' + dx[currentTime] + '第' + n1 + '大节</h4>' + '<p>' + tdatac + '</p><p class="mui-h6 mui-ellipsis">' + dataTime[n1] + '</p></div></div></li>';
-			html.innerHTML = html.innerHTML + insertHtml;
-		}
-	}
-
-	//提示明天没有课了
-	if (!isture) {
-		colorNumber++;
-		//var html = document.getElementById("course_list");
-		var insertHtml = '<li class="cell ' + color[colorNumber % 5] + '"><div class="mui-table"><div class="mui-table-cell"><h4 class="mui-ellipsis"></h4><p>' + '明天没课了哦！计划怎么去玩吧！' + '</p><p class="mui-h6 mui-ellipsis"></p></div></div></li>';
-		html.innerHTML = html.innerHTML + insertHtml;
-	}
-}
+////得到今日课表
+//function GetTodayClass() {
+//	var html = document.getElementById("course_list");
+//	html.innerHTML = '';
+//	var dx = {
+//		1: '一',
+//		2: '二',
+//		3: '三',
+//		4: '四',
+//		5: '五',
+//		6: '六',
+//		7: '日'
+//	};
+//	var dataTime = {
+//		1: '8:00~9.40',
+//		2: '10:00~11.40',
+//		3: '14.00~15.40',
+//		4: '16.00~17.40',
+//		5: "19.00~20.40"
+//	};
+//	var color = {
+//		0: 'changcolor1',
+//		1: 'changcolor',
+//		2: 'changcolor2',
+//		3: 'changcolor3',
+//		4: 'changcolor4'
+//	};
+//	var colorNumber = 0;
+//	var dateTime = new Date();
+//	var date1 = dateTime.getDate(); //今天的日期
+//	var times = new Array(9, 11, 15, 17, 20); //课程结束时间
+//	var day = new Array(7, 1, 2, 3, 4, 5, 6)[dateTime.getDay()];
+//	var currentTime = day; //今天星期几
+//	var _arr = [];
+//	var isture = 0;
+//
+//	for (var i = 0; i < 5; i++) {
+//		n1 = (i + 1);
+//		var num = parseInt(i * 7) + parseInt(currentTime);
+//		var tdatac = plus.storage.getItem('"' + num + '"');
+//
+//
+//		if (tdatac) {
+//			var myData = new Date();
+//			if ((times[i] > myData.getHours()) || (times[i]) == myData.getHours() && myData.getMinutes() > 40) {
+//				colorNumber++;
+//				isture = 1;
+//				var n1 = parseInt(i) + parseInt(1);
+//				//var html = document.getElementById("course_list");
+//				var insertHtml = '<li class="cell ' + color[colorNumber % 5] + '"><div class="mui-table"><div class="mui-table-cell"><h4 class="mui-ellipsis">' + '周' + dx[currentTime] + '第' + n1 + '大节</h4>' + '<p>' +
+//					tdatac + '</p><p class="mui-h6 mui-ellipsis">' + dataTime[n1] + '</p></div></div></li>';
+//				html.innerHTML = html.innerHTML + insertHtml;
+//			}
+//		}
+//	}
+//
+//	//提示今天没有课了
+//	if (!isture) {
+//		colorNumber++;
+//		//var html = document.getElementById("course_list");
+//		var insertHtml = '<li class="cell ' + color[colorNumber % 5] + '"><div class="mui-table"><div class="mui-table-cell"><h4 class="mui-ellipsis"></h4><p>' + '今天没课了哦！准备明天的课吧！' + '</p><p class="mui-h6 mui-ellipsis"></p></div></div></li>';
+//		html.innerHTML = html.innerHTML + insertHtml;
+//	}
+//	isture = 0;
+//	if (currentTime == 7) {
+//		currentTime = 1;
+//	} else {
+//		currentTime++;
+//	}
+//
+//	//var html = document.getElementById("course_list");
+//	var insertHtml = '<hr style="border:1px dashed  #cccccc;width: 90%" />';
+//	html.innerHTML = html.innerHTML + insertHtml;
+//
+//	//明天的课
+//	for (var i = 0; i < 5; i++) {
+//		n1 = (i + 1);
+//		var num = parseInt(i * 7) + parseInt(currentTime);
+//		var tdatac = plus.storage.getItem('"' + num + '"');
+//		if (tdatac) {
+//			colorNumber++;
+//			isture = 1;
+//			var n1 = parseInt(i) + parseInt(1);
+//			//var html = document.getElementById("course_list");
+//			var insertHtml = '<li class="cell ' + color[colorNumber % 5] + '"><div class="mui-table"><div class="mui-table-cell"><h4 class="mui-ellipsis">' + '周' + dx[currentTime] + '第' + n1 + '大节</h4>' + '<p>' + tdatac + '</p><p class="mui-h6 mui-ellipsis">' + dataTime[n1] + '</p></div></div></li>';
+//			html.innerHTML = html.innerHTML + insertHtml;
+//		}
+//	}
+//
+//	//提示明天没有课了
+//	if (!isture) {
+//		colorNumber++;
+//		//var html = document.getElementById("course_list");
+//		var insertHtml = '<li class="cell ' + color[colorNumber % 5] + '"><div class="mui-table"><div class="mui-table-cell"><h4 class="mui-ellipsis"></h4><p>' + '明天没课了哦！计划怎么去玩吧！' + '</p><p class="mui-h6 mui-ellipsis"></p></div></div></li>';
+//		html.innerHTML = html.innerHTML + insertHtml;
+//	}
+//}
 
 //得到全部课表
 function GetAllClass() {
@@ -747,10 +748,14 @@ function AlertUserInfo() {
 				plus.storage.setItem('class', major + className);
 				plus.nativeUI.toast("修改成功");
 			}
+			var menu = plus.webview.getWebviewById('index-menu');
+			//触发菜单页更新昵称
+			if (menu)
+				mui.fire(menu, 'up_nick', {});
 		},
 		error: function(xhr, type, errorThrown) {
-			//异常处理；
-			console.log(type);
+			//异常处理； 
+			console.log(type); 
 			plus.nativeUI.toast("网络错误");
 		}
 	});
@@ -767,22 +772,22 @@ function SearchResultLink(way) {
 		plus.storage.setItem("searchMajor", major);
 		plus.storage.setItem("searchClass", className);
 		mui.openWindow({
-		url: "ckkb.html", 
-		styles: {
-			scrollIndicator: 'none'
-		}
-	});
+			url: "ckkb.html",
+			styles: {
+				scrollIndicator: 'none'
+			}
+		});
 	} else if (way == "byteacher" || way == "bycourse") {
 		var name = document.getElementById("teachercoursename").value;
 		plus.storage.setItem("searchName", name);
 		mui.openWindow({
-		url: "ck.html",
-		styles: {
-			scrollIndicator: 'none'
-		}
-	});
+			url: "ck.html",
+			styles: {
+				scrollIndicator: 'none'
+			}
+		});
 	}
-	
+
 }
 
 //蹭课信息
@@ -827,54 +832,54 @@ function GetCourseByClassName() {
 		timeout: 10000, //超时时间设置为10秒；
 		success: function(data) {
 			var setColor = {
-		0: 'bg-primary',
-		1: 'bg-success',
-		2: 'bg-ss ',
-		3: 'bg-warning',
-		4: 'bg-danger ',
-		5: 'bg-lan',
-		6: 'bg-info',
-		7: 'bg-sa'
-	}
-				var kcName = {
-		1: '<th>第<br> 1<br>节<br></th>',
-		2: '<th>第<br> 2<br>节<br></th>',
-		3: '<th>第<br> 3<br>节<br></th>',
-		4: '<th>第<br> 4<br>节<br></th>',
-		5: '<th>第<br> 5<br>节<br></th>',
-		6: '<th>设<br>计<br>实<br>习</th>',
-		7: '<th>备<br>注</th>'
-	}
-		var colorCs = 0;
-	for (var j = 1; j <= 7; j++) {
-		var b = '';
-		b = kcName[j];
-		for (var i = 1; i < 8; i++) {
-			if (colorCs > 7) colorCs = 0;
-			var num = parseInt(i) + parseInt((j - 1) * 7);
-			num='s'+num;
-			if (data[0][num] && j != 7) {
-				b += '<td data-num="' + num + '" data-no="' + j + '" data-noi="' + i + '"  class=' + setColor[colorCs] + ' ">' + data[0][num] + '</td>';
-				colorCs++;
-			} else {
-				if (j != 7)
-					b += '<td data-num="' + num + '"></td>';
+				0: 'bg-primary',
+				1: 'bg-success',
+				2: 'bg-ss ',
+				3: 'bg-warning',
+				4: 'bg-danger ',
+				5: 'bg-lan',
+				6: 'bg-info',
+				7: 'bg-sa'
 			}
+			var kcName = {
+				1: '<th>第<br> 1<br>节<br></th>',
+				2: '<th>第<br> 2<br>节<br></th>',
+				3: '<th>第<br> 3<br>节<br></th>',
+				4: '<th>第<br> 4<br>节<br></th>',
+				5: '<th>第<br> 5<br>节<br></th>',
+				6: '<th>设<br>计<br>实<br>习</th>',
+				7: '<th>备<br>注</th>'
+			}
+			var colorCs = 0;
+			for (var j = 1; j <= 7; j++) {
+				var b = '';
+				b = kcName[j];
+				for (var i = 1; i < 8; i++) {
+					if (colorCs > 7) colorCs = 0;
+					var num = parseInt(i) + parseInt((j - 1) * 7);
+					num = 's' + num;
+					if (data[0][num] && j != 7) {
+						b += '<td data-num="' + num + '" data-no="' + j + '" data-noi="' + i + '"  class=' + setColor[colorCs] + ' ">' + data[0][num] + '</td>';
+						colorCs++;
+					} else {
+						if (j != 7)
+							b += '<td data-num="' + num + '"></td>';
+					}
 
-			if (j == 7 && data[0][num]) {
-				if (data[0][num]) {
-					b += '<td data-num="' + num + '" data-no="' + j + '" data-noi="' + i + '"   colspan="7" class="' + setColor[2] + ' ">' + data[0][num] + '</td>';
-				} else {
-					b += '<td colspan="7" data-num="' + num + '"></td>';
+					if (j == 7 && data[0][num]) {
+						if (data[0][num]) {
+							b += '<td data-num="' + num + '" data-no="' + j + '" data-noi="' + i + '"   colspan="7" class="' + setColor[2] + ' ">' + data[0][num] + '</td>';
+						} else {
+							b += '<td colspan="7" data-num="' + num + '"></td>';
+						}
+						break;
+					}
 				}
-				break;
+				var trs = '';
+				trs = 'tr' + j;
+				if (b != kcName[j])
+					document.getElementById(trs).innerHTML = b;
 			}
-		}
-		var trs = '';
-		trs = 'tr' + j;
-		if (b != kcName[j])
-			document.getElementById(trs).innerHTML = b;
-			}	
 		},
 		error: function(xhr, type, errorThrown) {
 			//异常处理；
@@ -992,8 +997,11 @@ function GetStartTime() {
 	var day = "1";
 	if (plus.storage.getItem('holiday'))
 		day = GetDateDiff(plus.storage.getItem('holiday'));
-	if (day)
+	if (day == 0) {
+		document.getElementById("day").innerHTML = "还没开学呢";
+	} else if (day) {
 		document.getElementById("day").innerHTML = "第" + day + "周";
+	}
 	mui.ajax('http://2.minikb.sinaapp.com/public/json/config.php', {
 		data: {
 			c: 'start_time'
@@ -1004,7 +1012,11 @@ function GetStartTime() {
 		success: function(data) {
 			day = GetDateDiff(data);
 			plus.storage.setItem('holiday', data);
-			document.getElementById("day").innerHTML = "第" + day + "周";
+			if (day == 0) {
+		document.getElementById("day").innerHTML = "还没开学呢";
+	} else if (day) {
+		document.getElementById("day").innerHTML = "第" + day + "周";
+	}
 		},
 		error: function(xhr, type, errorThrown) {
 			//异常处理；
@@ -1270,10 +1282,10 @@ function GetRankList() {
 	});
 }
 //文本转html
-function Tohtml(str){
-	str= ((str.replace(/<(.+?)>/gi,"&lt;$1&gt;")).replace(/ /gi,"&nbsp;")).replace(/\n/gi,"<br>") 
-	
-     return str; 
+function Tohtml(str) {
+	str = ((str.replace(/<(.+?)>/gi, "&lt;$1&gt;")).replace(/ /gi, "&nbsp;")).replace(/\n/gi, "<br>")
+
+	return str;
 }
 //得到
 function Getxiaoli() {
@@ -1295,48 +1307,48 @@ function Getxiaoli() {
 		}
 	});
 }
-		getDateDiff = function(dateTimeStamp) {
-			//JavaScript函数：
-			var minute = 60;
-			var hour = minute * 60;
-			var day = hour * 24;
-			var halfamonth = day * 15;
-			var month = day * 30;
-			var year = day * 365;
-			var now = parseInt(new Date().getTime() / 1000);
-			var diffValue = now - dateTimeStamp;
-			if (diffValue < 0) {
-				//若日期不符则弹出窗口告之
-				//alert("结束日期不能小于开始日期！");
-			}
-			var yearC = diffValue / year;
-			var monthC = diffValue / month;
-			var weekC = diffValue / (7 * day);
-			var dayC = diffValue / day;
-			var hourC = diffValue / hour;
-			var minC = diffValue / minute;
-			if (yearC >= 1) {
-				result = "" + parseInt(monthC) + "年前";
-			} else if (monthC >= 1) {
-				result = "" + parseInt(monthC) + "个月前";
-			} else if (weekC >= 1) {
-				result = "" + parseInt(weekC) + "周前";
-			} else if (dayC >= 1) {
-				result = "" + parseInt(dayC) + "天前";
-			} else if (hourC >= 1) {
-				result = "" + parseInt(hourC) + "个小时前";
-			} else if (minC >= 1) {
-				result = "" + parseInt(minC) + "分钟前";
-			} else
-				result = "刚刚";
-			return result;
-		};
+getDateDiff = function(dateTimeStamp) {
+	//JavaScript函数：
+	var minute = 60;
+	var hour = minute * 60;
+	var day = hour * 24;
+	var halfamonth = day * 15;
+	var month = day * 30;
+	var year = day * 365;
+	var now = parseInt(new Date().getTime() / 1000);
+	var diffValue = now - dateTimeStamp;
+	if (diffValue < 0) {
+		//若日期不符则弹出窗口告之
+		//alert("结束日期不能小于开始日期！");
+	}
+	var yearC = diffValue / year;
+	var monthC = diffValue / month;
+	var weekC = diffValue / (7 * day);
+	var dayC = diffValue / day;
+	var hourC = diffValue / hour;
+	var minC = diffValue / minute;
+	if (yearC >= 1) {
+		result = "" + parseInt(monthC) + "年前";
+	} else if (monthC >= 1) {
+		result = "" + parseInt(monthC) + "个月前";
+	} else if (weekC >= 1) {
+		result = "" + parseInt(weekC) + "周前";
+	} else if (dayC >= 1) {
+		result = "" + parseInt(dayC) + "天前";
+	} else if (hourC >= 1) {
+		result = "" + parseInt(hourC) + "个小时前";
+	} else if (minC >= 1) {
+		result = "" + parseInt(minC) + "分钟前";
+	} else
+		result = "刚刚";
+	return result;
+};
 //获取星期几
- function Getday(){
- 	var dateTime = new Date();
+function Getday() {
+	var dateTime = new Date();
 	var day = new Array(7, 1, 2, 3, 4, 5, 6)[dateTime.getDay()];
 	return day;
- }
+}
 /**
  *  对话框的HTML,很简单的布局!
   	<div class="layer_root">

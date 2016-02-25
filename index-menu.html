@@ -141,17 +141,12 @@
 						data: {
 							version: 'V' + plus.runtime.version,
 							old_version:'V' + localStorage.getItem('warn_num'),
-							school:plus.storage.getItem('xx')
+							school:plus.storage.getItem('xx'),
+							nc:plus.storage.getItem("nc")||'小课'
 						},
 						computed: {
 							is_warn: function() {
 									return this.old_version != this.version?1:0; 
-							},
-							nc: function() {
-								var name = plus.storage.getItem("nc");
-								if (name == null)
-									name = '小课'
-								return name;
 							},
 							xx: function() {
 								var school = this.school;
@@ -171,16 +166,13 @@
 						vm.school = localStorage.getItem('xx');
 					}
 				});
-				//获得主页面webview引用；
-				index = plus.webview.currentWebview().opener();
-				GetStartTime();
-				//				var cl=document.getElementById("cl");
-				//				if(plus.storage.getItem("class")==null||plus.storage.getItem("class")==""){
-				//					cl.innerHTML="还没登陆";
-				//				}
-				//				else{
-				//					cl.innerHTML=plus.storage.getItem("class")+'班';
-				//				}
+				window.addEventListener('up_nick', function(event) {
+					GetStartTime();
+					vm.nc = plus.storage.getItem("nc");
+					vm.school = plus.storage.getItem('xx');
+				})
+				GetStartTime(); 
+				
 			})
 			mui('.mui-table-view').on('tap', 'a', function() {
 				var id = this.getAttribute("href");
