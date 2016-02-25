@@ -3,25 +3,26 @@
 
 	<head>
 		<meta charset="utf-8">
-		<title></title>
-		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<title>迷你课表</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-
-		<!--标准mui.css-->
 		<link rel="stylesheet" href="css/mui.min.css">
-		<!--App自定义的css-->
-		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" href="css/style.css" />
+
 		<style>
-			.mui-content {
-				background-color: white;
+			#list {
+				/*避免导航边框和列表背景边框重叠，看起来像两条边框似得；*/
+				margin-top: -1px;
 			}
 			
-			.mui-table-view:after,
-			.mui-table-view:before {
-				height: 0px;
+			html,
+			body {
+				background: #FFF;
 			}
-			
+			.mui-table-view:after,.mui-table-view:before{
+			height: 0px;
+			}
 			.mui-bar-nav~.mui-content {
 				padding: 0;
 			}
@@ -49,7 +50,7 @@
 				color: #f14e41;
 			}
 			
-			.changcolor5{
+			.changcolor {
 				background-color: powderblue;
 			}
 			
@@ -68,15 +69,13 @@
 			.changcolor4 {
 				background-color: #fcf8e3;
 			}
-			.bgcolor{
-				background-color: #F6ECE4; 
-			}
+			
 			.mui-text-right {
 				width: 50px;
 			}
 			
 			li {
-				margin: 20px 2px;
+				margin: 20px 20px;
 			}
 			
 			.cell {
@@ -86,103 +85,57 @@
 				-webkit-touch-callout: none;
 			}
 			
-			.mui-row.mui-fullscreen>[class*="mui-col-"] {
-				height: 100%;
-			}
-			
-			.mui-col-xs-3,
-			.mui-control-content {
-				overflow-y: auto;
-				height: 100%;
-			}
-			
-			.mui-segmented-control .mui-control-item {
-				line-height: 50px;
-				width: 100%;
-			}
-			
-			#segmentedControlContents {
+			.mui-content {
 				background-color: white;
 			}
 		</style>
-
 	</head>
 
 	<body>
-		<div class="mui-content mui-row mui-fullscreen" id="list">
-			<div class="mui-col-xs-2">
-				<div id="segmentedControls" class="mui-segmented-control mui-segmented-control-inverted mui-segmented-control-vertical" v-cloak>
-					<a class="mui-control-item" v-for="item in 7" href="#content{{item+1}}">周{{item|hanzi}}</a>
-				</div>
-			</div>
-			<div id="segmentedControlContents" class="mui-col-xs-10" style="border-left: 1px solid #c8c7cc;">
-				<div v-for="i in 7" id="content{{i+1}}" class="mui-control-content" v-cloak>
-					<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed">
-						<li v-for="j in 5" class="cell changcolor{{j+1}}" v-if="course[j*7+i]" track-by="course[j*7+i]">
-							<div class="mui-table">
-								<div class="mui-table-cell">
-									<h4 class="mui-ellipsis">第{{j|hanzi}}大节</h4>
-									<p>{{course[j*7+i]}}</p>
-									<p class="mui-h6 mui-ellipsis mui-pull-right">{{j|coursetime}}</p>
-								</div>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
+		<div class="mui-content">
+			<!--	<button type="button" onclick="qchc()">jlksjdladj</button>-->
+			<ul id="course_list" class="mui-table-view mui-table-view-striped mui-table-view-condensed">
 
+			</ul>
+		</div>
 		<script src="js/mui.min.js"></script>
-		<script type="text/javascript" src="js/vue.min.js"></script>
 		<script type="text/javascript" src="js/myjs.js"></script>
 		<script>
 			mui.init({
-				swipeBack: true //启用右滑关闭功能
+				gestureConfig: {
+					tap: true, //默认为true
+					swipe: true //默认为true
+				}
 			});
-			mui.plusReady(function() {
-				if (!plus.storage.getItem('ex')) {
-					mui.openWindow('login.html')
-				}
-				CheckStorage();
-				function course_data() {
-					var cou = new Array();
-					for (var i = 1; i <= 43; i++) {
-						cou.push(plus.storage.getItem('"' + i + '"'));
-					}
-					return cou;
-				}
-				var course = course_data();
-				Vue.filter('hanzi', function(x) {
-					var w = ['一', '二', '三', '四', '五', '六', '日'];
-					return w[x];
-				})
-				Vue.filter('coursetime', function(x) {
-					var w = ['8:00~9.40', '10:00~11.40', '14.00~15.40', '16.00~17.40', '19.00~20.40'];
-					return w[x];
-				})
-				var list = new Vue({
-					el: "#list",
-					data: {
-						course: course,
-						day: Getday(),
-					},
-					computed: {},
-					methods: {},
-					ready: function() {
-						var controls = document.getElementById("segmentedControls").querySelectorAll('.mui-control-item')[this.day - 1].classList;
-						controls.add('mui-active');
-						controls.add('bgcolor');
-						var tadaycl = document.getElementById('content' + this.day).classList;
-						tadaycl.add('mui-active')
-						
-					}
-				})
 			document.addEventListener("swiperight", function() {
 				var index = '';
 				!index && (index = mui.currentWebview.parent());
 				mui.fire(index, 'menu:open');
 			});
 			var aniShow = "pop-in";
+			//只有ios支持的功能需要在Android平台隐藏；
+			if (mui.os.android) {
+				var list = document.querySelectorAll('.ios-only');
+				if (list) {
+					for (var i = 0; i < list.length; i++) {
+						list[i].style.display = 'none';
+					}
+				}
+				//Android平台暂时使用slide-in-right动画
+				if (parseFloat(mui.os.version) < 4.4) {
+					aniShow = "slide-in-right";
+				}
+			}
+			//初始化，并预加载webview模式的选项卡			
+			//			function preload() {
+			//				//mui.preload({url:'examples/tab-webview-main.html'});
+			//				mui.preload({
+			//					url: "examples/pullrefresh_main.html",
+			//					styles: {
+			//						popGesture: 'hide'
+			//					}
+			//				});
+			//			}
 			var templates = {};
 			var getTemplate = function(name, header, content) {
 				var template = templates[name];
@@ -237,28 +190,39 @@
 			var initTemplates = function() {
 				getTemplate('default', 'examples/template.html');
 			};
-
+			mui.plusReady(function() {if (!plus.storage.getItem('ex')) {
+					mui.openWindow('login.html')
+				}
+				document.addEventListener("resume", function() {
+					GetTodayClass();
+				}, false);
+				GetTodayClass();
+				CheckStorage();
 				
+				if (!localStorage.holiday) {
+					Getxiaoli();
+				}
 				window.addEventListener('customEvent', function(event) {
-//					document.getElementById('course_list').innerHTML = '';
-//					GetTodayClass();
-					list.course=course_data();
+					document.getElementById('course_list').innerHTML = '';
+					GetTodayClass();
 					console.log('页面更新')
 					subWebview = plus.webview.getWebviewById('default-sub');
-					if (event.detail.page != 'all')
-						subWebview.reload(true);
+					if(event.detail.page!= 'all')
+					subWebview.reload(true);
 				})
+				
 				plus.navigator.closeSplashscreen();
 				plus.navigator.setFullscreen(false);
 				//初始化模板
 				initTemplates();
-			})
+				//预加载
+				//preload();
+			});
 			var index = null; //主页面
 			function openMenu() {
 				!index && (index = mui.currentWebview.parent());
 				mui.fire(index, "menu:open");
 			}
-
 			function closeMenu() {
 				!index && (index = mui.currentWebview.parent());
 				mui.fire(index, "menu:close");
@@ -282,14 +246,10 @@
 			});
 			//退出登录之后执行
 			window.addEventListener('login', function(event) {
-				closeMenu();
-				mui.openWindow('login.html')
+			closeMenu();
+			mui.openWindow('login.html')
 			});
-			document.addEventListener("resume", function() {
-					closeMenu();
-				}, false);
 		</script>
-
 	</body>
 
 </html>

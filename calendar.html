@@ -26,6 +26,7 @@
 		</script>
 		</head>
 		<script language="JavaScript">
+		mui.plusReady(function(){
 			addInfo = {};
 			addInfo.controller = 'add';
 			
@@ -33,7 +34,14 @@
 				data: addInfo,
 				dataType: 'json', //服务器返回json格式数据
 				type: 'get', //HTTP请求类型
-				timeout: 3000, //超时时间设置为10秒；
+				async: false,
+				beforeSend: function() {
+						plus.nativeUI.showWaiting();
+				},
+				complete: function() {
+						plus.nativeUI.closeWaiting();
+				},
+				timeout: 5000, //超时时间设置为10秒；
 				success: function(data) {
 					if (!data) {
 						mui.alert("网络错误");
@@ -46,7 +54,7 @@
 					mui.alert("网络错误");
 				}
 			});
-			
+})			
 			var lunarInfo = new Array(
 				0x04bd8, 0x04ae0, 0x0a570, 0x054d5, 0x0d260, 0x0d950, 0x16554, 0x056a0, 0x09ad0, 0x055d2,
 				0x04ae0, 0x0a5b6, 0x0a4d0, 0x0d250, 0x1d255, 0x0b540, 0x0d6a0, 0x0ada2, 0x095b0, 0x14977,

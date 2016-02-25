@@ -502,6 +502,9 @@
 			document.getElementById('comment').innerHTML = html;
 			localStorage.commentid = id;
 			ajaxs(id);
+			if(V_comment){
+				V_comment.cmt=[];
+			}
 		});
 		var V_comment = new Vue({
 			el: '#comment_page',

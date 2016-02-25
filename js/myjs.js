@@ -1331,6 +1331,12 @@ function Getxiaoli() {
 				result = "刚刚";
 			return result;
 		};
+//获取星期几
+ function Getday(){
+ 	var dateTime = new Date();
+	var day = new Array(7, 1, 2, 3, 4, 5, 6)[dateTime.getDay()];
+	return day;
+ }
 /**
  *  对话框的HTML,很简单的布局!
   	<div class="layer_root">

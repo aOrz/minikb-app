@@ -198,7 +198,8 @@
 					"js/mui.min.js",
 					"css/mui.min.css",
 					"css/style.css",
-					"js/myjs.js"
+					"js/myjs.js",
+					"js/vue.min.js"
 				],
 				"refer": [
 					"examples/template.html",
