@@ -772,6 +772,12 @@ function SearchResultLink(way) {
 		plus.storage.setItem("searchSchool", school);
 		plus.storage.setItem("searchMajor", major);
 		plus.storage.setItem("searchClass", className);
+		
+	var classExists = ClassExists(school, major, className);
+	if (classExists == 0) {
+		plus.nativeUI.toast("班级不存在");
+		return;
+	}
 		mui.openWindow({
 			url: "ckkb.html",
 			styles: {

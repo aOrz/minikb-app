@@ -511,6 +511,7 @@
 			localStorage.commentid = id;
 			ajaxs(id);
 			if (V_comment) {
+				V_comment.loading=1;
 				V_comment.cmt = [];
 			}
 		});

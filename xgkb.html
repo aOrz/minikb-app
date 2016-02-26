@@ -175,7 +175,7 @@
 							var list = plus.webview.getWebviewById('list.html');
 							//触发list页面更新
 							mui.fire(list, 'customEvent', {});
-							mui.alert('修改成功！', '修改课表');
+							plus.nativeUI.toast('修改成功 ')
 						}
 					}
 				})
