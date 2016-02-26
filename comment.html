@@ -6,6 +6,7 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
 		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/style.css" />
 		<script src="js/mui.min.js"></script>
 		<script type="text/javascript" src="js/myjs.js"></script>
 		<script type="text/javascript" src="js/vue.min.js"></script>
@@ -24,10 +25,6 @@
 				color: #333;
 				font-size: 1.6rem;
 				background-color: #efeff4;
-			}
-			
-			.mui-bar-nav a {
-				color: white;
 			}
 			
 			footer {
@@ -453,6 +450,10 @@
 				color: #BBBBBB;
 				word-break: break-word;
 			}
+			
+			.spinner {
+				margin: 0px auto 0;
+			}
 		</style>
 	</head>
 
@@ -468,6 +469,7 @@
 				<li class="message" id="comment">
 				</li>
 			</ul>
+
 			<ul class="mui-table-view otherscomment" style="margin: 0px;">
 				<template v-for="item in cmt">
 					<li class="mui-table-view-cell">
@@ -482,6 +484,11 @@
 					</li>
 				</template>
 			</ul>
+			<div class="spinner" v-if="loading">
+				<div class="bounce1"></div>
+				<div class="bounce2"></div>
+				<div class="bounce3"></div>
+			</div>
 		</div>
 		<footer>
 			<div class="footer-center">
@@ -502,63 +509,65 @@
 			document.getElementById('comment').innerHTML = html;
 			localStorage.commentid = id;
 			ajaxs(id);
-			if(V_comment){
-				V_comment.cmt=[];
+			if (V_comment) {
+				V_comment.cmt = [];
 			}
 		});
 		var V_comment = new Vue({
 			el: '#comment_page',
 			data: {
 				cmt: new Array(),
-				new_comment:''
+				new_comment: '',
+				loading: 1
 			},
-			computed: function() {
-			},
-			methods:{
-				up_comment:function(){
-					if(!this.new_comment){
+			computed: function() {},
+			methods: {
+				up_comment: function() {
+					if (!this.new_comment) {
 						mui.alert("写点什么吧！")
 						return;
 					}
+					var loading =this.loading;
 					var text = this.new_comment;
 					var tem = this;
 					plus.nativeUI.showWaiting("等待中...");
-			mui.ajax('http://2.minikb.sinaapp.com/controller/message_board_controller.php', {
-				data: {
-					c: 'AddComments',
-					MessageId: localStorage.commentid,
-					userId: plus.storage.getItem('id'),
-					message: text
-				},
-				dataType: 'json', //服务器返回json格式数据
-				type: 'get', //HTTP请求类型
-				timeout: 5000, //超时时间设置为10秒；
-				complete: function() {
-					plus.nativeUI.closeWaiting();
-				},
-				success: function(data) {
-					if (!data) {
-						plus.nativeUI.toast("网络错误");
-					} else {
-						var cm = {
-							indate:'刚刚',
-							moods:Tohtml(text)
+					mui.ajax('http://2.minikb.sinaapp.com/controller/message_board_controller.php', {
+						data: {
+							c: 'AddComments',
+							MessageId: localStorage.commentid,
+							userId: plus.storage.getItem('id'),
+							message: text
+						},
+						dataType: 'json', //服务器返回json格式数据
+						type: 'get', //HTTP请求类型
+						timeout: 5000, //超时时间设置为10秒；
+						complete: function() {
+							plus.nativeUI.closeWaiting();
+						},
+						success: function(data) {
+							if (!data) {
+								plus.nativeUI.toast("网络错误");
+							} else {
+								var cm = {
+									indate: '刚刚',
+									moods: Tohtml(text)
+								}
+								tem.new_comment = '';
+
+								tem.cmt.push(cm);
+							}
+						},
+						error: function(xhr, type, errorThrown) {
+							//异常处理；
+							plus.nativeUI.toast("网络错误");
 						}
-						tem.new_comment ='';
-						tem.cmt.push(cm);
-					}
-				},
-				error: function(xhr, type, errorThrown) {
-					//异常处理；
-					plus.nativeUI.toast("网络错误");
-				}
-			});
+					});
 				}
 			}
 		})
 
 		function ajaxs(id) {
-//			document.getElementById('contents').innerHTML = '';
+			//			document.getElementById('contents').innerHTML = '';
 			mui.ajax('http://2.minikb.sinaapp.com/controller/message_board_controller.php', {
 				data: {
 					c: 'GetCommentsList',
@@ -569,12 +578,14 @@
 				timeout: 5000, //超时时间设置为10秒；
 				success: function(data) {
 					for (var i = 0; i < data.length; i++) {
-				data[i].indate = getDateDiff(data[i].indate )
-			}
-					if(!data){
-						V_comment.cmt=new Array();
-					}else
-					 V_comment.cmt= data;
+						data[i].indate = getDateDiff(data[i].indate)
+					}
+					if (!data) {
+						V_comment.cmt = new Array();
+					} else{
+						V_comment.cmt = data;
+					}
+					V_comment.loading=0;
 				},
 				error: function(xhr, type, errorThrown) {
 					//异常处理；

@@ -5,22 +5,17 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title>查询空教室</title>
-		<script src="js/mui.min.js"></script>
+
 		<link rel="stylesheet" href="css/style.css" />
 		<link href="css/mui.min.css" rel="stylesheet" />
+		<script src="js/mui.min.js"></script>
 		<script type="text/javascript" src="js/vue.min.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
 		</script>
 		<style type="text/css">
-			.mui-content,
-			html,
-			body {
-				height: 100%;
-			}
-			
 			.content {
-				padding: 20px 5%;
+				padding: 0px 5% 10px;
 				text-align: center;
 			}
 			
@@ -69,8 +64,14 @@
 				</div>
 				<button id="search" v-on:click="search" class="mui-btn mui-btn-block mui-btn-primary">查找</button>
 			</div>
-			<div class="mui-content-padded">
-				<ul id="room" v-if='room_num' class="mui-table-view" >
+			<div id="room" class="mui-content-padded">
+				<div class="spinner" v-if="loading">
+					<div class="bounce1"></div>
+					<div class="bounce2"></div>
+					<div class="bounce3"></div>
+				</div>
+
+				<ul class="mui-table-view" v-if='isshow'>
 					<li v-for="item in room_num" class="mui-table-view-cell">
 						{{ item.js }}|{{ item.type }}<span class="mui-badge mui-badge-red">座位：{{ item.zw }}</span>
 					</li>
@@ -81,14 +82,16 @@
 		</div>
 
 		<script>
-		var num = 0;
+			var num = 0;
 			var room = new Vue({
 				el: '#room',
 				data: {
-					room_num: []
+					room_num: [],
+					isshow: 0,
+					loading:0
 				}
 			})
-			var list=new Vue({
+			var list = new Vue({
 				el: '#list_select',
 				data: {
 					school: 'yd',
@@ -174,23 +177,19 @@
 				},
 				methods: {
 					search: function() {
+						room.isshow = 0;
+						room.loading =1;
 						ajax_room()
 					}
 				}
 			})
-			
+
 			function ajax_room() {
-				room.room_num=[];
-				
-				document.getElementById("search").addEventListener('tap', function() {
-					if (num) {
-						return;
-					}
-					
-					if(list.school=='yd')
-					var jxl = list.jxl;
-					else{
-						var jxl=list.wj_jxl;
+//				room.room_num = [];
+					if (list.school == 'yd')
+						var jxl = list.jxl;
+					else {
+						var jxl = list.wj_jxl;
 					}
 					var jc = document.getElementById("jc").value;
 					mui.ajax({
@@ -201,31 +200,22 @@
 							jc: list.jc,
 							c: "GetNullRoom"
 						},
-						beforeSend: function() {
-							plus.nativeUI.showWaiting();
-							if(num) return;
-							num = 1;
-						},
-						complete: function() {
-							plus.nativeUI.closeWaiting();
-							num = 0;
-						},
 						cache: false,
 						success: function(data) {
 							//var list = document.getElementById('content');
-							console.log(JSON.stringify(data));
+							//							console.log(JSON.stringify(data));
 							if (!data) {
 								mui.alert('没有找到空教室');
-								
 							}
-							room.room_num=data;
+							room.room_num = data;
+							room.isshow = 1;
+							room.loading =0;
 						},
 						error: function(e) {
+							room.loading =0;
 							alert("网络错误~~(>_<)~~");
-
 						}
 					});
-				});
 			}
 		</script>
 	</body>

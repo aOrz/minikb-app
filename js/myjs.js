@@ -678,6 +678,7 @@ function UPdataUserInfoByUserId() {
 		dataType: 'json', //服务器返回json格式数据
 		type: 'get', //HTTP请求类型
 		success: function(data) {
+			console.log(JSON.stringify(data))
 			plus.storage.setItem("ex", '1');
 			plus.storage.setItem('nc', data['nick_name']);
 			plus.storage.setItem('xx', data['school']);

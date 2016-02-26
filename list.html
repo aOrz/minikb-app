@@ -215,6 +215,8 @@
 								mType: 'sub'
 							}
 						});
+						//关闭等待框
+						plus.nativeUI.closeWaiting();
 						subWebview.addEventListener('loaded', function() {
 							setTimeout(function() {
 								subWebview.show();
@@ -292,7 +294,7 @@
 			document.addEventListener("resume", function() {
 				closeMenu();
 			}, false);
-			if(!localStorage.holiday){
+			if (!localStorage.holiday) {
 				Getxiaoli()
 			}
 		</script>

@@ -188,7 +188,8 @@
 					"kb.html",
 					"js/mui.min.js",
 					"fonts/mui.ttf",
-					"css/mui.min.css"
+					"css/mui.min.css",
+					"css/style.css"
 				],
 				"refer": [],
 				"priority": 0
@@ -252,7 +253,8 @@
 					"images/face/4.png",
 					"images/face/2.png",
 					"js/myjs.js",
-					"js/vue.min.js"
+					"js/vue.min.js",
+					"css/style.css"
 				],
 				"refer": [],
 				"priority": 0
