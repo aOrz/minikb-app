@@ -201,11 +201,12 @@
 							}
 						});
 						//预加载共用子webview
+						var top_margin = parseInt(localStorage.immersed) + 45;
 						var subWebview = mui.preload({
 							url: 'kb.html', //直接预加载课表页面
 							id: name + "-sub",
 							styles: {
-								top: '45px',
+								top: top_margin,
 								bottom: '0px',
 								bounce: 'all',
 								scalable: true,

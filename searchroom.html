@@ -8,11 +8,7 @@
 
 		<link rel="stylesheet" href="css/style.css" />
 		<link href="css/mui.min.css" rel="stylesheet" />
-		<script src="js/mui.min.js"></script>
-		<script type="text/javascript" src="js/vue.min.js"></script>
-		<script type="text/javascript" charset="utf-8">
-			mui.init();
-		</script>
+
 		<style type="text/css">
 			.content {
 				padding: 0px 5% 10px;
@@ -28,11 +24,11 @@
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav">
+		<header id="header" class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon-back mui-icon mui-pull-left"></a>
 			<h1 class="mui-title">查询空教室</h1>
 		</header>
-		<div class="mui-content">
+		<div class="mui-content" id="content">
 			<div id="list_select" class="content">
 				<br />
 				<br />
@@ -80,15 +76,17 @@
 				</ul>-->
 			</div>
 		</div>
-
-		<script>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
 			var num = 0;
 			var room = new Vue({
 				el: '#room',
 				data: {
 					room_num: [],
 					isshow: 0,
-					loading:0
+					loading: 0
 				}
 			})
 			var list = new Vue({
@@ -178,44 +176,44 @@
 				methods: {
 					search: function() {
 						room.isshow = 0;
-						room.loading =1;
+						room.loading = 1;
 						ajax_room()
 					}
 				}
 			})
 
 			function ajax_room() {
-//				room.room_num = [];
-					if (list.school == 'yd')
-						var jxl = list.jxl;
-					else {
-						var jxl = list.wj_jxl;
-					}
-					var jc = document.getElementById("jc").value;
-					mui.ajax({
-						url: "http://2.minikb.sinaapp.com/controller/room_controller.php",
-						dataType: "json",
-						data: {
-							jxl: jxl,
-							jc: list.jc,
-							c: "GetNullRoom"
-						},
-						cache: false,
-						success: function(data) {
-							//var list = document.getElementById('content');
-							//							console.log(JSON.stringify(data));
-							if (!data) {
-								mui.alert('没有找到空教室');
-							}
-							room.room_num = data;
-							room.isshow = 1;
-							room.loading =0;
-						},
-						error: function(e) {
-							room.loading =0;
-							alert("网络错误~~(>_<)~~");
+				//				room.room_num = [];
+				if (list.school == 'yd')
+					var jxl = list.jxl;
+				else {
+					var jxl = list.wj_jxl;
+				}
+				var jc = document.getElementById("jc").value;
+				mui.ajax({
+					url: "http://2.minikb.sinaapp.com/controller/room_controller.php",
+					dataType: "json",
+					data: {
+						jxl: jxl,
+						jc: list.jc,
+						c: "GetNullRoom"
+					},
+					cache: false,
+					success: function(data) {
+						//var list = document.getElementById('content');
+						//							console.log(JSON.stringify(data));
+						if (!data) {
+							mui.alert('没有找到空教室');
 						}
-					});
+						room.room_num = data;
+						room.isshow = 1;
+						room.loading = 0;
+					},
+					error: function(e) {
+						room.loading = 0;
+						alert("网络错误~~(>_<)~~");
+					}
+				});
 			}
 		</script>
 	</body>

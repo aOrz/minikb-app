@@ -5,20 +5,8 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
-		<script src="js/mui.min.js"></script>
 		<link href="css/mui.min.css" rel="stylesheet" />
-		<script type="text/javascript" charset="utf-8">
-			mui.init({
-				swipeBack: true,
-				beforeback: function() {
-					return true;
-				},
-				preloadPages: [{
-					url: 'message.html',
-					id: 'message.html'
-				}]
-			});
-		</script>
+		
 		<style type="text/css">
 			body,
 			html,
@@ -156,11 +144,11 @@
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav">
+		<header id="header" class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon  mui-icon-back mui-pull-left"></a>
 			<h1 class="mui-title">写留言</h1>
 		</header>
-		<div class="mui-content">
+		<div class="mui-content" id="content">
 
 			<div class="mui-table-view message" style="margin: 0px;">
 				<textarea class="message_content" placeholder="写下你想说的话..." id="msg-text"></textarea>
@@ -173,6 +161,19 @@
 			</div>
 		</div>
 	</body>
+	<script src="js/mui.min.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init({
+				swipeBack: true,
+				beforeback: function() {
+					return true;
+				},
+				preloadPages: [{
+					url: 'message.html',
+					id: 'message.html'
+				}]
+			});
+		</script>
 	<script>
 		mui.plusReady(function() {
 			var detailPage = null;

@@ -7,9 +7,7 @@
 		<title></title>
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="css/style.css" />
-		<script src="js/mui.min.js"></script>
-		<script type="text/javascript" src="js/myjs.js"></script>
-		<script type="text/javascript" src="js/vue.min.js"></script>
+
 		<style>
 			html,
 			body {
@@ -458,13 +456,13 @@
 	</head>
 
 	<body id="comment_page">
-		<header class="mui-bar mui-bar-nav">
+		<header id="header" class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<a class="mui-icon mui-icon-redo mui-pull-right" id="shares" style="font-size: 29px;"></a>
 			<h1 class="mui-title">评论</h1>
 
 		</header>
-		<div class="mui-content">
+		<div class="mui-content" id="content">
 			<ul class="mui-table-view " style="margin: 0px;">
 				<li class="message" id="comment">
 				</li>
@@ -499,6 +497,9 @@
 			</label>
 		</footer>
 	</body>
+	<script type="text/javascript" src="js/myjs.js"></script>
+	<script type="text/javascript" src="js/vue.min.js"></script>
+	<script src="js/mui.min.js"></script>
 	<script>
 		mui.init({
 			swipeBack: true
@@ -527,7 +528,7 @@
 						mui.alert("写点什么吧！")
 						return;
 					}
-					var loading =this.loading;
+					var loading = this.loading;
 					var text = this.new_comment;
 					var tem = this;
 					plus.nativeUI.showWaiting("等待中...");
@@ -553,7 +554,6 @@
 									moods: Tohtml(text)
 								}
 								tem.new_comment = '';
-
 								tem.cmt.push(cm);
 							}
 						},
@@ -582,10 +582,10 @@
 					}
 					if (!data) {
 						V_comment.cmt = new Array();
-					} else{
+					} else {
 						V_comment.cmt = data;
 					}
-					V_comment.loading=0;
+					V_comment.loading = 0;
 				},
 				error: function(xhr, type, errorThrown) {
 					//异常处理；

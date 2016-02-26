@@ -8,14 +8,6 @@
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="css/style.css" />
 
-		<script type="text/javascript" src="js/mui.min.js"></script>
-		<script type="text/javascript" src="js/vue.min.js"></script>
-		<script type="text/javascript" src="js/myjs.js"></script>
-		<script type="text/javascript" charset="utf-8">
-			mui.init({
-				swipeBack: true
-			});
-		</script>
 		<style>
 			.mui-bar .mui-btn-link {
 				color: #FFF;
@@ -216,13 +208,11 @@
 	</head>
 
 	<body>
-		<div class="mui-navbar-inner mui-bar mui-bar-nav">
-			<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
-				<span class="mui-icon mui-icon-left-nav"></span>
-			</button>
-			<h1 class="mui-center mui-title">设置</h1>
-		</div>
-		<div class="mui-content" id='bb'>
+			<header id="header" class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon-back mui-icon mui-pull-left"></a>
+			<h1 class="mui-title">设置</h1>
+		</header>
+		<div class="mui-content" id="content">
 			<ul class="mui-table-view mui-table-view-chevron">
 				<li class="mui-table-view-cell mui-media">
 					<a onclick="OpenWindows('usermessage')" class="mui-navigate-right">
@@ -268,10 +258,16 @@
 			</ul>
 		</div>
 	</body>
-	<script>
+	<script type="text/javascript" src="js/mui.min.js"></script>
+	<script type="text/javascript" src="js/vue.min.js"></script>
+	<script type="text/javascript" src="js/myjs.js"></script>
+	<script type="text/javascript" charset="utf-8">
+		mui.init({
+			swipeBack: true
+		});
 		mui.plusReady(function() {
 				new Vue({
-					el: '#bb',
+					el: '#content',
 					data: {
 						version: 'V' + plus.runtime.version,
 						nc: plus.storage.getItem("nc"),
@@ -315,101 +311,102 @@
 			}, function() {
 				console.log("获取分享服务列表失败");
 			});
-			if(plus.os.name=="Android"){
-		Intent = plus.android.importClass("android.content.Intent");
-		File = plus.android.importClass("java.io.File");
-		Uri = plus.android.importClass("android.net.Uri");
-		main = plus.android.runtimeMainActivity();
-	}
-
-		//分享链接点击事件
-		document.getElementById("sharexs").addEventListener('tap', function() {
-			console.log(10)
-			var ids = [{
-					id: "weixin",
-					ex: "WXSceneSession"
-				}, {
-					id: "weixin",
-					ex: "WXSceneTimeline"
-				}, {
-					id: "sinaweibo"
-				}, {
-					id: "qq"
-				},{
-					id:'xitong'
-				}],
-				bts = [{
-					title: "发送给微信好友"
-				}, {
-					title: "分享到微信朋友圈"
-				}, {
-					title: "分享到新浪微博"
-				}, {
-					title: "分享到QQ"
-				},{
-					title:"系统分享"
-				}];
-			plus.nativeUI.actionSheet({
-				cancel: "取消",
-				buttons: bts
-			}, function(e) {
-				var i = e.index;
-				if (i > 0) {
-					var s_id = ids[i - 1].id;
-					if(s_id=='xitong'){
-						shareSystem();
-						return 0;
-					}
-					var share = shares[s_id];
-					if (share) {
-						if (share.authenticated) {
-							shareMessage(share, ids[i - 1].ex);
-						} else {
-							share.authorize(function() {
-								shareMessage(share, ids[i - 1].ex);
-							}, function(e) {
-								console.log("认证授权失败：" + e.code + " - " + e.message);
-							});
-						}
-					} else {
-						mui.toast("无法获取分享服务")
-					}
-				}
-			});
-		});
-		function shareSystem() {
-	if(plus.os.name!=="Android"){
-		plus.nativeUI.alert("此平台暂不支持系统分享功能!");
-		return;
-	}
-	var intent=new Intent(Intent.ACTION_SEND);
-	var p = "";
-		intent.setType("text/plain");
-	intent.putExtra(Intent.EXTRA_SUBJECT,"迷你课表");
-	intent.putExtra(Intent.EXTRA_TEXT,'我在使用迷你课表，里面内置了班级课表，快来看看吧！http://a.app.qq.com/o/simple.jsp?pkgname=io.dcloud.H5291D2691');
-	intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-	main.startActivity(Intent.createChooser(intent,"系统分享"));
-}
-		function shareMessage(share, ex) {
-			var msg = {
-				extra: {
-					scene: ex
-				}
-			};
-			msg.href = "http://a.app.qq.com/o/simple.jsp?pkgname=io.dcloud.H5291D2691";
-			msg.title = "迷你课表";
-			msg.content = "我在使用迷你课表，里面内置了班级课表，快来看看吧！";
-			if (~share.id.indexOf('weibo')) {
-				msg.content += "；体验地址：http://cdn.sinacloud.net/minikb/minikb.apk";
+			if (plus.os.name == "Android") {
+				Intent = plus.android.importClass("android.content.Intent");
+				File = plus.android.importClass("java.io.File");
+				Uri = plus.android.importClass("android.net.Uri");
+				main = plus.android.runtimeMainActivity();
 			}
-			msg.thumbs = ["_www/images/80.png"];
-			share.send(msg, function() {
-				console.log("分享到\"" + share.description + "\"成功！ ");
-			}, function(e) {
-				console.log("分享到\"" + share.description + "\"失败: " + e.code + " - " + e.message);
-			});
-		}
+			//分享链接点击事件
+			document.getElementById("sharexs").addEventListener('tap', function() {
+				console.log(10)
+				var ids = [{
+						id: "weixin",
+						ex: "WXSceneSession"
+					}, {
+						id: "weixin",
+						ex: "WXSceneTimeline"
+					}, {
+						id: "sinaweibo"
+					}, {
+						id: "qq"
+					}, {
+						id: 'xitong'
+					}],
+					bts = [{
+						title: "发送给微信好友"
+					}, {
+						title: "分享到微信朋友圈"
+					}, {
+						title: "分享到新浪微博"
+					}, {
+						title: "分享到QQ"
+					}, {
+						title: "系统分享"
+					}];
+				plus.nativeUI.actionSheet({
+					cancel: "取消",
+					buttons: bts
+				}, function(e) {
+					var i = e.index;
+					if (i > 0) {
+						var s_id = ids[i - 1].id;
+						if (s_id == 'xitong') {
+							shareSystem();
+							return 0;
+						}
+						var share = shares[s_id];
+						if (share) {
+							if (share.authenticated) {
+								shareMessage(share, ids[i - 1].ex);
+							} else {
+								share.authorize(function() {
+									shareMessage(share, ids[i - 1].ex);
+								}, function(e) {
+									console.log("认证授权失败：" + e.code + " - " + e.message);
+								});
+							}
+						} else {
+							mui.toast("无法获取分享服务")
+						}
+					}
 				});
+			});
+
+			function shareSystem() {
+				if (plus.os.name !== "Android") {
+					plus.nativeUI.alert("此平台暂不支持系统分享功能!");
+					return;
+				}
+				var intent = new Intent(Intent.ACTION_SEND);
+				var p = "";
+				intent.setType("text/plain");
+				intent.putExtra(Intent.EXTRA_SUBJECT, "迷你课表");
+				intent.putExtra(Intent.EXTRA_TEXT, '我在使用迷你课表，里面内置了班级课表，快来看看吧！http://a.app.qq.com/o/simple.jsp?pkgname=io.dcloud.H5291D2691');
+				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				main.startActivity(Intent.createChooser(intent, "系统分享"));
+			}
+
+			function shareMessage(share, ex) {
+				var msg = {
+					extra: {
+						scene: ex
+					}
+				};
+				msg.href = "http://a.app.qq.com/o/simple.jsp?pkgname=io.dcloud.H5291D2691";
+				msg.title = "迷你课表";
+				msg.content = "我在使用迷你课表，里面内置了班级课表，快来看看吧！";
+				if (~share.id.indexOf('weibo')) {
+					msg.content += "；体验地址：http://cdn.sinacloud.net/minikb/minikb.apk";
+				}
+				msg.thumbs = ["_www/images/80.png"];
+				share.send(msg, function() {
+					console.log("分享到\"" + share.description + "\"成功！ ");
+				}, function(e) {
+					console.log("分享到\"" + share.description + "\"失败: " + e.code + " - " + e.message);
+				});
+			}
+		});
 		document.getElementById('logout').addEventListener('tap', function() {
 			list = plus.webview.getWebviewById('list.html');
 			mui.fire(list, "login", '');

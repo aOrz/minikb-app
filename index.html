@@ -39,14 +39,11 @@
 				margin-right: 5px;
 			}
 		</style>
-		<script src="js/mui.min.js"></script>
 
-		<script type="text/javascript" src="js/myjs.js"></script>
-		<script type="text/javascript" src="js/vue.min.js"></script>
 	</head>
 
 	<body id="index">
-		<header class="mui-bar mui-bar-nav">
+		<header class="mui-bar mui-bar-nav" id="header">
 			<a class="mui-icon mui-icon-bars mui-pull-left"></a>
 			<!--<a id="compose" class="mui-icon mui-icon-compose mui-pull-right"> <i></i></a>-->
 			<a id="info" class="mui-icon mui-icon-chat mui-pull-right"></a>
@@ -54,11 +51,16 @@
 
 			<h1 class="mui-title mui-pull-left">迷你课表</h1>
 		</header>
+		<script src="js/mui.min.js"></script>
 
+		<script type="text/javascript" src="js/myjs.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
 		<script>
 			var menu = null,
 				main = null;
 			var showMenu = false;
+			var top_margin = parseInt(localStorage.immersed) + 45;
+			top_margin = top_margin+'px';
 			mui.init({
 				swipeBack: true,
 				statusBarBackground: '#f7f7f7',
@@ -70,7 +72,7 @@
 					id: 'list.html',
 					url: 'list.html',
 					styles: {
-						top: '45px',
+						top: top_margin,
 						bottom: 0,
 						bounce: 'vertical',
 						scrollIndicator: 'none',
@@ -125,12 +127,12 @@
 					if (!week) {
 						week += 7;
 					}
-					if(!delay){
-						delay={
-							open:0
+					if (!delay) {
+						delay = {
+							open: 0
 						}
 					}
-					if (delay.open && class_time[hour]) { 
+					if (delay.open && class_time[hour]) {
 						var ring_time = 60 - delay.minu;
 						if (ring_time == minutes) {
 							var course_num = week + (class_time[hour] - 1) * 7;
@@ -153,7 +155,7 @@
 				//监听系统发来的push事件
 				plus.push.addEventListener("receive", function(msg) {
 					// 分析msg.payload处理业务逻辑 
-					plus.nativeUI.alert( msg.msg);
+					plus.nativeUI.alert(msg.msg);
 				}, false);
 				// 添加监听从系统消息中心点击某条消息启动应用事件
 				plus.push.addEventListener("click", function(msg) {
@@ -161,12 +163,12 @@
 					// 判断是从本地创建还是离线推送的消息
 					switch (msg.payload) {
 						case "local":
-						plus.nativeUI.alert( msg.content);
+							plus.nativeUI.alert(msg.content);
 							break;
 						default:
-						plus.nativeUI.alert( msg.content, function(){
-							plus.runtime.openURL(msg.payload);
-						}, msg.titlt );
+							plus.nativeUI.alert(msg.content, function() {
+								plus.runtime.openURL(msg.payload);
+							}, msg.titlt);
 							break;
 					}
 					// 提示点击的内容
@@ -287,9 +289,9 @@
 					styles: {
 						scrollIndicator: 'none'
 					},
-//										show: {
-//											autoShow: false,
-//										}
+					//										show: {
+					//											autoShow: false,
+					//										}
 				});
 			});
 			//首页返回键处理

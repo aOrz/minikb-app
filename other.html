@@ -5,9 +5,26 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
-		<script src="js/mui.min.js"></script>
+
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="css/style.css" />
+		
+	</head>
+
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-action-back mui-icon-back mui-pull-left" style="color: aliceblue;"></a>
+			<a class="mui-icon mui-icon-home mui-pull-right" onclick="loadHtmlUrl()"></a>
+			<h1 class="mui-title" style="color: white;">其他功能</h1>
+		</header>
+		<div class="mui-contion" id="dcontent">
+			<div class="spinner" >
+			<div class="bounce1"></div>
+			<div class="bounce2"></div>
+			<div class="bounce3"></div>
+		</div>
+		</div>
+		<script src="js/mui.min.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			mui.init({
 				//				subpages: [{
@@ -19,6 +36,8 @@
 				//					},
 				//				}]
 			});
+			var top_margin = parseInt(localStorage.immersed) + 45;
+			top_margin = top_margin+'px';
 			var ws = null,
 				embed = null;
 			// H5 plus事件处理
@@ -26,7 +45,7 @@
 				ws = plus.webview.currentWebview();
 				ws.appendJsFile('_www/js/mui.min.js');
 				embed = plus.webview.create("http://2.minikb.sinaapp.com/view/other/index.html", "", {
-					top: "46px",
+					top: top_margin,
 					bottom: "0px"
 				});
 				embed.addEventListener("loaded", function(e) {
@@ -40,17 +59,6 @@
 				document.addEventListener("plusready", plusReady, false);
 			}
 		</script>
-	</head>
-
-	<body>
-		<header class="mui-bar mui-bar-nav">
-			<a class="mui-icon mui-action-back mui-icon-back mui-pull-left" style="color: aliceblue;"></a>
-			<a class="mui-icon mui-icon-home mui-pull-right" onclick="loadHtmlUrl()"></a>
-			<h1 class="mui-title" style="color: white;">其他功能</h1>
-		</header>
-		<div class="mui-contion">
-			加载中。。。。。
-		</div>
 		<script>
 			function loadHtmlUrl() {
 				embed.loadURL('http://2.minikb.sinaapp.com/view/other/index.html');

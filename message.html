@@ -213,12 +213,12 @@
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav">
+		<header id="header" class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon-back mui-icon mui-pull-left"></a>
 			<a class=" mui-icon mui-icon-plus mui-pull-right" id="addMessage"></a>
 			<h1 class="mui-title">匿名留言板</h1>
 		</header>
-		<div id="refreshContainer" class="mui-content mui-scroll-wrapper" style="overflow: auto;">
+		<div id="content" class="mui-content mui-scroll-wrapper" style="overflow: auto;">
 			<div class="mui-scroll">
 				<!--数据列表-->
 				<ul class="mui-table-view mui-table-view-chevron" id="contents">
@@ -233,7 +233,7 @@
 				mui.init({
 					swipeBack: true,
 					pullRefresh: {
-						container: '#refreshContainer', //待刷新区域标识，querySelector能定位的css选择器均可，比如：id、.class等
+						container: '#content', //待刷新区域标识，querySelector能定位的css选择器均可，比如：id、.class等
 						up: {
 							contentrefresh: "拼命加载中...", //可选，正在加载状态时，上拉加载控件上显示的标题内容
 							contentnomore: '没有更多数据了',//可选，请求完毕若没有更多数据时显示的提醒内容；
@@ -250,7 +250,7 @@
 					}]
 				});
 				var page = 1;
-//				mui('#refreshContainer').pullRefresh().pullupLoading();
+//				mui('#content').pullRefresh().pullupLoading();
 				window.addEventListener('sssaba', function(event) {
 					//page = 1;
 					var data1 = event.detail;
@@ -320,7 +320,7 @@
 							if (i < 19) {
 								isture = 1;
 							}
-							mui('#refreshContainer').pullRefresh().endPullupToRefresh(isture);
+							mui('#content').pullRefresh().endPullupToRefresh(isture);
 						},
 						error: function(xhr, type, errorThrown) {
 							//异常处理；

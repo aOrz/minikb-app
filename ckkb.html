@@ -8,8 +8,7 @@
 
 		<link rel="stylesheet" href="css/mui.min.css">
 		<link rel="stylesheet" href="css/style.css" />
-		<script src="js/mui.min.js"></script>
-		<script type="text/javascript" src="js/myjs.js"></script>
+
 		<style type="text/css">
 			#list {
 				margin-top: -1px;
@@ -26,11 +25,11 @@
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav">
+		<header id="header" class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">全部课表</h1>
 		</header>
-		<div id="kb" style="margin-top: 45px;">
+		<div id="dcontent" style="margin-top: 45px;">
 			<table class="bordered" style="table-layout:fixed;" id="tables">
 				<thead>
 					<tr>
@@ -63,7 +62,8 @@
 			<br>
 			<br>
 		</div>
-
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/myjs.js"></script>
 		<script>
 			mui.plusReady(function() {
 				mui.init({
