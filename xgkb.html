@@ -98,7 +98,7 @@
 						<li class="mui-table-view-cell " style="background-color: powderblue;">
 							<h5>内容：<span style="font-size: 10px;">(如需删课，清空课程内容，确认即可)</span></h5>
 						</li>
-						<textarea rows="2" placeholder="输入课程内容" v-model="course"></textarea>
+						<textarea rows="4" placeholder="输入课程内容" onkeyup="autoGrow(this);" v-model="course"></textarea>
 					</ul>
 				</div>
 				<div class="mui-button-row">

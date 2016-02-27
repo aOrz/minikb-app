@@ -1356,6 +1356,15 @@ function Getday() {
 	var day = new Array(7, 1, 2, 3, 4, 5, 6)[dateTime.getDay()];
 	return day;
 }
+//自增高度
+function autoGrow (oField) {
+  if (oField.scrollHeight > oField.clientHeight) {
+    oField.style.height = oField.scrollHeight + "px";
+  }else if(oField.clientHeight-50>oField.scrollHeight){
+  	var h=  oField.scrollHeight -50;
+  	 oField.style.height = h + "px";
+  }
+}
 /**
  *  对话框的HTML,很简单的布局!
   	<div class="layer_root">

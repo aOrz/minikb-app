@@ -88,7 +88,7 @@
 				num = '"' + num + '"';
 				layerOpen({
 					"title": "修改课程表",
-					"content": "<textarea id='et' style='background-color: #fff;border: 1px solid #ccc;'>" + text + "</textarea>",
+					"content": "<textarea id='et' onkeyup='autoGrow(this);' rows='4' style='background-color: #fff;border: 1px solid #ccc;overflow-y:auto;'>" + text + "</textarea>",
 					"btn": ["删除", "取消", "修改"],
 					"event": [function() {
 						et.value=''

@@ -27,21 +27,21 @@
 		<script src="js/mui.min.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			mui.init({
-				//				subpages: [{
-				//					url: 'http://10.10.49.249/html/zzb/', //子页面HTML地址，支持本地地址和网络地址
-				//					id: 'index1', //子页面标志
-				//					styles: {
-				//						top: '46px', //子页面顶部位置
-				//						bottom: '0px'
-				//					},
-				//				}]
+								subpages: [{
+									url: 'http://2.minikb.sinaapp.com/view/other/index.html', //子页面HTML地址，支持本地地址和网络地址
+									id: 'index1', //子页面标志
+									styles: {
+										top: '46px', //子页面顶部位置
+										bottom: '0px'
+									},
+								}]
 			});
 			var top_margin = parseInt(localStorage.immersed) + 45;
 			top_margin = top_margin+'px';
 			var ws = null,
 				embed = null;
 			// H5 plus事件处理
-			function plusReady() {
+			function plusReady() { 
 				ws = plus.webview.currentWebview();
 				ws.appendJsFile('_www/js/mui.min.js');
 				embed = plus.webview.create("http://2.minikb.sinaapp.com/view/other/index.html", "", {
@@ -53,11 +53,11 @@
 				}, false);
 				
 			}
-			if (window.plus) {
-				plusReady();
-			} else {
-				document.addEventListener("plusready", plusReady, false);
-			}
+//			if (window.plus) {
+//				plusReady();
+//			} else {
+//				document.addEventListener("plusready", plusReady, false);
+//			}
 		</script>
 		<script>
 			function loadHtmlUrl() {
