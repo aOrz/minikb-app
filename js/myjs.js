@@ -749,10 +749,10 @@ function AlertUserInfo() {
 				plus.storage.setItem('class', major + className);
 				plus.nativeUI.toast("修改成功");
 			}
-			var menu = plus.webview.getWebviewById('index-menu');
+				var menu = plus.webview.getWebviewById('list.html');
 			//触发菜单页更新昵称
 			if (menu)
-				mui.fire(menu, 'up_nick', {});
+				mui.fire(menu, 'customEvent', {});
 		},
 		error: function(xhr, type, errorThrown) {
 			//异常处理； 

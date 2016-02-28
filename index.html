@@ -46,7 +46,7 @@
 		<header class="mui-bar mui-bar-nav" id="header">
 			<a class="mui-icon mui-icon-bars mui-pull-left"></a>
 			<!--<a id="compose" class="mui-icon mui-icon-compose mui-pull-right"> <i></i></a>-->
-			<a id="info" class="mui-icon mui-icon-chat mui-pull-right"></a>
+			<a id="info" class="mui-icon mui-icon-chat mui-pull-right"><i v-bind:class="{ 'red_point': message_up}"></i></a>
 			<a id="loop" v-on:click.stop="upcourse" class="mui-icon mui-icon-loop mui-pull-right"> <i v-bind:class="{ 'red_point': course_updata}"></i></a>
 
 			<h1 class="mui-title mui-pull-left">迷你课表</h1>
@@ -59,8 +59,9 @@
 			var menu = null,
 				main = null;
 			var showMenu = false;
+//			alert(localStorage.getItem('message_version'))
 			var top_margin = parseInt(localStorage.immersed) + 45;
-			top_margin = top_margin+'px';
+			top_margin = top_margin + 'px';
 			mui.init({
 				swipeBack: true,
 				statusBarBackground: '#f7f7f7',
@@ -83,7 +84,8 @@
 			var index = new Vue({
 					el: '#index',
 					data: {
-						course_updata: parseInt(localStorage.getItem('course_updata'))
+						course_updata: parseInt(localStorage.getItem('course_updata')),
+						message_up:parseInt(localStorage.getItem('message_up'))
 					},
 					methods: {
 						upcourse: function() {
@@ -106,6 +108,8 @@
 			window.addEventListener("storage", function(e) {
 				if (e.key == 'course_updata') {
 					index.course_updata = parseInt(localStorage.getItem('course_updata'))
+				}else if(e.key == 'message_up'){
+					index.message_up = parseInt(localStorage.getItem('message_up'))
 				}
 			});
 			mui.plusReady(function() {
@@ -283,15 +287,17 @@
 			var subWebview = null,
 				template = null;
 			document.getElementById('info').addEventListener('tap', function() {
+				index.message_up = 0;
+				localStorage.setItem('message_up',0)
 				mui.openWindow({
 					id: 'message.html',
 					url: 'message.html',
 					styles: {
 						scrollIndicator: 'none'
 					},
-					//										show: {
-					//											autoShow: false,
-					//										}
+					waiting: {
+						autoShow: false,
+					}
 				});
 			});
 			//首页返回键处理
