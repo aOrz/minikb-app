@@ -142,8 +142,8 @@
 			sercover=j['course_version'][plus.storage.getItem('xx')];//服务器端
 			cname= 'course_version'+plus.storage.getItem('xx');
 			curcover = parseInt(localStorage.getItem(cname)) ;
-			console.log(sercover)
-			console.log(curcover)
+//			console.log(sercover)
+//			console.log(curcover)
 			if(!curcover){
 				localStorage.setItem(cname,sercover)
 			}else if(sercover>curcover){
@@ -231,7 +231,7 @@
 	 * @return {Boolean} 
 	 */
 	function compareVersion(ov, nv) {
-		console.log('ss' + ov + 'ss' + nv)
+//		console.log('ss' + ov + 'ss' + nv)
 		if (!ov || !nv || ov == "" || nv == "") {
 			return false;
 		}

@@ -201,12 +201,14 @@
 					"css/mui.min.css",
 					"css/style.css",
 					"js/myjs.js",
-					"js/vue.min.js"
+					"js/vue.min.js",
+					"fonts/mui.ttf"
 				],
 				"refer": [
 					"examples/template.html",
 					"kb.html",
-					"login.html"
+					"login.html",
+					"detail.html"
 				],
 				"priority": 0
 			},
@@ -302,7 +304,8 @@
 					"images/80.png",
 					"css/mui.min.css",
 					"css/style.css",
-					"js/myjs.js"
+					"js/myjs.js",
+					"searchclass.html"
 				],
 				"refer": [
 					"ck.html",
@@ -460,6 +463,17 @@
 					"css/mui.min.css",
 					"css/style.css",
 					"js/myjs.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"detail.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/style.css",
+					"js/vue.min.js"
 				],
 				"refer": [],
 				"priority": 0

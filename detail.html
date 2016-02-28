@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/style.css" />
+
+	</head>
+
+	<body id="de">
+		<header id="header" class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<a class="mui-action-back mui-icon mui-icon-redo mui-pull-right"></a>
+			<h1 class="mui-title" id="title">{{{title}}}</h1>
+		</header>
+		<div class="mui-content" id="content">
+			{{{content}}}
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/vue.min.js" ></script>
+		<script type="text/javascript" charset="UTF-8">
+			mui.init();
+			 detail = new Vue({
+				el:'#de',
+				data:{
+					title:'',
+					content:''
+				}
+			})
+			window.addEventListener('newsId', function(event) {
+				
+			detail.title='';
+			detail.content=''
+				//获得事件参数
+				var id = event.detail.id;
+				//根据id向服务器请求新闻详情
+				mui.ajax('http://kb.fddcn.cn/message/controller/reader.php', {
+						data: {
+							wzid: id,
+							xx: 1
+						},
+						dataType: 'json', //服务器返回json格式数据
+						type: 'get', //HTTP请求类型
+						timeout: 10000, //超时时间设置为10秒；
+						success: function(data) {
+							detail.title = data.title;
+							detail.content = data.content
+							
+														console.log(JSON.stringify(data))
+						},
+						error: function(xhr, type, errorThrown) {
+							//异常处理；
+							plus.nativeUI.toast("网络错误，请稍后重试！")
+						}
+					});
+			});
+		</script>
+	</body>
+
+</html>

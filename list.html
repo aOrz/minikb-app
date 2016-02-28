@@ -106,8 +106,9 @@
 			#segmentedControlContents {
 				background-color: white;
 			}
-			ul li p{
-				white-space:pre-line;
+			
+			ul li p {
+				white-space: pre-line;
 			}
 		</style>
 
@@ -117,7 +118,8 @@
 		<div class="mui-content mui-row mui-fullscreen" id="list">
 			<div class="mui-col-xs-2">
 				<div id="segmentedControls" class="mui-segmented-control mui-segmented-control-inverted mui-segmented-control-vertical" v-cloak>
-					<a class="mui-control-item" v-for="item in 7" href="#content{{item+1}}">周{{item|hanzi}}</a>
+					<a class="mui-control-item" v-for="item in 7" href="#content{{item+1}}">{{item|hanzi}}</a>
+					<a id="c8" class="mui-control-item" href="#content8"> 听说</a>
 				</div>
 			</div>
 			<div id="segmentedControlContents" class="mui-col-xs-10" style="border-left: 1px solid #c8c7cc;">
@@ -134,6 +136,22 @@
 						</li>
 					</ul>
 				</div>
+				<div id="content8" class="mui-control-content mui-content mui-scroll-wrapper" v-clock>
+					<div class="mui-scroll" style="position: inherit;">
+						<ul class="mui-table-view  mui-table-view-chevron">
+							<li class="mui-table-view-cell mui-media" v-for="item in message">
+								<a v-on:click.stop="mess(item.article_id)">
+									<img class="mui-media-object mui-pull-left" src="{{item.imgurl}}">
+									<div class="mui-media-body">
+										{{item.title}}
+										<p class='mui-ellipsis'>{{item.suolue}}</p>
+									</div>
+								</a>
+							</li>
+
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
 
@@ -141,26 +159,50 @@
 		<script type="text/javascript" src="js/vue.min.js"></script>
 		<script type="text/javascript" src="js/myjs.js"></script>
 		<script>
-			mui.init({
-				swipeBack: true //启用右滑关闭功能
-			});
+			document.getElementById('c8').addEventListener('tap', function() {
+				tingshuo()
+			})
+
+			function tingshuo() {
+				mui('#content8').pullRefresh().pullupLoading();
+			}
 			mui.plusReady(function() {
+				mui.init({
+					swipeBack: true, //启用右滑关闭功能
+					pullRefresh: {
+						container: '#content8',
+						up: {
+							contentrefresh: '努力加载中...',
+							contentnomore: '没有更多数据了',
+							//							auto:true,
+							callback: pullupRefresh
+						}
+					},
+					preloadPages: [{
+						id: 'detail.html',
+						url: 'detail.html'
+					}]
+				});
 				if (!plus.storage.getItem('ex')) {
 					mui.openWindow('login.html')
 				}
 				CheckStorage();
+				document.addEventListener("resume", function() {
+					list.course = course_data();
+					closeMenu();
+				}, false);
 
 				function course_data() {
 					var cou = new Array();
 					for (var i = 1; i <= 43; i++) {
 						cou.push(plus.storage.getItem('"' + i + '"'));
 					}
-//					console.log(JSON.stringify(cou))
+					//					console.log(JSON.stringify(cou))
 					return cou;
 				}
 				var course = course_data();
 				Vue.filter('hanzi', function(x) {
-					var w = ['一', '二', '三', '四', '五', '六', '日'];
+					var w = ['周一', '周二', '周三', '周四', '周五', '周六', '周日', "听说"];
 					return w[x];
 				})
 				Vue.filter('coursetime', function(x) {
@@ -172,17 +214,64 @@
 					data: {
 						course: course,
 						day: Getday(),
+						message: [],
+						page: 1,
+						detailPage:null
 					},
 					computed: {},
-					methods: {},
+					methods: {
+						mess: function(id) {
+							//获得详情页面
+							if (!this.detailPage) {
+								this.detailPage = plus.webview.getWebviewById('detail.html');
+							}
+							//触发详情页面的newsId事件
+							mui.fire(this.detailPage, 'newsId', {
+								id: id
+							});
+							//打开详情页面          
+							mui.openWindow({
+								id: 'detail.html' 
+							});
+						}
+					},
 					ready: function() {
 						var controls = document.getElementById("segmentedControls").querySelectorAll('.mui-control-item')[this.day - 1].classList;
 						controls.add('mui-active');
 						controls.add('bgcolor');
 						var tadaycl = document.getElementById('content' + this.day).classList;
 						tadaycl.add('mui-active')
-					}
+					},
 				})
+
+				function pullupRefresh() {
+					mui.ajax('http://kb.fddcn.cn/message/controller/get_article.php', {
+						data: {
+							page: list.page,
+							c: 'GetMessageByPage'
+						},
+						dataType: 'json', //服务器返回json格式数据
+						type: 'get', //HTTP请求类型
+						timeout: 10000, //超时时间设置为10秒；
+						success: function(data) {
+							//							console.log(JSON.stringify(data))
+							for (var i = 0; i < data.length; i++) {
+								list.message.push(data[i])
+							}
+							var i = data.length;
+							isture = 0;
+							if (i < 20) {
+								isture = 1;
+							}
+							mui('#content8').pullRefresh().endPullupToRefresh(isture);
+						},
+						error: function(xhr, type, errorThrown) {
+							//异常处理；
+							plus.nativeUI.toast("网络错误，请稍后重试！")
+						}
+					});
+					list.page++;
+				}
 				document.addEventListener("swiperight", function() {
 					var index = '';
 					!index && (index = mui.currentWebview.parent());
@@ -296,10 +385,6 @@
 				closeMenu();
 				mui.openWindow('login.html')
 			});
-			document.addEventListener("resume", function() {
-				list.course = course_data();
-				closeMenu();
-			}, false);
 			if (!localStorage.holiday) {
 				Getxiaoli()
 			}
