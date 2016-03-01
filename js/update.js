@@ -4,7 +4,7 @@
 		localFile = "update.json", //本地保存升级描述目录和文件名
 		keyUpdate = "updateCheck", //取消升级键名
 		keyAbort = "updateAbort", //忽略版本键名
-		checkInterval = 259200, //升级检查间隔，单位为ms,7天为7*24*60*60*1000=60480000, 如果每次启动需要检查设置值为0
+		checkInterval = 6048000, //升级检查间隔，单位为ms,7天为7*24*60*60*1000=60480000, 如果每次启动需要检查设置值为0
 		dir = null;
 	/**
 	 * 准备升级操作
@@ -135,23 +135,36 @@
 				}, inf.title, ["立即更新","跳过此版本","取　　消"] );
 			}
 		}*/
-		/**差量更新*/
-		plus.runtime.getProperty(plus.runtime.appid, function(infs) {
-			curVer = infs.version;
-			console.log('当前版本' + curVer)
+		sermessage = j['course_version']['message'];
 			sercover=j['course_version'][plus.storage.getItem('xx')];//服务器端
 			cname= 'course_version'+plus.storage.getItem('xx');
 			curcover = parseInt(localStorage.getItem(cname)) ;
-//			console.log(sercover)
-//			console.log(curcover)
-			if(!curcover){
+			curmessage = localStorage.getItem('message_version')
+//			console.log(sermessage+'sss'+curmessage) 
+			if(!curmessage){
+				localStorage.setItem('message_up',1)
+			}
+			curmessage = parseInt(curmessage)
+			sermessage = parseInt(sermessage)
+			 if(sermessage>curmessage){
+				localStorage.setItem('message_up',1);
+				localStorage.setItem('message_version',sermessage)
+			}
+			if(!curcover){ 
 				localStorage.setItem(cname,sercover)
+				localStorage.setItem('course_updata',1)
+					index.course_updata = 1;
 			}else if(sercover>curcover){
 				localStorage.setItem(cname,sercover);
 				localStorage.setItem('course_updata',1)
 				index.course_updata = 1;
 				index.upcourse();
 			}
+		/**差量更新*/
+		plus.runtime.getProperty(plus.runtime.appid, function(infs) {
+			curVer = infs.version;
+
+			
 			
 			inf = j['ziyuan'];
 			if (inf) {
