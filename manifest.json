@@ -131,11 +131,11 @@
 					}
 				},
 				"android": {
-					"mdpi": "C:/Users/Administrator/Desktop/yanfeng/1 (5).png", /*必选，240x282，普通屏启动图片*/
-					"ldpi": "C:/Users/Administrator/Desktop/yanfeng/1 (1).png", /*必选，320x442，大屏启动图片*/
-					"hdpi": "C:/Users/Administrator/Desktop/yanfeng/1 (2).png", /*必选，480x762，高分屏启动图片*/
-					"xhdpi": "C:/Users/Administrator/Desktop/yanfeng/1 (3).png", /*必选，720x1242，720P高分屏启动图片*/
-					"xxhdpi": "C:/Users/Administrator/Desktop/yanfeng/1 (4).png" /*1080p 高分屏启动图片*/
+					"mdpi": "C:/Users/Administrator/Desktop/文档/迷你课表/2.1桌面文档/240.png", /*必选，240x282，普通屏启动图片*/
+					"ldpi": "C:/Users/Administrator/Desktop/文档/迷你课表/2.1桌面文档/320.png", /*必选，320x442，大屏启动图片*/
+					"hdpi": "C:/Users/Administrator/Desktop/文档/迷你课表/2.1桌面文档/480.png", /*必选，480x762，高分屏启动图片*/
+					"xhdpi": "C:/Users/Administrator/Desktop/文档/迷你课表/2.1桌面文档/720.png", /*必选，720x1242，720P高分屏启动图片*/
+					"xxhdpi": "C:/Users/Administrator/Desktop/文档/迷你课表/2.1桌面文档/1080.png" /*1080p 高分屏启动图片*/
 				},
 				"error": {
             "url": "list.html"
