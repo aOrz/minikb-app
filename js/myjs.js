@@ -395,7 +395,7 @@ function GetSchoolName() {
 		},
 		error: function(xhr, type, errorThrown) {
 			//异常处理；
-			console.log(type);
+			GetSchoolName() 
 			plus.nativeUI.toast("网络错误");
 		}
 	});
@@ -454,6 +454,7 @@ function GetCollegeNameBySchool(school) {
 		},
 		error: function(xhr, type, errorThrown) {
 			//异常处理；
+			GetCollegeNameBySchool('yd')
 			console.log(type);
 			plus.nativeUI.toast("网络错误");
 		}
