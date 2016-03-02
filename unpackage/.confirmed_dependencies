@@ -19,7 +19,14 @@
     "resources": [
       "css/iconfont.css",
       "images/sky.png",
-      "fonts/iconfont.ttf"
+      "fonts/iconfont.ttf",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/style.css",
+      "images/80.png",
+      "js/vue.min.js",
+      "js/myjs.js"
     ],
     "refer": [
       "setting.html",
@@ -31,7 +38,11 @@
   },
   "examples/template.html": {
     "resources": [
-      "kb.html"
+      "kb.html",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/style.css"
     ],
     "refer": []
   },
@@ -48,7 +59,13 @@
       "login.html",
       "detail.html"
     ],
-    "resources": []
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "css/style.css",
+      "js/vue.min.js",
+      "js/myjs.js"
+    ]
   },
   "kb.html": {
     "resources": [
@@ -127,6 +144,16 @@
       "css/mui.imageviewer.css",
       "js/arttmpl.js",
       "script/strophe-custom-2.0.0.js"
+    ],
+    "refer": []
+  },
+  "detail.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/style.css",
+      "js/vue.min.js"
     ],
     "refer": []
   }
