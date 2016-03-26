@@ -119,7 +119,7 @@
 			<div class="mui-col-xs-2">
 				<div id="segmentedControls" class="mui-segmented-control mui-segmented-control-inverted mui-segmented-control-vertical" v-cloak>
 					<a class="mui-control-item" v-for="item in 7" href="#content{{item+1}}">{{item|hanzi}}</a>
-					<a id="c8" class="mui-control-item" href="#content8"> 听说</a>
+					<!--<a id="c8" class="mui-control-item" href="#content8"> 听说</a>-->
 				</div>
 			</div>
 			<div id="segmentedControlContents" class="mui-col-xs-10" style="border-left: 1px solid #c8c7cc;">
@@ -159,9 +159,9 @@
 		<script type="text/javascript" src="js/vue.min.js"></script>
 		<script type="text/javascript" src="js/myjs.js"></script>
 		<script>
-			document.getElementById('c8').addEventListener('tap', function() {
-				tingshuo()
-			})
+//			document.getElementById('c8').addEventListener('tap', function() {
+//				tingshuo()
+//			})
 
 			function tingshuo() {
 				mui('#content8').pullRefresh().pullupLoading();
