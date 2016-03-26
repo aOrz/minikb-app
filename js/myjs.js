@@ -1396,7 +1396,7 @@ function autoGrow (oField) {
  * shadeClose:false (布尔值; 点击对话框外面是否关闭; 默认false不关闭)
  * backClose:true (布尔值; Android点击back键关闭; 默认true关闭)
  * closeEvent:function (对话框关闭的回调)
- * style:{"title":"样式","content":"样式","btn":"样式"}//自定义样式(标题,内容,按钮)
+ * style://自定义样式(标题,内容,按钮)
  */
 function layerOpen(options) {
 	if (!options || !options.content) return;
@@ -1511,8 +1511,8 @@ function layerClose(closeEvent) {
 		//关闭动画320毫秒,比300毫秒长一点,防止闪烁
 		var layer_main = document.getElementById("layer_main");
 		layer_main.classList.add("scaleOut");
-		layer_main.classList.add("opacityOut");
-		layer_root.classList.add("opacityOut");
+//		layer_main.classList.add("opacityOut");
+//		layer_root.classList.add("opacityOut");
 		//延时关闭,防止事件穿透
 		setTimeout(function() {
 			document.body.removeChild(layer_root);

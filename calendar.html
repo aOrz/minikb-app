@@ -97,16 +97,13 @@
 				</script>
 			</div>
 			<script src="js/mui.min.js"></script>
-					<script language="JavaScript">
+		<script language="JavaScript">
 		mui.plusReady(function(){
-			addInfo = {};
-			addInfo.controller = 'add';
-			
-			mui.ajax('http://minikb.sinaapp.com/public/json/holiday.php', {
-				data: addInfo,
+			mui.ajax('http://kb.fddcn.cn/public/json/holiday.php', {
+				data: {},
 				dataType: 'json', //服务器返回json格式数据
 				type: 'get', //HTTP请求类型
-				async: false,
+//				async: false,
 				beforeSend: function() {
 						plus.nativeUI.showWaiting();
 				},
@@ -124,6 +121,7 @@
 				error: function(xhr, type, errorThrown) {
 					//异常处理；
 					mui.alert("网络错误");
+					console.log(type)
 				}
 			});
 })			
