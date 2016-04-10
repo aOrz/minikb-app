@@ -1,21 +1,27 @@
 [v-cloak] {
-  display: none;
+	display: none;
 }
+
+
 /*login_css开始*/
-.mui-bar-nav{
+
+.mui-bar-nav {
 	background-color: #33CCCC;
 }
+
 .ui-page-login,
 body {
 	width: 100%;
-	height: 100%;
+/*	height: 100%;*/
 	margin: 0px;
 	padding: 0px;
 	background: #F6ECE4;
 }
+
 .mui-bar a {
 	color: white;
 }
+
 .login .header_bg {
 	position: fixed;
 	width: 100%;
@@ -23,32 +29,40 @@ body {
 	background: #000;
 	top: 0px;
 }
+
 .mui-bar {
 	background-color: #33cccc;
 }
+
 .mui-title {
 	color: #FFF;
 }
+
 .mui-content {
-	height: 100%;
+	/*height: 100%;*/
 	background: #F6ECE4;
 }
+
 .login .welcome {
 	text-align: center;
 	margin: 20px auto;
 }
+
 .login .welcome img {
 	width: 120px;
 	border-radius: 50%;
 }
+
 .login .user_input,
 .login .password_input {
 	text-align: center;
 }
+
 .login .password_input {
 	position: relative;
 	top: -40px;
 }
+
 .login .user_icon,
 .login .password_icon {
 	height: 40px;
@@ -58,9 +72,11 @@ body {
 	top: -40px;
 	color: #BBBBBB;
 }
+
 .login .mui-icon {
 	font-size: 28px;
 }
+
 .login .user_input input,
 .login .password_input input {
 	width: 100%;
@@ -70,17 +86,21 @@ body {
 	padding-left: 45px;
 	margin: 0px;
 }
+
 .login .password_input input {
 	border-top: 1px solid #cccccc;
 }
+
 .login_btn {
 	text-align: center;
 	margin-top: 20px;
 }
+
 .login_btn button {
 	width: 100%;
 	height: 40px;
 }
+
 .mui-btn-blue,
 .mui-btn-primary,
 input[type=submit] {
@@ -89,32 +109,42 @@ input[type=submit] {
 	margin: 0 auto;
 	padding: 0px;
 }
+
 .login .mui-btn-block {
 	width: auto;
 }
+
 .login_form {
 	height: 80px;
 }
+
 .login footer {
 	width: 100%;
 	text-align: center;
 	margin-top: 20px;
 }
+
 .login footer a {
 	color: #33cccc;
 	padding: 0px 20px;
 	font-size: 14px;
 }
+
 .login footer span {
 	color: #BBBBBB;
 }
+
+
 /*login_css结束*/
+
+
 /*reg_css开始*/
 
 .reg_form {
 	height: 300px;
 	margin-top: 20px;
 }
+
 .reg .email_input input,
 .reg .name_input input,
 .reg .password_input input,
@@ -126,28 +156,34 @@ input[type=submit] {
 	padding-left: 45px;
 	margin-bottom: 0px;
 }
+
 .reg .name_input,
 .reg .password_input,
 .reg .againpsd_input {
 	border-top: 1px solid #cccccc;
 }
+
 .reg .other {
 	margin-top: 20px;
 	position: relative;
 	top: -160px;
 }
+
 .reg select {
 	margin: 0px;
 	font-size: 15px;
 	line-height: 15px;
 }
+
 .reg .class_input {
 	width: 100%;
 }
+
 .reg .major_select,
 .reg .class_input {
 	border-top: 1px solid #cccccc;
 }
+
 .reg select {
 	width: 100%;
 	height: 40px;
@@ -156,6 +192,7 @@ input[type=submit] {
 	padding-left: 45px;
 	margin-bottom: 0px;
 }
+
 .reg .class_input input {
 	width: 100%;
 	height: 40px;
@@ -164,6 +201,7 @@ input[type=submit] {
 	padding-left: 45px;
 	margin-bottom: 0px;
 }
+
 .reg .icon {
 	height: 40px;
 	width: 40px;
@@ -173,44 +211,59 @@ input[type=submit] {
 	color: #BBBBBB;
 	text-align: center;
 }
+
 .reg .icon .mui-icon {
 	font-size: 28px;
 }
+
 .reg .name_input {
 	position: relative;
 	top: -40px;
 }
+
 .reg .password_input {
 	position: relative;
 	top: -80px;
 }
+
 .reg .againpsd_input {
 	position: relative;
 	top: -120px;
 }
-.reg .school_select {} .reg .school_select img {
+
+.reg .school_select {}
+
+.reg .school_select img {
 	width: 22px;
 	vertical-align: middle;
 }
+
 .reg .major_select {
 	position: relative;
 	top: -40px;
 }
+
 .reg .class_input {
 	position: relative;
 	top: -80px;
 }
+
 .reg .reg_btn {
 	width: 100%;
 	margin-top: 30px;
 }
+
 .reg .reg_btn button {
 	padding: 0px;
 	width: 100%;
 	height: 40px;
 	font-size: 14px;
 }
+
+
 /*reg_css结束*/
+
+
 /*折角_css开始*/
 
 .note {
@@ -222,6 +275,7 @@ input[type=submit] {
 	background: #97C02F;
 	overflow: hidden;
 }
+
 .changcolor:before,
 .changcolor1:before,
 .changcolor2:before,
@@ -236,72 +290,86 @@ input[type=submit] {
 	right: 0;
 	border-width: 0 20px 22px 0;
 	/* This trick side-steps a webkit bug */
-	
 	border-style: solid;
 	border-color: #fff #fff #dff0d8 #dff0d8;
 	/* A bit more verbose to work with .rounded too */
-	
 	background: #e4e4ee;
 	/* For Opera when also applying a border-radius */
-	
 	display: block;
 	width: 0;
 	/* Only for Firefox 3.0 damage limitation */
 	/* Optional: shadow */
-	
 	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 1px rgba(0, 0, 0, 0.2);
 	-moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 1px rgba(0, 0, 0, 0.2);
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 1px rgba(0, 0, 0, 0.2);
 }
+
+
 /*折角_css结束*/
+
+
 /*kb_css开始*/
 
 .bg-primary {
 	background-color: #e4e4ee;
 }
+
 a.bg-primary:hover {
 	background-color: #286090;
 }
+
 .bg-success {
 	background-color: #dff0d8;
 	/*green*/
 }
+
 a.bg-success:hover {
 	background-color: #c1e2b3;
 }
+
 .bg-info {
 	background-color: #d9edf7;
 }
+
 a.bg-info:hover {
 	background-color: #afd9ee;
 }
+
 .bg-warning {
 	background-color: #fcf8e3;
 }
+
 a.bg-warning:hover {
 	background-color: #f7ecb5;
 }
+
 .bg-danger {
 	background-color: #f2dede;
 }
+
 a.bg-danger:hover {
 	background-color: #e4b9b9;
 }
+
 .bg-lan {
 	background-color: #AFD9EE;
 }
+
 .bg-ss {
 	background-color: #C1E2B3;
 }
+
 .bg-sa {
 	background-color: #F7ECB5;
 }
+
 .kb body {
 	margin-left: 0px;
 	font-family: 'trebuchet MS', 'Lucida sans', Arial;
 	font-size: 9px;
 	color: #444;
 }
+
 table {
 	text-align: center;
 	*border-collapse: collapse;
@@ -309,6 +377,7 @@ table {
 	border-spacing: 0;
 	width: 100%;
 }
+
 .bordered {
 	border: solid #ccc 1px;
 	-moz-border-radius: 6px;
@@ -318,6 +387,7 @@ table {
 	-moz-box-shadow: 0 1px 1px #ccc;
 	box-shadow: 0 1px 1px #ccc;
 }
+
 .bordered td,
 .bordered th {
 	border-left: 1px solid #ccc;
@@ -325,120 +395,144 @@ table {
 	padding: 1px;
 	text-align: center;
 }
+
 td {
 	font-size: 0.5em;
 }
+
 .bordered th {
 	/*background-color: #dce9f9;*/
-	
 	-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset;
 	-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset;
 	box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset;
 	border-top: none;
 	text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
 }
+
 .bordered td:first-child,
 .bordered th:first-child {
 	border-left: none;
 }
+
 .bordered th:first-child {
-border-top: 1px solid #ccc;
+	border-top: 1px solid #ccc;
 	-moz-border-radius: 6px 0 0 0;
 	-webkit-border-radius: 6px 0 0 0;
 	border-radius: 6px 0 0 0;
 	font-size: 0.55em;
 }
+
 .bordered th:last-child {
 	-moz-border-radius: 0 6px 0 0;
 	-webkit-border-radius: 0 6px 0 0;
 	border-radius: 0 6px 0 0;
 }
+
 .bordered th:only-child {
 	-moz-border-radius: 6px 6px 0 0;
 	-webkit-border-radius: 6px 6px 0 0;
 	border-radius: 6px 6px 0 0;
 }
+
 .bordered tr:last-child td:first-child {
 	-moz-border-radius: 0 0 0 6px;
 	-webkit-border-radius: 0 0 0 6px;
 	border-radius: 0 0 0 6px;
 }
+
 .bordered tr:last-child td:last-child {
 	-moz-border-radius: 0 0 6px 0;
 	-webkit-border-radius: 0 0 6px 0;
 	border-radius: 0 0 6px 0;
 }
+
 .setwidth {
 	width: 65px;
 	font-size: 0.5em;
 	height: 20px;
 }
+
 @media only screen and (min-width: 481px) {
 	.setWidth {
-	line-height: 16px;
+		line-height: 16px;
 		width: 120px;
 		height: 16px;
 		font-size: 0.55em;
 		word-break: break-all;
 	}
 }
+
 @media only screen and (max-width: 480px) {
 	.setWidth {
-	line-height: 16px;
-
+		line-height: 16px;
 		width: 60px;
 		height: 16px;
 		font-size: 0.55em;
 		word-break: break-all;
 	}
 }
+
+
 /*kb_css结束*/
+
+
 /*index-menu_css开始*/
 
 .index-menu .mui-table-view .my_user:hover {
 	background-color: #282626;
 	border-left: 5px solid #68BA8A;
 }
+
 .index-menu .mui-table-view .my_day:hover {
 	background-color: #282626;
 	border-left: 5px solid #e4e4ee;
 }
+
 .index-menu .mui-table-view .my_kb:hover {
 	background-color: #282626;
 	border-left: 5px solid #dff0d8;
 }
+
 .index-menu .mui-table-view .my_ck:hover {
 	background-color: #282626;
 	border-left: 5px solid #afd9ee;
 }
+
 .mui-table-view .my_set:hover {
 	background-color: #282626;
 	border-left: 5px solid #f7ecb5;
 }
+
 .mui-table-view .my_change:hover {
 	background-color: #282626;
 	border-left: 5px solid #f2dede;
 }
+
 .mui-table-view .my_help:hover {
 	background-color: #282626;
 	border-left: 5px solid #AFD9EE;
 }
+
 .mui-table-view .my_about:hover {
 	background-color: #282626;
 	border-left: 5px solid #F7ECB5;
 }
+
 .content .mui-btn-danger {
 	background-color: #33CCCC;
 	border: 0px;
 }
+
 .index-menu .mui-content {
 	background-color: #333;
 	color: #fff;
 }
+
 .index-menu .title {
 	margin: 35px 15px 10px;
 	font-size: 20px;
 }
+
 .index-menu .title+.content {
 	margin: 10px 15px 35px;
 	color: #bbb;
@@ -446,39 +540,50 @@ border-top: 1px solid #ccc;
 	font-size: 14px;
 	line-height: 24px;
 }
+
 .index-menu .mui-table-view {
 	margin-bottom: 35px;
 	background-color: #333;
 }
+
 .index-menu .mui-content>.mui-table-view:first-child {
 	margin-top: 0px;
 }
+
 .index-menu .user_face {
 	height: 60px;
 	margin: 10px 0px;
 	width: 100%;
 }
+
 .index-menu .user_face img {
 	border-radius: 50%;
 	width: 60px;
 	float: left;
 }
+
 .index-menu .user_face .intro {
 	float: left;
 	padding-left: 20px;
 	height: 60px;
 	width: 80px;
 }
+
 .index-menu .user_face .intro h1 {
 	color: #FFF;
 	font-size: 22px;
 }
+
 .index-menu .user_face .intro p {
 	font-size: 14px;
 	margin: 0 auto;
 	padding-left: 5px;
 }
+
+
 /*index-menu_css结束*/
+
+
 /*usermessage_css开始*/
 
 .usermessage .email_input input,
@@ -492,28 +597,34 @@ border-top: 1px solid #ccc;
 	padding-left: 45px;
 	margin-bottom: 0px;
 }
+
 .usermessage .name_input,
 .usermessage .password_input,
 .usermessage .againpsd_input {
 	border-top: 1px solid #cccccc;
 }
+
 .usermessage .other {
 	margin-top: 20px;
 	position: relative;
 	top: -40px;
 }
+
 .usermessage select {
 	margin: 0px;
 	font-size: 15px;
 	line-height: 15px;
 }
+
 .usermessage .class_input {
 	width: 100%;
 }
+
 .usermessage .major_select,
 .usermessage .class_input {
 	border-top: 1px solid #cccccc;
 }
+
 .usermessage select {
 	width: 100%;
 	height: 40px;
@@ -522,6 +633,7 @@ border-top: 1px solid #ccc;
 	padding-left: 45px;
 	margin-bottom: 0px;
 }
+
 .usermessage .class_input input {
 	width: 100%;
 	height: 40px;
@@ -530,6 +642,7 @@ border-top: 1px solid #ccc;
 	padding-left: 45px;
 	margin-bottom: 0px;
 }
+
 .usermessage .icon {
 	height: 40px;
 	width: 40px;
@@ -539,45 +652,58 @@ border-top: 1px solid #ccc;
 	color: #BBBBBB;
 	text-align: center;
 }
+
 .usermessage .icon .mui-icon {
 	font-size: 28px;
 }
+
 .usermessage .name_input {
 	position: relative;
 	top: 0px;
 }
+
 .usermessage .school_select {
 	position: relative;
 	top: 0px;
 }
+
 .usermessage .major_select {
 	position: relative;
 	top: -40px;
 }
+
 .usermessage .class_input {
 	position: relative;
 	top: -80px;
 }
+
 .usermessage .reg_btn {
 	width: 100%;
 	margin-top: 0px;
 }
+
 .usermessage .reg_btn button {
 	padding: 0px;
 	width: 100%;
 	height: 40px;
 	font-size: 14px;
 }
+
+
 /*usermessage_css结束*/
+
+
 /*searchclass_css开始*/
 
 .searchclass .icon {
 	text-align: center;
 	padding-top: 30px
 }
+
 .searchclass .icon img {
 	width: 100px;
 }
+
 .searchclass .searchbtn {
 	text-align: center;
 	margin: 20px auto;
@@ -585,23 +711,53 @@ border-top: 1px solid #ccc;
 	height: 40px;
 	vertical-align: middle;
 }
+
+
 /*searchclass_css结束*/
+
+/*forgetpassword_css开始*/
+.v-code{
+	margin-top: 20px;
+}
+.v-code .v-code-input{
+	width: 70%;
+	border-left: 0px;
+	border-right: 0px;
+}
+.v-code .v-code-btn{
+	width: 30%;
+	height: 40px;
+	border-left: 0px;
+	border-right: 0px;
+	background: #00B6EC;
+  color: #FFF;
+}
+.v-code .email{
+	margin: 0px;
+	border: 0px;
+}
+/*forgetpassword_css结束*/
+
 /*forwardest_css开始 */
 
 .forwardest,
 .forwardest .mui-content {
 	background: #FFF;
 }
+
 .forwardest .mui-control-content {
 	background-color: white;
 	min-height: 800px;
 }
+
 .forwardest .mui-control-content .mui-loading {
 	margin-top: 50px;
 }
+
 .forwardest .mui-table-view-cell {
 	min-height: 80px;
 }
+
 .forwardest .ranking {
 	text-align: center;
 	margin: 0 auto;
@@ -611,29 +767,36 @@ border-top: 1px solid #ccc;
 	color: #33CCCC;
 	font-weight: bold;
 }
+
 .forwardest .more {
 	position: relative;
 	top: 10px;
 }
+
 .forwardest .address {
 	position: relative;
 	top: 10px;
 	word-break: break-word;
 }
+
 .forwardest .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-progress-bar {
 	background-color: #33cccc;
 }
+
 .forwardest .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
 	color: #33CCCC;
 	font-size: 20px;
 }
+
 .forwardest #sliderSegmentedControl {
 	color: #BBBBBB;
 }
+
 .forwardest .ulsearch {
 	margin: 0px;
 	padding: 0px;
 }
+
 .forwardest .search {
 	padding-top: 6px;
 	padding-right: 10px;
@@ -642,6 +805,7 @@ border-top: 1px solid #ccc;
 	border-bottom: 3px solid #c8c7cc;
 	background: #FFF;
 }
+
 .forwardest #searchBtn {
 	width: 20%;
 	float: right;
@@ -651,45 +815,59 @@ border-top: 1px solid #ccc;
 	color: #33cccc;
 	font-size: 18px;
 }
+
 .forwardest #specialInput {
 	width: 80%;
 }
+
 .forwardest .mui-segmented-control .mui-control-item.mui-active {
 	background: #33CCCC;
 	color: #FFFFFF;
 	font-size: 20px;
 	font-weight: bold;
 }
+
 .forwardest .mui-segmented-control {
 	border: 1px solid #33CCCC;
 }
+
 .forwardest .mui-segmented-control .mui-control-item {
 	color: #33CCCC;
 	border-left: 1px solid #33CCCC;
 	border-color: #33CCCC;
 }
+
 .forwardest .mui-card .mui-control-content {
 	padding: 10px;
 }
+
 .forwardest .mui-control-content {
 	min-height: 800px;
 }
+
+
 /*forwardest_css 结束*/
+
+
 /*calender_css开始*/
-.calender table{
+
+.calender table {
 	width: 100%;
-	border: 1px solid rgba(0,0,0,0);
+	border: 1px solid rgba(0, 0, 0, 0);
 }
-.calender table .table_title{
+
+.calender table .table_title {
 	text-align: center;
 	background: #33cccc;
 	height: 40px;
 	color: #FFF;
 	font-size: 25px;
 }
+
 .calender.holiday {
 	color: red;
 }
+
 .calender #other {
 	padding: 15px;
 	margin-top: 15px;
@@ -699,34 +877,44 @@ border-top: 1px solid #ccc;
 	border-left: 0px;
 	border-right: 0px;
 }
+
 .calender table select {
 	width: auto;
 	height: 40px;
 	font-size: 20px;
 	color: #33CCCC;
 }
+
 .calender #GZ {
 	margin-left: 20px;
 }
-.calender .select_year{
+
+.calender .select_year {
 	font-size: 20px;
 }
-.calender .table_body{
+
+.calender .table_body {
 	height: 40px;
 }
+
+
 /*calender_css结束*/
-.changepassword .password_form{
+
+.changepassword .password_form {
 	position: relative;
-	top: 50px;
+	top: 30px;
 }
-.changepassword .password_form input{
+
+.changepassword .password_form input {
 	border: 0px;
 	border-bottom: 1px solid #CCCCCC;
 }
-.changepassword #password{
+
+.changepassword #password {
 	margin: 0px;
 }
-.changepassword .password_form button{
+
+.changepassword .password_form button {
 	border: 0px;
 	width: 100%;
 	margin-top: 40px;
@@ -734,19 +922,23 @@ border-top: 1px solid #ccc;
 	background: #00B6EC;
 	color: #FFF;
 }
-.changepassword .mui-bar .mui-btn-link{
+
+.changepassword .mui-bar .mui-btn-link {
 	color: #FFF;
 }
+
 .red_point {
-    display: block;
-    background: #f00;
-    border-radius: 50%;
-    width: 6px;
-    height: 6px;
-    top: 13px;
-    right: 8px;
-    position: absolute;
+	display: block;
+	background: #f00;
+	border-radius: 50%;
+	width: 6px;
+	height: 6px;
+	top: 13px;
+	right: 8px;
+	position: absolute;
 }
+
+
 /*对话框根布局(属于遮罩)*/
 
 .layer_root {
@@ -759,12 +951,15 @@ border-top: 1px solid #ccc;
 	background-color: rgba(0, 0, 0, 0.5);
 	font-size: 15px;
 }
+
 .layer_root:before {
 	content: '';
 	display: inline-block;
 	height: 100%;
 	vertical-align: middle;
 }
+
+
 /*对话框主体*/
 
 .layer_main {
@@ -775,51 +970,66 @@ border-top: 1px solid #ccc;
 	border-radius: 8px;
 	text-align: left;
 }
+
+
 /*标题*/
 
 .layer_title {
 	padding: 10px;
 	border-bottom: 1px solid #EBEBEB;
 }
+
+
 /*内容*/
 
 .layer_content {
 	padding: 10px;
 }
+
+
 /*按钮*/
 
 .layer_btns {
 	width: 100%;
 	text-align: center;
 	border-top: 1px solid #EBEBEB;
+}
 
-}
-.layer_btns td{
+.layer_btns td {
 	padding: 10px;
-		/*font-size: 1em;*/
+	/*font-size: 1em;*/
 }
+
 .layer_btns td:active {
 	background-color: #F0F0F0;
 }
+
 .layer_btn_single {
 	border-bottom-left-radius: 8px;
 	border-bottom-right-radius: 8px;
 }
+
 .layer_btn_left {
 	border-bottom-left-radius: 8px;
 	border-right: 1px solid #EBEBEB;
 }
+
 .layer_btn_middle {
 	border-right: 1px solid #EBEBEB;
 }
+
 .layer_btn_right {
 	border-bottom-right-radius: 8px;
 }
+
+
 /*一半大小到原大的动画*/
+
 .scaleIn {
 	animation: scaleIn .32s;
 	-webkit-animation: scaleIn .32s;
 }
+
 @-webkit-keyframes scaleIn {
 	from {
 		transform: scale(.5);
@@ -830,10 +1040,14 @@ border-top: 1px solid #ccc;
 		-webkit-transform: scale(1);
 	}
 }
+
+
 /*缩小一半的动画*/
+
 .scaleOut {
 	-webkit-animation: scaleOut .32s;
 }
+
 @-webkit-keyframes scaleOut {
 	from {
 		transform: scale(1);
@@ -844,10 +1058,14 @@ border-top: 1px solid #ccc;
 		-webkit-transform: scale(.5);
 	}
 }
+
+
 /*透明到不透明的动画*/
+
 .opacityIn {
 	-webkit-animation: opacityIn .32s;
 }
+
 @-webkit-keyframes opacityIn {
 	from {
 		opacity: 0;
@@ -856,10 +1074,14 @@ border-top: 1px solid #ccc;
 		opacity: 1;
 	}
 }
+
+
 /*不透明到透明的动画*/
+
 .opacityOut {
 	-webkit-animation: opacityOut .32s;
 }
+
 @-webkit-keyframes opacityOut {
 	from {
 		opacity: 1;
@@ -869,56 +1091,58 @@ border-top: 1px solid #ccc;
 	}
 }
 
+
 /*loading 动画*/
+
 .spinner {
-				margin: 50px auto 0;
-				width: 150px;
-				text-align: center;
-			}
-			
-			.spinner > div {
-				width: 10px;
-				height: 10px;
-				background-color: #BBBBBB;
-				border-radius: 100%;
-				display: inline-block;
-				-webkit-animation: bouncedelay 1.4s infinite ease-in-out;
-				animation: bouncedelay 1.4s infinite ease-in-out;
-				/* Prevent first frame from flickering when animation starts */
-				-webkit-animation-fill-mode: both;
-				animation-fill-mode: both;
-			}
-			
-			.spinner .bounce1 {
-				-webkit-animation-delay: -0.32s;
-				animation-delay: -0.32s;
-			}
-			
-			.spinner .bounce2 {
-				-webkit-animation-delay: -0.16s;
-				animation-delay: -0.16s;
-			}
-			
-			@-webkit-keyframes bouncedelay {
-				0%,
-				80%,
-				100% {
-					-webkit-transform: scale(0.0)
-				}
-				40% {
-					-webkit-transform: scale(1.0)
-				}
-			}
-			
-			@keyframes bouncedelay {
-				0%,
-				80%,
-				100% {
-					transform: scale(0.0);
-					-webkit-transform: scale(0.0);
-				}
-				40% {
-					transform: scale(1.0);
-					-webkit-transform: scale(1.0);
-				}
-			}
+	margin: 50px auto 0;
+	width: 150px;
+	text-align: center;
+}
+
+.spinner > div {
+	width: 10px;
+	height: 10px;
+	background-color: #BBBBBB;
+	border-radius: 100%;
+	display: inline-block;
+	-webkit-animation: bouncedelay 1.4s infinite ease-in-out;
+	animation: bouncedelay 1.4s infinite ease-in-out;
+	/* Prevent first frame from flickering when animation starts */
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+}
+
+.spinner .bounce1 {
+	-webkit-animation-delay: -0.32s;
+	animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+	-webkit-animation-delay: -0.16s;
+	animation-delay: -0.16s;
+}
+
+@-webkit-keyframes bouncedelay {
+	0%,
+	80%,
+	100% {
+		-webkit-transform: scale(0.0)
+	}
+	40% {
+		-webkit-transform: scale(1.0)
+	}
+}
+
+@keyframes bouncedelay {
+	0%,
+	80%,
+	100% {
+		transform: scale(0.0);
+		-webkit-transform: scale(0.0);
+	}
+	40% {
+		transform: scale(1.0);
+		-webkit-transform: scale(1.0);
+	}
+}

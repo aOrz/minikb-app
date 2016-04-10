@@ -1,160 +1,209 @@
 {
-  "index.html": {
-    "resources": [
-      "js/mui.min.js",
-      "fonts/mui.ttf",
-      "css/mui.min.css",
-      "js/update.js",
-      "css/style.css",
-      "list.html",
-      "js/vue.min.js",
-      "js/myjs.js"
-    ],
-    "refer": [
-      "index-menu.html",
-      "list.html"
-    ]
-  },
-  "index-menu.html": {
-    "resources": [
-      "css/iconfont.css",
-      "images/sky.png",
-      "fonts/iconfont.ttf",
-      "js/mui.min.js",
-      "fonts/mui.ttf",
-      "css/mui.min.css",
-      "css/style.css",
-      "images/80.png",
-      "js/vue.min.js",
-      "js/myjs.js"
-    ],
-    "refer": [
-      "setting.html",
-      "searchroom.html",
-      "searchclass.html",
-      "calendar.html",
-      "im-chat.html"
-    ]
-  },
-  "examples/template.html": {
-    "resources": [
-      "kb.html",
-      "js/mui.min.js",
-      "fonts/mui.ttf",
-      "css/mui.min.css",
-      "css/style.css"
-    ],
-    "refer": []
-  },
-  "login.html": {
-    "resources": [
-      "images/80.png"
-    ],
-    "refer": []
-  },
-  "list.html": {
-    "refer": [
-      "examples/template.html",
-      "kb.html",
-      "login.html",
-      "detail.html"
-    ],
-    "resources": [
-      "js/mui.min.js",
-      "css/mui.min.css",
-      "css/style.css",
-      "js/vue.min.js",
-      "js/myjs.js"
-    ]
-  },
-  "kb.html": {
-    "resources": [
-      "js/mui.min.js",
-      "css/mui.min.css",
-      "css/style.css",
-      "js/myjs.js"
-    ],
-    "refer": []
-  },
-  "about.html": {
-    "resources": [
-      "images/xp.png",
-      "images/wz.png",
-      "images/ssm.png"
-    ],
-    "refer": []
-  },
-  "setting.html": {
-    "resources": [
-      "fonts/mui.ttf",
-      "images/80.png",
-      "js/vue.min.js",
-      "js/mui.min.js",
-      "css/mui.min.css",
-      "css/style.css",
-      "js/myjs.js"
-    ],
-    "refer": [
-      "about.html"
-    ]
-  },
-  "searchroom.html": {
-    "resources": [
-      "js/mui.min.js",
-      "fonts/mui.ttf",
-      "css/mui.min.css",
-      "css/style.css",
-      "js/vue.min.js"
-    ],
-    "refer": []
-  },
-  "searchclass.html": {
-    "resources": [
-      "js/mui.min.js",
-      "fonts/mui.ttf",
-      "images/80.png",
-      "css/mui.min.css",
-      "css/style.css",
-      "js/myjs.js"
-    ],
-    "refer": []
-  },
-  "calendar.html": {
-    "resources": [
-      "js/mui.min.js",
-      "fonts/mui.ttf",
-      "css/mui.min.css",
-      "css/style.css",
-      "js/myjs.js"
-    ],
-    "refer": []
-  },
-  "im-chat.html": {
-    "resources": [
-      "images/face/1.png",
-      "js/mui.imageViewer.js",
-      "images/face/2.png",
-      "script/jquery-1.11.1.js",
-      "js/mui.min.js",
-      "script/json2.js",
-      "fonts/mui.ttf",
-      "script/easemob.im-1.0.5.js",
-      "css/mui.min.css",
-      "css/style.css",
-      "css/mui.imageviewer.css",
-      "js/arttmpl.js",
-      "script/strophe-custom-2.0.0.js"
-    ],
-    "refer": []
-  },
-  "detail.html": {
-    "resources": [
-      "js/mui.min.js",
-      "fonts/mui.ttf",
-      "css/mui.min.css",
-      "css/style.css",
-      "js/vue.min.js"
-    ],
-    "refer": []
-  }
+	"index.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/update.js",
+			"css/style.css",
+			"list.html",
+			"js/vue.min.js",
+			"js/myjs.js"
+		],
+		"refer": [
+			"index-menu.html",
+			"list.html",
+			"message.html"
+		]
+	},
+	"index-menu.html": {
+		"resources": [
+			"css/iconfont.css",
+			"images/sky.png",
+			"fonts/iconfont.ttf",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"css/style.css",
+			"images/80.png",
+			"js/vue.min.js",
+			"js/myjs.js"
+		],
+		"refer": [
+			"setting.html",
+			"searchroom.html",
+			"searchclass.html",
+			"calendar.html",
+			"im-chat.html"
+		]
+	},
+	"examples/template.html": {
+		"resources": [
+			"kb.html",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"css/style.css"
+		],
+		"refer": [
+			"kb.html"
+		]
+	},
+	"login.html": {
+		"resources": [
+			"images/80.png",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/myjs.js"
+		],
+		"refer": [
+			"reg.html",
+			"response.html",
+			"forgetpassword.html"
+		]
+	},
+	"list.html": {
+		"refer": [
+			"examples/template.html",
+			"kb.html",
+			"login.html",
+			"detail.html"
+		],
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/vue.min.js",
+			"js/myjs.js"
+		]
+	},
+	"kb.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/myjs.js"
+		],
+		"refer": []
+	},
+	"about.html": {
+		"resources": [
+			"images/xp.png",
+			"images/wz.png",
+			"images/ssm.png"
+		],
+		"refer": []
+	},
+	"setting.html": {
+		"resources": [
+			"fonts/mui.ttf",
+			"images/80.png",
+			"js/vue.min.js",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/myjs.js"
+		],
+		"refer": [
+			"about.html"
+		]
+	},
+	"searchroom.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/vue.min.js"
+		],
+		"refer": []
+	},
+	"searchclass.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"images/80.png",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/myjs.js"
+		],
+		"refer": []
+	},
+	"calendar.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/myjs.js"
+		],
+		"refer": []
+	},
+	"im-chat.html": {
+		"resources": [
+			"images/face/1.png",
+			"js/mui.imageViewer.js",
+			"images/face/2.png",
+			"script/jquery-1.11.1.js",
+			"js/mui.min.js",
+			"script/json2.js",
+			"fonts/mui.ttf",
+			"script/easemob.im-1.0.5.js",
+			"css/mui.min.css",
+			"css/style.css",
+			"css/mui.imageviewer.css",
+			"js/arttmpl.js",
+			"script/strophe-custom-2.0.0.js"
+		],
+		"refer": []
+	},
+	"detail.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/vue.min.js"
+		],
+		"refer": []
+	},
+	"response.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"css/style.css"
+		]
+	},
+	"forgetpassword.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"css/style.css",
+			"js/myjs.js"
+		]
+	},
+	"message.html": {
+		"resources": [
+			"images/face/1.png",
+			"images/face/2.png",
+			"images/face/5.png",
+			"fonts/mui.ttf",
+			"images/face/3.png",
+			"images/face/6.png",
+			"images/face/4.png"
+		],
+		"refer": [
+			"postmessage.html",
+			"comment.html"
+		]
+	},
+	"comment.html": {
+		"resources": [
+			"js/vue.min.js"
+		]
+	}
 }

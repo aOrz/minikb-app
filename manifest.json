@@ -361,7 +361,9 @@
 					"js/myjs.js"
 				],
 				"refer": [
-					"reg.html"
+					"reg.html",
+					"response.html",
+					"forgetpassword.html"
 				],
 				"priority": 0
 			},
@@ -463,6 +465,27 @@
 				],
 				"refer": [],
 				"priority": 0
+			},
+			"response.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/style.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"forgetpassword.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/style.css",
+					"js/myjs.js"
+				],
+				"refer": [],
+				"priority": 0
 			}
 		},
 		"index": {
@@ -483,7 +506,6 @@
 		"idle": {
 			"resources": [
 				"jr.html",
-				"response.html",
 				"images/pull_arrow.png",
 				"images/beforestar.png",
 				"js/mui.view.js",

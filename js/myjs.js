@@ -15,6 +15,25 @@ function RegisterLink() {
 		}
 	});
 }
+/*
+ * 打开忘记密码页面
+ */
+function ForgetPasswordLink() {
+	var regButton = document.getElementById('reg');
+	mui.openWindow({
+		url: 'forgetpassword.html',
+		id: 'forgetpassword',
+		show: {
+			aniShow: 'pop-in'
+		},
+		styles: {
+			popGesture: 'hide'
+		},
+		waiting: {
+			autoShow: false
+		}
+	});
+}
 //打开个人信息链接
 function OpenUserIntroLink() {
 	mui.openWindow({
@@ -50,9 +69,9 @@ function OpenWindows(id) {
 	});
 }
 
-//在登陆界面点击忘记密码跳转页面函数
-function ForgetPasswordLink() {
-	var forgetButton = document.getElementById('forgetPassword');
+//打开使用须知页面
+function UseKnowLink() {
+	var forgetButton = document.getElementById('useknow');
 	mui.openWindow({
 		url: 'response.html',
 		id: 'response',
@@ -1522,4 +1541,106 @@ function layerClose(closeEvent) {
 	closeEvent && closeEvent();
 	//Android点击后退键关闭对话框的回调
 	androidBackEvent && androidBackEvent();
+}
+/*
+ * 发送验证码
+ */
+function SendCode(){
+	var email=document.getElementById("v-code-email").value;
+	console.log(email);
+	if (!IsEmail(email)) {
+		plus.nativeUI.toast("邮箱格式不正确");
+		document.getElementById('v-code-email').focus();
+		return;
+	} 
+	mui.ajax('http://2.minikb.sinaapp.com/controller/forgetPassword_controller.php', {
+		data: {userid:email},
+		type: 'get', //HTTP请求类型
+		timeout: 3000, //超时时间设置为10秒；
+		success: function(data) {
+			console.log("send vcode success and data="+data);
+			if (!data) {
+				plus.nativeUI.toast("网络错误");
+			}
+			else{
+				mui.alert("验证码已经发送到你的邮箱");
+			}
+		},
+		error: function(xhr, type, errorThrown) {
+			console.log("send vcode error");
+			//异常处理；
+			plus.nativeUI.toast("网络错误");
+			
+		}
+	});
+}
+/*
+ * 忘记密码后修改密码
+ */
+function ForgetPassword(){
+	var email=document.getElementById("v-code-email").value;
+	var vCode=document.getElementById("v-code").value;
+	var pwd=document.getElementById("password").value;
+	var pwd_confirm=document.getElementById("password_confirm").value;
+	if(vCode==""){
+		plus.nativeUI.toast("请输入验证码"); 
+		document.getElementById('v-code').focus();
+		return;
+	}
+	
+	if (pwd == "") {
+		plus.nativeUI.toast("请输入密码");
+		document.getElementById('password').focus();
+		return;
+	} else if (pwd.length < 6) {
+		plus.nativeUI.toast("密码长度不能小于六");
+		document.getElementById('password').focus();
+		return;
+	}
+	if (pwd_confirm == "") {
+		plus.nativeUI.toast("请输入确认密码");
+		document.getElementById('password_confirm').focus();
+		return;
+	} else if (pwd != pwd_confirm) {
+		plus.nativeUI.toast("两次密码不一致，请重新输入");
+		document.getElementById('password').focus();
+		return;
+	}
+	mui.ajax('http://2.minikb.sinaapp.com/controller/forgetPassword_controller.php', {
+		data: {
+			userid:email,
+			vcode:vCode,
+		},
+		type: 'get', //HTTP请求类型
+		timeout: 3000, //超时时间设置为10秒；
+		success: function(data) {
+			console.log("change new pwd success and data="+data);
+			if(data==0){
+				plus.nativeUI.toast("验证码输入错误");
+			}
+			else{
+				mui.ajax('http://2.minikb.sinaapp.com/controller/forgetPassword_controller.php', {
+					data: {
+						userid:email,
+						newpassword:pwd,
+					},
+					type: 'get', //HTTP请求类型
+					timeout: 3000, //超时时间设置为10秒；
+					success: function(data) {
+						plus.nativeUI.toast("密码修改成功，请重新登录");
+						mui.back();
+					},
+					error:function(){
+						plus.nativeUI.toast("网络错误");
+					}
+				});
+			}
+		},
+		error: function(xhr, type, errorThrown) {
+			console.log("change new pwd error");
+			//异常处理；
+			plus.nativeUI.toast("网络错误");
+			
+		}
+	});
 }
