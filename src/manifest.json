@@ -115,7 +115,7 @@
 			"splashscreen": {
 				"ios": {
 					"iphone": {
-						"default": "", /*必选，320x480，iPhone3启动图片*/
+						"default": "C:/Users/Administrator/Desktop/文档/迷你课表/1.1/logo/320.png", /*必选，320x480，iPhone3启动图片*/
 						"retina35": "",/*必选，640x960，3.5英寸设备(iPhone4)启动图片*/
 						"retina40": "" /*4.0 英寸设备(iPhone5)启动图片*/
 					},
@@ -237,7 +237,8 @@
 					"js/mui.min.js",
 					"fonts/mui.ttf",
 					"css/mui.min.css",
-					"js/myjs.js"
+					"js/myjs.js",
+					"css/style.css"
 				],
 				"refer": [
 					"message.html"
@@ -516,7 +517,10 @@
 	  "images/beforestar.png",
 	  "images/pull_arrow.png",
 	  "images/pull_fresh.png",
-	  "images/star.png"
+	  "images/star.png",
+	  "js/mui.view.js",
+	  "jr.html",
+	  "response.html"
 	]
 
 	
