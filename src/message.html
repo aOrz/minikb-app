@@ -8,25 +8,13 @@
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-		<link rel="stylesheet" href="css/mui.min.css">
-		<link rel="stylesheet" type="text/css" href="css/style.csss" />
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
 		<style>
-			html,
-			body {
-				margin: 0;
-				font-family: "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
-				font-weight: 400;
-				color: #333;
-				font-size: 1.6rem;
-				background-color: #efeff4;
-			}
-			.mui-bar {
-			    background-color: #33cccc;
-			    caption-side: white;
-			}
-			.mui-bar .mui-title{
-				color: white;
-			}
+
+			
 			.mui-bar~.mui-content .mui-fullscreen {
 				top: 44px;
 				height: auto;
@@ -56,7 +44,6 @@
 				border-radius: 25px;
 				background-clip: padding-box;
 				box-shadow: 0 4px 10px #bbb;
-				/*overflow: hidden;*/
 			}
 			
 			.mui-pull-top-tips.mui-transitioning {
@@ -65,19 +52,12 @@
 			}
 			
 			.mui-pull-top-tips .mui-pull-loading {
-				/*-webkit-backface-visibility: hidden;
-				-webkit-transition-duration: 400ms;
-				transition-duration: 400ms;*/
 				margin: 0;
 			}
 			
 			.mui-pull-top-wrapper .mui-icon,
 			.mui-pull-top-wrapper .mui-spinner {
 				margin-top: 7px;
-			}
-			
-			.mui-pull-top-wrapper .mui-icon.mui-reverse {
-				/*-webkit-transform: rotate(180deg) translateZ(0);*/
 			}
 			
 			.mui-pull-bottom-tips {
@@ -101,137 +81,71 @@
 				width: 40px;
 			}
 			
-			.mui-slider-indicator.mui-segmented-control {
-				background-color: #efeff4;
-			}
-			
 			.mui-table-view-cell:after {
 				left: 0px;
 			}
-			
-			.message {
-				width: 100%;
-				background-color: rgba(52, 73, 94, 1.0);
-				color: #FFF;
-				padding: 10px;
-			}
-			
-			.mui-bar-nav a {
-				color: white;
-			}
-			
-			.massage_header {
-				padding: 10px;
-				height: 50px;
-			}
-			
-			.massage_header img {
-				border-radius: 50%;
-			}
-			
-			.massage_header .username {
-				position: relative;
-				font-size: 20px;
-				top: -15px;
-			}
-			
-			.message .content_body {
-				margin: 20px auto;
-				width: 90%;
-				word-break: break-all;
-				word-wrap: break-word;
-			}
-			
-			.message .content_body .text {
-				text-indent: 12px;
-				line-height: 25px;
-				font-size: 17px;
-				letter-spacing: 2px;
-				color: #FFF;
-				word-break: break-word;
-			}
-			
-			.message .massage_header .write {
-				float: right;
-				padding-right: 5%;
-				padding-top: 15px;
-				font-size: 20px;
-			}
-			
-			.message_foooter {
-				margin-bottom: 20px;
-			}
-			
-			.message_foooter .time {
-				padding-left: 20px;
-				display: inline;
-			}
-			
-			.message_foooter .time span {
-				color: #FFF;
-				font-size: 18px;
-			}
-			
-			.message_foooter .comment {
-				float: right;
-				padding-right: 30px;
-			}
-			
-			.message_foooter .comment span {
-				font-size: 20px;
-			}
-			
+
 			.mui-scroll-wrapper {
 				overflow: auto;
 			}
 			
-			.mui-scroll {
+			/*.mui-scroll {
 				background-color: rgba(52, 73, 94, 1.0);
 			}
 			
 			.mui-pull-bottom-pocket {
 				background-color: rgba(52, 73, 94, 1.0);
-			}
+			}*/
 			/*下拉刷新圆形进度条的大小和样式*/
 			/*下拉刷新的箭头颜色*/
 			
 			.mui-spinner,
 			.mui-pull-caption {
-				color: white;
+				color: #BBBBBB;
 			}
 			
 			.mui-icon-pulldown {
-				color: white;
+				color: #BBBBBB;
 			}
 			
-			li {
-				border-bottom: 2px solid #CCCCCC;
-			}
-			
-			.boy {
-				background: rgba(52, 73, 94, 1.0);
-			}
-			
-			.girl {
-				background: rgba(233, 98, 113, 1.0);
-			}
 		</style>
 	</head>
 
-	<body>
+	<body class="write-message">
 		<header id="header" class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon-back mui-icon mui-pull-left"></a>
-			<a class=" mui-icon mui-icon-plus mui-pull-right" id="addMessage"></a>
+			<a class=" mui-icon mui-icon-pengyouquan mui-pull-right" id="myMessage"></a>
+			<!--<a class=" mui-icon mui-icon-plus mui-pull-right" id="addMessage"></a>-->
 			<h1 class="mui-title">匿名留言板</h1>
 		</header>
 		<div id="content" class="mui-content mui-scroll-wrapper" style="overflow: auto;">
 			<div class="mui-scroll">
 				<!--数据列表-->
 				<ul class="mui-table-view mui-table-view-chevron" id="contents">
+					<li class="message" >
+						<div class="massage_header" >
+							<img src="images/face/1.png" style="width: 50px;" />
+							<span class="username">某同学</span>
+						</div>
+						<div class="content_body">
+							<p class="text"> 还没和你好好的感受，雪花绽放的温柔</p>
+						</div>
+						<div class="message_foooter">
+							<div class="time">
+								<span>最近</span>
+							</div>
+							<div class="comment">
+								<span class="mui-icon mui-icon-chatbubble"></span>
+								<span>0</span>
+							</div>
+						</div>
+					</li>
 				</ul>
 			</div>
-		</div>
-
+		</div> 
+		<footer>
+			<i class="menu-icon iconfont"  id="addMessage">&#xe63c;</i>
+		</footer>
 		<script src="js/mui.min.js"></script>
 		<script type="text/javascript" src="js/myjs.js"></script>
 		<script>
@@ -260,13 +174,13 @@
 				window.addEventListener('sssaba', function(event) {
 					//page = 1;
 					var data1 = event.detail;
+					var contents=document.getElementById('contents').innerHTML;
 					console.log(JSON.stringify(data1));
 					data1['moods'] =Tohtml(data1['moods']);
 					var html = '<li class="message ' + 'girl' + '" data-id="' + data1['mood_id'] + '" >' +
 						'<div class="massage_header" >' +
 						'<img src="images/face/' + '1' + '.png" style="width: 50px;" />' +
 						'<span class="username">某同学</span>' +
-						//								'<span class="write mui-icon mui-icon-redo">分享</span>' +
 						'</div>' +
 						'<div class="content_body">' +
 						'<p class="text">' + data1['moods'] +
@@ -282,8 +196,8 @@
 						'</div>' +
 						'</div>' +
 						'</li>';
-					//					document.getElementById('contents').innerHTML='';
-					document.getElementById('contents').innerHTML = html + document.getElementById('contents').innerHTML;
+
+					contents.innerHTML = html + contents.innerHTML;
 				});
 				var color = Array('boy', 'girl');
 
@@ -300,26 +214,37 @@
 							for (var i = 0; i < data.length; i++) {
 								data1 = data[i];
 								var num = Math.ceil(Math.random() * 6);
-								html = '<li class="message ' + color[i % 2] + '" data-id="' + data1['mood_id'] + '" >' +
-									'<div class="massage_header" >' +
-									'<img src="images/face/' + num + '.png" style="width: 50px;" />' +
-									'<span class="username">某同学</span>' +
-									//								'<span class="write mui-icon mui-icon-redo">分享</span>' +
-									'</div>' +
-									'<div class="content_body">' +
-									'<p class="text">' + data1['moods'] +
-									'</p>' +
-									'</div>' +
-									'<div class="message_foooter">' +
-									'<div class="time">' +
-									'<span>' + getDateDiff(data1['indate']) + '</span>' +
-									'</div>' +
-									'<div class="comment">' +
-									'<span class="mui-icon mui-icon-chatbubble"></span>' +
-									'<span>' + data1['comments'] + '</span>' +
-									'</div>' +
-									'</div>' +
-									'</li>';
+//								html = '<li class="message ' + color[i % 2] + 
+//								    '" data-id="' + data1['mood_id'] + '" >' +
+//									'<div class="massage_header" >' +
+//									'<img src="images/face/' + num + '.png" style="width: 50px;" />' +
+//									'<span class="username">某同学</span>' +
+//									'</div>' +
+//									'<div class="content_body">' +
+//									'<p class="text">' + data1['moods'] +
+//									'</p>' +
+//									'</div>' +
+//									'<div class="message_foooter">' +
+//									'<div class="time">' +
+//									'<span>' + getDateDiff(data1['indate']) + '</span>' +
+//									'</div>' +
+//									'<div class="comment">' +
+//									'<span class="mui-icon mui-icon-chatbubble"></span>' +
+//									'<span>' + data1['comments'] + '</span>' +
+//									'</div>' +
+//									'</div>' +
+//									'</li>';
+								html='<li class="message" ><div class="massage_header" >'+
+									'<img src="images/face/' + num + '.png" style="width: 50px;" />'+
+									'<span class="username">某同学</span></div>'+
+									'<div class="content_body"><p class="text">'+data1['moods']+
+									'</p></div>'+
+									'<div class="message_foooter"><div class="time"><span>'+
+									getDateDiff(data1['indate']) + '</span>'+
+									'</div><div class="comment">'+
+									'<span class="mui-icon mui-icon-chatbubble"></span><span>'+
+									data1['comments']+'</span></div></div></li>';
+									
 								document.getElementById('contents').innerHTML += html;
 							}
 							var isture = 0;

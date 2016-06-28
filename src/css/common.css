@@ -5,3 +5,13 @@ html,body{
 .mui-content{
 	background: #F4F4F4;
 }
+.mui-bar {
+	background-color: #33cccc;
+	caption-side: white;
+}
+.mui-bar a{
+	color: #fff;
+}
+.mui-bar .mui-title{
+	color: white;
+}

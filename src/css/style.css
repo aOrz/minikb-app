@@ -892,9 +892,98 @@ td {
 	height: 40px;
 }
 
-
 /*calender_css结束*/
 
+/*message_css开始*/
+/*message_css */
+.write-message{
+	background:black;
+}
+.write-message .message .content_body .text {
+	text-indent: 12px;
+	line-height: 25px;
+	font-size: 14px;
+	letter-spacing: 2px;
+	word-break: break-word;
+	background: #FFF;
+	margin-bottom: 0px;
+}
+.write-message .message_foooter .time span {
+	color: #383838;
+	font-size: 15px;
+}
+.write-message .massage_header .username {
+	position: relative;
+	font-size: 15px;
+	top: -15px;
+	color: #383838;
+}
+.write-message .message_foooter {
+    padding-bottom: 5px;
+    border-top: 1px solid #f4f4f4;
+    padding-top: 5px;
+}
+.write-message .message .content_body {
+	margin: 10px auto;
+	width: 90%;
+	word-break: break-all;
+	word-wrap: break-word;
+	margin-bottom: 5px;
+}
+.write-message .message_foooter .comment span {
+	font-size: 15px;
+}
+.write-message .message_foooter .comment .mui-icon{
+	color: #33CCCC;
+}
+.write-message .mui-table-view {
+    background-color: #F4f4f4;
+}
+.write-message .mui-table-view li {
+	background: #FFF;
+	margin-top: 15px;
+}
+.write-message .mui-table-view:before,
+.write-message .mui-table-view:after{
+	display: none;
+}
+.write-message footer{
+	position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #33cccc;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: block;
+    z-index: 5;
+    box-shadow: 3px 3px 10px #696969;
+}
+.write-message footer i{
+	color: #FFFFFF;
+    font-size: 36px;
+    position: relative;
+    top: 15px;
+    left: 9px;
+
+}
+.write-message .message_foooter .comment {
+	float: right;
+	padding-right: 30px;
+}
+.write-message .message_foooter .time {
+	padding-left: 20px;
+	display: inline;
+}
+.write-message .massage_header {
+	padding: 10px;
+	height: 50px;
+}
+			
+.write-message .massage_header img {
+	border-radius: 50%;
+}
+/*message_css结束*/
 .changepassword .password_form {
 	position: relative;
 	top: 30px;
@@ -1085,7 +1174,6 @@ td {
 		opacity: 0;
 	}
 }
-
 
 /*loading 动画*/
 

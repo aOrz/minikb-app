@@ -236,7 +236,11 @@
 					"fonts/mui.ttf",
 					"css/mui.min.css",
 					"js/myjs.js",
-					"js/mui.js"
+					"js/mui.js",
+					"css/common.css",
+					"css/style.css",
+					"css/iconfont.css",
+					"fonts/iconfont.ttf"
 				],
 				"refer": [
 					"postmessage.html",
