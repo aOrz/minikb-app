@@ -427,7 +427,7 @@ function GetSchoolName() {
 }
 //得到静态学校名
 function GetStaticSchoolName(div){
-	var staticSchoolName={"yd":"烟大","wj":"文经","gmd":"贵州民族大学"};
+	var staticSchoolName={"":"学校","yd":"烟大","wj":"文经","gmd":"贵州民族大学"};
 	div.innerHTML = '';
 	for (var i in staticSchoolName) {
 		var insertHtml = '<option value="' + i + '">' + staticSchoolName[i] + '</option>';
