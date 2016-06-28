@@ -244,7 +244,8 @@
 				],
 				"refer": [
 					"postmessage.html",
-					"comment.html"
+					"comment.html",
+					"mymessage.html"
 				],
 				"priority": 0
 			},
@@ -556,6 +557,14 @@
 					"ck.html"
 				],
 				"priority": 6
+			},
+			"mymessage.html": {
+				"resources": [
+					"fonts/mui.ttf",
+					"css/iconfont.css"
+				],
+				"refer": [],
+				"priority": 0
 			}
 		},
 		"index": {

@@ -896,9 +896,6 @@ td {
 
 /*message_css开始*/
 /*message_css */
-.write-message{
-	background:black;
-}
 .write-message .message .content_body .text {
 	text-indent: 12px;
 	line-height: 25px;

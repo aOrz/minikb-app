@@ -281,7 +281,13 @@
 						url: 'postmessage.html',
 						id: 'postmessage.html'
 					});
-				})
+				});
+				document.getElementById('myMessage').addEventListener('tap', function() {
+					mui.openWindow({
+						url: 'mymessage.html',
+						id: 'mymessage.html'
+					});
+				});
 			});
 		</script>
 	</body>
