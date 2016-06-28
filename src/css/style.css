@@ -897,7 +897,7 @@ td {
 /*message_css开始*/
 /*message_css */
 .write-message .message .content_body .text {
-	text-indent: 12px;
+
 	line-height: 25px;
 	font-size: 14px;
 	letter-spacing: 2px;
@@ -921,7 +921,7 @@ td {
     padding-top: 5px;
 }
 .write-message .message .content_body {
-	margin: 10px auto;
+	margin: 15px 27px;
 	width: 90%;
 	word-break: break-all;
 	word-wrap: break-word;

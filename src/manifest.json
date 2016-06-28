@@ -561,7 +561,17 @@
 			"mymessage.html": {
 				"resources": [
 					"fonts/mui.ttf",
-					"css/iconfont.css"
+					"css/iconfont.css",
+					"images/face/3.png",
+					"images/face/1.png",
+					"images/face/2.png",
+					"images/face/5.png",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"css/style.css",
+					"images/face/6.png",
+					"images/face/4.png",
+					"js/myjs.js"
 				],
 				"refer": [],
 				"priority": 0

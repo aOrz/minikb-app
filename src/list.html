@@ -118,7 +118,7 @@
 		<div class="mui-content mui-row mui-fullscreen" id="list">
 			<div class="mui-col-xs-2">
 				<div id="segmentedControls" class="mui-segmented-control mui-segmented-control-inverted mui-segmented-control-vertical" v-cloak>
-					<a class="mui-control-item" v-for="item in 7" href="#content{{item+1}}">{{item|hanzi}}</a>
+					<a class="mui-control-item" v-for="item in 7" href="#content{{item+1}}">周{{item|hanzi}}</a>
 					<!--<a id="c8" class="mui-control-item" href="#content8"> 听说</a>-->
 				</div>
 			</div>
@@ -174,7 +174,6 @@
 						up: {
 							contentrefresh: '努力加载中...',
 							contentnomore: '没有更多数据了',
-							//							auto:true,
 							callback: pullupRefresh
 						}
 					},
@@ -202,7 +201,7 @@
 				}
 				var course = course_data();
 				Vue.filter('hanzi', function(x) {
-					var w = ['周一', '周二', '周三', '周四', '周五', '周六', '周日', "听说"];
+					var w = ['一', '二', '三', '四', '五', '六', '日', "听说"];
 					return w[x];
 				})
 				Vue.filter('coursetime', function(x) {
