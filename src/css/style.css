@@ -8,16 +8,6 @@
 .mui-bar-nav {
 	background-color: #33CCCC;
 }
-
-.ui-page-login,
-body {
-	width: 100%;
-/*	height: 100%;*/
-	margin: 0px;
-	padding: 0px;
-	background: #F6ECE4;
-}
-
 .mui-bar a {
 	color: white;
 }
@@ -36,11 +26,6 @@ body {
 
 .mui-title {
 	color: #FFF;
-}
-
-.mui-content {
-	/*height: 100%;*/
-	background: #F6ECE4;
 }
 
 .login .welcome {
@@ -97,17 +82,27 @@ body {
 }
 
 .login_btn button {
-	width: 100%;
-	height: 40px;
+    width: 90%;
+    height: 40px;
 }
-
+.mui-btn-primary.mui-active:enabled,
+.mui-btn-primary:enabled:active,
+input[type=submit].mui-active:enabled,
+input[type=submit]:enabled:active {
+	color: #fff;
+	border: 1px solid #00B6EC;
+	background-color: #00B6EC;
+}
 .mui-btn-blue,
 .mui-btn-primary,
 input[type=submit] {
-	background: #00B6EC;
+	background: #33cccc;
 	border: 0px;
 	margin: 0 auto;
 	padding: 0px;
+}
+.mui-input-row .mui-input-password~.mui-icon-eye.mui-active {
+    color: #33CCCC;
 }
 
 .login .mui-btn-block {
