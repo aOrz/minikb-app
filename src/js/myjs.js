@@ -369,6 +369,7 @@ function ClassExists(school, major, className) {
 function GetSchoolName() {
 	var school = document.getElementById("school");
 	var schoolName = localStorage.getItem('schoolName');
+	console.log(schoolName);
 	if (schoolName) {
 		data = JSON.parse(schoolName)
 		for (var i in data) {
@@ -396,7 +397,9 @@ function GetSchoolName() {
 		},
 		dataType: 'json', //服务器返回json格式数据
 		type: 'get', //HTTP请求类型
+		timeout:8000,//超时时间设置为8秒；
 		success: function(data) {
+			console.log("success");
 			//服务器返回响应，根据响应结果，分析是否请求成功；
 			if (data) {
 				localStorage.setItem('schoolName', JSON.stringify(data));
@@ -413,16 +416,47 @@ function GetSchoolName() {
 
 		},
 		error: function(xhr, type, errorThrown) {
+			plus.nativeUI.closeWaiting();
+			console.log("error");
 			//异常处理；
-			GetSchoolName() 
+			GetStaticSchoolName(school);
 			plus.nativeUI.toast("网络错误");
 		}
 	});
+	console.log("End");
 }
-
+//得到静态学校名
+function GetStaticSchoolName(div){
+	var staticSchoolName={"yd":"烟大","wj":"文经","gmd":"贵州民族大学"};
+	div.innerHTML = '';
+	for (var i in staticSchoolName) {
+		var insertHtml = '<option value="' + i + '">' + staticSchoolName[i] + '</option>';
+		div.innerHTML += insertHtml;
+	}
+	var insertHtml = '<option value="yd1">' + '其他学校' + '</option>';
+	div.innerHTML += insertHtml;
+}
+//得到静态学院名
+function GetStaticCollegeName(school,div){
+	var yd = ["环","法","计","光","海","建","经","生","食","数","土","外","新","机","药","音","应","中","化","材","体","EIE","对外","专国","汉教"];
+	var wj = ["文专中","文专会","文专商","文专土","文专市","文专房","文专机","文专电","文专英","文专计","文专财","文专贸","文专通","文中","文会","文公","文商","文土","文市","文投","文新","文日","文朝","文机","文法","文环","文生","文电","文自","文艺","文英","文视","文计","文财","文贸","文车","文通","文金","文食"];
+	var gmd=["信息工程学院"];
+	
+	var collegeName=null;
+	switch(school){		
+		case "wj":collegeName=wj;break;
+		case "gmd":collegeName=gmd;break;
+		default:collegeName=yd;
+	}
+	for (var i in collegeName) {
+		var insertHtml = '<option value="' + collegeName[i] + '">' + collegeName[i] + '</option>';
+		div.innerHTML = div.innerHTML + insertHtml;
+	}
+}
 //根据学校名获得学院
 function GetCollegeNameBySchool(school) {
 	var school = document.getElementById("school").value;
+	console.log(school);
 	var major = document.getElementById("major");
 	document.getElementById('class').style.display = "inline";
 	major.innerHTML = '';
@@ -434,6 +468,7 @@ function GetCollegeNameBySchool(school) {
 		document.getElementById('class').style.display = "none";
 	}
 	var CollegeName = localStorage.getItem(school + 'CollegeName');
+	console.log(CollegeName);
 	if (CollegeName) {
 		data = JSON.parse(CollegeName)
 		for (var i in data) {
@@ -453,6 +488,7 @@ function GetCollegeNameBySchool(school) {
 		},
 		dataType: 'json', //服务器返回json格式数据
 		type: 'get', //HTTP请求类型
+		timeout:8000,//超时时间设置为8秒；
 		beforeSend: function() {
 			if (show_n)
 				plus.nativeUI.showWaiting();
@@ -463,6 +499,7 @@ function GetCollegeNameBySchool(school) {
 		},
 		success: function(data) {
 			localStorage.setItem(school + 'CollegeName', JSON.stringify(data));
+			
 			//服务器返回响应，根据响应结果，分析是否请求成功；
 			if (show_n) {
 				for (var i in data) {
@@ -473,7 +510,7 @@ function GetCollegeNameBySchool(school) {
 		},
 		error: function(xhr, type, errorThrown) {
 			//异常处理；
-			GetCollegeNameBySchool('yd')
+			GetStaticCollegeName(school,major);
 			console.log(type);
 			plus.nativeUI.toast("网络错误");
 		}

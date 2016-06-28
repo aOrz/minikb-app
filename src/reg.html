@@ -98,14 +98,13 @@
 		<script src="js/mui.min.js"></script>
 		<script type="text/javascript" src="js/myjs.js" ></script>
 		<script>
-		mui.plusReady(function(){
-			GetSchoolName();
-			GetCollegeNameBySchool()
-		});
+			mui.plusReady(function(){
+				GetSchoolName();
+				GetCollegeNameBySchool("yd");
+			});
 			(function($, doc) {
 				$.init();
 				$.plusReady(function() {
-
 				});
 			}(mui, document));
 		</script>
