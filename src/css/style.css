@@ -462,7 +462,7 @@ td {
 @media only screen and (max-width: 480px) {
 	.setWidth {
 		line-height: 16px;
-		width: 60px;
+		width: 14%;
 		height: 16px;
 		font-size: 0.55em;
 		word-break: break-all;
@@ -944,7 +944,7 @@ td {
 	position: relative;
 	font-size: 15px;
 	top: -15px;
-	color: #383838;
+	color: #ef980b;
 }
 .write-message .message_foooter {
     padding-bottom: 5px;
