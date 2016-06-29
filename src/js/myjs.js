@@ -1567,7 +1567,7 @@ function SendCode(){
 	mui.ajax('http://2.minikb.sinaapp.com/controller/forgetPassword_controller.php', {
 		data: {userid:email},
 		type: 'get', //HTTP请求类型
-		timeout: 3000, //超时时间设置为10秒；
+		timeout: 3000, //超时时间设置为3秒；
 		success: function(data) {
 			console.log("send vcode success and data="+data);
 			if (!data) {
