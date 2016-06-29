@@ -1326,6 +1326,7 @@ getDateDiff = function(dateTimeStamp) {
 	var month = day * 30;
 	var year = day * 365;
 	var now = parseInt(new Date().getTime() / 1000);
+	var dateTime = new Date(dateTimeStamp*1000);
 	var diffValue = now - dateTimeStamp;
 	if (diffValue < 0) {
 		//若日期不符则弹出窗口告之
@@ -1337,12 +1338,8 @@ getDateDiff = function(dateTimeStamp) {
 	var dayC = diffValue / day;
 	var hourC = diffValue / hour;
 	var minC = diffValue / minute;
-	if (yearC >= 1) {
-		result = "" + parseInt(monthC) + "年前";
-	} else if (monthC >= 1) {
-		result = "" + parseInt(monthC) + "个月前";
-	} else if (weekC >= 1) {
-		result = "" + parseInt(weekC) + "周前";
+	if (yearC+weekC+monthC >= 1) {
+		return dateTime.getFullYear()+'/'+dateTime.getMonth()+'/'+dateTime.getDate();
 	} else if (dayC >= 1) {
 		result = "" + parseInt(dayC) + "天前";
 	} else if (hourC >= 1) {
