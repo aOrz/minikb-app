@@ -1530,12 +1530,18 @@ function layerClose(closeEvent) {
  */
 function SendCode(){
 	var email=document.getElementById("v-code-email").value;
-	console.log(email);
+//	console.log(email);
 	if (!IsEmail(email)) {
 		plus.nativeUI.toast("邮箱格式不正确");
 		document.getElementById('v-code-email').focus();
 		return;
 	} 
+
+	if (!CheckIdExists(email)) {
+		plus.nativeUI.toast("邮箱未注册");
+		document.getElementById('v-code-email').focus();
+		return;
+	}
 	mui.ajax('http://2.minikb.sinaapp.com/controller/forgetPassword_controller.php', {
 		data: {userid:email},
 		type: 'get', //HTTP请求类型
