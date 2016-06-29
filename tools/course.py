@@ -11,7 +11,7 @@ import pymysql
 import codecs
 #怎么挑选课程？？？
 #1：2、3、4、5   2：10，11，12，13   3：19，20，21，22   4：27，28，29，30	5：36，37，38，39		6：44，45，46，47
-grades = [[2,3,4,5,6,7,8,9],[10,11,12,13,14,15,16],[19,20,21,22,23,24,25,26],[27,28,29,30,31,32,33,34],[36,37,38,39,40,41,42,43],[44,45,46,47,48,49,50,51]]
+grades = [[2,3,4,5,6,7,8,9],[10,11,12,13,14,15,16,17],[19,20,21,22,23,24,25,26],[27,28,29,30,31,32,33,34],[36,37,38,39,40,41,42,43],[44,45,46,47,48,49,50]]
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf-8')
 
 
@@ -69,7 +69,7 @@ for i in os.listdir('./xls/'):
 	print(i + "完成")
 	try:
 		# print(makeSql(trans(getData('./xls/' + i))))
-		file_object.write(makeSql(trans(getData('./xls/' + i))))
+		file_object.write(makeSql(trans(getData('./xls/' + i)),i[:-4]))
 
 		# cur.execute(makeSql(trans(getData('./xls/' + i)),i))
 		# conn.commit()

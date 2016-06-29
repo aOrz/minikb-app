@@ -240,7 +240,8 @@
 					"css/common.css",
 					"css/style.css",
 					"css/iconfont.css",
-					"fonts/iconfont.ttf"
+					"fonts/iconfont.ttf",
+					"js/vue.min.js"
 				],
 				"refer": [
 					"postmessage.html",
