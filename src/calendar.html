@@ -44,7 +44,8 @@
 							<td colSpan=7>
 								<select class="form-control select_year" name='SY' onchange="changeCld()">
 									<script language="JavaScript">
-										for (i = 1900; i < 2050; i++) document.write('<option>' + i);
+										var year = new Date().getFullYear();
+										for (i = year; i < year+3; i++) document.write('<option>' + i);
 									</script>
 								</select>
 								<span style="font-size: 16px;">年 </span>
@@ -100,7 +101,10 @@
 				<script>
 					var holiday = localStorage.getItem("holiday");
 					holiday = eval(holiday);
-					document.write(holiday[0]);
+					if(holiday){
+						document.write(holiday[0]);
+					}
+
 				</script>
 			</div>
 			<script src="js/mui.min.js"></script>
@@ -122,6 +126,7 @@
 					if (!data) {
 						mui.alert("网络错误");
 					}
+					document.getElementById('other').innerHTML = data[0];
 					localStorage.holiday = JSON.stringify(data);
 //					plus.storage.setItem("holiday",JSON.stringify(data));
 				},
@@ -468,7 +473,8 @@
 							removeClass(lObj.parentNode, 'holiday');
 							var holiday=localStorage.getItem("holiday");
 							holiday = eval(holiday);
-							for (var ipp = 1; ipp < holiday.length; ipp++) { //校历节日
+							if(holiday){
+								for (var ipp = 1; ipp < holiday.length; ipp++) { //校历节日
 								if (parseInt(holiday[ipp].substr(0, 2)) == (SM + 1)) {
 									if (parseInt(holiday[ipp].substr(2, 4)) == (sD + 1)) {
 										lObj.innerHTML = holiday[ipp].substr(5);
@@ -476,30 +482,28 @@
 									}
 								}
 							}
+							}
 						} else { //非日期
 							sObj.innerHTML = '';
 							lObj.innerHTML = '';
 						}
 					}
 				}
-			
-			//在下拉列表中选择年月时,调用自定义函数drawCld(),显示公历和农历的相关信息
-			function changeCld() {
-					var y, m;
-					y = CLD.SY.selectedIndex + 1900;
-					m = CLD.SM.selectedIndex;
-					drawCld(y, m);
-				}
-			
 			//用自定义变量保存当前系统中的年月日
 			var Today = new Date();
 			var tY = Today.getFullYear();
 			var tM = Today.getMonth();
 			var tD = Today.getDate();
-			
+			//在下拉列表中选择年月时,调用自定义函数drawCld(),显示公历和农历的相关信息
+			function changeCld() {
+					var y, m;
+					y = CLD.SY.selectedIndex + tY;
+					m = CLD.SM.selectedIndex;
+					drawCld(y, m);
+			}
 			//打开页时,在下拉列表中显示当前年月,并调用自定义函数drawCld(),显示公历和农历的相关信息
 			function initial() {
-					CLD.SY.selectedIndex = tY - 1900;
+					CLD.SY.selectedIndex = 0;
 					CLD.SM.selectedIndex = tM;
 					drawCld(tY, tM);
 				
