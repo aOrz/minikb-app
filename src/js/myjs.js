@@ -1,39 +1,3 @@
-//在登陆页面点击注册账号跳转页面函数
-function RegisterLink() {
-	var regButton = document.getElementById('reg');
-	mui.openWindow({
-		url: 'reg.html',
-		id: 'reg',
-		show: {
-			aniShow: 'pop-in'
-		},
-		styles: {
-			popGesture: 'hide'
-		},
-		waiting: {
-			autoShow: false
-		}
-	});
-}
-/*
- * 打开忘记密码页面
- */
-function ForgetPasswordLink() {
-	var regButton = document.getElementById('reg');
-	mui.openWindow({
-		url: 'forgetpassword.html',
-		id: 'forgetpassword',
-		show: {
-			aniShow: 'pop-in'
-		},
-		styles: {
-			popGesture: 'hide'
-		},
-		waiting: {
-			autoShow: false
-		}
-	});
-}
 //打开个人信息链接
 function OpenUserIntroLink() {
 	mui.openWindow({
@@ -57,24 +21,6 @@ function OpenWindows(id) {
 	mui.openWindow({
 		url: url,
 		id: id,
-		show: {
-			aniShow: 'pop-in'
-		},
-		styles: {
-			popGesture: 'hide'
-		},
-		waiting: {
-			autoShow: false
-		}
-	});
-}
-
-//打开使用须知页面
-function UseKnowLink() {
-	var forgetButton = document.getElementById('useknow');
-	mui.openWindow({
-		url: 'response.html',
-		id: 'response',
 		show: {
 			aniShow: 'pop-in'
 		},

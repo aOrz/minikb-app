@@ -394,7 +394,9 @@
 					"css/common.css"
 				],
 				"refer": [
-					"reg.html"
+					"reg.html",
+					"forgetpassword.html",
+					"response.html"
 				],
 				"priority": 0
 			},
@@ -530,7 +532,15 @@
 			},
 			"response.html": {
 				"href": "response.html",
-				"priority": 18
+				"priority": 18,
+				"resources": [
+					"js/mui.min.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/style.css"
+				],
+				"refer": []
 			},
 			"examples/pullrefresh_sub.html": {
 				"href": "examples/pullrefresh_sub.html",
@@ -575,22 +585,18 @@
 				],
 				"refer": [],
 				"priority": 0
+			},
+			"forgetpassword.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/style.css",
+					"js/myjs.js"
+				],
+				"refer": [],
+				"priority": 0
 			}
-		},
-		"index": {
-			"resources": [
-				"js/mui.min.js",
-				"fonts/mui.ttf",
-				"css/mui.min.css",
-				"js/update.js",
-				"css/style.css",
-				"list.html",
-				"js/myjs.js"
-			],
-			"refer": [
-				"index-menu.html"
-			],
-			"priority": 0
 		},
 		"idle": {
 			"resources": [
@@ -598,7 +604,6 @@
 				"images/star.png",
 				"images/beforestar.png",
 				"images/pull_fresh.png",
-				"forgetpassword.html",
 				"js/mui.view.js"
 			]
 		}
@@ -612,8 +617,7 @@
 	  "images/pull_fresh.png",
 	  "images/star.png",
 	  "js/mui.view.js",
-	  "jr.html",
-	  "response.html"
+	  "jr.html"
 	]
 
 	

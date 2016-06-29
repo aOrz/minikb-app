@@ -132,6 +132,12 @@ input[type=submit] {
 
 /*login_css结束*/
 
+/*responce_css开始*/
+.user-know .text_content{
+	padding: 10px;
+	text-indent: 20px;
+}
+/*responce_css结束*/
 
 /*reg_css开始*/
 
