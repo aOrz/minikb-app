@@ -163,31 +163,20 @@
 				});
 				var page = 1;
 //				mui('#content').pullRefresh().pullupLoading();
-				window.addEventListener('sssaba', function(event) {
-					//page = 1;
+				window.addEventListener('newmessage', function(event) {
 					var data1 = event.detail;
-					var contents=document.getElementById('contents').innerHTML;
-					console.log(JSON.stringify(data1));
+					var contents=document.getElementById('contents');
 					data1['moods'] =Tohtml(data1['moods']);
-					var html = '<li class="message ' + 'girl' + '" data-id="' + data1['mood_id'] + '" >' +
-						'<div class="massage_header" >' +
-						'<img src="images/face/' + '1' + '.png" style="width: 50px;" />' +
-						'<span class="username">某同学</span>' +
-						'</div>' +
-						'<div class="content_body">' +
-						'<p class="text">' + data1['moods'] +
-						'</p>' +
-						'</div>' +
-						'<div class="message_foooter">' +
-						'<div class="time">' +
-						'<span>' + '最近' + '</span>' +
-						'</div>' +
-						'<div class="comment">' +
-						'<span class="mui-icon mui-icon-chatbubble"></span>' +
-						'<span>' + '0' + '</span>' +
-						'</div>' +
-						'</div>' +
-						'</li>';
+					html='<li class="message" data-id="' + data1['mood_id'] + '"><div class="massage_header" >'+
+									'<img src="images/face/1.png" style="width: 50px;" />'+
+									'<span class="username">某同学</span></div>'+
+									'<div class="content_body"><p class="text">'+data1['moods']+
+									'</p></div>'+
+									'<div class="message_foooter"><div class="time"><span>'+
+									'最近' + '</span>'+
+									'</div><div class="comment">'+
+									'<span class="mui-icon mui-icon-chatbubble"></span><span>'+
+									0+'</span></div></div></li>';
 
 					contents.innerHTML = html + contents.innerHTML;
 				});
@@ -226,7 +215,7 @@
 //									'</div>' +
 //									'</div>' +
 //									'</li>';
-								html='<li class="message" ><div class="massage_header" >'+
+								html='<li class="message" data-id="' + data1['mood_id'] + '"><div class="massage_header" >'+
 									'<img src="images/face/' + num + '.png" style="width: 50px;" />'+
 									'<span class="username">某同学</span></div>'+
 									'<div class="content_body"><p class="text">'+data1['moods']+
