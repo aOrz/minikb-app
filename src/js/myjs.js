@@ -1339,7 +1339,7 @@ getDateDiff = function(dateTimeStamp) {
 	var hourC = diffValue / hour;
 	var minC = diffValue / minute;
 	if (yearC+weekC+monthC >= 1) {
-		return dateTime.getFullYear()+'/'+dateTime.getMonth()+'/'+dateTime.getDate();
+		return dateTime.getFullYear()+'/'+dateTime.getMonth()+'/'+dateTime.getDate()+' '+dateTime.getHours()+':'+dateTime.getMinutes();
 	} else if (dayC >= 1) {
 		result = "" + parseInt(dayC) + "天前";
 	} else if (hourC >= 1) {
