@@ -213,10 +213,6 @@ input[type=submit] {
 	text-align: center;
 }
 
-.reg .icon .mui-icon {
-	font-size: 28px;
-}
-
 .reg .name_input {
 	position: relative;
 	top: -40px;
@@ -716,29 +712,6 @@ td {
 
 /*searchclass_css结束*/
 
-/*forgetpassword_css开始*/
-.v-code{
-	margin-top: 20px;
-}
-.v-code .v-code-input{
-	width: 70%;
-	border-left: 0px;
-	border-right: 0px;
-}
-.v-code .v-code-btn{
-	width: 30%;
-	height: 40px;
-	border-left: 0px;
-	border-right: 0px;
-	background: #00B6EC;
-  color: #FFF;
-}
-.v-code .email{
-	margin: 0px;
-	border: 0px;
-}
-/*forgetpassword_css结束*/
-
 /*forwardest_css开始 */
 
 .forwardest,
@@ -901,7 +874,6 @@ td {
 /*calender_css结束*/
 
 /*message_css开始*/
-/*message_css */
 .write-message .message .content_body .text {
 
 	line-height: 25px;
@@ -987,31 +959,65 @@ td {
 	border-radius: 50%;
 }
 /*message_css结束*/
+
+/*forgetpassword_css开始*/
+.v-code{
+	margin-top: 20px;
+}
+.v-code .v-code-input{
+	width: 70%;
+	border-left: 0px;
+	border-right: 0px;
+	border-bottom: 0px;
+}
+.v-code .v-code-btn{
+	width: 30%;
+	height: 40px;
+	border-left: 0px;
+	border-right: 0px;
+	background: #33cccc;
+    color: #FFF;
+    border: 0px;
+    border-radius: 0px;
+}
+.v-code .email{
+	margin: 0px;
+	border: 0px;
+}
 .changepassword .password_form {
 	position: relative;
 	top: 30px;
+	text-align: center;
+	clear: both;
 }
 
 .changepassword .password_form input {
 	border: 0px;
 	border-bottom: 1px solid #CCCCCC;
 }
-
+.changepassword .password_form input[id='password_confirm']{
+	border-bottom: 0px;
+}
 .changepassword #password {
 	margin: 0px;
 }
-
 .changepassword .password_form button {
 	border: 0px;
-	width: 100%;
-	margin-top: 40px;
+	width: 90%;
+	margin-top: 5px;
 	height: 40px;
-	background: #00B6EC;
+	background: #33cccc;
 	color: #FFF;
 }
-
+.changepassword .password_form button:hover{
+	background: #00B6EC;
+}
 .changepassword .mui-bar .mui-btn-link {
 	color: #FFF;
+}
+.changepassword .v-code input,
+.changepassword .password_form input{
+	padding-left: 35px;
 }
 
 .red_point {
@@ -1024,7 +1030,21 @@ td {
 	right: 8px;
 	position: absolute;
 }
-
+.changepassword .row {
+    position: relative;
+    line-height: 40px;
+    color: #BBBBBB;
+    text-align: center;
+}
+.changepassword .row span{
+	position: absolute;
+	top: 10px;
+	left: 5px;
+}
+.mui-icon{
+	font-size: 24px;
+}
+/*forgetpassword_css结束*/
 
 /*对话框根布局(属于遮罩)*/
 

@@ -15,3 +15,9 @@ html,body{
 .mui-bar .mui-title{
 	color: white;
 }
+input{
+	color: #777;
+}
+input[type=text], input[type=password]{
+	border-radius: 0px;
+}
