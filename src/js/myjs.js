@@ -1528,7 +1528,24 @@ function layerClose(closeEvent) {
 /*
  * 发送验证码
  */
+function SendWaitTime(o,wait) { 
+	var time=wait;
+    if (time == 0) {  
+        o.removeAttribute("disabled");            
+        o.innerHTML="发送验证码";  
+        time = wait;  
+    } else {  
+        o.setAttribute("disabled", "disabled");  
+        o.innerHTML="重新发送(" + time + "s)";  
+        time--;  
+        setTimeout(function() {  
+            SendWaitTime(o,time);
+        },  
+        1000);  
+    }  
+}  
 function SendCode(){
+
 	var email=document.getElementById("v-code-email").value;
 //	console.log(email);
 	if (!IsEmail(email)) {
@@ -1542,6 +1559,11 @@ function SendCode(){
 		document.getElementById('v-code-email').focus();
 		return;
 	}
+	
+	var sendBtn=document.getElementById("sendBtn");
+	var wait=30;
+	SendWaitTime(sendBtn,wait);
+	
 	mui.ajax('http://2.minikb.sinaapp.com/controller/forgetPassword_controller.php', {
 		data: {userid:email},
 		type: 'get', //HTTP请求类型
