@@ -1,39 +1,3 @@
-//在登陆页面点击注册账号跳转页面函数
-function RegisterLink() {
-	var regButton = document.getElementById('reg');
-	mui.openWindow({
-		url: 'reg.html',
-		id: 'reg',
-		show: {
-			aniShow: 'pop-in'
-		},
-		styles: {
-			popGesture: 'hide'
-		},
-		waiting: {
-			autoShow: false
-		}
-	});
-}
-/*
- * 打开忘记密码页面
- */
-function ForgetPasswordLink() {
-	var regButton = document.getElementById('reg');
-	mui.openWindow({
-		url: 'forgetpassword.html',
-		id: 'forgetpassword',
-		show: {
-			aniShow: 'pop-in'
-		},
-		styles: {
-			popGesture: 'hide'
-		},
-		waiting: {
-			autoShow: false
-		}
-	});
-}
 //打开个人信息链接
 function OpenUserIntroLink() {
 	mui.openWindow({
@@ -57,24 +21,6 @@ function OpenWindows(id) {
 	mui.openWindow({
 		url: url,
 		id: id,
-		show: {
-			aniShow: 'pop-in'
-		},
-		styles: {
-			popGesture: 'hide'
-		},
-		waiting: {
-			autoShow: false
-		}
-	});
-}
-
-//打开使用须知页面
-function UseKnowLink() {
-	var forgetButton = document.getElementById('useknow');
-	mui.openWindow({
-		url: 'response.html',
-		id: 'response',
 		show: {
 			aniShow: 'pop-in'
 		},
@@ -1582,18 +1528,46 @@ function layerClose(closeEvent) {
 /*
  * 发送验证码
  */
+function SendWaitTime(o,wait) { 
+	var time=wait;
+    if (time == 0) {  
+        o.removeAttribute("disabled");            
+        o.innerHTML="发送验证码";  
+        time = wait;  
+    } else {  
+        o.setAttribute("disabled", "disabled");  
+        o.innerHTML="重新发送(" + time + "s)";  
+        time--;  
+        setTimeout(function() {  
+            SendWaitTime(o,time);
+        },  
+        1000);  
+    }  
+}  
 function SendCode(){
+
 	var email=document.getElementById("v-code-email").value;
-	console.log(email);
+//	console.log(email);
 	if (!IsEmail(email)) {
 		plus.nativeUI.toast("邮箱格式不正确");
 		document.getElementById('v-code-email').focus();
 		return;
 	} 
+
+	if (!CheckIdExists(email)) {
+		plus.nativeUI.toast("邮箱未注册");
+		document.getElementById('v-code-email').focus();
+		return;
+	}
+	
+	var sendBtn=document.getElementById("sendBtn");
+	var wait=30;
+	SendWaitTime(sendBtn,wait);
+	
 	mui.ajax('http://2.minikb.sinaapp.com/controller/forgetPassword_controller.php', {
 		data: {userid:email},
 		type: 'get', //HTTP请求类型
-		timeout: 3000, //超时时间设置为10秒；
+		timeout: 3000, //超时时间设置为3秒；
 		success: function(data) {
 			console.log("send vcode success and data="+data);
 			if (!data) {

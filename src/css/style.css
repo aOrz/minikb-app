@@ -132,6 +132,12 @@ input[type=submit] {
 
 /*login_css结束*/
 
+/*responce_css开始*/
+.user-know .text_content{
+	padding: 10px;
+	text-indent: 20px;
+}
+/*responce_css结束*/
 
 /*reg_css开始*/
 
@@ -205,10 +211,6 @@ input[type=submit] {
 	top: -40px;
 	color: #BBBBBB;
 	text-align: center;
-}
-
-.reg .icon .mui-icon {
-	font-size: 28px;
 }
 
 .reg .name_input {
@@ -472,37 +474,46 @@ td {
 
 
 /*index-menu_css开始*/
-
+.index-menu .title {
+	margin: 35px 15px 10px;
+}
+.index-menu .title+.content {
+	margin: 10px 15px 35px;
+	color: #bbb;
+	text-indent: 1em;
+	font-size: 14px;
+	line-height: 24px;
+}
+.index-menu .mui-table-view {
+	margin-bottom: 35px;
+}
+.index-menu #nc {
+	overflow: inherit;
+}
 .index-menu .mui-table-view .my_user:hover {
 	background-color: #282626;
 	border-left: 5px solid #68BA8A;
 }
-
 .index-menu .mui-table-view .my_day:hover {
 	background-color: #282626;
 	border-left: 5px solid #e4e4ee;
 }
-
 .index-menu .mui-table-view .my_kb:hover {
 	background-color: #282626;
 	border-left: 5px solid #dff0d8;
 }
-
 .index-menu .mui-table-view .my_ck:hover {
 	background-color: #282626;
 	border-left: 5px solid #afd9ee;
 }
-
 .mui-table-view .my_set:hover {
 	background-color: #282626;
 	border-left: 5px solid #f7ecb5;
 }
-
 .mui-table-view .my_change:hover {
 	background-color: #282626;
 	border-left: 5px solid #f2dede;
 }
-
 .mui-table-view .my_help:hover {
 	background-color: #282626;
 	border-left: 5px solid #AFD9EE;
@@ -512,22 +523,14 @@ td {
 	background-color: #282626;
 	border-left: 5px solid #F7ECB5;
 }
-
 .content .mui-btn-danger {
 	background-color: #33CCCC;
 	border: 0px;
 }
-
-.index-menu .mui-content {
-	background-color: #333;
-	color: #fff;
-}
-
 .index-menu .title {
 	margin: 35px 15px 10px;
 	font-size: 20px;
 }
-
 .index-menu .title+.content {
 	margin: 10px 15px 35px;
 	color: #bbb;
@@ -535,47 +538,99 @@ td {
 	font-size: 14px;
 	line-height: 24px;
 }
-
-.index-menu .mui-table-view {
-	margin-bottom: 35px;
-	background-color: #333;
+.index-menu .mui-navigate-right:after, .mui-push-right:after {
+    display: none;
 }
-
 .index-menu .mui-content>.mui-table-view:first-child {
 	margin-top: 0px;
 }
-
 .index-menu .user_face {
-	height: 60px;
-	margin: 10px 0px;
+	height: 65px;
 	width: 100%;
 }
-
+.index-menu .usermessage{
+	background: url(../images/sky.png);
+	background-size: cover;
+	box-shadow: 1px 1px 5px #cccccc;
+	height: 90px;
+}
+.index-menu .mui-table-view-inverted{
+	color: #383838;
+}
+.index-menu .mui-table-view-inverted{
+	background: #F4F4F4;
+}
+.index-menu .mui-table-view-inverted:before{
+	height: 0px;
+}
 .index-menu .user_face img {
 	border-radius: 50%;
 	width: 60px;
 	float: left;
 }
+.index-menu .mui-table-view-inverted .mui-table-view-cell:after {
+	background-color: #DEDeDe;
+}
 
+.index-menu .mui-table-view-inverted .mui-table-view-cell.mui-active,
+.index-menu .mui-table-view-inverted .mui-table-view-cell>a:not(.mui-btn).mui-active {
+	background-color:#DEDeDe
+}
 .index-menu .user_face .intro {
 	float: left;
-	padding-left: 20px;
+	/*padding-left: 20px;*/
 	height: 60px;
 	width: 80px;
 }
 
 .index-menu .user_face .intro h1 {
 	color: #FFF;
-	font-size: 22px;
+    font-size: 17px;
+    font-weight: normal;
+    text-shadow: 1px 1px 1px #696969;
 }
 
 .index-menu .user_face .intro p {
-	font-size: 14px;
+	font-size: 16px;
 	margin: 0 auto;
-	padding-left: 5px;
+	margin-top: 25px;
+	color: #fff;
+	text-shadow: 1px 1px 1px #696969;
 }
 
-
+.mui-table-view-inverted .mui-table-view-cell:after {
+    height: 0px;
+}
+.mui-table-view-inverted:after{
+	height: 0px;
+}
+.index-menu .mui-navigate-right {
+    font-size: 15px;
+}
+.index-menu footer{
+	position: fixed;
+    bottom: 0px;
+    background: #FFF;
+    height: 40px;
+    width: 100%;
+    line-height: 40px;
+    text-align: center;
+}
+.index-menu footer .logout{
+    width: 100%;
+    float: right;
+}
+.index-menu footer .logout a{
+	color: #33CCCC;
+	display: block;
+}
+.index-menu .menu-icon {
+    color: #33CCCC;
+    padding-right: 5px;
+    font-size: 24px;
+    position: relative;
+    top: 4px;
+}
 /*index-menu_css结束*/
 
 
@@ -709,29 +764,6 @@ td {
 
 
 /*searchclass_css结束*/
-
-/*forgetpassword_css开始*/
-.v-code{
-	margin-top: 20px;
-}
-.v-code .v-code-input{
-	width: 70%;
-	border-left: 0px;
-	border-right: 0px;
-}
-.v-code .v-code-btn{
-	width: 30%;
-	height: 40px;
-	border-left: 0px;
-	border-right: 0px;
-	background: #00B6EC;
-  color: #FFF;
-}
-.v-code .email{
-	margin: 0px;
-	border: 0px;
-}
-/*forgetpassword_css结束*/
 
 /*forwardest_css开始 */
 
@@ -895,7 +927,6 @@ td {
 /*calender_css结束*/
 
 /*message_css开始*/
-/*message_css */
 .write-message .message .content_body .text {
 
 	line-height: 25px;
@@ -981,31 +1012,64 @@ td {
 	border-radius: 50%;
 }
 /*message_css结束*/
+
+/*forgetpassword_css开始*/
+.v-code{
+	margin-top: 20px;
+}
+.v-code .v-code-input{
+	width: 70%;
+	border-left: 0px;
+	border-right: 0px;
+	border-bottom: 0px;
+}
+.v-code .v-code-btn{
+	width: 30%;
+	height: 40px;
+	border-left: 0px;
+	border-right: 0px;
+	background: #33cccc;
+    color: #FFF;
+    border: 0px;
+    border-radius: 0px;
+}
+.v-code .email{
+	margin: 0px;
+	border: 0px;
+}
 .changepassword .password_form {
 	position: relative;
 	top: 30px;
+	text-align: center;
+	clear: both;
 }
-
 .changepassword .password_form input {
 	border: 0px;
 	border-bottom: 1px solid #CCCCCC;
 }
-
+.changepassword .password_form input[id='password_confirm']{
+	border-bottom: 0px;
+}
 .changepassword #password {
 	margin: 0px;
 }
-
 .changepassword .password_form button {
 	border: 0px;
-	width: 100%;
-	margin-top: 40px;
+	width: 90%;
+	margin-top: 5px;
 	height: 40px;
-	background: #00B6EC;
+	background: #33cccc;
 	color: #FFF;
 }
-
+.changepassword .password_form button:hover{
+	background: #00B6EC;
+}
 .changepassword .mui-bar .mui-btn-link {
 	color: #FFF;
+}
+.changepassword .v-code input,
+.changepassword .password_form input{
+	padding-left: 35px;
 }
 
 .red_point {
@@ -1018,7 +1082,21 @@ td {
 	right: 8px;
 	position: absolute;
 }
-
+.changepassword .row {
+    position: relative;
+    line-height: 40px;
+    color: #BBBBBB;
+    text-align: center;
+}
+.changepassword .row span{
+	position: absolute;
+	top: 10px;
+	left: 5px;
+}
+.mui-icon{
+	font-size: 24px;
+}
+/*forgetpassword_css结束*/
 
 /*对话框根布局(属于遮罩)*/
 

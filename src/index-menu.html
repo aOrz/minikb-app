@@ -8,19 +8,15 @@
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
 		<link rel="stylesheet" href="css/style.css" />
 
 		<script src="js/mui.min.js"></script>
 		<script type="text/javascript" src="js/vue.min.js"></script>
 		<script type="text/javascript" src="js/myjs.js"></script>
 		<style type="text/css">
-			body,
-			.mui-content {
-				background-color: #333;
-				color: #fff;
-			}
-			
-			.title {
+			/*.title {
 				margin: 35px 15px 10px;
 			}
 			
@@ -43,18 +39,18 @@
 			
 			#nc {
 				overflow: inherit;
-			}
+			}*/
 		</style>
 	</head>
 
 	<body class="index-menu">
 		<div class="mui-content">
 
-			<ul class="mui-table-view mui-table-view-chevron mui-table-view-inverted" style="color: #ddd;" id="i-menu">
+			<ul class="mui-table-view mui-table-view-chevron mui-table-view-inverted" id="i-menu">
 				<li class="mui-table-view-cell usermessage">
 					<a class="mui-navigate-right" open-type="common" href="usermessage.html">
 						<div class="user_face">
-							<img id="face" src="images/80.png" />
+							<!--<img id="face" src="images/80.png" />-->
 							<span id="intro" class="intro">
 								<h1 class="mui-ellipsis" id="nc" v-cloak>{{nc}}</h1>
 								<p id="day"></p>
@@ -62,44 +58,39 @@
 						</div>
 					</a>
 				</li>
-				<!--<li class="mui-table-view-cell">
-					<a class="mui-navigate-right" open-type="common" href="login.html">
-						用户登录
-					</a>
-				</li>-->
-
-				<!--<li class="mui-table-view-cell">
-					<a class="mui-navigate-right" open-type="common" href="jr.html">
-						今日课表
-					</a>
-				</li>-->
 				<li class="mui-table-view-cell">
 					<a class="mui-navigate-right" open-type="" href="kb.html">
+						<span class="menu-icon iconfont">&#xe656;</span>
 						全部课表
 					</a>
 				</li>
 				<li class="mui-table-view-cell" v-if="xx">
 					<a class="mui-navigate-right" open-type="common" href="searchclass.html">
+						<span class="menu-icon iconfont">&#xe664;</span>
 						我要蹭课
 					</a>
 				</li>
 				<li class="mui-table-view-cell" v-if="xx">
 					<a class="mui-navigate-right" open-type="common" href="searchroom.html">
+						<span class="menu-icon iconfont">&#xe6d6;</span>
 						查空教室
 					</a>
 				</li>
 				<li class="mui-table-view-cell" v-if="xx">
 					<a class="mui-navigate-right" open-type="common" href="calendar.html">
+						<span class="menu-icon iconfont">&#xe669;</span>
 						校历查询
 					</a>
 				</li>
 				<li class="mui-table-view-cell">
 					<a class="mui-navigate-right" open-type="common" href="xgkb.html">
+						<span class="menu-icon iconfont">&#xe696;</span>
 						修改课表
 					</a>
 				</li>
 				<li class="mui-table-view-cell">
 					<a class="mui-navigate-right" open-type="common" href="im-chat.html">
+						<span class="menu-icon iconfont">&#xe65f;</span>
 						客服小课
 					</a>
 				</li>
@@ -110,12 +101,15 @@
 				</li>-->
 				<li class="mui-table-view-cell">
 					<a class="mui-navigate-right" open-type="common" href="setting.html">
+						<span class="menu-icon mui-icon mui-icon-settings"></span>
 						设置<span class="mui-badge mui-badge-danger" v-if="is_warn" v-cloak>1</span>
 					</a>
 				</li>
 			</ul>
 		</div>
-
+		<footer>
+			<div class="logout"><a id="logout">登出</a></div>
+		</footer>
 		<script type="text/javascript" charset="utf-8">
 			mui.init({
 				gestureConfig: {
@@ -238,6 +232,13 @@
 				if (Math.abs(e.detail.angle) > 170) {
 					close();
 				}
+			});
+			//实现注销登录，返回到登录界面
+			document.getElementById('logout').addEventListener('tap', function() {
+				list = plus.webview.getWebviewById('list.html');
+				mui.fire(list, "login", '');
+				plus.storage.clear();
+				mui.back();
 			});
 		</script>
 	</body>
