@@ -552,7 +552,8 @@ td {
 	background: url(../images/sky.png);
 	background-size: cover;
 	box-shadow: 1px 1px 5px #cccccc;
-	height: 90px;
+	height: 111px;
+	padding: 21px 15px 11px;
 }
 .index-menu .mui-table-view-inverted{
 	color: #383838;

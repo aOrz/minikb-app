@@ -31,9 +31,9 @@ def getData(file,t_name = "",c_name = ''):
         #去掉课程号 原理：grep sub 如果是第一行的话
         _str.append(table.col_values(i)[l]) 
         if l == j[0]:
-          #print(_str)
           _str[0] = re.sub(r"\(.*?\)","",_str[0])
-        #if _str != "":
+        if l == j[2] and _str[2] != '' and l < 45:
+          _str[2] = _str[2] + '周' + str(i-1)
       makeSql(_str,t_name,c_name)
       #if l == j[-1]:
       #print("------------------\n")
@@ -48,7 +48,7 @@ def makeSql(courseList = [],t_name = "",c_name = ''):
   if len(courseList) < 4:
     courseList.append('')
   if courseList[0]!='':
-    sql = "insert into courseAll (course_name,course_teaacher,course_time,course_room,course_class,school,college) values ('"+courseList[0] +"','"+ t_name+"','"+courseList[2]+"','"+courseList[1]+"','"+courseList[3]+"',"+"'yd','"+c_name+"');" + "\n"
+    sql = "insert into courseAll (course_name,course_teaacher,course_time,course_room,course_class,school,college) values ('"+courseList[0] +"','"+ t_name+"','"+courseList[2]+"','"+courseList[1]+"','"+courseList[3]+"',"+"'wj','"+c_name+"');" + "\n"
     file_object.write(sql)
 print(os.listdir('./teacher/'))
 
