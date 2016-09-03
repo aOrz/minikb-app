@@ -3,8 +3,8 @@
 	"id": "H5291D2691",/*必选，应用的标识*/
 	"name": "迷你课表",/*必选，应用名称*/
 	"version": {
-		"name": "2.8.2",/*必选，版本名称*/
-		"code": "14675"
+		"name": "2.8.3",/*必选，版本名称*/
+		"code": "14676"
 	},
 	"description": "",/*可选，应用描述信息*/
 	"icons": {
@@ -144,501 +144,500 @@
 		}
 	},
 	"dependencies": {
-	  "pages": {
-	    "index.html": {
-	      "resources": [
-	        "js/mui.min.js",
-	        "fonts/mui.ttf",
-	        "css/mui.min.css",
-	        "js/update.js",
-	        "css/style.css",
-	        "list.html",
-	        "js/myjs.js",
-	        "js/vue.min.js",
-	        "manifest.json",
-	        "images/sky.png"
-	      ],
-	      "refer": [
-	        "index-menu.html",
-	        "message.html",
-	        "response.html",
-	        "reg.html",
-	        "usermessage.html",
-	        "ck.html",
-	        "ckkb.html",
-	        "list.html"
-	      ],
-	      "priority": 0
-	    },
-	    "index-menu.html": {
-	      "resources": [
-	        "images/80.png",
-	        "fonts/mui.ttf",
-	        "js/mui.min.js",
-	        "css/mui.min.css",
-	        "css/style.css",
-	        "js/myjs.js",
-	        "js/vue.min.js",
-	        "images/sky.png",
-	        "css/common.css",
-	        "css/iconfont.css",
-	        "fonts/iconfont.ttf"
-	      ],
-	      "refer": [
-	        "setting.html",
-	        "searchclass.html",
-	        "im-chat.html",
-	        "usermessage.html",
-	        "searchroom.html",
-	        "xgkb.html",
-	        "other.html",
-	        "calendar.html",
-	        "jr.html",
-	        "list.html",
-	        "response.html",
-	        "reg.html",
-	        "ck.html",
-	        "kb.html",
-	        "login.html"
-	      ],
-	      "priority": 0
-	    },
-	    "examples/template.html": {
-	      "resources": [
-	        "kb.html",
-	        "js/mui.min.js",
-	        "fonts/mui.ttf",
-	        "css/mui.min.css",
-	        "css/style.css",
-	        "images/sky.png"
-	      ],
-	      "refer": [],
-	      "priority": 0
-	    },
-	    "list.html": {
-	      "resources": [
-	        "js/mui.min.js",
-	        "css/mui.min.css",
-	        "css/style.css",
-	        "js/myjs.js",
-	        "js/vue.min.js",
-	        "fonts/mui.ttf",
-	        "images/sky.png"
-	      ],
-	      "refer": [
-	        "examples/template.html",
-	        "kb.html",
-	        "login.html",
-	        "detail.html"
-	      ],
-	      "priority": 0
-	    },
-	    "message.html": {
-	      "resources": [
-	        "images/face/2.png",
-	        "images/face/6.png",
-	        "images/face/4.png",
-	        "images/face/5.png",
-	        "images/face/3.png",
-	        "images/face/1.png",
-	        "js/mui.min.js",
-	        "fonts/mui.ttf",
-	        "css/mui.min.css",
-	        "js/myjs.js",
-	        "js/mui.js",
-	        "css/common.css",
-	        "css/style.css",
-	        "css/iconfont.css",
-	        "fonts/iconfont.ttf",
-	        "js/vue.min.js",
-	        "images/sky.png"
-	      ],
-	      "refer": [
-	        "postmessage.html",
-	        "comment.html",
-	        "mymessage.html"
-	      ],
-	      "priority": 0
-	    },
-	    "postmessage.html": {
-	      "resources": [
-	        "js/mui.min.js",
-	        "fonts/mui.ttf",
-	        "css/mui.min.css",
-	        "js/myjs.js",
-	        "css/style.css",
-	        "images/sky.png"
-	      ],
-	      "refer": [
-	        "message.html"
-	      ],
-	      "priority": 0
-	    },
-	    "comment.html": {
-	      "resources": [
-	        "images/face/5.png",
-	        "js/mui.min.js",
-	        "fonts/mui.ttf",
-	        "css/mui.min.css",
-	        "images/face/6.png",
-	        "images/face/1.png",
-	        "images/face/3.png",
-	        "images/face/4.png",
-	        "images/face/2.png",
-	        "js/myjs.js",
-	        "js/vue.min.js",
-	        "css/style.css",
-	        "images/80.png",
-	        "images/sky.png"
-	      ],
-	      "refer": [],
-	      "priority": 0
-	    },
-	    "setting.html": {
-	      "resources": [
-	        "js/mui.min.js",
-	        "fonts/mui.ttf",
-	        "images/80.png",
-	        "css/mui.min.css",
-	        "css/style.css",
-	        "js/myjs.js",
-	        "about.html",
-	        "js/vue.min.js",
-	        "images/sky.png"
-	      ],
-	      "refer": [
-	        "usermessage.html",
-	        "changepassword.html",
-	        "im-chat.html",
-	        "xgkb.html",
-	        "ring.html",
-	        "login.html",
-	        "list.html",
-	        "response.html",
-	        "reg.html",
-	        "ck.html",
-	        "about.html"
-	      ],
-	      "priority": 0
-	    },
-	    "about.html": {
-	      "resources": [
-	        "images/xp.png",
-	        "images/wz.png",
-	        "setting.html",
-	        "images/ssm.png",
-	        "js/mui.min.js",
-	        "fonts/mui.ttf",
-	        "images/80.png",
-	        "css/mui.min.css",
-	        "css/style.css"
-	      ],
-	      "refer": [],
-	      "priority": 0
-	    },
-	    "searchclass.html": {
-	      "resources": [
-	        "js/mui.min.js",
-	        "fonts/mui.ttf",
-	        "images/80.png",
-	        "css/mui.min.css",
-	        "css/style.css",
-	        "js/myjs.js",
-	        "searchclass.html",
-	        "images/sky.png"
-	      ],
-	      "refer": [
-	        "ck.html",
-	        "ckkb.html",
-	        "list.html",
-	        "response.html",
-	        "reg.html",
-	        "usermessage.html"
-	      ],
-	      "priority": 0
-	    },
-	    "im-chat.html": {
-	      "resources": [
-	        "images/face/1.png",
-	        "js/mui.imageViewer.js",
-	        "images/face/2.png",
-	        "script/jquery-1.11.1.js",
-	        "js/mui.min.js",
-	        "script/json2.js",
-	        "fonts/mui.ttf",
-	        "script/easemob.im-1.0.5.js",
-	        "css/mui.min.css",
-	        "css/style.css",
-	        "css/mui.imageviewer.css",
-	        "js/arttmpl.js",
-	        "script/strophe-custom-2.0.0.js",
-	        "images/sky.png"
-	      ],
-	      "refer": [],
-	      "priority": 0
-	    },
-	    "usermessage.html": {
-	      "resources": [
-	        "js/mui.min.js",
-	        "css/mui.min.css",
-	        "css/style.css",
-	        "js/myjs.js",
-	        "fonts/mui.ttf",
-	        "images/sky.png"
-	      ],
-	      "refer": [],
-	      "priority": 0
-	    },
-	    "changepassword.html": {
-	      "resources": [
-	        "js/mui.min.js",
-	        "fonts/mui.ttf",
-	        "css/mui.min.css",
-	        "css/style.css",
-	        "js/myjs.js"
-	      ],
-	      "refer": [],
-	      "priority": 0
-	    },
-	    "login.html": {
-	      "resources": [
-	        "images/80.png",
-	        "js/mui.min.js",
-	        "fonts/mui.ttf",
-	        "css/mui.min.css",
-	        "css/style.css",
-	        "js/myjs.js",
-	        "css/common.css",
-	        "images/sky.png"
-	      ],
-	      "refer": [
-	        "reg.html",
-	        "forgetpassword.html",
-	        "response.html"
-	      ],
-	      "priority": 0
-	    },
-	    "kb.html": {
-	      "resources": [
-	        "js/mui.min.js",
-	        "css/mui.min.css",
-	        "css/style.css",
-	        "js/myjs.js",
-	        "images/80.png",
-	        "fonts/mui.ttf",
-	        "images/sky.png"
-	      ],
-	      "refer": [
-	        "examples/template.html",
-	        "list.html",
-	        "response.html",
-	        "reg.html",
-	        "usermessage.html",
-	        "ck.html"
-	      ],
-	      "priority": 0
-	    },
-	    "searchroom.html": {
-	      "resources": [
-	        "js/mui.min.js",
-	        "fonts/mui.ttf",
-	        "css/mui.min.css",
-	        "js/vue.min.js",
-	        "css/style.css",
-	        "images/sky.png"
-	      ],
-	      "refer": [],
-	      "priority": 0
-	    },
-	    "xgkb.html": {
-	      "resources": [
-	        "js/mui.min.js",
-	        "fonts/mui.ttf",
-	        "css/mui.min.css",
-	        "js/myjs.js",
-	        "css/style.css",
-	        "js/vue.min.js",
-	        "images/sky.png"
-	      ],
-	      "refer": [
-	        "list.html",
-	        "response.html",
-	        "reg.html",
-	        "usermessage.html",
-	        "ck.html"
-	      ],
-	      "priority": 0
-	    },
-	    "other.html": {
-	      "resources": [
-	        "js/mui.min.js",
-	        "fonts/mui.ttf",
-	        "css/mui.min.css",
-	        "css/style.css"
-	      ],
-	      "refer": [],
-	      "priority": 0
-	    },
-	    "calendar.html": {
-	      "resources": [
-	        "js/mui.min.js",
-	        "fonts/mui.ttf",
-	        "css/mui.min.css",
-	        "css/style.css",
-	        "js/myjs.js",
-	        "images/sky.png"
-	      ],
-	      "refer": [
-	        "list.html",
-	        "response.html",
-	        "reg.html",
-	        "usermessage.html",
-	        "ck.html"
-	      ],
-	      "priority": 0
-	    },
-	    "ck.html": {
-	      "resources": [
-	        "js/mui.min.js",
-	        "fonts/mui.ttf",
-	        "css/mui.min.css",
-	        "css/style.css",
-	        "js/myjs.js",
-	        "images/sky.png"
-	      ],
-	      "refer": [],
-	      "priority": 0
-	    },
-	    "ring.html": {
-	      "resources": [
-	        "js/vue.min.js",
-	        "js/mui.min.js",
-	        "fonts/mui.ttf",
-	        "css/mui.min.css",
-	        "css/style.css",
-	        "js/myjs.js"
-	      ],
-	      "refer": [],
-	      "priority": 0
-	    },
-	    "reg.html": {
-	      "resources": [
-	        "js/mui.min.js",
-	        "fonts/mui.ttf",
-	        "css/mui.min.css",
-	        "css/style.css",
-	        "js/myjs.js"
-	      ],
-	      "refer": [],
-	      "priority": 0
-	    },
-	    "ckkb.html": {
-	      "resources": [
-	        "js/mui.min.js",
-	        "fonts/mui.ttf",
-	        "css/mui.min.css",
-	        "css/style.css",
-	        "js/myjs.js",
-	        "images/sky.png"
-	      ],
-	      "refer": [],
-	      "priority": 0
-	    },
-	    "detail.html": {
-	      "resources": [
-	        "js/mui.min.js",
-	        "fonts/mui.ttf",
-	        "css/mui.min.css",
-	        "css/style.css",
-	        "js/vue.min.js",
-	        "images/sky.png"
-	      ],
-	      "refer": [],
-	      "priority": 0
-	    },
-	    "response.html": {
-	      "href": "response.html",
-	      "priority": 18,
-	      "resources": [
-	        "js/mui.min.js",
-	        "css/common.css",
-	        "fonts/mui.ttf",
-	        "css/mui.min.css",
-	        "css/style.css"
-	      ],
-	      "refer": []
-	    },
-	    "examples/pullrefresh_sub.html": {
-	      "href": "examples/pullrefresh_sub.html",
-	      "resources": [],
-	      "priority": 7
-	    },
-	    "examples/pullrefresh_main.html": {
-	      "href": "examples/pullrefresh_main.html",
-	      "resources": [],
-	      "refer": [
-	        "examples/pullrefresh_sub.html"
-	      ],
-	      "priority": 7
-	    },
-	    "jr.html": {
-	      "href": "jr.html",
-	      "resources": [],
-	      "refer": [
-	        "examples/template.html",
-	        "list.html",
-	        "response.html",
-	        "reg.html",
-	        "usermessage.html",
-	        "ck.html"
-	      ],
-	      "priority": 6
-	    },
-	    "mymessage.html": {
-	      "resources": [
-	        "fonts/mui.ttf",
-	        "css/iconfont.css",
-	        "images/face/3.png",
-	        "images/face/1.png",
-	        "images/face/2.png",
-	        "images/face/5.png",
-	        "js/mui.min.js",
-	        "css/mui.min.css",
-	        "css/style.css",
-	        "images/face/6.png",
-	        "images/face/4.png",
-	        "js/myjs.js",
-	        "images/sky.png",
-	        "fonts/iconfont.ttf"
-	      ],
-	      "refer": [
-	        "comment.html",
-	        "postmessage.html"
-	      ],
-	      "priority": 0
-	    },
-	    "forgetpassword.html": {
-	      "resources": [
-	        "js/mui.min.js",
-	        "fonts/mui.ttf",
-	        "css/mui.min.css",
-	        "css/style.css",
-	        "js/myjs.js",
-	        "css/common.css"
-	      ],
-	      "refer": [],
-	      "priority": 0
-	    }
-	  },
-	  "idle": {
-	    "resources": [
-	      "images/pull_arrow.png",
-	      "images/star.png",
-	      "images/beforestar.png",
-	      "images/pull_fresh.png",
-	      "js/mui.view.js"
-	    ]
-	  }
+		"pages": {
+			"index.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/update.js",
+					"css/style.css",
+					"list.html",
+					"js/myjs.js",
+					"js/vue.min.js",
+					"manifest.json",
+					"images/sky.png"
+				],
+				"refer": [
+					"index-menu.html",
+					"message.html",
+					"response.html",
+					"reg.html",
+					"usermessage.html",
+					"ck.html",
+					"ckkb.html"
+				],
+				"priority": 0
+			},
+			"index-menu.html": {
+				"resources": [
+					"images/80.png",
+					"fonts/mui.ttf",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"css/style.css",
+					"js/myjs.js",
+					"js/vue.min.js",
+					"images/sky.png",
+					"css/common.css",
+					"css/iconfont.css",
+					"fonts/iconfont.ttf"
+				],
+				"refer": [
+					"setting.html",
+					"searchclass.html",
+					"im-chat.html",
+					"usermessage.html",
+					"searchroom.html",
+					"xgkb.html",
+					"other.html",
+					"calendar.html",
+					"jr.html",
+					"list.html",
+					"response.html",
+					"reg.html",
+					"ck.html",
+					"kb.html",
+					"login.html"
+				],
+				"priority": 0
+			},
+			"examples/template.html": {
+				"resources": [
+					"kb.html",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/style.css",
+					"images/sky.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"list.html": {
+				"resources": [
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"css/style.css",
+					"js/myjs.js",
+					"js/vue.min.js",
+					"fonts/mui.ttf",
+					"images/sky.png"
+				],
+				"refer": [
+					"examples/template.html",
+					"kb.html",
+					"login.html",
+					"detail.html"
+				],
+				"priority": 0
+			},
+			"message.html": {
+				"resources": [
+					"images/face/2.png",
+					"images/face/6.png",
+					"images/face/4.png",
+					"images/face/5.png",
+					"images/face/3.png",
+					"images/face/1.png",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/myjs.js",
+					"js/mui.js",
+					"css/common.css",
+					"css/style.css",
+					"css/iconfont.css",
+					"fonts/iconfont.ttf",
+					"js/vue.min.js",
+					"images/sky.png"
+				],
+				"refer": [
+					"postmessage.html",
+					"comment.html",
+					"mymessage.html"
+				],
+				"priority": 0
+			},
+			"postmessage.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/myjs.js",
+					"css/style.css",
+					"images/sky.png"
+				],
+				"refer": [
+					"message.html"
+				],
+				"priority": 0
+			},
+			"comment.html": {
+				"resources": [
+					"images/face/5.png",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/face/6.png",
+					"images/face/1.png",
+					"images/face/3.png",
+					"images/face/4.png",
+					"images/face/2.png",
+					"js/myjs.js",
+					"js/vue.min.js",
+					"css/style.css",
+					"images/80.png",
+					"images/sky.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"setting.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"images/80.png",
+					"css/mui.min.css",
+					"css/style.css",
+					"js/myjs.js",
+					"about.html",
+					"js/vue.min.js",
+					"images/sky.png"
+				],
+				"refer": [
+					"usermessage.html",
+					"changepassword.html",
+					"im-chat.html",
+					"xgkb.html",
+					"ring.html",
+					"login.html",
+					"list.html",
+					"response.html",
+					"reg.html",
+					"ck.html",
+					"about.html"
+				],
+				"priority": 0
+			},
+			"about.html": {
+				"resources": [
+					"images/xp.png",
+					"images/wz.png",
+					"setting.html",
+					"images/ssm.png",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"images/80.png",
+					"css/mui.min.css",
+					"css/style.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"searchclass.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"images/80.png",
+					"css/mui.min.css",
+					"css/style.css",
+					"js/myjs.js",
+					"searchclass.html",
+					"images/sky.png"
+				],
+				"refer": [
+					"ck.html",
+					"ckkb.html",
+					"list.html",
+					"response.html",
+					"reg.html",
+					"usermessage.html"
+				],
+				"priority": 0
+			},
+			"im-chat.html": {
+				"resources": [
+					"images/face/1.png",
+					"js/mui.imageViewer.js",
+					"images/face/2.png",
+					"script/jquery-1.11.1.js",
+					"js/mui.min.js",
+					"script/json2.js",
+					"fonts/mui.ttf",
+					"script/easemob.im-1.0.5.js",
+					"css/mui.min.css",
+					"css/style.css",
+					"css/mui.imageviewer.css",
+					"js/arttmpl.js",
+					"script/strophe-custom-2.0.0.js",
+					"images/sky.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"usermessage.html": {
+				"resources": [
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"css/style.css",
+					"js/myjs.js",
+					"fonts/mui.ttf",
+					"images/sky.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"changepassword.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/style.css",
+					"js/myjs.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"login.html": {
+				"resources": [
+					"images/80.png",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/style.css",
+					"js/myjs.js",
+					"css/common.css",
+					"images/sky.png"
+				],
+				"refer": [
+					"reg.html",
+					"forgetpassword.html",
+					"response.html"
+				],
+				"priority": 0
+			},
+			"kb.html": {
+				"resources": [
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"css/style.css",
+					"js/myjs.js",
+					"images/80.png",
+					"fonts/mui.ttf",
+					"images/sky.png"
+				],
+				"refer": [
+					"examples/template.html",
+					"list.html",
+					"response.html",
+					"reg.html",
+					"usermessage.html",
+					"ck.html"
+				],
+				"priority": 0
+			},
+			"searchroom.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/vue.min.js",
+					"css/style.css",
+					"images/sky.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"xgkb.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/myjs.js",
+					"css/style.css",
+					"js/vue.min.js",
+					"images/sky.png"
+				],
+				"refer": [
+					"list.html",
+					"response.html",
+					"reg.html",
+					"usermessage.html",
+					"ck.html"
+				],
+				"priority": 0
+			},
+			"other.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/style.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"calendar.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/style.css",
+					"js/myjs.js",
+					"images/sky.png"
+				],
+				"refer": [
+					"list.html",
+					"response.html",
+					"reg.html",
+					"usermessage.html",
+					"ck.html"
+				],
+				"priority": 0
+			},
+			"ck.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/style.css",
+					"js/myjs.js",
+					"images/sky.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"ring.html": {
+				"resources": [
+					"js/vue.min.js",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/style.css",
+					"js/myjs.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"reg.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/style.css",
+					"js/myjs.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"ckkb.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/style.css",
+					"js/myjs.js",
+					"images/sky.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"detail.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/style.css",
+					"js/vue.min.js",
+					"images/sky.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"response.html": {
+				"href": "response.html",
+				"priority": 18,
+				"resources": [
+					"js/mui.min.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/style.css"
+				],
+				"refer": []
+			},
+			"examples/pullrefresh_sub.html": {
+				"href": "examples/pullrefresh_sub.html",
+				"resources": [],
+				"priority": 7
+			},
+			"examples/pullrefresh_main.html": {
+				"href": "examples/pullrefresh_main.html",
+				"resources": [],
+				"refer": [
+					"examples/pullrefresh_sub.html"
+				],
+				"priority": 7
+			},
+			"jr.html": {
+				"href": "jr.html",
+				"resources": [],
+				"refer": [
+					"examples/template.html",
+					"list.html",
+					"response.html",
+					"reg.html",
+					"usermessage.html",
+					"ck.html"
+				],
+				"priority": 6
+			},
+			"mymessage.html": {
+				"resources": [
+					"fonts/mui.ttf",
+					"css/iconfont.css",
+					"images/face/3.png",
+					"images/face/1.png",
+					"images/face/2.png",
+					"images/face/5.png",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"css/style.css",
+					"images/face/6.png",
+					"images/face/4.png",
+					"js/myjs.js",
+					"images/sky.png",
+					"fonts/iconfont.ttf"
+				],
+				"refer": [
+					"comment.html",
+					"postmessage.html"
+				],
+				"priority": 0
+			},
+			"forgetpassword.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/style.css",
+					"js/myjs.js",
+					"css/common.css"
+				],
+				"refer": [],
+				"priority": 0
+			}
+		},
+		"idle": {
+			"resources": [
+				"images/pull_arrow.png",
+				"images/star.png",
+				"images/beforestar.png",
+				"images/pull_fresh.png",
+				"js/mui.view.js"
+			]
+		}
 	},
 	"unpackage":[
 	  "examples/pullrefresh_main.html",

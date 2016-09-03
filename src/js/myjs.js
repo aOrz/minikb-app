@@ -584,23 +584,23 @@ function GetAllClass() {
 	}
 
 	var colorCs = 0;
+	var course = JSON.parse(localStorage.course);
 	for (var j = 1; j <= 7; j++) {
 		var b = '';
 		b = kcName[j];
 		for (var i = 1; i < 8; i++) {
 			if (colorCs > 7) colorCs = 0;
-			var num = parseInt(i) + parseInt((j - 1) * 7);
-			if (plus.storage.getItem('"' + num + '"') && j != 7) {
-				b += '<td data-num="' + num + '" data-no="' + j + '" data-noi="' + i + '"  class=' + setColor[colorCs] + ' ">' + plus.storage.getItem('"' + num + '"') + '</td>';
+			var num = parseInt(i) + parseInt((j - 1) * 7)-1;
+			if (course[num] && j != 7) {
+				b += '<td data-num="' + num + '" data-no="' + j + '" data-noi="' + i + '"  class=' + setColor[colorCs] + ' ">' + course[num] + '</td>';
 				colorCs++;
-			} else {
-				if (j != 7)
-					b += '<td data-num="' + num + '"></td>';
+			} else if (j != 7){
+				b += '<td data-num="' + num + '"></td>';
 			}
 
-			if (j == 7 && plus.storage.getItem('"' + num + '"')) {
-				if (plus.storage.getItem('"' + num + '"')) {
-					b += '<td data-num="' + num + '" data-no="' + j + '" data-noi="' + i + '"  onclick=tanchu(this); colspan="7" class="' + setColor[2] + ' ">' + plus.storage.getItem('"' + num + '"') + '</td>';
+			if (j == 7 && course[num]) {
+				if (course[num]) {
+					b += '<td data-num="' + num + '" data-no="' + j + '" data-noi="' + i + '"  onclick=tanchu(this); colspan="7" class="' + setColor[2] + ' ">' + course[num] + '</td>';
 				} else {
 					b += '<td colspan="7" data-num="' + num + '"></td>';
 				}
