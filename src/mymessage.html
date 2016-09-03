@@ -58,65 +58,9 @@
 							auto:true,
 							callback: ajaxs //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
 						}
-					},
-					preloadPages: [{
-						url: 'comment.html',
-						id: 'comment.html'
-					}, {
-						url: 'postmessage.html',
-						id: 'postmessage.html'
-					}]
+					}
 				});
 				var page = 1;
-//				mui.ajax('http://2.minikb.sinaapp.com/controller/message_board_controller.php', {
-//					data: {
-//						c: 'GetMessageByUserId',
-//						userId: localStorage.mail,
-//						page: page
-//					},
-//					dataType: 'json', //服务器返回json格式数据
-//					type: 'get', //HTTP请求类型
-//					timeout: 5000, //超时时间设置为10秒；
-//					beforeSend: function() {
-//						plus.nativeUI.showWaiting();
-//					},
-//					complete: function() {
-//						plus.nativeUI.closeWaiting();
-//						num = 0;
-//					},
-//					success: function(data1) {
-//						if (!data1) {
-//							plus.nativeUI.toast("网络错误");
-//						} else {
-//							console.log(JSON.stringify(data1));
-//							alert("yes");
-//							var html = '<li class="message" data-id="' + data1['mood_id'] + '" >' +
-//								'<div class="massage_header" >' +
-//								'<img src="images/face/' + '1' + '.png" style="width: 45px;" />' +
-//								'<span class="username">某同学</span>' +
-//								'</div>' +
-//								'<div class="content_body">' +
-//								'<p class="text">' + data1['moods'] +
-//								'</p>' +
-//								'</div>' +
-//								'<div class="message_foooter">' +
-//								'<div class="time">' +
-//								'<span>' + '最近' + '</span>' +
-//								'</div>' +
-//								'<div class="comment">' +
-//								'<span class="mui-icon mui-icon-chatbubble"></span>' +
-//								'<span>' + '0' + '</span>' +
-//								'</div>' +
-//								'</div>' +
-//								'</li>';
-//							document.getElementById('myContents').innerHTML = html + document.getElementById('myContents').innerHTML;
-//						}
-//					},
-//					error: function(xhr, type, errorThrown) {
-//						//异常处理；
-//						plus.nativeUI.toast("网络错误");
-//					}
-//				});
 				
 				function ajaxs() {
 					mui.ajax('http://2.minikb.sinaapp.com/controller/message_board_controller.php', {
@@ -129,10 +73,11 @@
 						type: 'get', //HTTP请求类型
 						timeout: 10000, //超时时间设置为10秒；
 						success: function(data) {
+							var html = '';
 							for (var i = 0; i < data.length; i++) {
 								data1 = data[i];
 								var num = Math.ceil(Math.random() * 6);
-								html = '<li class="message" data-id="' + data1['mood_id'] + '" >' +
+								html += '<li class="message" data-id="' + data1['mood_id'] + '" >' +
 									'<div class="massage_header" >' +
 									'<img src="images/face/' + num + '.png" style="width: 50px;" />' +
 									'<span class="username">某同学</span>' +
@@ -152,8 +97,8 @@
 									'</div>' +
 									'</div>' +
 									'</li>';
-								document.getElementById('myContents').innerHTML += html;
 							}
+							document.getElementById('myContents').innerHTML += html;
 							var isture = 0;
 							if (i < 19) {
 								isture = 1;

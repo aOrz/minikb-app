@@ -940,7 +940,7 @@ function GetCourceByTeacherName() {
 				colorNumber++;
 			}
 			var html = document.getElementById("course_list");
-			var insertHtml = '<li class=" ' + color[colorNumber % 5] + '"><div class="mui-table" style="text-align:center"><p>' + '没有更多信息了' + '</p></div></li>';
+			var insertHtml = '<li class="nomoreInfo"><div class="mui-table" style="text-align:center"><p>' + '没有更多信息了' + '</p></div></li>';
 			html.innerHTML = html.innerHTML + insertHtml;
 		},
 		error: function(xhr, type, errorThrown) {
