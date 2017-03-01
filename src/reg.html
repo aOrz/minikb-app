@@ -43,70 +43,189 @@
 		<div class="mui-content" id="content">
 			<form class="reg_form">
 				<div class="email_input">
-					<input id='email' type="email" class="mui-input-clear mui-input" placeholder="邮箱">
+					<input v-model='email' type="email" class="mui-input-clear mui-input" placeholder="邮箱">
 					<div class="icon">
 						<span class="mui-icon mui-icon-email"></span>
 					</div>
 				</div>
 				<div class="name_input">
-					<input id='account' type="text" class="mui-input-clear mui-input" placeholder="昵称">
+					<input v-model='account' type="text" class="mui-input-clear mui-input" placeholder="昵称">
 					<div class="icon">
 						<span class="mui-icon mui-icon-person"></span>
 					</div>
 				</div>
 				<div class="password_input">
-					<input id='password' type="password" class="mui-input-clear mui-input" placeholder="密码">
+					<input v-model='password' type="password" class="mui-input-clear mui-input" placeholder="密码">
 					<div class="icon">
 						<span class="mui-icon mui-icon-locked"></span>
 					</div>
 				</div>
 				<div class="againpsd_input">
-					<input id='password_confirm' type="password" class="mui-input-clear mui-input" placeholder="确认密码">
+					<input v-model='password_confirm' type="password" class="mui-input-clear mui-input" placeholder="确认密码">
 					<div class="icon">
 						<span class="mui-icon mui-icon-checkmarkempty" style="font-size: 40px;"></span>
 					</div>
 				</div>
 				<div class="other">
-					<div class="school_select">
-						<select id="school" onchange="GetCollegeNameBySchool()">
-							<option selected="selected" value="">学校</option>
-						</select>
-						<div class="icon">
-							<span class="mui-icon mui-icon-home"></span>
-						</div>
-					</div>
-					<div class="major_select">
-						<select id="major">
-							<option value="" selected="">学院</option>
-						</select>
-						<div class="icon">
-							<span class="mui-icon mui-icon-star"></span>
-						</div>
-					</div>
-					<div class="class_input">
-						<input id="class" type="text" class="mui-input-clear mui-input" placeholder="例133-2">
-						<div class="icon">
-							<span class="mui-icon mui-icon-compose"></span>
-						</div>
-					</div>
+					<select-class v-ref:profile></select-class>					
 				</div>
 			</form>
 			<div class="reg_btn">
-				<button onclick="CheckReg()" class="mui-btn mui-btn-block mui-btn-primary">注册</button>
+				<button @click="CheckReg" class="mui-btn mui-btn-block mui-btn-primary">注册</button>
 			</div>
 		</div>
 		<script src="js/mui.min.js"></script>
+		<script src="js/vue.js"></script>
+		<script src="components/selectClass.js"></script>
 		<script type="text/javascript" src="js/myjs.js" ></script>
 		<script>
-			mui.plusReady(function(){
-				GetSchoolName();
-//				GetCollegeNameBySchool();
-			});
-			(function($, doc) {
+		(function($, doc) {
 				$.init();
-				$.plusReady(function() {
-				});
 			}(mui, document));
+			mui.plusReady(function(){
+				//GetSchoolName();
+//				GetCollegeNameBySchool();
+				var reg = new Vue({
+					el: '#content',
+					data: function(){
+						return {
+							email: '',
+							account: '',
+							password: '',
+							password_confirm: ''
+						};
+					},
+					components: {
+						selectClass: selectClass
+					},
+					methods: {
+						CheckReg: function(){
+							var that = this;
+							//邮箱
+							var userId = that.email;
+							if (userId == "") {
+								plus.nativeUI.toast("请输入邮箱");
+								return;
+							} else if (!IsEmail(userId)) {
+								plus.nativeUI.toast("邮箱格式不正确");
+								return;
+							} else {
+								var idExists = CheckIdExists(userId);
+								if (idExists == 1) {
+									plus.nativeUI.toast("邮箱已注册");
+									return;
+								}
+							}
+						
+							//昵称
+							var userName =that.account;
+							if (userName == "") {
+								plus.nativeUI.toast("请输入昵称");
+								return;
+							} else if (userName.length > 10) {
+								plus.nativeUI.toast("昵称太长");
+								return;
+							}
+						
+							//第一次密码
+							var psd1 = that.password;
+							if (psd1 == "") {
+								plus.nativeUI.toast("请输入密码");
+								return;
+							} else if (psd1.length < 6) {
+								plus.nativeUI.toast("密码长度不能小于六");
+								return;
+							}
+						
+							//第二次密码
+							var psd2 = that.password_confirm;
+							if (psd2 == "") {
+								plus.nativeUI.toast("请输入确认密码");
+								return;
+							} else if (psd1 != psd2) {
+								plus.nativeUI.toast("两次密码不一致，请重新输入");
+								return;
+							}
+							var child = that.$refs.profile;
+							//学校
+							var school = child.$data.school;
+							if (school == "") {
+								plus.nativeUI.toast("请选择学校");
+								return;
+							}
+						
+							//学院
+							var major = child.grade;
+							if (major == "") {
+								plus.nativeUI.toast("请选择学院");
+								return;
+							}
+						
+							//班级
+							var className = child.classNum;
+							var classExists = ClassExists(school, major, className);
+							if (classExists == 0) {
+								plus.nativeUI.toast("请输入正确的班级");
+								return;
+							}
+						
+							//注册时间
+							var dateTime = new Date();
+							dateTime = dateTime.getFullYear() + "-" + (dateTime.getMonth() + 1) + "-" + dateTime.getDate() + "   " + dateTime.getHours() + ":" + dateTime.getMinutes() + ":" + dateTime.getSeconds();
+							if (userId && userName && psd1 && psd2 && school && major && className) {
+								mui.ajax('http://kb.fddcn.cn/controller/user_controller.php', {
+									async: false,
+									data: {
+										c: 'CreateUser',
+										userId: userId,
+										userPwd: psd1,
+										classNum: className,
+										schoolName: school,
+										collegeName: major,
+										nickName: userName,
+										isLogin: '1'
+									},
+									dataType: 'json', //服务器返回json格式数据
+									beforeSend: function() {
+										plus.nativeUI.showWaiting();
+									},
+									complete: function() {
+										plus.nativeUI.closeWaiting();
+									},
+									type: 'get', //HTTP请求类型
+									success: function(data) {
+										if (data == 0) {
+											plus.nativeUI.toast("邮箱已注册");
+										} else if (data == -1) {
+											plus.nativeUI.toast("班级不存在");
+										} else {
+											data = data[0];
+											plus.nativeUI.toast('注册成功');
+											for (var i = 1; i <= 44; i++) {
+												var ind = 's' + i;
+												plus.storage.setItem('"' + i + '"', data[ind]);
+											}
+						
+											plus.storage.setItem("ex", '1');
+											localStorage.setItem('mail', userId);
+											plus.storage.setItem('mail', userId);
+											plus.storage.setItem('nc', data['nick_name']);
+											plus.storage.setItem('xx', data['school']);
+											localStorage.setItem('xx', data['school']);
+											plus.storage.setItem('class', data['class']);
+											plus.storage.setItem('id', userId);
+											mui.back();
+										}
+									},
+									error: function(xhr, type, errorThrown) {
+										plus.nativeUI.toast('网络错误');
+									}
+								});
+							}
+						}
+					}
+				})
+			});
 		</script>
 	</body>
 
