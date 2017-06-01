@@ -1,0 +1,25 @@
+<!--index.wxml-->
+<view class="flex-wrp" style="flex-direction:row;">
+
+  <view class="form">
+    <view class="row">
+      <view>学院： </view>  
+      <input placeholder="请选择学院" auto-focus/>
+    </view>
+    <view class="section">
+      <view class="section__title">地区选择器</view>
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{school}}">
+        <view class="picker">
+          当前选择：{{school[index]}}
+        </view>
+      </picker>
+    </view>
+    <view class="row">
+      <view>班级： </view>  
+      <input placeholder="请选择班级" auto-focus/>
+    </view>
+    <view class="button-row">
+      <button>查询</button>
+    </view>
+  </view>
+</view>

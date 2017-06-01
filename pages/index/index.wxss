@@ -1,0 +1,18 @@
+/**index.wxss**/
+.flex-wrp {
+  display: flex;
+  align-items: center;
+  padding: 30px;
+}
+
+.form {
+  width: 100%;
+}
+
+.form .row {
+  display: flex;
+}
+
+.button-row {
+  width: 100%;
+}
