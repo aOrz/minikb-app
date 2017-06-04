@@ -1,25 +1,37 @@
 <!--index.wxml-->
 <view class="flex-wrp" style="flex-direction:row;">
-
   <view class="form">
-    <view class="row">
-      <view>学院： </view>  
-      <input placeholder="请选择学院" auto-focus/>
+    <view class="row" bindtap="showPicker">
+      <view>学院： </view>
+      <view class="picker">{{selectValue.school.label}},{{selectValue.academe.label}},{{selectValue.grade.label}}</view>
     </view>
-    <view class="section">
-      <view class="section__title">地区选择器</view>
-      <picker bindchange="bindPickerChange" value="{{index}}" range="{{school}}">
+    <view class="section row">
+      <picker bindchange="pickerClassChange" value="{{classId}}" range="{{classList}}">
         <view class="picker">
-          当前选择：{{school[index]}}
+          班级：{{classList[classId]}}
         </view>
       </picker>
     </view>
-    <view class="row">
-      <view>班级： </view>  
-      <input placeholder="请选择班级" auto-focus/>
-    </view>
     <view class="button-row">
-      <button>查询</button>
+      <button type="primary" bindtap="search">查询</button>
+      <button style="margin-top: 20rpx" open-type="contact">联系客服</button>
     </view>
   </view>
+</view>
+
+<view class="picker-section" wx:if="{{isShowPicker}}">
+  <view class="picker_title">
+    <button bindtap="pickerSelected">确定</button>
+  </view>
+  <picker-view indicator-style="height: 50px;" style="width: 100%; height: 300px;" value="{{pickerValue}}" bindchange="selectChange">
+    <picker-view-column>
+      <view wx:for="{{schools}}" wx:key="item.label" style="line-height: 50px">{{item.label}}</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{academe}}" wx:key="item.label" style="line-height: 50px">{{item.label}}</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{grade}}" wx:key="item.label" style="line-height: 50px">{{item.label}}</view>
+    </picker-view-column>
+  </picker-view>
 </view>

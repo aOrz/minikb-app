@@ -1,0 +1,33 @@
+.container {
+  height: auto;
+}
+
+.row {
+  display: flex;
+}
+
+.row view {
+  border-top: 1rpx solid #ccc;
+  border-right: 1rpx solid #ccc;
+  width: 122rpx;
+  height: 195rpx;
+  overflow: scroll;
+  font-size: 24rpx;
+  text-align: center;
+  padding: 8rpx;
+}
+
+.week view {
+  height: 38rpx;
+  vertical-align: middle;
+}
+
+.row .jc {
+  width: 26rpx;
+}
+
+.scroll-content {
+  width: 1025rpx;
+  border-bottom: 1rpx solid #ccc;
+  border-right: 1rpx solid #ccc;
+}

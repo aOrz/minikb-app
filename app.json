@@ -1,12 +1,11 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/logs/logs"
-  ],
+    "pages/course/index"  ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarBackgroundColor": "#33CCCC",
+    "navigationBarTitleText": "迷你课表",
+    "navigationBarTextStyle":"#ffffff"
   }
 }
