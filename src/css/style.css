@@ -1,260 +1,269 @@
 [v-cloak] {
-	display: none;
+  display: none;
 }
 
 
 /*login_css开始*/
 
 .mui-bar-nav {
-	background-color: #33CCCC;
+  background-color: #33CCCC;
 }
+
 .mui-bar a {
-	color: white;
+  color: white;
 }
 
 .login .header_bg {
-	position: fixed;
-	width: 100%;
-	height: 20px;
-	background: #000;
-	top: 0px;
+  position: fixed;
+  width: 100%;
+  height: 20px;
+  background: #000;
+  top: 0px;
 }
 
 .mui-bar {
-	background-color: #33cccc;
+  background-color: #33cccc;
 }
 
 .mui-title {
-	color: #FFF;
+  color: #FFF;
 }
 
 .login .welcome {
-	text-align: center;
-	margin: 20px auto;
+  text-align: center;
+  margin: 20px auto;
 }
 
 .login .welcome img {
-	width: 120px;
-	border-radius: 50%;
+  width: 120px;
+  border-radius: 50%;
 }
 
 .login .user_input,
 .login .password_input {
-	text-align: center;
+  text-align: center;
 }
 
 .login .password_input {
-	position: relative;
-	top: -40px;
+  position: relative;
+  top: -40px;
 }
 
 .login .user_icon,
 .login .password_icon {
-	height: 40px;
-	width: 40px;
-	position: relative;
-	line-height: 40px;
-	top: -40px;
-	color: #BBBBBB;
+  height: 40px;
+  width: 40px;
+  position: relative;
+  line-height: 40px;
+  top: -40px;
+  color: #BBBBBB;
 }
 
 .login .mui-icon {
-	font-size: 28px;
+  font-size: 28px;
 }
 
 .login .user_input input,
 .login .password_input input {
-	width: 100%;
-	height: 40px;
-	border: 0px;
-	position: relative;
-	padding-left: 45px;
-	margin: 0px;
+  width: 100%;
+  height: 40px;
+  border: 0px;
+  position: relative;
+  padding-left: 45px;
+  margin: 0px;
 }
 
 .login .password_input input {
-	border-top: 1px solid #cccccc;
+  border-top: 1px solid #cccccc;
 }
 
 .login_btn {
-	text-align: center;
-	margin-top: 20px;
+  text-align: center;
+  margin-top: 20px;
 }
 
 .login_btn button {
-    width: 90%;
-    height: 40px;
+  width: 90%;
+  height: 40px;
 }
+
 .mui-btn-primary.mui-active:enabled,
 .mui-btn-primary:enabled:active,
 input[type=submit].mui-active:enabled,
 input[type=submit]:enabled:active {
-	color: #fff;
-	border: 1px solid #00B6EC;
-	background-color: #00B6EC;
+  color: #fff;
+  border: 1px solid #00B6EC;
+  background-color: #00B6EC;
 }
+
 .mui-btn-blue,
 .mui-btn-primary,
 input[type=submit] {
-	background: #33cccc;
-	border: 0px;
-	margin: 0 auto;
-	padding: 0px;
+  background: #33cccc;
+  border: 0px;
+  margin: 0 auto;
+  padding: 0px;
 }
+
 .mui-input-row .mui-input-password~.mui-icon-eye.mui-active {
-    color: #33CCCC;
+  color: #33CCCC;
 }
 
 .login .mui-btn-block {
-	width: auto;
+  width: auto;
 }
 
 .login_form {
-	height: 80px;
+  height: 80px;
 }
 
 .login footer {
-	width: 100%;
-	text-align: center;
-	margin-top: 20px;
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
 }
 
 .login footer a {
-	color: #33cccc;
-	padding: 0px 20px;
-	font-size: 14px;
+  color: #33cccc;
+  padding: 0px 20px;
+  font-size: 14px;
 }
 
 .login footer span {
-	color: #BBBBBB;
+  color: #BBBBBB;
 }
 
 
 /*login_css结束*/
 
+
 /*responce_css开始*/
-.user-know .text_content{
-	padding: 10px;
-	text-indent: 20px;
+
+.user-know .text_content {
+  padding: 10px;
+  text-indent: 20px;
 }
+
+
 /*responce_css结束*/
+
 
 /*reg_css开始*/
 
 .reg_form {
-	height: 300px;
-	margin-top: 20px;
+  height: 330px;
+  margin-top: 20px;
 }
 
 .reg .email_input input,
 .reg .name_input input,
 .reg .password_input input,
 .reg .againpsd_input input {
-	width: 100%;
-	height: 40px;
-	border: 0px;
-	position: relative;
-	padding-left: 45px;
-	margin-bottom: 0px;
+  width: 100%;
+  height: 40px;
+  border: 0px;
+  position: relative;
+  padding-left: 45px;
+  margin-bottom: 0px;
 }
 
 .reg .name_input,
 .reg .password_input,
 .reg .againpsd_input {
-	border-top: 1px solid #cccccc;
+  border-top: 1px solid #cccccc;
 }
 
 .reg .other {
-	margin-top: 20px;
-	position: relative;
-	top: -160px;
+  margin-top: 20px;
+  position: relative;
+  top: -160px;
 }
 
 .reg select {
-	margin: 0px;
-	font-size: 15px;
-	line-height: 15px;
+  margin: 0px;
+  font-size: 15px;
+  line-height: 15px;
 }
 
 .reg .class_input {
-	width: 100%;
+  width: 100%;
 }
 
 .reg .major_select,
 .reg .class_input {
-	border-top: 1px solid #cccccc;
+  border-top: 1px solid #cccccc;
 }
 
 .reg select {
-	width: 100%;
-	height: 40px;
-	border: 0px;
-	position: relative;
-	padding-left: 45px;
-	margin-bottom: 0px;
+  width: 100%;
+  height: 40px;
+  border: 0px;
+  position: relative;
+  padding-left: 45px;
+  margin-bottom: 0px;
 }
 
 .reg .class_input input {
-	width: 100%;
-	height: 40px;
-	border: 0px;
-	position: relative;
-	padding-left: 45px;
-	margin-bottom: 0px;
+  width: 100%;
+  height: 40px;
+  border: 0px;
+  position: relative;
+  padding-left: 45px;
+  margin-bottom: 0px;
 }
 
 .reg .icon {
-	height: 40px;
-	width: 40px;
-	position: relative;
-	line-height: 40px;
-	top: -40px;
-	color: #BBBBBB;
-	text-align: center;
+  height: 40px;
+  width: 40px;
+  position: relative;
+  line-height: 40px;
+  top: -40px;
+  color: #BBBBBB;
+  text-align: center;
 }
 
 .reg .name_input {
-	position: relative;
-	top: -40px;
+  position: relative;
+  top: -40px;
 }
 
 .reg .password_input {
-	position: relative;
-	top: -80px;
+  position: relative;
+  top: -80px;
 }
 
 .reg .againpsd_input {
-	position: relative;
-	top: -120px;
+  position: relative;
+  top: -120px;
 }
 
 .reg .school_select {}
 
 .reg .school_select img {
-	width: 22px;
-	vertical-align: middle;
+  width: 22px;
+  vertical-align: middle;
 }
 
 .reg .major_select {
-	position: relative;
-	top: -40px;
+  position: relative;
+  top: -40px;
 }
 
 .reg .class_input {
-	position: relative;
-	top: -80px;
+  position: relative;
+  top: -80px;
 }
 
 .reg .reg_btn {
-	width: 100%;
-	margin-top: 30px;
+  width: 100%;
+  margin-top: 30px;
 }
 
 .reg .reg_btn button {
-	padding: 0px;
-	width: 100%;
-	height: 40px;
-	font-size: 14px;
+  padding: 0px;
+  width: 100%;
+  height: 40px;
+  font-size: 14px;
 }
 
 
@@ -264,13 +273,13 @@ input[type=submit] {
 /*折角_css开始*/
 
 .note {
-	position: relative;
-	width: 480px;
-	padding: 1em 1.5em;
-	margin: 2em auto;
-	color: #fff;
-	background: #97C02F;
-	overflow: hidden;
+  position: relative;
+  width: 480px;
+  padding: 1em 1.5em;
+  margin: 2em auto;
+  color: #fff;
+  background: #97C02F;
+  overflow: hidden;
 }
 
 .changcolor:before,
@@ -281,24 +290,24 @@ input[type=submit] {
 .changcolor5:before,
 .changcolor6:before,
 .changcolor7:before {
-	content: "";
-	position: absolute;
-	top: 0;
-	right: 0;
-	border-width: 0 20px 22px 0;
-	/* This trick side-steps a webkit bug */
-	border-style: solid;
-	border-color: #fff #fff #dff0d8 #dff0d8;
-	/* A bit more verbose to work with .rounded too */
-	background: #e4e4ee;
-	/* For Opera when also applying a border-radius */
-	display: block;
-	width: 0;
-	/* Only for Firefox 3.0 damage limitation */
-	/* Optional: shadow */
-	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 1px rgba(0, 0, 0, 0.2);
-	-moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 1px rgba(0, 0, 0, 0.2);
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 1px rgba(0, 0, 0, 0.2);
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-width: 0 20px 22px 0;
+  /* This trick side-steps a webkit bug */
+  border-style: solid;
+  border-color: #fff #fff #dff0d8 #dff0d8;
+  /* A bit more verbose to work with .rounded too */
+  background: #e4e4ee;
+  /* For Opera when also applying a border-radius */
+  display: block;
+  width: 0;
+  /* Only for Firefox 3.0 damage limitation */
+  /* Optional: shadow */
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 1px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 1px rgba(0, 0, 0, 0.2);
 }
 
 
@@ -308,165 +317,165 @@ input[type=submit] {
 /*kb_css开始*/
 
 .bg-primary {
-	background-color: #e4e4ee;
+  background-color: #e4e4ee;
 }
 
 a.bg-primary:hover {
-	background-color: #286090;
+  background-color: #286090;
 }
 
 .bg-success {
-	background-color: #dff0d8;
-	/*green*/
+  background-color: #dff0d8;
+  /*green*/
 }
 
 a.bg-success:hover {
-	background-color: #c1e2b3;
+  background-color: #c1e2b3;
 }
 
 .bg-info {
-	background-color: #d9edf7;
+  background-color: #d9edf7;
 }
 
 a.bg-info:hover {
-	background-color: #afd9ee;
+  background-color: #afd9ee;
 }
 
 .bg-warning {
-	background-color: #fcf8e3;
+  background-color: #fcf8e3;
 }
 
 a.bg-warning:hover {
-	background-color: #f7ecb5;
+  background-color: #f7ecb5;
 }
 
 .bg-danger {
-	background-color: #f2dede;
+  background-color: #f2dede;
 }
 
 a.bg-danger:hover {
-	background-color: #e4b9b9;
+  background-color: #e4b9b9;
 }
 
 .bg-lan {
-	background-color: #AFD9EE;
+  background-color: #AFD9EE;
 }
 
 .bg-ss {
-	background-color: #C1E2B3;
+  background-color: #C1E2B3;
 }
 
 .bg-sa {
-	background-color: #F7ECB5;
+  background-color: #F7ECB5;
 }
 
 .kb body {
-	margin-left: 0px;
-	font-family: 'trebuchet MS', 'Lucida sans', Arial;
-	font-size: 9px;
-	color: #444;
+  margin-left: 0px;
+  font-family: 'trebuchet MS', 'Lucida sans', Arial;
+  font-size: 9px;
+  color: #444;
 }
 
 table {
-	text-align: center;
-	*border-collapse: collapse;
-	word-break: break-all;
-	border-spacing: 0;
-	width: 100%;
+  text-align: center;
+  *border-collapse: collapse;
+  word-break: break-all;
+  border-spacing: 0;
+  width: 100%;
 }
 
 .bordered {
-	border: solid #ccc 1px;
-	-moz-border-radius: 6px;
-	-webkit-border-radius: 6px;
-	border-radius: 6px;
-	-webkit-box-shadow: 0 1px 1px #ccc;
-	-moz-box-shadow: 0 1px 1px #ccc;
-	box-shadow: 0 1px 1px #ccc;
+  border: solid #ccc 1px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: 0 1px 1px #ccc;
+  -moz-box-shadow: 0 1px 1px #ccc;
+  box-shadow: 0 1px 1px #ccc;
 }
 
 .bordered td,
 .bordered th {
-	border-left: 1px solid #ccc;
-	border-top: 1px solid #ccc;
-	padding: 1px;
-	text-align: center;
+  border-left: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+  padding: 1px;
+  text-align: center;
 }
 
 td {
-	font-size: 0.5em;
+  font-size: 0.5em;
 }
 
 .bordered th {
-	/*background-color: #dce9f9;*/
-	-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset;
-	-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset;
-	box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset;
-	border-top: none;
-	text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
+  /*background-color: #dce9f9;*/
+  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset;
+  -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset;
+  border-top: none;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
 }
 
 .bordered td:first-child,
 .bordered th:first-child {
-	border-left: none;
+  border-left: none;
 }
 
 .bordered th:first-child {
-	border-top: 1px solid #ccc;
-	-moz-border-radius: 6px 0 0 0;
-	-webkit-border-radius: 6px 0 0 0;
-	border-radius: 6px 0 0 0;
-	font-size: 0.55em;
+  border-top: 1px solid #ccc;
+  -moz-border-radius: 6px 0 0 0;
+  -webkit-border-radius: 6px 0 0 0;
+  border-radius: 6px 0 0 0;
+  font-size: 0.55em;
 }
 
 .bordered th:last-child {
-	-moz-border-radius: 0 6px 0 0;
-	-webkit-border-radius: 0 6px 0 0;
-	border-radius: 0 6px 0 0;
+  -moz-border-radius: 0 6px 0 0;
+  -webkit-border-radius: 0 6px 0 0;
+  border-radius: 0 6px 0 0;
 }
 
 .bordered th:only-child {
-	-moz-border-radius: 6px 6px 0 0;
-	-webkit-border-radius: 6px 6px 0 0;
-	border-radius: 6px 6px 0 0;
+  -moz-border-radius: 6px 6px 0 0;
+  -webkit-border-radius: 6px 6px 0 0;
+  border-radius: 6px 6px 0 0;
 }
 
 .bordered tr:last-child td:first-child {
-	-moz-border-radius: 0 0 0 6px;
-	-webkit-border-radius: 0 0 0 6px;
-	border-radius: 0 0 0 6px;
+  -moz-border-radius: 0 0 0 6px;
+  -webkit-border-radius: 0 0 0 6px;
+  border-radius: 0 0 0 6px;
 }
 
 .bordered tr:last-child td:last-child {
-	-moz-border-radius: 0 0 6px 0;
-	-webkit-border-radius: 0 0 6px 0;
-	border-radius: 0 0 6px 0;
+  -moz-border-radius: 0 0 6px 0;
+  -webkit-border-radius: 0 0 6px 0;
+  border-radius: 0 0 6px 0;
 }
 
 .setwidth {
-	width: 65px;
-	font-size: 0.5em;
-	height: 20px;
+  width: 65px;
+  font-size: 0.5em;
+  height: 20px;
 }
 
 @media only screen and (min-width: 481px) {
-	.setWidth {
-		line-height: 16px;
-		width: 120px;
-		height: 16px;
-		font-size: 0.55em;
-		word-break: break-all;
-	}
+  .setWidth {
+    line-height: 16px;
+    width: 120px;
+    height: 16px;
+    font-size: 0.55em;
+    word-break: break-all;
+  }
 }
 
 @media only screen and (max-width: 480px) {
-	.setWidth {
-		line-height: 16px;
-		width: 60px;
-		height: 16px;
-		font-size: 0.55em;
-		word-break: break-all;
-	}
+  .setWidth {
+    line-height: 16px;
+    width: 14%;
+    height: 16px;
+    font-size: 0.55em;
+    word-break: break-all;
+  }
 }
 
 
@@ -474,163 +483,197 @@ td {
 
 
 /*index-menu_css开始*/
+
 .index-menu .title {
-	margin: 35px 15px 10px;
+  margin: 35px 15px 10px;
 }
+
 .index-menu .title+.content {
-	margin: 10px 15px 35px;
-	color: #bbb;
-	text-indent: 1em;
-	font-size: 14px;
-	line-height: 24px;
+  margin: 10px 15px 35px;
+  color: #bbb;
+  text-indent: 1em;
+  font-size: 14px;
+  line-height: 24px;
 }
+
 .index-menu .mui-table-view {
-	margin-bottom: 35px;
+  margin-bottom: 35px;
 }
+
 .index-menu #nc {
-	overflow: inherit;
+  overflow: inherit;
 }
+
 .index-menu .mui-table-view .my_user:hover {
-	background-color: #282626;
-	border-left: 5px solid #68BA8A;
+  background-color: #282626;
+  border-left: 5px solid #68BA8A;
 }
+
 .index-menu .mui-table-view .my_day:hover {
-	background-color: #282626;
-	border-left: 5px solid #e4e4ee;
+  background-color: #282626;
+  border-left: 5px solid #e4e4ee;
 }
+
 .index-menu .mui-table-view .my_kb:hover {
-	background-color: #282626;
-	border-left: 5px solid #dff0d8;
+  background-color: #282626;
+  border-left: 5px solid #dff0d8;
 }
+
 .index-menu .mui-table-view .my_ck:hover {
-	background-color: #282626;
-	border-left: 5px solid #afd9ee;
+  background-color: #282626;
+  border-left: 5px solid #afd9ee;
 }
+
 .mui-table-view .my_set:hover {
-	background-color: #282626;
-	border-left: 5px solid #f7ecb5;
+  background-color: #282626;
+  border-left: 5px solid #f7ecb5;
 }
+
 .mui-table-view .my_change:hover {
-	background-color: #282626;
-	border-left: 5px solid #f2dede;
+  background-color: #282626;
+  border-left: 5px solid #f2dede;
 }
+
 .mui-table-view .my_help:hover {
-	background-color: #282626;
-	border-left: 5px solid #AFD9EE;
+  background-color: #282626;
+  border-left: 5px solid #AFD9EE;
 }
 
 .mui-table-view .my_about:hover {
-	background-color: #282626;
-	border-left: 5px solid #F7ECB5;
+  background-color: #282626;
+  border-left: 5px solid #F7ECB5;
 }
+
 .content .mui-btn-danger {
-	background-color: #33CCCC;
-	border: 0px;
+  background-color: #33CCCC;
+  border: 0px;
 }
+
 .index-menu .title {
-	margin: 35px 15px 10px;
-	font-size: 20px;
+  margin: 35px 15px 10px;
+  font-size: 20px;
 }
+
 .index-menu .title+.content {
-	margin: 10px 15px 35px;
-	color: #bbb;
-	text-indent: 1em;
-	font-size: 14px;
-	line-height: 24px;
+  margin: 10px 15px 35px;
+  color: #bbb;
+  text-indent: 1em;
+  font-size: 14px;
+  line-height: 24px;
 }
-.index-menu .mui-navigate-right:after, .mui-push-right:after {
-    display: none;
+
+.index-menu .mui-navigate-right:after,
+.mui-push-right:after {
+  display: none;
 }
+
 .index-menu .mui-content>.mui-table-view:first-child {
-	margin-top: 0px;
+  margin-top: 0px;
 }
+
 .index-menu .user_face {
-	height: 65px;
-	width: 100%;
+  height: 65px;
+  width: 100%;
 }
-.index-menu .usermessage{
-	background: url(../images/sky.png);
-	background-size: cover;
-	box-shadow: 1px 1px 5px #cccccc;
-	height: 90px;
+
+.index-menu .usermessage {
+  background: url(../images/sky.png);
+  background-size: cover;
+  box-shadow: 1px 1px 5px #cccccc;
+  height: 111px;
+  padding: 21px 15px 11px;
 }
-.index-menu .mui-table-view-inverted{
-	color: #383838;
+
+.index-menu .mui-table-view-inverted {
+  color: #383838;
 }
-.index-menu .mui-table-view-inverted{
-	background: #F4F4F4;
+
+.index-menu .mui-table-view-inverted {
+  background: #F4F4F4;
 }
-.index-menu .mui-table-view-inverted:before{
-	height: 0px;
+
+.index-menu .mui-table-view-inverted:before {
+  height: 0px;
 }
+
 .index-menu .user_face img {
-	border-radius: 50%;
-	width: 60px;
-	float: left;
+  border-radius: 50%;
+  width: 60px;
+  float: left;
 }
+
 .index-menu .mui-table-view-inverted .mui-table-view-cell:after {
-	background-color: #DEDeDe;
+  background-color: #DEDeDe;
 }
 
 .index-menu .mui-table-view-inverted .mui-table-view-cell.mui-active,
 .index-menu .mui-table-view-inverted .mui-table-view-cell>a:not(.mui-btn).mui-active {
-	background-color:#DEDeDe
+  background-color: #DEDeDe
 }
+
 .index-menu .user_face .intro {
-	float: left;
-	/*padding-left: 20px;*/
-	height: 60px;
-	width: 80px;
+  float: left;
+  /*padding-left: 20px;*/
+  height: 60px;
+  width: 80px;
 }
 
 .index-menu .user_face .intro h1 {
-	color: #FFF;
-    font-size: 17px;
-    font-weight: normal;
-    text-shadow: 1px 1px 1px #696969;
+  color: #FFF;
+  font-size: 17px;
+  font-weight: normal;
+  text-shadow: 1px 1px 1px #696969;
 }
 
 .index-menu .user_face .intro p {
-	font-size: 16px;
-	margin: 0 auto;
-	margin-top: 25px;
-	color: #fff;
-	text-shadow: 1px 1px 1px #696969;
+  font-size: 16px;
+  margin: 0 auto;
+  margin-top: 25px;
+  color: #fff;
+  text-shadow: 1px 1px 1px #696969;
 }
 
 .mui-table-view-inverted .mui-table-view-cell:after {
-    height: 0px;
+  height: 0px;
 }
-.mui-table-view-inverted:after{
-	height: 0px;
+
+.mui-table-view-inverted:after {
+  height: 0px;
 }
+
 .index-menu .mui-navigate-right {
-    font-size: 15px;
+  font-size: 15px;
 }
-.index-menu footer{
-	position: fixed;
-    bottom: 0px;
-    background: #FFF;
-    height: 40px;
-    width: 100%;
-    line-height: 40px;
-    text-align: center;
+
+.index-menu footer {
+  position: fixed;
+  bottom: 0px;
+  background: #FFF;
+  height: 40px;
+  width: 100%;
+  line-height: 40px;
+  text-align: center;
 }
-.index-menu footer .logout{
-    width: 100%;
-    float: right;
+
+.index-menu footer .logout {
+  width: 100%;
+  float: right;
 }
-.index-menu footer .logout a{
-	color: #33CCCC;
-	display: block;
+
+.index-menu footer .logout a {
+  color: #33CCCC;
+  display: block;
 }
+
 .index-menu .menu-icon {
-    color: #33CCCC;
-    padding-right: 5px;
-    font-size: 24px;
-    position: relative;
-    top: 4px;
+  color: #33CCCC;
+  padding-right: 5px;
+  font-size: 24px;
+  position: relative;
+  top: 4px;
 }
+
+
 /*index-menu_css结束*/
 
 
@@ -640,103 +683,103 @@ td {
 .usermessage .name_input input,
 .usermessage .password_input input,
 .usermessage .againpsd_input input {
-	width: 100%;
-	height: 40px;
-	border: 0px;
-	position: relative;
-	padding-left: 45px;
-	margin-bottom: 0px;
+  width: 100%;
+  height: 40px;
+  border: 0px;
+  position: relative;
+  padding-left: 45px;
+  margin-bottom: 0px;
 }
 
 .usermessage .name_input,
 .usermessage .password_input,
 .usermessage .againpsd_input {
-	border-top: 1px solid #cccccc;
+  border-top: 1px solid #cccccc;
 }
 
 .usermessage .other {
-	margin-top: 20px;
-	position: relative;
-	top: -40px;
+  margin-top: 20px;
+  position: relative;
+  top: -40px;
 }
 
 .usermessage select {
-	margin: 0px;
-	font-size: 15px;
-	line-height: 15px;
+  margin: 0px;
+  font-size: 15px;
+  line-height: 15px;
 }
 
 .usermessage .class_input {
-	width: 100%;
+  width: 100%;
 }
 
 .usermessage .major_select,
 .usermessage .class_input {
-	border-top: 1px solid #cccccc;
+  border-top: 1px solid #cccccc;
 }
 
 .usermessage select {
-	width: 100%;
-	height: 40px;
-	border: 0px;
-	position: relative;
-	padding-left: 45px;
-	margin-bottom: 0px;
+  width: 100%;
+  height: 40px;
+  border: 0px;
+  position: relative;
+  padding-left: 45px;
+  margin-bottom: 0px;
 }
 
 .usermessage .class_input input {
-	width: 100%;
-	height: 40px;
-	border: 0px;
-	position: relative;
-	padding-left: 45px;
-	margin-bottom: 0px;
+  width: 100%;
+  height: 40px;
+  border: 0px;
+  position: relative;
+  padding-left: 45px;
+  margin-bottom: 0px;
 }
 
 .usermessage .icon {
-	height: 40px;
-	width: 40px;
-	position: relative;
-	line-height: 40px;
-	top: -40px;
-	color: #BBBBBB;
-	text-align: center;
+  height: 40px;
+  width: 40px;
+  position: relative;
+  line-height: 40px;
+  top: -40px;
+  color: #BBBBBB;
+  text-align: center;
 }
 
 .usermessage .icon .mui-icon {
-	font-size: 28px;
+  font-size: 28px;
 }
 
 .usermessage .name_input {
-	position: relative;
-	top: 0px;
+  position: relative;
+  top: 0px;
 }
 
 .usermessage .school_select {
-	position: relative;
-	top: 0px;
+  position: relative;
+  top: 0px;
 }
 
 .usermessage .major_select {
-	position: relative;
-	top: -40px;
+  position: relative;
+  top: -40px;
 }
 
 .usermessage .class_input {
-	position: relative;
-	top: -80px;
+  position: relative;
+  top: -80px;
 }
 
 .usermessage .reg_btn {
-	width: 100%;
-	margin-top: 0px;
+  width: 100%;
+  margin-top: 0px;
 }
 
 .usermessage .reg_btn button {
-	padding: 0px;
-	width: 100%;
-	height: 40px;
-	font-size: 14px;
+  padding: 0px;
+  width: 100%;
+  height: 40px;
+  font-size: 14px;
 }
 
 
@@ -746,130 +789,131 @@ td {
 /*searchclass_css开始*/
 
 .searchclass .icon {
-	text-align: center;
-	padding-top: 30px
+  text-align: center;
+  padding-top: 30px
 }
 
 .searchclass .icon img {
-	width: 100px;
+  width: 100px;
 }
 
 .searchclass .searchbtn {
-	text-align: center;
-	margin: 20px auto;
-	width: 90%;
-	height: 40px;
-	vertical-align: middle;
+  text-align: center;
+  margin: 20px auto;
+  width: 90%;
+  height: 40px;
+  vertical-align: middle;
 }
 
 
 /*searchclass_css结束*/
 
+
 /*forwardest_css开始 */
 
 .forwardest,
 .forwardest .mui-content {
-	background: #FFF;
+  background: #FFF;
 }
 
 .forwardest .mui-control-content {
-	background-color: white;
-	min-height: 800px;
+  background-color: white;
+  min-height: 800px;
 }
 
 .forwardest .mui-control-content .mui-loading {
-	margin-top: 50px;
+  margin-top: 50px;
 }
 
 .forwardest .mui-table-view-cell {
-	min-height: 80px;
+  min-height: 80px;
 }
 
 .forwardest .ranking {
-	text-align: center;
-	margin: 0 auto;
-	position: relative;
-	top: 20px;
-	left: 15px;
-	color: #33CCCC;
-	font-weight: bold;
+  text-align: center;
+  margin: 0 auto;
+  position: relative;
+  top: 20px;
+  left: 15px;
+  color: #33CCCC;
+  font-weight: bold;
 }
 
 .forwardest .more {
-	position: relative;
-	top: 10px;
+  position: relative;
+  top: 10px;
 }
 
 .forwardest .address {
-	position: relative;
-	top: 10px;
-	word-break: break-word;
+  position: relative;
+  top: 10px;
+  word-break: break-word;
 }
 
 .forwardest .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-progress-bar {
-	background-color: #33cccc;
+  background-color: #33cccc;
 }
 
 .forwardest .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
-	color: #33CCCC;
-	font-size: 20px;
+  color: #33CCCC;
+  font-size: 20px;
 }
 
 .forwardest #sliderSegmentedControl {
-	color: #BBBBBB;
+  color: #BBBBBB;
 }
 
 .forwardest .ulsearch {
-	margin: 0px;
-	padding: 0px;
+  margin: 0px;
+  padding: 0px;
 }
 
 .forwardest .search {
-	padding-top: 6px;
-	padding-right: 10px;
-	padding-left: 10px;
-	height: 50px;
-	border-bottom: 3px solid #c8c7cc;
-	background: #FFF;
+  padding-top: 6px;
+  padding-right: 10px;
+  padding-left: 10px;
+  height: 50px;
+  border-bottom: 3px solid #c8c7cc;
+  background: #FFF;
 }
 
 .forwardest #searchBtn {
-	width: 20%;
-	float: right;
-	margin-top: -50px;
-	border: 0px;
-	background: rgba(0, 0, 0, 0);
-	color: #33cccc;
-	font-size: 18px;
+  width: 20%;
+  float: right;
+  margin-top: -50px;
+  border: 0px;
+  background: rgba(0, 0, 0, 0);
+  color: #33cccc;
+  font-size: 18px;
 }
 
 .forwardest #specialInput {
-	width: 80%;
+  width: 80%;
 }
 
 .forwardest .mui-segmented-control .mui-control-item.mui-active {
-	background: #33CCCC;
-	color: #FFFFFF;
-	font-size: 20px;
-	font-weight: bold;
+  background: #33CCCC;
+  color: #FFFFFF;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .forwardest .mui-segmented-control {
-	border: 1px solid #33CCCC;
+  border: 1px solid #33CCCC;
 }
 
 .forwardest .mui-segmented-control .mui-control-item {
-	color: #33CCCC;
-	border-left: 1px solid #33CCCC;
-	border-color: #33CCCC;
+  color: #33CCCC;
+  border-left: 1px solid #33CCCC;
+  border-color: #33CCCC;
 }
 
 .forwardest .mui-card .mui-control-content {
-	padding: 10px;
+  padding: 10px;
 }
 
 .forwardest .mui-control-content {
-	min-height: 800px;
+  min-height: 800px;
 }
 
 
@@ -879,428 +923,466 @@ td {
 /*calender_css开始*/
 
 .calender table {
-	width: 100%;
-	border: 1px solid rgba(0, 0, 0, 0);
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0);
 }
 
 .calender table .table_title {
-	text-align: center;
-	background: #33cccc;
-	height: 40px;
-	color: #FFF;
-	font-size: 25px;
+  text-align: center;
+  background: #33cccc;
+  height: 40px;
+  color: #FFF;
+  font-size: 25px;
 }
 
 .calender.holiday {
-	color: red;
+  color: red;
 }
 
 .calender #other {
-	padding: 15px;
-	margin-top: 15px;
-	color: #777;
-	background-color: #fafafa;
-	border: 1px solid #CCCCCC;
-	border-left: 0px;
-	border-right: 0px;
+  padding: 15px;
+  margin-top: 15px;
+  color: #777;
+  background-color: #fafafa;
+  border: 1px solid #CCCCCC;
+  border-left: 0px;
+  border-right: 0px;
 }
 
 .calender table select {
-	width: auto;
-	height: 40px;
-	font-size: 20px;
-	color: #33CCCC;
+  width: auto;
+  height: 40px;
+  font-size: 20px;
+  color: #33CCCC;
 }
 
 .calender #GZ {
-	margin-left: 20px;
+  margin-left: 20px;
 }
 
 .calender .select_year {
-	font-size: 20px;
+  font-size: 20px;
 }
 
 .calender .table_body {
-	height: 40px;
+  height: 40px;
 }
+
 
 /*calender_css结束*/
 
+
 /*message_css开始*/
+
 .write-message .message .content_body .text {
-
-	line-height: 25px;
-	font-size: 14px;
-	letter-spacing: 2px;
-	word-break: break-word;
-	background: #FFF;
-	margin-bottom: 0px;
+  line-height: 25px;
+  font-size: 14px;
+  letter-spacing: 2px;
+  word-break: break-word;
+  background: #FFF;
+  margin-bottom: 0px;
 }
+
 .write-message .message_foooter .time span {
-	color: #383838;
-	font-size: 15px;
+  color: #383838;
+  font-size: 15px;
 }
-.write-message .massage_header .username {
-	position: relative;
-	font-size: 15px;
-	top: -15px;
-	color: #383838;
-}
-.write-message .message_foooter {
-    padding-bottom: 5px;
-    border-top: 1px solid #f4f4f4;
-    padding-top: 5px;
-}
-.write-message .message .content_body {
-	margin: 15px 27px;
-	width: 90%;
-	word-break: break-all;
-	word-wrap: break-word;
-	margin-bottom: 5px;
-}
-.write-message .message_foooter .comment span {
-	font-size: 15px;
-}
-.write-message .message_foooter .comment .mui-icon{
-	color: #33CCCC;
-}
-.write-message .mui-table-view {
-    background-color: #F4f4f4;
-}
-.write-message .mui-table-view li {
-	background: #FFF;
-	margin-top: 15px;
-}
-.write-message .mui-table-view:before,
-.write-message .mui-table-view:after{
-	display: none;
-}
-.write-message footer{
-	position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #33cccc;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: block;
-    z-index: 5;
-    box-shadow: 3px 3px 10px #696969;
-}
-.write-message footer i{
-	color: #FFFFFF;
-    font-size: 36px;
-    position: relative;
-    top: 15px;
-    left: 9px;
 
+.write-message .massage_header .username {
+  position: relative;
+  font-size: 15px;
+  top: -10px;
+  left: 10px;
+  color: #ef980b;
 }
+
+.write-message .message_foooter {
+  padding-bottom: 5px;
+  border-top: 1px solid #f4f4f4;
+  padding-top: 5px;
+}
+
+.write-message .message .content_body {
+  margin: 0px 18px;
+  width: 90%;
+  word-break: break-all;
+  word-wrap: break-word;
+  margin-bottom: 5px;
+}
+
+.write-message .message_foooter .comment span {
+  font-size: 15px;
+}
+
+.write-message .message_foooter .comment .mui-icon {
+  color: #33CCCC;
+}
+
+.write-message .mui-table-view {
+  background-color: #F4f4f4;
+}
+
+.write-message .mui-table-view li {
+  background: #FFF;
+  margin-top: 15px;
+}
+
+.write-message .mui-table-view:before,
+.write-message .mui-table-view:after {
+  display: none;
+}
+
+.write-message footer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #33cccc;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: block;
+  z-index: 5;
+  box-shadow: 3px 3px 10px #696969;
+}
+
+.write-message footer i {
+  color: #FFFFFF;
+  font-size: 36px;
+  position: relative;
+  top: 15px;
+  left: 9px;
+}
+
 .write-message .message_foooter .comment {
-	float: right;
-	padding-right: 30px;
+  float: right;
+  padding-right: 30px;
 }
+
 .write-message .message_foooter .time {
-	padding-left: 20px;
-	display: inline;
+  padding-left: 20px;
+  display: inline;
 }
+
 .write-message .massage_header {
-	padding: 10px;
-	height: 50px;
+  padding: 10px;
+  height: 50px;
 }
-			
+
 .write-message .massage_header img {
-	border-radius: 50%;
+  border-radius: 50%;
 }
+
+
 /*message_css结束*/
 
+
 /*forgetpassword_css开始*/
-.v-code{
-	margin-top: 20px;
+
+.v-code {
+  margin-top: 20px;
 }
-.v-code .v-code-input{
-	width: 70%;
-	border-left: 0px;
-	border-right: 0px;
-	border-bottom: 0px;
+
+.v-code .v-code-input {
+  width: 70%;
+  border-left: 0px;
+  border-right: 0px;
+  border-bottom: 0px;
 }
-.v-code .v-code-btn{
-	width: 30%;
-	height: 40px;
-	border-left: 0px;
-	border-right: 0px;
-	background: #33cccc;
-    color: #FFF;
-    border: 0px;
-    border-radius: 0px;
+
+.v-code .v-code-btn {
+  width: 30%;
+  height: 40px;
+  border-left: 0px;
+  border-right: 0px;
+  background: #33cccc;
+  color: #FFF;
+  border: 0px;
+  border-radius: 0px;
 }
-.v-code .email{
-	margin: 0px;
-	border: 0px;
+
+.v-code .email {
+  margin: 0px;
+  border: 0px;
 }
+
 .changepassword .password_form {
-	position: relative;
-	top: 30px;
-	text-align: center;
-	clear: both;
+  position: relative;
+  top: 30px;
+  text-align: center;
+  clear: both;
 }
+
 .changepassword .password_form input {
-	border: 0px;
-	border-bottom: 1px solid #CCCCCC;
+  border: 0px;
+  border-bottom: 1px solid #CCCCCC;
 }
-.changepassword .password_form input[id='password_confirm']{
-	border-bottom: 0px;
+
+.changepassword .password_form input[id='password_confirm'] {
+  border-bottom: 0px;
 }
+
 .changepassword #password {
-	margin: 0px;
+  margin: 0px;
 }
+
 .changepassword .password_form button {
-	border: 0px;
-	width: 90%;
-	margin-top: 5px;
-	height: 40px;
-	background: #33cccc;
-	color: #FFF;
+  border: 0px;
+  width: 90%;
+  margin-top: 5px;
+  height: 40px;
+  background: #33cccc;
+  color: #FFF;
 }
-.changepassword .password_form button:hover{
-	background: #00B6EC;
+
+.changepassword .password_form button:hover {
+  background: #00B6EC;
 }
+
 .changepassword .mui-bar .mui-btn-link {
-	color: #FFF;
+  color: #FFF;
 }
+
 .changepassword .v-code input,
-.changepassword .password_form input{
-	padding-left: 35px;
+.changepassword .password_form input {
+  padding-left: 35px;
 }
 
 .red_point {
-	display: block;
-	background: #f00;
-	border-radius: 50%;
-	width: 6px;
-	height: 6px;
-	top: 13px;
-	right: 8px;
-	position: absolute;
+  display: block;
+  background: #f00;
+  border-radius: 50%;
+  width: 6px;
+  height: 6px;
+  top: 13px;
+  right: 8px;
+  position: absolute;
 }
+
 .changepassword .row {
-    position: relative;
-    line-height: 40px;
-    color: #BBBBBB;
-    text-align: center;
+  position: relative;
+  line-height: 40px;
+  color: #BBBBBB;
+  text-align: center;
 }
-.changepassword .row span{
-	position: absolute;
-	top: 10px;
-	left: 5px;
+
+.changepassword .row span {
+  position: absolute;
+  top: 10px;
+  left: 5px;
 }
-.mui-icon{
-	font-size: 24px;
+
+.mui-icon {
+  font-size: 24px;
 }
+
+
 /*forgetpassword_css结束*/
+
 
 /*对话框根布局(属于遮罩)*/
 
 .layer_root {
-	width: 100%;
-	height: 100%;
-	text-align: center;
-	position: fixed;
-	top: 0;
-	z-index: 99999;
-	background-color: rgba(0, 0, 0, 0.5);
-	font-size: 15px;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  z-index: 99999;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-size: 15px;
 }
 
 .layer_root:before {
-	content: '';
-	display: inline-block;
-	height: 100%;
-	vertical-align: middle;
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
 }
 
 
 /*对话框主体*/
 
 .layer_main {
-	width: 80%;
-	display: inline-block;
-	vertical-align: middle;
-	background-color: #fff;
-	border-radius: 8px;
-	text-align: left;
+  width: 80%;
+  display: inline-block;
+  vertical-align: middle;
+  background-color: #fff;
+  border-radius: 8px;
+  text-align: left;
 }
 
 
 /*标题*/
 
 .layer_title {
-	padding: 10px;
-	border-bottom: 1px solid #EBEBEB;
+  padding: 10px;
+  border-bottom: 1px solid #EBEBEB;
 }
 
 
 /*内容*/
 
 .layer_content {
-	padding: 10px;
+  padding: 10px;
 }
 
 
 /*按钮*/
 
 .layer_btns {
-	width: 100%;
-	text-align: center;
-	border-top: 1px solid #EBEBEB;
+  width: 100%;
+  text-align: center;
+  border-top: 1px solid #EBEBEB;
 }
 
 .layer_btns td {
-	padding: 10px;
-	/*font-size: 1em;*/
+  padding: 10px;
+  /*font-size: 1em;*/
 }
 
 .layer_btns td:active {
-	background-color: #F0F0F0;
+  background-color: #F0F0F0;
 }
 
 .layer_btn_single {
-	border-bottom-left-radius: 8px;
-	border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 .layer_btn_left {
-	border-bottom-left-radius: 8px;
-	border-right: 1px solid #EBEBEB;
+  border-bottom-left-radius: 8px;
+  border-right: 1px solid #EBEBEB;
 }
 
 .layer_btn_middle {
-	border-right: 1px solid #EBEBEB;
+  border-right: 1px solid #EBEBEB;
 }
 
 .layer_btn_right {
-	border-bottom-right-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 
 /*一半大小到原大的动画*/
 
 .scaleIn {
-	animation: scaleIn .32s;
-	-webkit-animation: scaleIn .32s;
+  animation: scaleIn .32s;
+  -webkit-animation: scaleIn .32s;
 }
 
 @-webkit-keyframes scaleIn {
-	from {
-		transform: scale(.5);
-		-webkit-transform: scale(.5);
-	}
-	to {
-		transform: scale(1);
-		-webkit-transform: scale(1);
-	}
+  from {
+    transform: scale(.5);
+    -webkit-transform: scale(.5);
+  }
+  to {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+  }
 }
 
 
 /*缩小一半的动画*/
 
 .scaleOut {
-	-webkit-animation: scaleOut .32s;
+  -webkit-animation: scaleOut .32s;
 }
 
 @-webkit-keyframes scaleOut {
-	from {
-		transform: scale(1);
-		-webkit-transform: scale(1);
-	}
-	to {
-		transform: scale(.5);
-		-webkit-transform: scale(.5);
-	}
+  from {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+  }
+  to {
+    transform: scale(.5);
+    -webkit-transform: scale(.5);
+  }
 }
 
 
 /*透明到不透明的动画*/
 
 .opacityIn {
-	-webkit-animation: opacityIn .32s;
+  -webkit-animation: opacityIn .32s;
 }
 
 @-webkit-keyframes opacityIn {
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
-	}
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 
 /*不透明到透明的动画*/
 
 .opacityOut {
-	-webkit-animation: opacityOut .32s;
+  -webkit-animation: opacityOut .32s;
 }
 
 @-webkit-keyframes opacityOut {
-	from {
-		opacity: 1;
-	}
-	to {
-		opacity: 0;
-	}
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
+
 
 /*loading 动画*/
 
 .spinner {
-	margin: 50px auto 0;
-	width: 150px;
-	text-align: center;
+  margin: 50px auto 0;
+  width: 150px;
+  text-align: center;
 }
 
-.spinner > div {
-	width: 10px;
-	height: 10px;
-	background-color: #BBBBBB;
-	border-radius: 100%;
-	display: inline-block;
-	-webkit-animation: bouncedelay 1.4s infinite ease-in-out;
-	animation: bouncedelay 1.4s infinite ease-in-out;
-	/* Prevent first frame from flickering when animation starts */
-	-webkit-animation-fill-mode: both;
-	animation-fill-mode: both;
+.spinner> div {
+  width: 10px;
+  height: 10px;
+  background-color: #BBBBBB;
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: bouncedelay 1.4s infinite ease-in-out;
+  animation: bouncedelay 1.4s infinite ease-in-out;
+  /* Prevent first frame from flickering when animation starts */
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
 }
 
 .spinner .bounce1 {
-	-webkit-animation-delay: -0.32s;
-	animation-delay: -0.32s;
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
 }
 
 .spinner .bounce2 {
-	-webkit-animation-delay: -0.16s;
-	animation-delay: -0.16s;
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
 }
 
 @-webkit-keyframes bouncedelay {
-	0%,
-	80%,
-	100% {
-		-webkit-transform: scale(0.0)
-	}
-	40% {
-		-webkit-transform: scale(1.0)
-	}
+  0%,
+  80%,
+  100% {
+    -webkit-transform: scale(0.0)
+  }
+  40% {
+    -webkit-transform: scale(1.0)
+  }
 }
 
 @keyframes bouncedelay {
-	0%,
-	80%,
-	100% {
-		transform: scale(0.0);
-		-webkit-transform: scale(0.0);
-	}
-	40% {
-		transform: scale(1.0);
-		-webkit-transform: scale(1.0);
-	}
+  0%,
+  80%,
+  100% {
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  }
+  40% {
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
 }
