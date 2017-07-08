@@ -191,7 +191,7 @@
 				}
 				var userId = plus.storage.getItem('id');
 				if (!userId) {
-					plus.nativeUI.toast('登录过期,请退出重新登录');
+					plus.nativeUI.toast('登录过期');
 					return 0;
 				}
 				mui.ajax('http://2.minikb.sinaapp.com/controller/message_board_controller.php', {
@@ -219,7 +219,7 @@
 								detailPage = plus.webview.getWebviewById('message.html');
 							}
 							document.getElementById('msg-text').value = '';
-							mui.fire(detailPage, 'newmessage', {
+							mui.fire(detailPage, 'sssaba', {
 								mood_id: data,
 								moods: text
 							});

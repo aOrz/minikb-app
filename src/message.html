@@ -1,119 +1,121 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-    <meta charset="utf-8">
-    <title>留言板</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-ap p-status-bar-style" content="black">
+	<head>
+		<meta charset="utf-8">
+		<title>留言板</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-    <link rel="stylesheet" type="text/css" href="css/mui.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/common.css" />
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <link rel="stylesheet" type="text/css" href="css/iconfont.css" />
-    <style>
-      .mui-bar~.mui-content .mui-fullscreen {
-        top: 44px;
-        height: auto;
-      }
-      
-      .mui-pull-top-tips {
-        position: absolute;
-        top: -20px;
-        left: 50%;
-        margin-left: -25px;
-        width: 40px;
-        height: 40px;
-        border-radius: 100%;
-      }
-      
-      .mui-bar~.mui-pull-top-tips {
-        top: 24px;
-      }
-      
-      .mui-pull-top-wrapper {
-        width: 42px;
-        height: 42px;
-        display: block;
-        text-align: center;
-        background-color: #efeff4;
-        border: 1px solid #ddd;
-        border-radius: 25px;
-        background-clip: padding-box;
-        box-shadow: 0 4px 10px #bbb;
-      }
-      
-      .mui-pull-top-tips.mui-transitioning {
-        -webkit-transition-duration: 200ms;
-        transition-duration: 200ms;
-      }
-      
-      .mui-pull-top-tips .mui-pull-loading {
-        margin: 0;
-      }
-      
-      .mui-pull-top-wrapper .mui-icon,
-      .mui-pull-top-wrapper .mui-spinner {
-        margin-top: 7px;
-      }
-      
-      .mui-pull-bottom-tips {
-        text-align: center;
-        background-color: #efeff4;
-        font-size: 15px;
-        line-height: 40px;
-        color: #777;
-      }
-      
-      .mui-pull-top-canvas {
-        background-color: #fafafa;
-        border-radius: 40px;
-        box-shadow: 0 4px 10px #bbb;
-        width: 40px;
-        height: 40px;
-        margin: 0 auto;
-      }
-      
-      .mui-pull-top-canvas canvas {
-        width: 40px;
-      }
-      
-      .mui-table-view-cell:after {
-        left: 0px;
-      }
-      
-      .mui-scroll-wrapper {
-        overflow: auto;
-      }
-      /*下拉刷新圆形进度条的大小和样式*/
-      /*下拉刷新的箭头颜色*/
-      
-      .mui-spinner,
-      .mui-pull-caption {
-        color: #BBBBBB;
-      }
-      
-      .mui-icon-pulldown {
-        color: #BBBBBB;
-      }
-    </style>
-  </head>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
+		<style>
+			.mui-bar~.mui-content .mui-fullscreen {
+				top: 44px;
+				height: auto;
+			}
+			
+			.mui-pull-top-tips {
+				position: absolute;
+				top: -20px;
+				left: 50%;
+				margin-left: -25px;
+				width: 40px;
+				height: 40px;
+				border-radius: 100%;
+			}
+			
+			.mui-bar~.mui-pull-top-tips {
+				top: 24px;
+			}
+			
+			.mui-pull-top-wrapper {
+				width: 42px;
+				height: 42px;
+				display: block;
+				text-align: center;
+				background-color: #efeff4;
+				border: 1px solid #ddd;
+				border-radius: 25px;
+				background-clip: padding-box;
+				box-shadow: 0 4px 10px #bbb;
+			}
+			
+			.mui-pull-top-tips.mui-transitioning {
+				-webkit-transition-duration: 200ms;
+				transition-duration: 200ms;
+			}
+			
+			.mui-pull-top-tips .mui-pull-loading {
+				margin: 0;
+			}
+			
+			.mui-pull-top-wrapper .mui-icon,
+			.mui-pull-top-wrapper .mui-spinner {
+				margin-top: 7px;
+			}
+			
+			.mui-pull-bottom-tips {
+				text-align: center;
+				background-color: #efeff4;
+				font-size: 15px;
+				line-height: 40px;
+				color: #777;
+			}
+			
+			.mui-pull-top-canvas {
+				background-color: #fafafa;
+				border-radius: 40px;
+				box-shadow: 0 4px 10px #bbb;
+				width: 40px;
+				height: 40px;
+				margin: 0 auto;
+			}
+			
+			.mui-pull-top-canvas canvas {
+				width: 40px;
+			}
+			
+			.mui-table-view-cell:after {
+				left: 0px;
+			}
 
-  <body class="write-message">
-    <header id="header" class="mui-bar mui-bar-nav">
-      <a class="mui-action-back mui-icon-back mui-icon mui-pull-left"></a>
-      <a class=" mui-icon mui-icon-pengyouquan mui-pull-right" id="myMessage"></a>
-      <!--<a class=" mui-icon mui-icon-plus mui-pull-right" id="addMessage"></a>-->
-      <h1 class="mui-title">匿名留言板</h1>
-    </header>
-    <div id="content" class="mui-content mui-scroll-wrapper" style="overflow: auto;">
-      <div class="mui-scroll">
-        <!--数据列表-->
-        <ul class="mui-table-view mui-table-view-chevron" id="contents">
-          <!--<li class="message" >
+			.mui-scroll-wrapper {
+				overflow: auto;
+			}
+
+			/*下拉刷新圆形进度条的大小和样式*/
+			/*下拉刷新的箭头颜色*/
+			
+			.mui-spinner,
+			.mui-pull-caption {
+				color: #BBBBBB;
+			}
+			
+			.mui-icon-pulldown {
+				color: #BBBBBB;
+			}
+			
+		</style>
+	</head>
+
+	<body class="write-message">
+		<header id="header" class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon-back mui-icon mui-pull-left"></a>
+			<a class=" mui-icon mui-icon-pengyouquan mui-pull-right" id="myMessage"></a>
+			<!--<a class=" mui-icon mui-icon-plus mui-pull-right" id="addMessage"></a>-->
+			<h1 class="mui-title">匿名留言板</h1>
+		</header>
+		<div id="content" class="mui-content mui-scroll-wrapper" style="overflow: auto;">
+			<div class="mui-scroll">
+				<!--数据列表-->
+				<ul class="mui-table-view mui-table-view-chevron" id="contents">
+					<!--<li class="message" >
 						<div class="massage_header" >
-							<img src="images/face/1.png" style="width: 35px;" />
+							<img src="images/face/1.png" style="width: 50px;" />
 							<span class="username">某同学</span>
 						</div>
 						<div class="content_body">
@@ -129,127 +131,164 @@
 							</div>
 						</div>
 					</li>-->
-        </ul>
-      </div>
-    </div>
-    <footer>
-      <i class="menu-icon iconfont" id="addMessage">&#xe63c;</i>
-    </footer>
-    <script src="js/mui.min.js"></script>
-    <script type="text/javascript" src="js/myjs.js"></script>
-    <script type="text/javascript" src="js/vue.min.js"></script>
-    <script>
-    mui.init({
-          swipeBack: true,
-          pullRefresh: {
-            container: '#content', //待刷新区域标识，querySelector能定位的css选择器均可，比如：id、.class等
-            up: {
-              contentrefresh: "拼命加载中...", //可选，正在加载状态时，上拉加载控件上显示的标题内容
-              contentnomore: '没有更多数据了', //可选，请求完毕若没有更多数据时显示的提醒内容；
-              auto: true,
-              callback: ajaxs //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
-            }
-          },
-          preloadPages: [{
-            url: 'comment.html',
-            id: 'comment.html'
-          }, {
-            url: 'postmessage.html',
-            id: 'postmessage.html'
-          }]
-        });
-        var page = 1;
-        
-				function splitJointHtml(data){
-					var num = Math.ceil(Math.random() * 6);
-					var html = '<li class="message" data-id="' + data['mood_id'] + '"><div class="massage_header" >' +
-                  '<img src="images/face/' + num + '.png" style="width: 35px;" />' +
-                  '<span class="username">某同学</span></div>' +
-                  '<div class="content_body"><p class="text">' + data['moods'] +
-                  '</p></div>' +
-                  '<div class="message_foooter"><div class="time"><span>' +
-                  getDateDiff(data['indate']) + '</span>' +
-                  '</div><div class="comment">' +
-                  '<span class="mui-icon mui-icon-chatbubble"></span><span>' +
-                  data['comments'] + '</span></div></div></li>';
-                  return html;
+				</ul>
+			</div>
+		</div>
+		<footer>
+			<i class="menu-icon iconfont"  id="addMessage">&#xe63c;</i>
+		</footer>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/myjs.js"></script>
+		<script type="text/javascript" src="js/vue.min.js" ></script>
+		<script>
+			mui.plusReady(function() {
+				mui.init({
+					swipeBack: true,
+					pullRefresh: {
+						container: '#content', //待刷新区域标识，querySelector能定位的css选择器均可，比如：id、.class等
+						up: {
+							contentrefresh: "拼命加载中...", //可选，正在加载状态时，上拉加载控件上显示的标题内容
+							contentnomore: '没有更多数据了',//可选，请求完毕若没有更多数据时显示的提醒内容；
+							auto:true,
+							callback: ajaxs //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+						}
+					},
+					preloadPages: [{
+						url: 'comment.html',
+						id: 'comment.html'
+					}, {
+						url: 'postmessage.html',
+						id: 'postmessage.html'
+					}]
+				});
+				var page = 1;
+//				mui('#content').pullRefresh().pullupLoading();
+				window.addEventListener('sssaba', function(event) {
+					//page = 1;
+					var data1 = event.detail;
+					var contents=document.getElementById('contents').innerHTML;
+					console.log(JSON.stringify(data1));
+					data1['moods'] =Tohtml(data1['moods']);
+					var html = '<li class="message ' + 'girl' + '" data-id="' + data1['mood_id'] + '" >' +
+						'<div class="massage_header" >' +
+						'<img src="images/face/' + '1' + '.png" style="width: 50px;" />' +
+						'<span class="username">某同学</span>' +
+						'</div>' +
+						'<div class="content_body">' +
+						'<p class="text">' + data1['moods'] +
+						'</p>' +
+						'</div>' +
+						'<div class="message_foooter">' +
+						'<div class="time">' +
+						'<span>' + '最近' + '</span>' +
+						'</div>' +
+						'<div class="comment">' +
+						'<span class="mui-icon mui-icon-chatbubble"></span>' +
+						'<span>' + '0' + '</span>' +
+						'</div>' +
+						'</div>' +
+						'</li>';
+
+					contents.innerHTML = html + contents.innerHTML;
+				});
+				var color = Array('boy', 'girl');
+
+				function ajaxs() {
+					mui.ajax('http://2.minikb.sinaapp.com/controller/message_board_controller.php', {
+						data: {
+							page: page,
+							c: 'GetMessageByPage'
+						},
+						dataType: 'json', //服务器返回json格式数据
+						type: 'get', //HTTP请求类型
+						timeout: 10000, //超时时间设置为10秒；
+						success: function(data) {
+							for (var i = 0; i < data.length; i++) {
+								data1 = data[i];
+								var num = Math.ceil(Math.random() * 6);
+//								html = '<li class="message ' + color[i % 2] + 
+//								    '" data-id="' + data1['mood_id'] + '" >' +
+//									'<div class="massage_header" >' +
+//									'<img src="images/face/' + num + '.png" style="width: 50px;" />' +
+//									'<span class="username">某同学</span>' +
+//									'</div>' +
+//									'<div class="content_body">' +
+//									'<p class="text">' + data1['moods'] +
+//									'</p>' +
+//									'</div>' +
+//									'<div class="message_foooter">' +
+//									'<div class="time">' +
+//									'<span>' + getDateDiff(data1['indate']) + '</span>' +
+//									'</div>' +
+//									'<div class="comment">' +
+//									'<span class="mui-icon mui-icon-chatbubble"></span>' +
+//									'<span>' + data1['comments'] + '</span>' +
+//									'</div>' +
+//									'</div>' +
+//									'</li>';
+								html='<li class="message" ><div class="massage_header" >'+
+									'<img src="images/face/' + num + '.png" style="width: 50px;" />'+
+									'<span class="username">某同学</span></div>'+
+									'<div class="content_body"><p class="text">'+data1['moods']+
+									'</p></div>'+
+									'<div class="message_foooter"><div class="time"><span>'+
+									getDateDiff(data1['indate']) + '</span>'+
+									'</div><div class="comment">'+
+									'<span class="mui-icon mui-icon-chatbubble"></span><span>'+
+									data1['comments']+'</span></div></div></li>';
+									
+								document.getElementById('contents').innerHTML += html;
+							}
+							var isture = 0;
+							if (i < 19) {
+								isture = 1;
+							}
+							mui('#content').pullRefresh().endPullupToRefresh(isture);
+						},
+						error: function(xhr, type, errorThrown) {
+							//异常处理；
+							plus.nativeUI.toast("网络错误，请稍后重试！")
+						}
+					});
+					page++;
 				}
-        function ajaxs() {
-          mui.ajax('http://2.minikb.sinaapp.com/controller/message_board_controller.php', {
-            data: {
-              page: page,
-              c: 'GetMessageByPage'
-            },
-            dataType: 'json', //服务器返回json格式数据
-            type: 'get', //HTTP请求类型
-            timeout: 10000, //超时时间设置为10秒；
-            success: function(data) {
-            	var html = '';
-              for(var i = 0; i < data.length; i++) {
-                html += splitJointHtml(data[i])
-              }
-              document.getElementById('contents').innerHTML += html;
-              var isture = 0;
-              if(i < 19) {
-                isture = 1;
-              }
-              mui('#content').pullRefresh().endPullupToRefresh(isture);
-            },
-            error: function(xhr, type, errorThrown) {
-              //异常处理；
-              plus.nativeUI.toast("网络错误，请稍后重试！")
-            }
-          });
-          page++;
-        }
-      mui.plusReady(function() {
-        
-        //			function comment(athis) {
-        //				data = athis.innerHTML;
-        //				alert(data)
-        //				mui.fire(targetPage, 'customEvent', {});
-        //			}
-        var detailPage = null;
-        window.addEventListener('newmessage', function(event) {
-          var data = event.detail;
-          var contents = document.getElementById('contents');
-          data['moods'] = Tohtml(data['moods']);
-          data['comments'] = 0;
-          data['indate'] = new Date();
-          html = splitJointHtml(data);
-          contents.innerHTML = html + contents.innerHTML;
-        });
-        mui('.mui-table-view').on('tap', 'li', function(e) {
-          var id = this.getAttribute('data-id');
-          var html = this.innerHTML;
-          //获得详情页面
-          if(!detailPage) {
-            detailPage = plus.webview.getWebviewById('comment.html');
-          }
-          //触发详情页面的newsId事件
-          mui.fire(detailPage, 'newsId', {
-            id: id,
-            html: html
-          });
-          //打开详情页面          
-          mui.openWindow({
-            id: 'comment.html'
-          });
-        });
-        document.getElementById('addMessage').addEventListener('tap', function() {
-          mui.openWindow({
-            url: 'postmessage.html',
-            id: 'postmessage.html'
-          });
-        });
-        document.getElementById('myMessage').addEventListener('tap', function() {
-          mui.openWindow({
-            url: 'mymessage.html',
-            id: 'mymessage.html'
-          });
-        });
-      });
-    </script>
-  </body>
+				//			function comment(athis) {
+				//				data = athis.innerHTML;
+				//				alert(data)
+				//				mui.fire(targetPage, 'customEvent', {});
+				//			}
+				var detailPage = null;
+				mui('.mui-table-view').on('tap', 'li', function(e) {
+					var id = this.getAttribute('data-id');
+					var html = this.innerHTML;
+					//获得详情页面
+					if (!detailPage) {
+						detailPage = plus.webview.getWebviewById('comment.html');
+					}
+					//触发详情页面的newsId事件
+					mui.fire(detailPage, 'newsId', {
+						id: id,
+						html: html
+					});
+					//打开详情页面          
+					mui.openWindow({
+						id: 'comment.html'
+					});
+				});
+				document.getElementById('addMessage').addEventListener('tap', function() {
+					mui.openWindow({
+						url: 'postmessage.html',
+						id: 'postmessage.html'
+					});
+				});
+				document.getElementById('myMessage').addEventListener('tap', function() {
+					mui.openWindow({
+						url: 'mymessage.html',
+						id: 'mymessage.html'
+					});
+				});
+			});
+		</script>
+	</body>
 
 </html>
