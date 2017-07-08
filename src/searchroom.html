@@ -1,230 +1,228 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <title>查询空教室</title>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>查询空教室</title>
 
-    <link rel="stylesheet" href="css/style.css" />
-    <link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link href="css/mui.min.css" rel="stylesheet" />
 
-    <style type="text/css">
-      #header {
-        background: #33CCCC;
-        color: #fffff;
-      }
-      
-      #header .mui-title {
-        color: #FFFFFF;
-      }
-      
-      .content {
-        padding: 0px 5% 10px;
-        text-align: center;
-      }
-      
-      .content button {
-        line-height: 40px;
-        padding-bottom: 0px;
-        padding-top: 0px;
-      }
-    </style>
-  </head>
+		<style type="text/css">
+		#header{
+			background: #33CCCC;
+			color: #fffff;
+		}
+		#header .mui-title{
+			color: #FFFFFF;
+		}
+			.content {
+				padding: 0px 5% 10px;
+				text-align: center;
+			}
+			
+			.content button {
+				line-height: 40px;
+				padding-bottom: 0px;
+				padding-top: 0px;
+			}
+		</style>
+	</head>
 
-  <body>
-    <header id="header" class="mui-bar mui-bar-nav">
-      <a class="mui-action-back mui-icon-back mui-icon mui-pull-left"></a>
-      <h1 class="mui-title">查询空教室</h1>
-    </header>
-    <div class="mui-content" id="content">
-      <div id="list_select" class="content">
-        <br />
-        <br />
-        <div>
-          <select v-model="school">
-            <option v-for="option in school_options" v-bind:value="option.value">
-              {{ option.text }}
-            </option>
-          </select>
-        </div>
-        <div class="room">
-          <select v-if="school=='yd'" id="jxl" v-model="jxl">
-            <option v-for="option in jxl_options" v-bind:value="option.value">
-              {{ option.text }}
-            </option>
-          </select>
-          <select v-if="school=='wj'" id="jxl" v-model="wj_jxl">
-            <option v-for="option in wj_jxl_options" v-bind:value="option.value">
-              {{ option.text }}
-            </option>
-          </select>
-        </div>
-        <div class="class">
-          <select name="jc" id="jc" v-model="jc">
-            <option v-for="option in jc_options" v-bind:value="option.value">
-              {{ option.text }}
-            </option>
-          </select>
-        </div>
-        <button id="search" v-on:click="search" class="mui-btn mui-btn-block mui-btn-primary">查找(结果仅供参考)</button>
-      </div>
-      <div id="room" class="mui-content-padded">
-        <div class="spinner" v-if="loading">
-          <div class="bounce1"></div>
-          <div class="bounce2"></div>
-          <div class="bounce3"></div>
-        </div>
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon-back mui-icon mui-pull-left"></a>
+			<h1 class="mui-title">查询空教室</h1>
+		</header>
+		<div class="mui-content" id="content">
+			<div id="list_select" class="content">
+				<br />
+				<br />
+				<div>
+					<select v-model="school">
+						<option v-for="option in school_options" v-bind:value="option.value">
+							{{ option.text }}
+						</option>
+					</select>
+				</div>
+				<div class="room">
+					<select v-if="school=='yd'" id="jxl" v-model="jxl">
+						<option v-for="option in jxl_options" v-bind:value="option.value">
+							{{ option.text }}
+						</option>
+					</select>
+					<select v-if="school=='wj'" id="jxl" v-model="wj_jxl">
+						<option v-for="option in wj_jxl_options" v-bind:value="option.value">
+							{{ option.text }}
+						</option>
+					</select>
+				</div>
+				<div class="class">
+					<select name="jc" id="jc" v-model="jc">
+						<option v-for="option in jc_options" v-bind:value="option.value">
+							{{ option.text }}
+						</option>
+					</select>
+				</div>
+				<button id="search" v-on:click="search" class="mui-btn mui-btn-block mui-btn-primary">查找</button>
+			</div>
+			<div id="room" class="mui-content-padded">
+				<div class="spinner" v-if="loading">
+					<div class="bounce1"></div>
+					<div class="bounce2"></div>
+					<div class="bounce3"></div>
+				</div>
 
-        <ul class="mui-table-view" v-if='isshow'>
-          <li v-for="item in room_num" class="mui-table-view-cell">
-            {{ item.js }}|{{ item.type }}<span class="mui-badge mui-badge-red">座位：{{ item.zw }}</span>
-          </li>
-        </ul>
-        <!--<ul class="mui-table-view" id="content">
+				<ul class="mui-table-view" v-if='isshow'>
+					<li v-for="item in room_num" class="mui-table-view-cell">
+						{{ item.js }}|{{ item.type }}<span class="mui-badge mui-badge-red">座位：{{ item.zw }}</span>
+					</li>
+				</ul>
+				<!--<ul class="mui-table-view" id="content">
 				</ul>-->
-      </div>
-    </div>
-    <script src="js/mui.min.js"></script>
-    <script type="text/javascript" src="js/vue.min.js"></script>
-    <script type="text/javascript" charset="utf-8">
-      mui.init();
-      var num = 0;
-      var room = new Vue({
-        el: '#room',
-        data: {
-          room_num: [],
-          isshow: 0,
-          loading: 0
-        }
-      })
-      var list = new Vue({
-        el: '#list_select',
-        data: {
-          school: 'yd',
-          school_options: [{
-            text: '烟台大学',
-            value: 'yd'
-          }, {
-            text: '文经学院',
-            value: 'wj'
-          }],
-          jxl: '8',
-          jxl_options: [{
-            text: '综合楼',
-            value: '8'
-          }, {
-            text: '五教',
-            value: '5'
-          }, {
-            text: '四教',
-            value: '4'
-          }, {
-            text: '七教',
-            value: '7'
-          }, {
-            text: '一教',
-            value: '1'
-          }, {
-            text: '二教',
-            value: '2'
-          }, {
-            text: '三教',
-            value: '3'
-          }, {
-            text: '六教',
-            value: '6'
-          }],
-          wj_jxl: '20',
-          wj_jxl_options: [{
-            text: '文一教',
-            value: '20'
-          }, {
-            text: '文二教',
-            value: '90'
-          }],
-          jc: '1',
-          jc_options: [{
-            text: '第1节',
-            value: '1'
-          }, {
-            text: '第2节',
-            value: '2'
-          }, {
-            text: '第3节',
-            value: '3'
-          }, {
-            text: '第4节',
-            value: '4'
-          }, {
-            text: '第5节',
-            value: '5'
-          }, {
-            text: '第6节',
-            value: '6'
-          }, {
-            text: '第7节',
-            value: '7'
-          }, {
-            text: '第8节',
-            value: '8'
-          }, {
-            text: '第9节',
-            value: '9'
-          }, {
-            text: '第10节',
-            value: '10'
-          }, {
-            text: '第11节',
-            value: '11'
-          }, {
-            text: '第12节',
-            value: '12'
-          }]
-        },
-        methods: {
-          search: function() {
-            room.isshow = 0;
-            room.loading = 1;
-            ajax_room()
-          }
-        }
-      })
+			</div>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+			var num = 0;
+			var room = new Vue({
+				el: '#room',
+				data: {
+					room_num: [],
+					isshow: 0,
+					loading: 0
+				}
+			})
+			var list = new Vue({
+				el: '#list_select',
+				data: {
+					school: 'yd',
+					school_options: [{
+						text: '烟台大学',
+						value: 'yd'
+					}, {
+						text: '文经学院',
+						value: 'wj'
+					}],
+					jxl: '8',
+					jxl_options: [{
+						text: '综合楼',
+						value: '8'
+					}, {
+						text: '五教',
+						value: '5'
+					}, {
+						text: '四教',
+						value: '4'
+					}, {
+						text: '七教',
+						value: '7'
+					}, {
+						text: '一教',
+						value: '1'
+					}, {
+						text: '二教',
+						value: '2'
+					}, {
+						text: '三教',
+						value: '3'
+					}, {
+						text: '六教',
+						value: '6'
+					}],
+					wj_jxl: '20',
+					wj_jxl_options: [{
+						text: '文一教',
+						value: '20'
+					}, {
+						text: '文二教',
+						value: '90'
+					}],
+					jc: '1',
+					jc_options: [{
+						text: '第1节',
+						value: '1'
+					}, {
+						text: '第2节',
+						value: '2'
+					}, {
+						text: '第3节',
+						value: '3'
+					}, {
+						text: '第4节',
+						value: '4'
+					}, {
+						text: '第5节',
+						value: '5'
+					}, {
+						text: '第6节',
+						value: '6'
+					}, {
+						text: '第7节',
+						value: '7'
+					}, {
+						text: '第8节',
+						value: '8'
+					}, {
+						text: '第9节',
+						value: '9'
+					}, {
+						text: '第10节',
+						value: '10'
+					}, {
+						text: '第11节',
+						value: '11'
+					}, {
+						text: '第12节',
+						value: '12'
+					}]
+				},
+				methods: {
+					search: function() {
+						room.isshow = 0;
+						room.loading = 1;
+						ajax_room()
+					}
+				}
+			})
 
-      function ajax_room() {
-        //				room.room_num = [];
-        if(list.school == 'yd')
-          var jxl = list.jxl;
-        else {
-          var jxl = list.wj_jxl;
-        }
-        var jc = document.getElementById("jc").value;
-        mui.ajax({
-          url: "http://2.minikb.sinaapp.com/controller/room_controller.php",
-          dataType: "json",
-          data: {
-            jxl: jxl,
-            jc: list.jc,
-            c: "GetNullRoom"
-          },
-          cache: false,
-          success: function(data) {
-            //var list = document.getElementById('content');
-            //							console.log(JSON.stringify(data));
-            if(!data) {
-              mui.alert('没有找到空教室');
-            }
-            room.room_num = data;
-            room.isshow = 1;
-            room.loading = 0;
-          },
-          error: function(e) {
-            room.loading = 0;
-            alert("网络错误~~(>_<)~~");
-          }
-        });
-      }
-    </script>
-  </body>
+			function ajax_room() {
+				//				room.room_num = [];
+				if (list.school == 'yd')
+					var jxl = list.jxl;
+				else {
+					var jxl = list.wj_jxl;
+				}
+				var jc = document.getElementById("jc").value;
+				mui.ajax({
+					url: "http://2.minikb.sinaapp.com/controller/room_controller.php",
+					dataType: "json",
+					data: {
+						jxl: jxl,
+						jc: list.jc,
+						c: "GetNullRoom"
+					},
+					cache: false,
+					success: function(data) {
+						//var list = document.getElementById('content');
+						//							console.log(JSON.stringify(data));
+						if (!data) {
+							mui.alert('没有找到空教室');
+						}
+						room.room_num = data;
+						room.isshow = 1;
+						room.loading = 0;
+					},
+					error: function(e) {
+						room.loading = 0;
+						alert("网络错误~~(>_<)~~");
+					}
+				});
+			}
+		</script>
+	</body>
 
 </html>

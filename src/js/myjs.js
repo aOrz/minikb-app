@@ -145,6 +145,143 @@ function IsEmail(yx) {
 	return result;
 }
 
+//验证用户注册函数
+function CheckReg() {
+	//邮箱
+	var userId = document.getElementById('email').value;
+	if (userId == "") {
+		plus.nativeUI.toast("请输入邮箱");
+		document.getElementById('email').focus();
+		return;
+	} else if (!IsEmail(userId)) {
+		plus.nativeUI.toast("邮箱格式不正确");
+		document.getElementById('email').focus();
+		return;
+	} else {
+		var idExists = CheckIdExists(userId);
+		if (idExists == 1) {
+			plus.nativeUI.toast("邮箱已注册");
+			document.getElementById('email').focus();
+			return;
+		}
+	}
+
+	//昵称
+	var userName = document.getElementById('account').value;
+	if (userName == "") {
+		plus.nativeUI.toast("请输入昵称");
+		document.getElementById('account').focus();
+		return;
+	} else if (userName.length > 10) {
+		plus.nativeUI.toast("昵称太长");
+		document.getElementById('account').focus();
+		return;
+	}
+
+	//第一次密码
+	var psd1 = document.getElementById('password').value;
+	if (psd1 == "") {
+		plus.nativeUI.toast("请输入密码");
+		document.getElementById('password').focus();
+		return;
+	} else if (psd1.length < 6) {
+		plus.nativeUI.toast("密码长度不能小于六");
+		document.getElementById('password').focus();
+		return;
+	}
+
+	//第二次密码
+	var psd2 = document.getElementById('password_confirm').value;
+	if (psd2 == "") {
+		plus.nativeUI.toast("请输入确认密码");
+		document.getElementById('password').focus();
+		return;
+	} else if (psd1 != psd2) {
+		plus.nativeUI.toast("两次密码不一致，请重新输入");
+		document.getElementById('password').focus();
+		return;
+	}
+
+	//学校
+	var school = document.getElementById('school').value;
+	if (school == "") {
+		plus.nativeUI.toast("请选择学校");
+		document.getElementById('school');
+		return;
+	}
+
+	//学院
+	var major = document.getElementById('major').value;
+	if (major == "") {
+		plus.nativeUI.toast("请选择学院");
+		document.getElementById('major');
+		return;
+	}
+
+	//班级
+	var className = document.getElementById('class').value;
+	var classExists = ClassExists(school, major, className);
+	if (classExists == 0) {
+		plus.nativeUI.toast("请输入正确的班级");
+		document.getElementById('class').focus();
+		return;
+	}
+
+	//注册时间
+	var dateTime = new Date();
+	dateTime = dateTime.getFullYear() + "-" + (dateTime.getMonth() + 1) + "-" + dateTime.getDate() + "   " + dateTime.getHours() + ":" + dateTime.getMinutes() + ":" + dateTime.getSeconds();
+
+	localStorage.setItem('mail', userId);
+	if (userId && userName && psd1 && psd2 && school && major && className) {
+		mui.ajax('http://2.minikb.sinaapp.com/controller/user_controller.php', {
+			async: false,
+			data: {
+				c: 'CreateUser',
+				userId: userId,
+				userPwd: psd1,
+				classNum: className,
+				schoolName: school,
+				collegeName: major,
+				nickName: userName,
+				isLogin: '1'
+			},
+			dataType: 'json', //服务器返回json格式数据
+			beforeSend: function() {
+				plus.nativeUI.showWaiting();
+			},
+			complete: function() {
+				plus.nativeUI.closeWaiting();
+			},
+			type: 'get', //HTTP请求类型
+			success: function(data) {
+				if (data == 0) {
+					plus.nativeUI.toast("邮箱已注册");
+				} else if (data == -1) {
+					plus.nativeUI.toast("班级不存在");
+				} else {
+					data = data[0];
+					plus.nativeUI.toast('注册成功');
+					for (var i = 1; i <= 44; i++) {
+						var ind = 's' + i;
+						plus.storage.setItem('"' + i + '"', data[ind]);
+					}
+
+					plus.storage.setItem("ex", '1');
+
+					plus.storage.setItem('nc', data['nick_name']);
+					plus.storage.setItem('xx', data['school']);
+					localStorage.setItem('xx', data['school']);
+					plus.storage.setItem('class', data['class']);
+					plus.storage.setItem('id', userId);
+					mui.back();
+				}
+			},
+			error: function(xhr, type, errorThrown) {
+				plus.nativeUI.toast('网络错误');
+			}
+		});
+	}
+}
 
 //验证班级是否存在
 function ClassExists(school, major, className) {
@@ -447,23 +584,23 @@ function GetAllClass() {
 	}
 
 	var colorCs = 0;
-	var course = JSON.parse(localStorage.course);
 	for (var j = 1; j <= 7; j++) {
 		var b = '';
 		b = kcName[j];
 		for (var i = 1; i < 8; i++) {
 			if (colorCs > 7) colorCs = 0;
-			var num = parseInt(i) + parseInt((j - 1) * 7)-1;
-			if (course[num] && j != 7) {
-				b += '<td data-num="' + num + '" data-no="' + j + '" data-noi="' + i + '"  class=' + setColor[colorCs] + ' ">' + course[num] + '</td>';
+			var num = parseInt(i) + parseInt((j - 1) * 7);
+			if (plus.storage.getItem('"' + num + '"') && j != 7) {
+				b += '<td data-num="' + num + '" data-no="' + j + '" data-noi="' + i + '"  class=' + setColor[colorCs] + ' ">' + plus.storage.getItem('"' + num + '"') + '</td>';
 				colorCs++;
-			} else if (j != 7){
-				b += '<td data-num="' + num + '"></td>';
+			} else {
+				if (j != 7)
+					b += '<td data-num="' + num + '"></td>';
 			}
 
-			if (j == 7 && course[num]) {
-				if (course[num]) {
-					b += '<td data-num="' + num + '" data-no="' + j + '" data-noi="' + i + '"  onclick=tanchu(this); colspan="7" class="' + setColor[2] + ' ">' + course[num] + '</td>';
+			if (j == 7 && plus.storage.getItem('"' + num + '"')) {
+				if (plus.storage.getItem('"' + num + '"')) {
+					b += '<td data-num="' + num + '" data-no="' + j + '" data-noi="' + i + '"  onclick=tanchu(this); colspan="7" class="' + setColor[2] + ' ">' + plus.storage.getItem('"' + num + '"') + '</td>';
 				} else {
 					b += '<td colspan="7" data-num="' + num + '"></td>';
 				}
@@ -803,7 +940,7 @@ function GetCourceByTeacherName() {
 				colorNumber++;
 			}
 			var html = document.getElementById("course_list");
-			var insertHtml = '<li class="nomoreInfo"><div class="mui-table" style="text-align:center"><p>' + '没有更多信息了' + '</p></div></li>';
+			var insertHtml = '<li class=" ' + color[colorNumber % 5] + '"><div class="mui-table" style="text-align:center"><p>' + '没有更多信息了' + '</p></div></li>';
 			html.innerHTML = html.innerHTML + insertHtml;
 		},
 		error: function(xhr, type, errorThrown) {
@@ -1189,7 +1326,6 @@ getDateDiff = function(dateTimeStamp) {
 	var month = day * 30;
 	var year = day * 365;
 	var now = parseInt(new Date().getTime() / 1000);
-	var dateTime = new Date(dateTimeStamp*1000);
 	var diffValue = now - dateTimeStamp;
 	if (diffValue < 0) {
 		//若日期不符则弹出窗口告之
@@ -1201,8 +1337,12 @@ getDateDiff = function(dateTimeStamp) {
 	var dayC = diffValue / day;
 	var hourC = diffValue / hour;
 	var minC = diffValue / minute;
-	if (yearC+weekC+monthC >= 1) {
-		return dateTime.getFullYear()+'/'+dateTime.getMonth()+'/'+dateTime.getDate()+' '+dateTime.getHours()+':'+dateTime.getMinutes();
+	if (yearC >= 1) {
+		result = "" + parseInt(monthC) + "年前";
+	} else if (monthC >= 1) {
+		result = "" + parseInt(monthC) + "个月前";
+	} else if (weekC >= 1) {
+		result = "" + parseInt(weekC) + "周前";
 	} else if (dayC >= 1) {
 		result = "" + parseInt(dayC) + "天前";
 	} else if (hourC >= 1) {
