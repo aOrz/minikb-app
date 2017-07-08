@@ -18,7 +18,7 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf-8')
 
 
 def getData(file):
-	data = xlrd.open_workbook(file)#'./xls/中131-3.xls')
+	data = xlrd.open_workbook(file)#'./ydxls/中131-3.xls')
 	table = data.sheets()[0];
 
 	classes = []
@@ -56,7 +56,7 @@ def makeSql(courseList = [],c_name = ""):
 	sql += "'');" + "\n"
 	#print(sql)
 	return sql
-print(os.listdir('./xls/'))
+print(os.listdir('./ydxls/'))
 
 
 
@@ -64,22 +64,22 @@ print(os.listdir('./xls/'))
 file_object = codecs.open('course.sql', 'w', 'utf-8')
 
 
-for i in os.listdir('./xls/'):
-	#print(getData('./xls/中131-3.xls'))
+for i in os.listdir('./ydxls/'):
+	#print(getData('./ydxls/中131-3.xls'))
 	print(i + "完成")
 	try:
-		# print(makeSql(trans(getData('./xls/' + i))))
-		file_object.write(makeSql(trans(getData('./xls/' + i)),i[:-4]))
+		# print(makeSql(trans(getData('./ydxls/' + i))))
+		file_object.write(makeSql(trans(getData('./ydxls/' + i)),i[:-4]))
 
-		# cur.execute(makeSql(trans(getData('./xls/' + i)),i))
+		# cur.execute(makeSql(trans(getData('./ydxls/' + i)),i))
 		# conn.commit()
 		print(i + "完成")
 	except:
 		#pass
 		print(i + "错误")
 file_object.close( )
-#print(cur.execute(makeSql(trans(getData('./xls/中131-3.xls')),i)))
-#print(len(trans(getData('./xls/中131-3.xls'))))
+#print(cur.execute(makeSql(trans(getData('./ydxls/中131-3.xls')),i)))
+#print(len(trans(getData('./ydxls/中131-3.xls'))))
 
 	#print()"""
 #ls = [x for x in range(0,47)]
