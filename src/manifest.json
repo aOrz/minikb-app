@@ -3,8 +3,8 @@
 	"id": "H5291D2691",/*必选，应用的标识*/
 	"name": "迷你课表",/*必选，应用名称*/
 	"version": {
-		"name": "2.8.4",/*必选，版本名称*/
-		"code": "14676"
+		"name": "2.8.1",/*必选，版本名称*/
+		"code": "14674"
 	},
 	"description": "",/*可选，应用描述信息*/
 	"icons": {
@@ -53,7 +53,7 @@
 		"popGesture": "close",/*设置应用默认侧滑返回关闭Webview窗口，none为无侧滑返回功能，hide为侧滑隐藏Webview窗口。参考ask.dcloud.net.cn/article/102*/
 		"splashscreen": {
 			"autoclose": true,/*如果为true，程序启动的图片可以自动关闭，如果为false，开发者需要手动关闭*/
-			"waiting": false,"delay":"600"/*是否在程序启动界面显示等待雪花，true表示显示，false表示不显示。*/
+			"waiting": false,"delay":"400"/*是否在程序启动界面显示等待雪花，true表示显示，false表示不显示。*/
 		},
 		"runmode": "normal",/*两个值，liberate或normal，前者在应用安装时释放资源，后者不需要释放资源*/
 		"signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",/*可选，保留给应用签名，暂不使用*/
@@ -155,8 +155,7 @@
 					"list.html",
 					"js/myjs.js",
 					"js/vue.min.js",
-					"manifest.json",
-					"images/sky.png"
+					"manifest.json"
 				],
 				"refer": [
 					"index-menu.html",
@@ -164,8 +163,7 @@
 					"response.html",
 					"reg.html",
 					"usermessage.html",
-					"ck.html",
-					"ckkb.html"
+					"ck.html"
 				],
 				"priority": 0
 			},
@@ -208,8 +206,7 @@
 					"js/mui.min.js",
 					"fonts/mui.ttf",
 					"css/mui.min.css",
-					"css/style.css",
-					"images/sky.png"
+					"css/style.css"
 				],
 				"refer": [],
 				"priority": 0
@@ -221,8 +218,7 @@
 					"css/style.css",
 					"js/myjs.js",
 					"js/vue.min.js",
-					"fonts/mui.ttf",
-					"images/sky.png"
+					"fonts/mui.ttf"
 				],
 				"refer": [
 					"examples/template.html",
@@ -249,8 +245,7 @@
 					"css/style.css",
 					"css/iconfont.css",
 					"fonts/iconfont.ttf",
-					"js/vue.min.js",
-					"images/sky.png"
+					"js/vue.min.js"
 				],
 				"refer": [
 					"postmessage.html",
@@ -265,8 +260,7 @@
 					"fonts/mui.ttf",
 					"css/mui.min.css",
 					"js/myjs.js",
-					"css/style.css",
-					"images/sky.png"
+					"css/style.css"
 				],
 				"refer": [
 					"message.html"
@@ -287,8 +281,7 @@
 					"js/myjs.js",
 					"js/vue.min.js",
 					"css/style.css",
-					"images/80.png",
-					"images/sky.png"
+					"images/80.png"
 				],
 				"refer": [],
 				"priority": 0
@@ -302,8 +295,7 @@
 					"css/style.css",
 					"js/myjs.js",
 					"about.html",
-					"js/vue.min.js",
-					"images/sky.png"
+					"js/vue.min.js"
 				],
 				"refer": [
 					"usermessage.html",
@@ -343,8 +335,7 @@
 					"css/mui.min.css",
 					"css/style.css",
 					"js/myjs.js",
-					"searchclass.html",
-					"images/sky.png"
+					"searchclass.html"
 				],
 				"refer": [
 					"ck.html",
@@ -370,8 +361,7 @@
 					"css/style.css",
 					"css/mui.imageviewer.css",
 					"js/arttmpl.js",
-					"script/strophe-custom-2.0.0.js",
-					"images/sky.png"
+					"script/strophe-custom-2.0.0.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -382,8 +372,7 @@
 					"css/mui.min.css",
 					"css/style.css",
 					"js/myjs.js",
-					"fonts/mui.ttf",
-					"images/sky.png"
+					"fonts/mui.ttf"
 				],
 				"refer": [],
 				"priority": 0
@@ -407,8 +396,7 @@
 					"css/mui.min.css",
 					"css/style.css",
 					"js/myjs.js",
-					"css/common.css",
-					"images/sky.png"
+					"css/common.css"
 				],
 				"refer": [
 					"reg.html",
@@ -423,9 +411,7 @@
 					"css/mui.min.css",
 					"css/style.css",
 					"js/myjs.js",
-					"images/80.png",
-					"fonts/mui.ttf",
-					"images/sky.png"
+					"images/80.png"
 				],
 				"refer": [
 					"examples/template.html",
@@ -443,8 +429,7 @@
 					"fonts/mui.ttf",
 					"css/mui.min.css",
 					"js/vue.min.js",
-					"css/style.css",
-					"images/sky.png"
+					"css/style.css"
 				],
 				"refer": [],
 				"priority": 0
@@ -456,8 +441,7 @@
 					"css/mui.min.css",
 					"js/myjs.js",
 					"css/style.css",
-					"js/vue.min.js",
-					"images/sky.png"
+					"js/vue.min.js"
 				],
 				"refer": [
 					"list.html",
@@ -484,8 +468,7 @@
 					"fonts/mui.ttf",
 					"css/mui.min.css",
 					"css/style.css",
-					"js/myjs.js",
-					"images/sky.png"
+					"js/myjs.js"
 				],
 				"refer": [
 					"list.html",
@@ -502,8 +485,7 @@
 					"fonts/mui.ttf",
 					"css/mui.min.css",
 					"css/style.css",
-					"js/myjs.js",
-					"images/sky.png"
+					"js/myjs.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -537,8 +519,7 @@
 					"fonts/mui.ttf",
 					"css/mui.min.css",
 					"css/style.css",
-					"js/myjs.js",
-					"images/sky.png"
+					"js/myjs.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -549,8 +530,7 @@
 					"fonts/mui.ttf",
 					"css/mui.min.css",
 					"css/style.css",
-					"js/vue.min.js",
-					"images/sky.png"
+					"js/vue.min.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -606,14 +586,9 @@
 					"css/style.css",
 					"images/face/6.png",
 					"images/face/4.png",
-					"js/myjs.js",
-					"images/sky.png",
-					"fonts/iconfont.ttf"
+					"js/myjs.js"
 				],
-				"refer": [
-					"comment.html",
-					"postmessage.html"
-				],
+				"refer": [],
 				"priority": 0
 			},
 			"forgetpassword.html": {
