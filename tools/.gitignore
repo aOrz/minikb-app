@@ -1,3 +1,5 @@
 teacher/
 *.sql
 xls/ 
+sql/
+*.xls
