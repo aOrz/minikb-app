@@ -22,7 +22,7 @@ function scheduleCronstyle() {
             // WJ
             res.on('end', () => {
                 if (body.indexOf('http://jiaowu.wenjing.ytu.edu.cn/data/upload/ueditor/20170120/5881b0266f9bb.rar') <0) {
-                        http.get('http://sc.ftqq.com/KEY.send?text=' + encodeURIComponent('文经课表更新啦~'));
+                        http.get('http://sc.ftqq.com/KEY.send?text=' + encodeURIComponent('文经课表更新啦~') + '&desp=' + encodeURIComponent(body));
                 }
             })
             // console.log(res.res)
