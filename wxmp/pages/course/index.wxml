@@ -1,0 +1,23 @@
+<!--index.wxml-->
+<view class="container">
+  <scroll-view scroll-y scroll-x bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+    <view class="scroll-content">
+      <view class="row week">
+        <view class="jc">
+          <text>{{course[0][0]}}</text>
+        </view>
+        <view wx:for="{{course[0]}}" wx:if="{{index}}">
+          <text>{{item}}</text>
+        </view>
+      </view>
+      <view wx:for="{{course}}" class="row" wx:if="{{index}}">
+        <view class="jc">
+          <text>{{course[index][0]}}</text>
+        </view>
+        <view wx:for="{{course[index]}}" wx:if="{{index}}">
+          <text>{{item}}</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

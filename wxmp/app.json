@@ -1,0 +1,11 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/course/index"  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#33CCCC",
+    "navigationBarTitleText": "迷你课表",
+    "navigationBarTextStyle":"#ffffff"
+  }
+}

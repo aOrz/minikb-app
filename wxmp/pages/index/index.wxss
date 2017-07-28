@@ -1,0 +1,53 @@
+/**index.wxss**/
+
+page, .page {
+  height: 100%;
+}
+
+.flex-wrp {
+  display: flex;
+  align-items: center;
+  padding: 30px;
+}
+
+.form {
+  width: 100%;
+}
+
+.form .row {
+  display: flex;
+  height: 50rpx;
+  margin-top: 40rpx;
+}
+
+.button-row {
+  width: 100%;
+  margin-top: 40rpx;
+}
+
+.container {
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}
+
+.picker-section {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+}
+
+.picker_title {
+  height: 60rpx;
+  background-color: rgb(251, 249, 254);
+}
+
+.picker_title button {
+  text-align: right;
+  font-size: 24rpx;
+  color: rgb(88, 108, 148);
+}
