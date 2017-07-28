@@ -3,3 +3,4 @@ teacher/
 xls/ 
 sql/
 *.xls
+node_modules
