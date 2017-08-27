@@ -10,7 +10,9 @@ function scheduleCronstyle() {
 			if (res.headers.etag !== ydEtag && ydEtag != '') {
 				ydEtag = res.headers.etag;
 				http.get('http://pushbear.ftqq.com/sub?sendkey=' + key +'&text=' + encodeURIComponent('烟大课表更新啦~'));
-			}
+			} else {
+                ydEtag = res.headers.etag;
+            }
         });
         
         http.get('http://jiaowu.wenjing.ytu.edu.cn/index.php/portal/article/index/id/2799', res => {
