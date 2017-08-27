@@ -1,0 +1,1 @@
+1. 安装unrar apt-get install unrar
