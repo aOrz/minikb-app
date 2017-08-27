@@ -94,7 +94,7 @@ module.exports = function getSql(data) {
     });
      
     connection.end();
-    fs.writeFile(`./sql/course${new Date().toLocaleString()}.sql`, sql, (err) => {
+    fs.writeFile(`./sql/course${new Date().toLocaleString().replace('/', '-')}.sql`, sql, (err) => {
         if (err) throw err;
         console.log('The file has been saved!');
         console.timeEnd(1);

@@ -1,2 +1,7 @@
 unpackage/
 .project
+*.sql
+*.xls
+*/**/node_modules/
+*/**/config.js
+*/**/*.rar
