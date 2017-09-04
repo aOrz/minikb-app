@@ -11,7 +11,9 @@
   "dependencies": {
     "excel-class": "^0.1.4",
     "exceljs": "^0.4.13",
+    "moment": "^2.18.1",
     "node-schedule": "^1.2.3",
-    "xls-parse": "^1.0.4"
+    "xls-parse": "^1.0.4",
+    "yargs": "^8.0.2"
   }
 }

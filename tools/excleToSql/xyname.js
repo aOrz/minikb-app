@@ -6,11 +6,9 @@ console.time(1);
 
 let sql = '';
 const char = ['', 'C', 'D', 'E', 'F', 'G', 'H', 'I'];
-const rootPath = './wjxls/'; 
-
 
 var map = {}
-function toSql(pathName) {
+function getName(pathName) {
     let arr = fs.readdirSync(pathName);
     for (var i = arr.length - 1; i >= 0; i--) {
         let childPath = path.resolve(pathName, arr[i]);
@@ -18,7 +16,7 @@ function toSql(pathName) {
             
         });
         if (stats.isDirectory()) {
-            toSql(childPath)
+            getName(childPath)
         } else {
             readCourse(childPath);
         }
@@ -35,7 +33,11 @@ function readCourse(filePath) {
 }
 
 
-toSql(rootPath);
-Object.keys(map).map(v => {
-    console.log(`<option value="${v}">${v}</option>`)
-})
+module.exports = function (rootPath) {
+    getName(rootPath);
+    console.log(Object.keys(map));
+    console.log();
+    // Object.keys(map).map(v => {
+    //     console.log(`<option value="${v}">${v}</option>`)
+    // })
+}

@@ -1,14 +1,33 @@
 const XLSX = require('xlsx');
 const fs = require('fs');
 const path = require('path');
-
+const getName = require('./xyname.js');
+const moment = require('moment');
+const argv = require('yargs')
+.option('s', {
+    alias : 'school',
+    demand: true,
+    default: 'yd',
+    describe: 'school yd or wj',
+    type: 'string'
+  })
+  .option('p', {
+    alias : 'path',
+    demand: true,
+    default: 'ydxls',
+    describe: 'excle路径',
+    type: 'string'
+  })
+  .example('all.js -s yd -p ydall')
+  .help('h')
+  .argv;
 console.time(1);
 
 let sql = '';
 const char = ['', 'C', 'D', 'E', 'F', 'G', 'H', 'I'];
-const rootPath = './ydxls/'; 
+const rootPath = argv.p; 
 
-
+getName(rootPath);
 let studentCourseTemp = 'insert into course (class_name,';
 for (var i = 1; i <= 42; i++) {
     studentCourseTemp = studentCourseTemp + ('s' + i) + ',';
@@ -74,10 +93,10 @@ function getSql(data) {
 
 toSql(rootPath);
 sql = sql.replace(/\([0-9A-Z\-]*\)/g, '');
+let sqlPath = `./sql/courseall-${argv.s}${moment().format()}.sql`;
 
-fs.writeFile(`./sql/course${new Date().getTime()}.sql`, sql, (err) => {
+fs.writeFile(sqlPath, sql, (err) => {
     if (err) throw err;
-    console.log('The file has been saved!');
+    console.log('The file has been saved!: ' + sqlPath);
     console.timeEnd(1);
-
 });
