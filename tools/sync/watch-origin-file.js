@@ -5,7 +5,7 @@ const schedule = require('node-schedule');
 const downYd = require('./download');
 
 function scheduleCronstyle() {
-  schedule.scheduleJob('* 1 * * * *', function() {
+  schedule.scheduleJob('* * 1 * * *', function() {
     // YD
     http.get('http://jwc.ytu.edu.cn/xk/bjkb.rar', (res, err) => {
       if (res.headers.etag !== ydEtag && ydEtag != '') {
