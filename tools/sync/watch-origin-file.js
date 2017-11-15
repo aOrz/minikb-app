@@ -7,7 +7,10 @@ const downYd = require('./download');
 function scheduleCronstyle() {
   schedule.scheduleJob('1 50 * * * *', function() {
     // YD
-    http.get('http://jwc.ytu.edu.cn/xk/bjkb.rar', (res, err) => {
+    http.get('http://xk.jwc.ytu.edu.cn/bjkb.rar', (res, err) => {
+      if (err) {
+        send('烟大课表检查失败', JSON.stringify(err), 1);
+      }
       if (res.headers.etag !== ydEtag && ydEtag != '') {
         ydEtag = res.headers.etag;
         send('检测到烟大课表更新啦!', '', 1);
