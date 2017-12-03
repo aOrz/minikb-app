@@ -5,7 +5,7 @@ const schedule = require('node-schedule');
 const downYd = require('./download');
 const config = require('../config')
 function scheduleCronstyle() {
-  schedule.scheduleJob('1 1 7-21/2 * * 1-5', function() {
+  schedule.scheduleJob('1 1/2 7-21 * * 1-5', function() {
     // YD
     http.get(config.getToken, (res, err) => {
       if (err) {
