@@ -1,5 +1,7 @@
 module.exports = {
-	key: '',
+  key: '',
+  getToken: '',
+  downloadUrl: "",
 	mysql: {
 		host: '',
 		user: '',

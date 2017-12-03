@@ -3,22 +3,28 @@ let ydEtag = '';
 let send = require('../sendMessage');
 const schedule = require('node-schedule');
 const downYd = require('./download');
-
+const config = require('../config')
 function scheduleCronstyle() {
-  schedule.scheduleJob('1 50 * * * *', function() {
+  schedule.scheduleJob('1 1 7-21/2 * * 1-5', function() {
     // YD
-    http.get('http://xk.jwc.ytu.edu.cn/bjkb.rar', (res, err) => {
+    http.get(config.getToken, (res, err) => {
       if (err) {
         send('烟大课表检查失败', JSON.stringify(err), 1);
       }
-      if (res.headers.etag !== ydEtag && ydEtag != '') {
-        ydEtag = res.headers.etag;
-        send('检测到烟大课表更新啦!', '', 1);
-        downYd();
-      } else {
-        ydEtag = res.headers.etag;
-        send('检测到烟大课表未更新', ydEtag);
-      }
+      res.setEncoding('utf8');
+      let etag = '';
+      res.on('data', (chunk) => { etag += chunk; });
+      res.on('end', () => {
+        if (etag !== ydEtag && ydEtag != '') {
+          ydEtag = etag;
+          send('检测到烟大课表更新啦!', '', 1);
+          downYd();
+        } else {
+          ydEtag = etag;
+          send('检测到烟大课表未更新', ydEtag);
+        }
+      })
+      
     });
 
     http.get('http://jiaowu.wenjing.ytu.edu.cn/index.php/portal/article/index/id/2799', res => {

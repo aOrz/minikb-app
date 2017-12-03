@@ -5,9 +5,10 @@ const Unrar = require('node-unrar');
 const rimraf = require('rimraf');
 const tosql = require('./tosql');
 const send = require('../sendMessage');
+const config = require('../config');
 
 module.exports = function() {
-  http.get('http://jwc.ytu.edu.cn/xk/bjkb.rar', (res, err) => {
+  http.get(config.downloadUrl, (res, err) => {
     let file = fs.createWriteStream('bjkb.rar');
     res.pipe(file);
     file.on('finish', function() {
@@ -17,7 +18,7 @@ module.exports = function() {
         /// Create '/path/to/dest/' before rar.extract()
         rimraf.sync('./ydxl/');
         rar.extract('./ydxl/', null, function(err) {
-          send('解压成功', err, 1);
+          send('解压成功', err || '', 1);
           tosql();
           //file extracted successfully.
         });
