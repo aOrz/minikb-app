@@ -46,6 +46,6 @@ function downloadFile (params) {
   });
 }
 downloadFile();
-schedule.scheduleJob('1 */2 7-21 * * 1-5', function() {
+schedule.scheduleJob('1 50 7-21/3 * * 1-5', function() {
   downloadFile();
 });
