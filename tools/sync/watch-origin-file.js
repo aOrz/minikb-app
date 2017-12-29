@@ -5,8 +5,7 @@ const schedule = require('node-schedule');
 const downYd = require('./download');
 const config = require('../config');
 
-function downloadFile (params) {
-  // YD
+function yd(params) {
   http.get(config.getToken, (res, err) => {
     if (err) {
       send('烟大课表检查失败', JSON.stringify(err), 1);
@@ -26,7 +25,9 @@ function downloadFile (params) {
     })
     
   });
-
+}
+function wj (params) {
+  // YD
   http.get('http://jiaowu.wenjing.ytu.edu.cn/index.php/portal/article/index/id/2799', res => {
     var body = '';
     res.on('data', function(d) {
@@ -45,7 +46,9 @@ function downloadFile (params) {
     });
   });
 }
-downloadFile();
+yd();
+wj();
 schedule.scheduleJob('1 50 7-21/3 * * 1-5', function() {
-  downloadFile();
+  yd();
+  wj();
 });
