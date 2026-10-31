@@ -1,6 +1,9 @@
 <!--index.wxml-->
 <view class="container">
-  <scroll-view scroll-y scroll-x bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+  <view wx:if="{{loading}}">正在加载课表…</view>
+  <view wx:if="{{error}}">{{error}}</view>
+  <button wx:if="{{error}}" bindtap="loadCourse" disabled="{{loading}}">重试</button>
+  <scroll-view wx:if="{{course.length}}" scroll-y scroll-x bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
     <view class="scroll-content">
       <view class="row week">
         <view class="jc">

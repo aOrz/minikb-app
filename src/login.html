@@ -70,7 +70,8 @@
 						}, 0);
 					};
 					document.getElementById('account').value=localStorage.getItem('mail');
-					document.getElementById('password').value=localStorage.getItem('pwd');
+					localStorage.removeItem('pwd'); // 清理旧版的明文密码，不再自动填充
+					document.getElementById('password').value = '';
 					// close splash
 					setTimeout(function() {
 						//关闭 splash

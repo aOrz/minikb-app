@@ -1,0 +1,10 @@
+{
+  "name": "minikb-app-checks",
+  "private": true,
+  "description": "Dependency-free regression checks for the legacy HBuilder app and WeChat Mini Program",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "check": "node scripts/check-syntax.js && npm test"
+  },
+  "engines": {"node": ">=18"}
+}

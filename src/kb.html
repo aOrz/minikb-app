@@ -84,16 +84,18 @@
 			});
 			mui('.bordered').on("longtap", 'td', function() {
 				var tem = this;
-				var text = this.innerHTML;
-				var nus = num = this.getAttribute('data-num');
+				var text = this.textContent;
+				var nus = this.getAttribute('data-num');
+				var num = nus;
 				num = '"' + num + '"';
 				layerOpen({
 					"title": "修改课程表",
-					"content": "<textarea id='et' onkeyup='autoGrow(this);' rows='4' style='background-color: #fff;border: 1px solid #ccc;overflow-y:auto;'>" + text + "</textarea>",
+					"content": "<textarea id='et' onkeyup='autoGrow(this);' rows='4' style='background-color: #fff;border: 1px solid #ccc;overflow-y:auto;'>" + EscapeHtml(text) + "</textarea>",
 					"btn": ["删除", "取消", "修改"],
 					"event": [function() {
+						var et = document.getElementById('et');
 						et.value=''
-						tem.innerHTML = et.value;
+						tem.textContent = et.value;
 						tem.className=''
 							plus.storage.setItem(num, et.value);
 							AlertCourse(nus, et.value);
@@ -109,7 +111,7 @@
 							alert("请输入内容");
 							return true; //继续显示对话框
 						} else {
-							tem.innerHTML = et.value;
+							tem.textContent = et.value;
 							tem.className='bg-info'
 							plus.storage.setItem(num, et.value);
 							AlertCourse(nus, et.value);

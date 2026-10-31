@@ -29,3 +29,17 @@
 打赏|加小助手进微信群
 :---:|:---:
 <img src="https://fddcn.cn/wp-content/uploads/2017/12/WechatIMG117.jpeg" width="200"/>  |  <img src="https://fddcn.cn/wp-content/uploads/2017/12/WechatIMG116.jpeg" width="200"/>
+
+## 本地回归检查
+
+仓库根目录新增不依赖 npm 安装的回归测试（仅测试工具要求 Node.js 18+，不改变 APP 的运行时要求）：
+
+```bash
+npm run check
+TZ=America/New_York npm test
+```
+
+覆盖课程文本安全渲染、编辑弹窗重复操作、课表更新失败/取消、学期周数及小程序请求边界。
+测试模拟 HTML5+ / 微信 API，不等于 HBuilder 打包或真机验证。可选的 `tests/browser_smoke.py`
+使用 Python Playwright 和 `/usr/bin/chromium` 检查真实 DOM（所有网络/native API 均为本地模拟）。
+详细结果、兼容性限制和未处理的安全风险见 [优化记录](doc/优化记录.md)。
