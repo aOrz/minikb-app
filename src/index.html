@@ -98,12 +98,11 @@
 							
 							mui.confirm(info, '迷你课表', btnArray, function(e) {
 								if (e.index == 1) {
-									UpdataCourse();
+									UpdataCourse(function() { index.course_updata = 0; });
 
 								}
 							})
-							index.course_updata=0;
-							localStorage.course_updata = 0;
+							// 只有 UpdataCourse 成功后清除提醒；取消或失败时保留。
 						}
 					}
 				})
@@ -116,6 +115,7 @@
 				}
 			});
 			mui.plusReady(function() {
+				localStorage.removeItem('pwd'); // 清理旧版保存的明文密码
 				//提示上课
 				function Tring() {
 					var class_time = {

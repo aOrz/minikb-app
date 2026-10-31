@@ -102,12 +102,25 @@ for (let i = wj.length - 1; i >= 0; i--) {
     children: grade
   });
 }
-//获取应用实例
-var app = getApp()
+// Normalize dependent columns before reading a school's shorter department list.
+function pickerIndices(value) {
+  value = value || [];
+  function indexAt(index, length) {
+    index = Number(index);
+    return index >= 0 && index < length && index % 1 === 0 ? index : 0;
+  }
+  const school = indexAt(value[0], arr.length);
+  const academe = indexAt(value[1], arr[school].children.length);
+  const grade = indexAt(value[2], arr[school].children[academe].children.length);
+  return [school, academe, grade];
+}
+
 Page({
   data: {
     classList: [],
     classId: 0,
+    loading: false,
+    error: '',
     schools: arr,
     academe: arr[0].children,
     grade: arr[0].children[7].children,
@@ -116,29 +129,25 @@ Page({
     isShowPicker: false
   },
   onReady() {
-    let options = this.options;
-    wx.setNavigationBarTitle({
-      title: '迷你课表'
-    });
+    wx.setNavigationBarTitle({ title: '迷你课表' });
   },
   showPicker() {
-    this.setData({
-      isShowPicker: !this.data.isShowPicker
-    });
+    this.setData({ isShowPicker: !this.data.isShowPicker });
   },
-  selectChange: function (e) {
-    let val = e.detail.value;
+  selectChange(e) {
+    let value = e.detail.value.slice();
+    if (value[0] !== this.data.pickerValue[0]) value[1] = 0;
+    const val = pickerIndices(value);
     this.setData({
       pickerValue: val,
       academe: arr[val[0]].children,
-      grade: arr[val[0]].children[val[1]].children,
-
+      grade: arr[val[0]].children[val[1]].children
     });
-    // console.log(this.data.selectValue)
   },
   pickerSelected() {
-    const val = this.data.pickerValue;
+    const val = pickerIndices(this.data.pickerValue);
     this.setData({
+      pickerValue: val,
       academe: arr[val[0]].children,
       grade: arr[val[0]].children[val[1]].children,
       selectValue: {
@@ -151,67 +160,59 @@ Page({
     });
     this.getClassName();
   },
-  getClassName: function () {
-    let that = this;
-    let { school, academe, grade } = this.data.selectValue;
-    if (wx.canIUse('showLoading')) {
-      wx.showLoading({
-        title: '狂奔中~',
-        mask: true
-      })
-    }
-    wx.request({
-      url: `https://kbs.fddcn.cn/controller/course_controller.php?c=Getclass&schoolName=${school.value}&school_info=${academe.value}${grade.value}`,
-      header: {
-        'content-type': 'application/json'
-      },
-      complete: function () {
-        if (wx.canIUse('hideLoading')) {
-          wx.hideLoading();
+  getClassName() {
+    const requestId = this._requestId = (this._requestId || 0) + 1;
+    if (this._request && this._request.abort) this._request.abort();
+    const { school, academe, grade } = this.data.selectValue;
+    this.setData({ loading: true, error: '', classList: [], classId: 0 });
+    this._request = wx.request({
+      url: 'https://kbs.fddcn.cn/controller/course_controller.php',
+      data: { c: 'Getclass', schoolName: school.value, school_info: academe.value + grade.value },
+      header: { 'content-type': 'application/json' },
+      success: (res) => {
+        if (requestId !== this._requestId) return;
+        if (!(res.statusCode >= 200 && res.statusCode < 300) || !Array.isArray(res.data) ||
+            !res.data.every(item => typeof item === 'string' && item.trim())) {
+          this.setData({ error: '班级数据异常，请重试' });
+          return;
         }
-      },
-      success: function (res) {
-        that.setData({
-          classList: res.data
+        this.setData({
+          classList: res.data,
+          error: res.data.length ? '' : '没有找到对应的班级，请换个年级学院试试'
         });
-        if (!res.data[0]) {
-          wx.showModal({
-            title: '换个年级学院试试？',
-            content: '没有找到对应的班级',
-            success: function (res) { }
-          })
-        }
       },
-      fail() {
-        wx.showModal({
-          title: '请求失败',
-          content: '请检查网络后重试',
-          success: function (res) { }
-        })
+      fail: () => {
+        if (requestId === this._requestId) this.setData({ error: '请求失败，请检查网络后重试' });
+      },
+      complete: () => {
+        if (requestId === this._requestId) this.setData({ loading: false });
       }
-    })
+    });
   },
-  search: function () {
-    let { school, academe, grade } = this.data.selectValue;
-    let { classList, classId } = this.data;
+  search() {
+    const { school, academe } = this.data.selectValue;
+    const { classList, classId, loading } = this.data;
+    if (loading) return;
+    const selected = classList[classId];
+    const match = typeof selected === 'string' && selected.match(/\d.*/);
+    if (!match) {
+      this.setData({ error: '请选择有效班级后再查询' });
+      return;
+    }
     wx.navigateTo({
-      url: `../course/index?schoolName=${school.value}&academe=${academe.value}&class=${classList[classId].match(/\d.*/)}`
-    })
+      url: '../course/index?schoolName=' + encodeURIComponent(school.value) +
+        '&academe=' + encodeURIComponent(academe.value) + '&class=' + encodeURIComponent(match[0])
+    });
   },
   pickerClassChange(e) {
-    this.setData({
-      classId: e.detail.value
-    })
+    this.setData({ classId: e.detail.value });
   },
-  onLoad: function () {
-    var that = this
-    //调用应用实例的方法获取全局数据
-    app.getUserInfo(function (userInfo) {
-      //更新数据
-      that.setData({
-        userInfo: userInfo
-      })
-    });
+  onLoad() {
+    // Public course lookup does not require access to a user's profile.
     this.getClassName();
+  },
+  onUnload() {
+    this._requestId = (this._requestId || 0) + 1;
+    if (this._request && this._request.abort) this._request.abort();
   }
-})
+});

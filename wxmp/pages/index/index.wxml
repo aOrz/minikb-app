@@ -13,7 +13,9 @@
       </picker>
     </view>
     <view class="button-row">
-      <button type="primary" bindtap="search">查询</button>
+      <view wx:if="{{error}}">{{error}}</view>
+      <button wx:if="{{error}}" bindtap="getClassName" disabled="{{loading}}">重新加载班级</button>
+      <button type="primary" bindtap="search" loading="{{loading}}" disabled="{{loading || !classList.length}}">查询</button>
       <button style="margin-top: 20rpx" open-type="contact">联系客服</button>
     </view>
   </view>
@@ -25,13 +27,13 @@
   </view>
   <picker-view indicator-style="height: 50px;" style="width: 100%; height: 300px;" value="{{pickerValue}}" bindchange="selectChange">
     <picker-view-column>
-      <view wx:for="{{schools}}" wx:key="item.label" style="line-height: 50px">{{item.label}}</view>
+      <view wx:for="{{schools}}" wx:key="value" style="line-height: 50px">{{item.label}}</view>
     </picker-view-column>
     <picker-view-column>
-      <view wx:for="{{academe}}" wx:key="item.label" style="line-height: 50px">{{item.label}}</view>
+      <view wx:for="{{academe}}" wx:key="value" style="line-height: 50px">{{item.label}}</view>
     </picker-view-column>
     <picker-view-column>
-      <view wx:for="{{grade}}" wx:key="item.label" style="line-height: 50px">{{item.label}}</view>
+      <view wx:for="{{grade}}" wx:key="value" style="line-height: 50px">{{item.label}}</view>
     </picker-view-column>
   </picker-view>
 </view>

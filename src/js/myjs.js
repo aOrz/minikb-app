@@ -47,7 +47,8 @@ function CheckLogin() {
 	var userId = document.getElementById('account').value;
 	var userPwd = document.getElementById('password').value;
 	localStorage.setItem('mail', userId);
-	localStorage.setItem('pwd', userPwd);
+	// 不再持久化明文密码，同时清理旧版本留下的缓存。
+	localStorage.removeItem('pwd');
 	if ((!userId) || (!userPwd)) {
 		//plus.nativeUI.closeWaiting();
 		plus.nativeUI.toast("请把信息输入完整");
@@ -561,57 +562,64 @@ function GetCollegeNameBySchool(school) {
 //	}
 //}
 
+// 课程、备注和用户输入都以纯文本保存，输出 HTML 时统一转义。
+function EscapeHtml(value) {
+	return String(value == null ? '' : value).replace(/[&<>"']/g, function(character) {
+		return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character];
+	});
+}
+
+// 旧接口返回单元素数组；空数组、错误页面和非课程对象不能覆盖本地课表。
+function GetCourseRecord(response) {
+	if (!Array.isArray(response) || !response.length) return null;
+	var record = response[0];
+	if (!record || typeof record !== 'object' || Array.isArray(record)) return null;
+	var hasCourseField = false;
+	for (var i = 1; i <= 44; i++) {
+		var key = 's' + i;
+		if (!Object.prototype.hasOwnProperty.call(record, key)) continue;
+		hasCourseField = true;
+		var value = record[key];
+		if (value != null && typeof value !== 'string' && typeof value !== 'number') return null;
+	}
+	return hasCourseField ? record : null;
+}
+
+// 本地课表与班级查询共用渲染逻辑；每格只读取一次，避免重复跨原生存储桥调用。
+function RenderCourseTable(readCourse, prefix, clickableNote) {
+	var colors = ['bg-primary', 'bg-success', 'bg-ss', 'bg-warning', 'bg-danger', 'bg-lan', 'bg-info', 'bg-sa'];
+	var colorIndex = 0;
+	for (var row = 1; row <= 7; row++) {
+		var html = row <= 5 ? '<th>第<br> ' + row + '<br>节<br></th>' :
+			(row === 6 ? '<th>设<br>计<br>实<br>习</th>' : '<th>备<br>注</th>');
+		if (row < 7) {
+			for (var day = 1; day <= 7; day++) {
+				var slot = (row - 1) * 7 + day;
+				var course = readCourse(slot);
+				var className = course ? ' class="' + colors[colorIndex++ % colors.length] + '"' : '';
+				html += '<td data-num="' + prefix + slot + '" data-no="' + row + '" data-noi="' + day + '"' + className + '>' + EscapeHtml(course) + '</td>';
+			}
+		} else {
+			// 兼容历史备注字段，清空时仍保留可编辑单元格，不残留上次的备注。
+			var note = '';
+			var noteSlot = 43;
+			for (var index = 43; index <= 49; index++) {
+				var candidate = readCourse(index);
+				if (candidate) { note = candidate; noteSlot = index; break; }
+			}
+			html += '<td data-num="' + prefix + noteSlot + '" data-no="7" data-noi="1" colspan="7"' +
+				(clickableNote ? ' onclick="tanchu(this)"' : '') + (note ? ' class="bg-ss"' : '') + '>' + EscapeHtml(note) + '</td>';
+		}
+		var element = document.getElementById('tr' + row);
+		if (element) element.innerHTML = html;
+	}
+}
+
 //得到全部课表
 function GetAllClass() {
-	var setColor = {
-		0: 'bg-primary',
-		1: 'bg-success',
-		2: 'bg-ss ',
-		3: 'bg-warning',
-		4: 'bg-danger ',
-		5: 'bg-lan',
-		6: 'bg-info',
-		7: 'bg-sa'
-	}
-	var kcName = {
-		1: '<th>第<br> 1<br>节<br></th>',
-		2: '<th>第<br> 2<br>节<br></th>',
-		3: '<th>第<br> 3<br>节<br></th>',
-		4: '<th>第<br> 4<br>节<br></th>',
-		5: '<th>第<br> 5<br>节<br></th>',
-		6: '<th>设<br>计<br>实<br>习</th>',
-		7: '<th>备<br>注</th>'
-	}
-
-	var colorCs = 0;
-	for (var j = 1; j <= 7; j++) {
-		var b = '';
-		b = kcName[j];
-		for (var i = 1; i < 8; i++) {
-			if (colorCs > 7) colorCs = 0;
-			var num = parseInt(i) + parseInt((j - 1) * 7);
-			if (plus.storage.getItem('"' + num + '"') && j != 7) {
-				b += '<td data-num="' + num + '" data-no="' + j + '" data-noi="' + i + '"  class=' + setColor[colorCs] + ' ">' + plus.storage.getItem('"' + num + '"') + '</td>';
-				colorCs++;
-			} else {
-				if (j != 7)
-					b += '<td data-num="' + num + '"></td>';
-			}
-
-			if (j == 7 && plus.storage.getItem('"' + num + '"')) {
-				if (plus.storage.getItem('"' + num + '"')) {
-					b += '<td data-num="' + num + '" data-no="' + j + '" data-noi="' + i + '"  onclick=tanchu(this); colspan="7" class="' + setColor[2] + ' ">' + plus.storage.getItem('"' + num + '"') + '</td>';
-				} else {
-					b += '<td colspan="7" data-num="' + num + '"></td>';
-				}
-				break;
-			}
-		}
-		var trs = '';
-		trs = 'tr' + j;
-		if (b != kcName[j])
-			document.getElementById(trs).innerHTML = b;
-	}
+	RenderCourseTable(function(slot) {
+		return plus.storage.getItem('"' + slot + '"');
+	}, '', true);
 }
 
 //点击弹出窗口
@@ -820,7 +828,7 @@ function GetCourseByClassName() {
 	var classExists = ClassExists(school, major, className);
 	if (classExists == 0) {
 		plus.nativeUI.toast("班级不存在");
-		document.getElementById("class").focus();
+
 		return;
 	}
 
@@ -841,55 +849,13 @@ function GetCourseByClassName() {
 		type: 'get', //HTTP请求类型
 		timeout: 10000, //超时时间设置为10秒；
 		success: function(data) {
-			var setColor = {
-				0: 'bg-primary',
-				1: 'bg-success',
-				2: 'bg-ss ',
-				3: 'bg-warning',
-				4: 'bg-danger ',
-				5: 'bg-lan',
-				6: 'bg-info',
-				7: 'bg-sa'
+			var course = GetCourseRecord(data);
+			if (!course) {
+				RenderCourseTable(function() { return ''; }, 's', false);
+				plus.nativeUI.toast("没有找到有效的课表，请稍后重试");
+				return;
 			}
-			var kcName = {
-				1: '<th>第<br> 1<br>节<br></th>',
-				2: '<th>第<br> 2<br>节<br></th>',
-				3: '<th>第<br> 3<br>节<br></th>',
-				4: '<th>第<br> 4<br>节<br></th>',
-				5: '<th>第<br> 5<br>节<br></th>',
-				6: '<th>设<br>计<br>实<br>习</th>',
-				7: '<th>备<br>注</th>'
-			}
-			var colorCs = 0;
-			for (var j = 1; j <= 7; j++) {
-				var b = '';
-				b = kcName[j];
-				for (var i = 1; i < 8; i++) {
-					if (colorCs > 7) colorCs = 0;
-					var num = parseInt(i) + parseInt((j - 1) * 7);
-					num = 's' + num;
-					if (data[0][num] && j != 7) {
-						b += '<td data-num="' + num + '" data-no="' + j + '" data-noi="' + i + '"  class=' + setColor[colorCs] + ' ">' + data[0][num] + '</td>';
-						colorCs++;
-					} else {
-						if (j != 7)
-							b += '<td data-num="' + num + '"></td>';
-					}
-
-					if (j == 7 && data[0][num]) {
-						if (data[0][num]) {
-							b += '<td data-num="' + num + '" data-no="' + j + '" data-noi="' + i + '"   colspan="7" class="' + setColor[2] + ' ">' + data[0][num] + '</td>';
-						} else {
-							b += '<td colspan="7" data-num="' + num + '"></td>';
-						}
-						break;
-					}
-				}
-				var trs = '';
-				trs = 'tr' + j;
-				if (b != kcName[j])
-					document.getElementById(trs).innerHTML = b;
-			}
+			RenderCourseTable(function(slot) { return course['s' + slot]; }, 's', false);
 		},
 		error: function(xhr, type, errorThrown) {
 			//异常处理；
@@ -1021,6 +987,7 @@ function GetStartTime() {
 		timeout: 8000, //超时时间设置为10秒；
 		success: function(data) {
 			day = GetDateDiff(data);
+			if (day === null) return;
 			plus.storage.setItem('holiday', data);
 			if (day == 0) {
 		document.getElementById("day").innerHTML = "还没开学呢";
@@ -1037,15 +1004,18 @@ function GetStartTime() {
 }
 
 //得到当前周数
-function GetDateDiff(startDate) {
-	var startTime = new Date(Date.parse(startDate.replace(/-/g, "/"))).getTime();
-	var endtime = new Date();
-	var endTime = endtime.getTime();
-	var dates = -(startTime - endTime) / (1000 * 60 * 60 * 24) / 7;
-	if (dates < 0) {
-		dates = 0;
-	}
-	return Math.ceil(dates);
+function GetDateDiff(startDate, today) {
+	if (typeof startDate !== 'string') return null;
+	var parts = /^\s*(\d{4})[-/](\d{1,2})[-/](\d{1,2})\s*$/.exec(startDate);
+	if (!parts) return null;
+	var year = Number(parts[1]), month = Number(parts[2]) - 1, day = Number(parts[3]);
+	var start = new Date(year, month, day);
+	if (start.getFullYear() !== year || start.getMonth() !== month || start.getDate() !== day) return null;
+	var now = today || new Date();
+	if (isNaN(now.getTime())) return null;
+	// 用本地日历日期计算，避免夏令时和当天时分影响周数。
+	var days = (Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) - Date.UTC(year, month, day)) / 86400000;
+	return days < 0 ? 0 : Math.floor(days / 7) + 1;
 }
 
 //修改用户密码
@@ -1148,7 +1118,7 @@ function kecheng() {
 
 */
 //查看课表是否更新 
-function UpdataCourse() {
+function UpdataCourse(onSuccess) {
 	var id = plus.storage.getItem("id") || localStorage.getItem('id');
 	mui.ajax('http://2.minikb.sinaapp.com/controller/user_controller.php', {
 		data: {
@@ -1166,18 +1136,19 @@ function UpdataCourse() {
 		timeout: 10000, //超时时间设置为10秒；   
 
 		success: function(data) {
-			data = data[0];
-			if (data != 0) {
+			data = GetCourseRecord(data);
+			if (data) {
 				for (var i = 1; i <= 44; i++) {
 					var ind = 's' + i;
-					plus.storage.setItem('"' + i + '"', data[ind]);
+					plus.storage.setItem('"' + i + '"', data[ind] == null ? '' : String(data[ind]));
 				}
 				detailPage = plus.webview.getWebviewById('list.html');
 				mui.fire(detailPage, 'customEvent', {});
-				localStorage.setItem('course_updata', 0)
+				localStorage.setItem('course_updata', 0);
+				if (typeof onSuccess === 'function') onSuccess();
 				plus.nativeUI.toast("课表重置成功");
 			} else {
-				plus.nativeUI.toast("还没有新的课表哦！");
+				plus.nativeUI.toast("没有找到有效的课表，请稍后重试");
 			}
 		},
 		error: function(xhr, type, errorThrown) {
@@ -1293,9 +1264,7 @@ function GetRankList() {
 }
 //文本转html
 function Tohtml(str) {
-	str = ((str.replace(/<(.+?)>/gi, "&lt;$1&gt;")).replace(/ /gi, "&nbsp;")).replace(/\n/gi, "<br>")
-
-	return str;
+	return EscapeHtml(str).replace(/ /g, '&nbsp;').replace(/\r\n|\r|\n/g, '<br>');
 }
 //得到
 function Getxiaoli() {
@@ -1401,7 +1370,7 @@ function autoGrow (oField) {
  * style://自定义样式(标题,内容,按钮)
  */
 function layerOpen(options) {
-	if (!options || !options.content) return;
+	if (!options || !options.content || document.getElementById("layer_root")) return;
 	//根布局
 	var layer_root = document.createElement("div");
 	layer_root.setAttribute("id", "layer_root");
@@ -1469,6 +1438,7 @@ function layerOpen(options) {
 					var index = Number(tagId);
 					if (options.event && options.event.length > index) {
 						var event = options.event[index];
+						if (layer_root._closing) return;
 						if (event && event()) return; //执行回调返回true,则继续显示对话框
 					}
 					layerClose(options.closeEvent);
@@ -1509,6 +1479,8 @@ function layerOpen(options) {
 var androidBackEvent; //Android点击后退键关闭对话框的回调
 function layerClose(closeEvent) {
 	var layer_root = document.getElementById("layer_root");
+	if (!layer_root || layer_root._closing) return;
+	layer_root._closing = true;
 	if (layer_root) {
 		//关闭动画320毫秒,比300毫秒长一点,防止闪烁
 		var layer_main = document.getElementById("layer_main");
@@ -1517,13 +1489,14 @@ function layerClose(closeEvent) {
 //		layer_root.classList.add("opacityOut");
 		//延时关闭,防止事件穿透
 		setTimeout(function() {
-			document.body.removeChild(layer_root);
+			if (layer_root.parentNode) layer_root.parentNode.removeChild(layer_root);
 		}, 300);
 	}
 	//对话框关闭的回调
 	closeEvent && closeEvent();
 	//Android点击后退键关闭对话框的回调
 	androidBackEvent && androidBackEvent();
+	androidBackEvent = null;
 }
 /*
  * 发送验证码
@@ -1552,7 +1525,7 @@ function SendCode(){
 		plus.nativeUI.toast("邮箱格式不正确");
 		document.getElementById('v-code-email').focus();
 		return;
-	} 
+	}
 
 	if (!CheckIdExists(email)) {
 		plus.nativeUI.toast("邮箱未注册");
