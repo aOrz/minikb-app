@@ -1,10 +1,15 @@
 //app.js
+var util = require('./utils/util.js')
 App({
   onLaunch: function () {
     //调用API从本地缓存中获取数据
-    var logs = wx.getStorageSync('logs') || []
+    var logs = util.readLogs(wx)
     logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+    try {
+      wx.setStorageSync('logs', logs)
+    } catch (error) {
+      // Logging is optional when storage is full or unavailable.
+    }
   },
   getUserInfo:function(cb){
     var that = this
