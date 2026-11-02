@@ -16,6 +16,17 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
+// Storage can be unavailable or contain stale/non-array values.
+function readLogs(storage) {
+  try {
+    var logs = storage.getStorageSync('logs')
+    return Array.isArray(logs) ? logs : []
+  } catch (error) {
+    return []
+  }
+}
+
 module.exports = {
+  readLogs: readLogs,
   formatTime: formatTime
 }
